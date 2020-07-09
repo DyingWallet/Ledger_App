@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.FeedbackPage">
+
+    <ImageView
+        android:id="@+id/img_fb_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background_girlback" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_fb_tit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/picaPink"
+        app:itemIconTint="@color/icon_sel"
+        app:itemTextColor="@color/text_sel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/fb_tit"
+        />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="442dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/tile_vertical"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nav_fb_tit"
+        app:layout_constraintVertical_bias="0.30">
+
+        <TextView
+            android:id="@+id/txv_fb_Tit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="反馈主题："
+            android:textColor="@color/picaPink"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etx_fb_Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/picaPink"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txv_fb_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="反馈类型："
+            android:textColor="@color/picaPink"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/fb_type_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <RadioButton
+                android:id="@+id/rbtn_advise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="我有一些建议"
+                android:textColor="@color/picaPink"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/rbtn_bug"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我发现了一个BUG!"
+                android:textColor="@color/picaPink"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/rbtn_froze"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我想停用我的账号"
+                android:textColor="@color/picaPink"
+                android:textSize="18sp" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/etx_fb_Content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00FFFFFF"
+            android:ems="10"
+            android:hint="请写下你想对治账酱说的话吧！（不要超过250字哦！）"
+            android:maxLength="250"
+            android:textColor="@color/picaPink" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_fb_Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_weight="1"
+        android:background="@drawable/corners"
+        android:text="算了"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+    <Button
+        android:id="@+id/btn_fb_push"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_weight="1"
+        android:background="@drawable/corners"
+        android:text="提交"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/img_Trend_Type_Item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_good" />
+
+    <TextView
+        android:id="@+id/txv_Trend_Month"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:text="1月结余" />
+
+    <TextView
+        android:id="@+id/txv_Trend_Month_Surplus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="结余" />
+
+    <TextView
+        android:id="@+id/txv_Trend_Month_Income"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="收入"
+        android:textSize="16sp"
+        android:textColor="#00BFFF"/>
+
+    <TextView
+        android:id="@+id/txv_Trend_Month_Cost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="花销"
+        android:textColor="#FF0000"/>
+
+
+</LinearLayout>

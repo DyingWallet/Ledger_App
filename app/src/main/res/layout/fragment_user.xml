@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/polygon_bg"
+    tools:context=".fragment.UserFrag">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="60dp">
+
+            <ImageView
+                android:id="@+id/img_UserFrag_HeadPic"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:src="@drawable/background" />
+
+            <TextView
+                android:id="@+id/txv_UserFrag_UserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
+                android:text="用户名"
+                android:textColor="@color/picaPink"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="430dp">
+
+                <ImageView
+                    android:id="@+id/img_UserFrag_Anno_BG"
+                    android:layout_width="170dp"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="24dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tile"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/img_UserFrag_Anno"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/icon_anno"
+                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Anno_BG"
+                    app:layout_constraintTop_toTopOf="@+id/img_UserFrag_Anno_BG" />
+
+                <TextView
+                    android:id="@+id/txv_UserFrag_Tit_Anno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="公告"
+                    android:textColor="@color/picaPink"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Anno"
+                    app:layout_constraintTop_toBottomOf="@+id/img_UserFrag_Anno" />
+
+                <TextView
+                    android:id="@+id/txv_UserFrag_Anno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="管理员发出的消息"
+                    android:textColor="@color/picaPink"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_UserFrag_Anno_BG"
+                    app:layout_constraintStart_toStartOf="@+id/txv_UserFrag_Tit_Anno"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_UserFrag_Tit_Anno" />
+
+                <ImageView
+                    android:id="@+id/img_UserFrag_Shop_BG"
+                    android:layout_width="170dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/img_UserFrag_Shop"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/icon_shop"
+                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Shop_BG"
+                    app:layout_constraintTop_toTopOf="@+id/img_UserFrag_Shop_BG" />
+
+                <TextView
+                    android:id="@+id/txv_UserFrag_Tit_Shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="主题商城"
+                    android:textColor="@color/picaPink"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Shop"
+                    app:layout_constraintTop_toBottomOf="@+id/img_UserFrag_Shop" />
+
+                <TextView
+                    android:id="@+id/txv_UserFrag_Shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="浏览最新炫酷主题"
+                    android:textColor="@color/picaPink"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_UserFrag_Shop_BG"
+                    app:layout_constraintStart_toStartOf="@+id/txv_UserFrag_Tit_Shop"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_UserFrag_Tit_Shop" />
+
+                <ImageView
+                    android:id="@+id/img_UserFrag_Feedback_BG"
+                    android:layout_width="170dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tile"
+                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Anno_BG"
+                    app:layout_constraintTop_toBottomOf="@+id/img_UserFrag_Anno_BG" />
+
+                <ImageView
+                    android:id="@+id/img_UserFrag_Feedback"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/icon_feedback"
+                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Feedback_BG"
+                    app:layout_constraintTop_toTopOf="@+id/img_UserFrag_Feedback_BG" />
+
+                <TextView
+                    android:id="@+id/txv_UserFrag_Tit_Feedback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="反馈"
+                    android:textColor="@color/picaPink"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Feedback"
+                    app:layout_constraintTop_toBottomOf="@+id/img_UserFrag_Feedback" />
+
+                <TextView
+                    android:id="@+id/txv_UserFrag_Feedback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="我们需要您的改进建议"
+                    android:textColor="@color/picaPink"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_UserFrag_Feedback_BG"
+                    app:layout_constraintStart_toStartOf="@+id/txv_UserFrag_Tit_Feedback"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_UserFrag_Tit_Feedback" />
+
+                <ImageView
+                    android:id="@+id/img_UserFrag_Storage_BG"
+                    android:layout_width="170dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/tile"
+                    app:layout_constraintEnd_toEndOf="@+id/img_UserFrag_Shop_BG"
+                    app:layout_constraintTop_toBottomOf="@+id/img_UserFrag_Shop_BG" />
+
+                <ImageView
+                    android:id="@+id/img_UserFrag_Storage"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/icon_storage"
+                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Storage_BG"
+                    app:layout_constraintTop_toTopOf="@+id/img_UserFrag_Storage_BG" />
+
+                <TextView
+                    android:id="@+id/txv_UserFrag_Tit_Storage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="主题仓库"
+                    android:textColor="@color/picaPink"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Storage"
+                    app:layout_constraintTop_toBottomOf="@+id/img_UserFrag_Storage" />
+
+                <TextView
+                    android:id="@+id/txv_UserFrag_Storage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="炫酷主题，即刻更换"
+                    android:textColor="@color/picaPink"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_UserFrag_Storage_BG"
+                    app:layout_constraintStart_toStartOf="@+id/txv_UserFrag_Tit_Storage"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_UserFrag_Tit_Storage" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

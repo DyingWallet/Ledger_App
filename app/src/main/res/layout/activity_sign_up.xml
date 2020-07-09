@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SignUpPage">
+
+    <ImageView
+        android:id="@+id/img_SignUp_BG0"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background_girlback" />
+
+    <ImageView
+        android:id="@+id/img_SignUp_Head"
+        android:layout_width="175dp"
+        android:layout_height="200dp"
+        android:src="@drawable/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_SignUp_BG0" />
+
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tile_vertical"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_SignUp_Head"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/txv_SignUp_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="注册"
+            android:textColor="@color/picaPink"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txv_SignUp_UserNo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="8dp"
+            android:text="*账号：(这里请输入邮箱哦)"
+            android:textColor="@color/picaPink"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etx_SignUp_UserNo"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/picaPink" />
+
+        <TextView
+            android:id="@+id/txv_SignUp_UserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:text="昵称：（默认等于邮箱，3-16个字符）"
+            android:textColor="@color/picaPink"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etx_SignUp_UserName"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/picaPink" />
+
+        <TextView
+            android:id="@+id/txv_SignUp_Passwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:text="*输入密码：（6-16位字母数字）"
+            android:textColor="@color/picaPink"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etx_SignUp_Passwd"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textColor="@color/picaPink" />
+
+        <TextView
+            android:id="@+id/txv_SignUp_Confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:text="*确认密码："
+            android:textColor="@color/picaPink"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etx_SignUp_Confirm"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textColor="@color/picaPink" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_SignUp_Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginStart="48dp"
+                android:background="@drawable/corners"
+                android:text="取消"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txv_SignUp_Nothing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btn_SignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="48dp"
+                android:layout_marginEnd="48dp"
+                android:background="@drawable/corners"
+                android:text="注册"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

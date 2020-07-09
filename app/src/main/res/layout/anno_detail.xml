@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/yellow_bg">
+
+    <TextView
+        android:id="@+id/txv_Anno_Detail_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="公告标题"
+        android:textColor="@color/picaPink"
+        android:textSize="36sp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="发布者："
+            android:textColor="@color/picaPink"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="end"/>
+
+        <TextView
+            android:id="@+id/txv_Anno_Detail_Admin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="管理员"
+            android:textColor="@color/picaPink"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="时间："
+            android:textColor="@color/picaPink"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="end"/>
+
+        <TextView
+            android:id="@+id/txv_Anno_Detail_Datetime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="2"
+            android:text="时间"
+            android:textColor="@color/picaPink"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txv_Anno_Detail_Content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:fadeScrollbars="true"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:scrollbars="vertical"
+        android:text="TextView"
+        android:textColor="@color/picaPink"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/btn_Anno_Detail_Dismiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/corners"
+        android:text="确定"/>
+</LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/txv_chat_item_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_toLeftOf="@+id/img_chat_item_user"
+        android:layout_toStartOf="@+id/img_chat_item_user"
+        android:background="@drawable/bubble_right"
+        android:text="这是测试内容"/>
+
+    <ImageView
+        android:id="@+id/img_chat_item_user"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="top"
+        android:src="@drawable/background"
+        android:scaleType="centerCrop"
+        android:contentDescription="USER" />
+
+</RelativeLayout>

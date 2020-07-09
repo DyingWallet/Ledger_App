@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="32dp"
+    android:paddingTop="24dp"
+    android:paddingStart="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingEnd="16dp">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="0"
+        app:srcCompat="@drawable/background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_marginTop="8dp"
+        android:divider="@drawable/common_horizontal_division_line"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txv_Chat_Dialog_Event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:textColor="@color/picaPink"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="TextView" />
+
+            <EditText
+                android:id="@+id/etx_Chat_Dialog_Event"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:text="开支"
+                android:textColor="@color/picaPink"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txv_Chat_Dialog_Amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:textColor="@color/picaPink"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="TextView" />
+
+            <EditText
+                android:id="@+id/etx_Chat_Dialog_Amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:textColor="@color/picaPink"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txv_Chat_Dialog_Type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:textColor="@color/picaPink"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="TextView" />
+
+            <Spinner
+                android:id="@+id/sp_Chat_Type"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:textColor="@color/picaPink"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txv_Chat_Dialog_Remark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:textColor="@color/picaPink"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="TextView" />
+
+            <EditText
+                android:id="@+id/etx_Chat_Dialog_Remark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:ems="10"
+                android:textColor="@color/picaPink"
+                android:textSize="18sp"
+                android:hint="要写一些备注吗？"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_Chat_Dialog_Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners"
+            android:text="算了"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"/>
+
+        <Button
+            android:id="@+id/btn_Chat_Dialog_Push"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners"
+            android:text="记一笔"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"/>
+    </LinearLayout>
+
+</LinearLayout>

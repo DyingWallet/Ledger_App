@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/pieFrag"
+        android:icon="@drawable/icon_pie_chart"
+        android:title="月度统计" />
+    <item
+        android:id="@+id/lineFrag"
+        android:icon="@drawable/icon_line_chart"
+        android:title="年度走势" />
+</menu>
