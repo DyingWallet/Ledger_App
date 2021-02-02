@@ -9,7 +9,8 @@ public class GetHttpResponse {
     //设置为服务器的ip及端口
     private String
 //            url     = "http://149.28.26.151:8090/",
-            url = "http://192.168.31.95:8090/",
+//            url = "http://192.168.31.95:8090/",
+            url = "http://192.168.123.64:8090/",
             result  = "",
             jsonStr = "",
             service = "",

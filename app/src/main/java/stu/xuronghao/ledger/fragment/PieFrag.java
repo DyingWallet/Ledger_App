@@ -32,19 +32,19 @@ import stu.xuronghao.ledger.handler.FeeSortUtil;
 
 public class PieFrag extends Fragment {
     //设置模式
-    private static final int      COST_MODE     = 0;
-    private static final int      INCOME_MODE   = 1;
-    private static final int[]    colors        = {R.color.picaPink, R.color.dining,
+    private static final int COST_MODE = 0;
+    private static final int INCOME_MODE = 1;
+    private static final int[] colors = {R.color.picaPink, R.color.dining,
             R.color.trans, R.color.cloth, R.color.daily};
-    private static final int[] costIcons = {R.drawable.icon_dining,R.drawable.icon_trans,
-            R.drawable.icon_cloth,R.drawable.icon_daily,R.drawable.icon_other_cost};
-    private static final int[] incomeIcons = {R.drawable.icon_salary,R.drawable.icon_bonus,
-            R.drawable.icon_loan,R.drawable.icon_redpkt,R.drawable.icon_other_income};
-    private static final String   ARG_USER_INFO = "user";
-    private static final String[] costType      = {"餐饮", "交通", "服饰", "日用", "其他"};
-    private static final String[] incomeType    = {"工资", "奖金", "借款", "红包", "其他"};
+    private static final int[] costIcons = {R.drawable.icon_dining, R.drawable.icon_trans,
+            R.drawable.icon_cloth, R.drawable.icon_daily, R.drawable.icon_other_cost};
+    private static final int[] incomeIcons = {R.drawable.icon_salary, R.drawable.icon_bonus,
+            R.drawable.icon_loan, R.drawable.icon_redpkt, R.drawable.icon_other_income};
+    private static final String ARG_USER_INFO = "user";
+    private static final String[] costType = {"餐饮", "交通", "服饰", "日用", "其他"};
+    private static final String[] incomeType = {"工资", "奖金", "借款", "红包", "其他"};
 
-    private static final HashMap<String, Integer> costTypeMap   =
+    private static final HashMap<String, Integer> costTypeMap =
             new HashMap<String, Integer>() {
                 {
                     put("餐饮", 0);
@@ -54,6 +54,7 @@ public class PieFrag extends Fragment {
                     put("其他", 4);
                 }
             };
+
     private static final HashMap<String, Integer> incomeTypeMap =
             new HashMap<String, Integer>() {
                 {
@@ -65,18 +66,18 @@ public class PieFrag extends Fragment {
                 }
             };
     //模式标记
-    private static       int                      mode          = COST_MODE;
+    private static int mode = COST_MODE;
 
-    private View       rootView;
-    private User       user;
+    private View rootView;
+    private User user;
     private DataPuller dataPuller = new DataPuller();
-    private int        currentMonth,
+    private int currentMonth,
             destinationMonth;
     private String startDate,
             endDate;
-    private List<Cost>   costList;
+    private List<Cost> costList;
     private List<Income> incomeList;
-    private Calendar     calendar;
+    private Calendar calendar;
 
     public PieFrag() {
         // Required empty public constructor
@@ -190,8 +191,8 @@ public class PieFrag extends Fragment {
         //适配器
         PieDataAdapter adapter;
         //设置始止时间
-        txv_StartDate.setText(startDate);
-        txv_EndDate.setText(endDate);
+        txv_StartDate.setText(startDate.split("\\s")[0]);
+        txv_EndDate.setText(endDate.split("\\s")[0]);
         //设置比较器
 //        FeeSortUtil sortUtil = new FeeSortUtil();
         String total;
@@ -226,8 +227,8 @@ public class PieFrag extends Fragment {
             pieTit.setText("总消费");
             //分类列表
             ArrayList<TotalFee> feeList = new ArrayList<>();
-            for(int i = 0; i < 5;i++){
-                if(costs[i]!=0)
+            for (int i = 0; i < 5; i++) {
+                if (costs[i] != 0)
                     feeList.add(new TotalFee(costIcons[i], costs[i], costType[i]));
             }
             new FeeSortUtil().sortByAmount(feeList);
@@ -260,7 +261,7 @@ public class PieFrag extends Fragment {
             pieTit.setText("总收入");
             //分类列表
             ArrayList<TotalFee> feeList = new ArrayList<>();
-            for(int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++) {
                 if (incomes[i] != 0)
                     feeList.add(new TotalFee(incomeIcons[i], incomes[i], incomeType[i]));
             }

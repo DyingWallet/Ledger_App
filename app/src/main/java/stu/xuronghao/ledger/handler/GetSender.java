@@ -37,11 +37,11 @@ public class GetSender implements Callable<String> {
             connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
             connection.connect();
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                String line = null;
+                String responseLine = "";
                 InputStream stream = connection.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-                while ((line = reader.readLine()) != null) {
-                    result.append(line);
+                while ((responseLine = reader.readLine()) != null) {
+                    result.append(responseLine);
                 }
                 stream.close();
                 reader.close();
