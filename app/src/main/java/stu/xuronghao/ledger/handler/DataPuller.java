@@ -19,8 +19,8 @@ public class DataPuller {
     private static final String          Login = "User/Login";
     private static final String          SignUp   = "User/SignUp";
     private static final String AllCosts = "Cost/queryByCostUser";
-    private static final String AllIncomes = "Income/queryByIncomeUser";
     private static final String CostsByDate = "Cost/queryByCostDateOfUser";
+    private static final String AllIncomes = "Income/queryByIncomeUser";
     private static final String IncomesByDate = "Income/queryByIncomeDateOfUser";
     private static final String PushFeedback = "Feedback/insertFb";
     private static final String PullAllAnno = "Anno/queryAllAnno";

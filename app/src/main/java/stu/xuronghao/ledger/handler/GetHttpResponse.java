@@ -10,7 +10,8 @@ public class GetHttpResponse {
     private String
 //            url     = "http://149.28.26.151:8090/",
 //            url = "http://192.168.31.95:8090/",
-            url = "http://192.168.123.64:8090/",
+//            url = "http://192.168.123.64:8090/",
+            url = "http://172.16.20.120:8090/",
             result  = "",
             jsonStr = "",
             service = "",
