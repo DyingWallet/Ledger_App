@@ -3,14 +3,14 @@ package stu.xuronghao.ledger.entity;
 import java.io.Serializable;
 
 public class Product implements Serializable {
-    private String  proNo;
-    private String  proName;
-    private int     proNumber;
-    private String  proType;
-    private int     proPrice;
-    private int     proDiscount = 10;
+    private String proNo;
+    private String proName;
+    private int proNumber;
+    private String proType;
+    private int proPrice;
+    private int proDiscount = 10;
     private boolean proStatus;
-    private String  adminNo;
+    private String adminNo;
 
     public Product() {
     }

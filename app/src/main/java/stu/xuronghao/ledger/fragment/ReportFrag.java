@@ -21,13 +21,13 @@ import stu.xuronghao.ledger.adapter.SwitchAdapter;
 
 public class ReportFrag extends Fragment {
     // 参数声明
-    private View                 rootView;
-    private ViewPager            viewPager;
-    private MenuItem             menuItem;
+    private View rootView;
+    private ViewPager viewPager;
+    private MenuItem menuItem;
     private BottomNavigationView navigationView;
 
     //声明子Fragment对象
-    PieFrag   pieFrag  = new PieFrag();
+    PieFrag pieFrag = new PieFrag();
     TrendFrag lineFrag = new TrendFrag();
 
     public ReportFrag() {

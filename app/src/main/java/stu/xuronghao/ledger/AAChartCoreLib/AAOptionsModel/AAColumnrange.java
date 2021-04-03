@@ -1,8 +1,8 @@
 package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AAColumnrange {
-    public Float        borderRadius;
-    public Float        borderWidth;
+    public Float borderRadius;
+    public Float borderWidth;
     public AADataLabels dataLabels;
 
     public AAColumnrange borderRadius(Float prop) {

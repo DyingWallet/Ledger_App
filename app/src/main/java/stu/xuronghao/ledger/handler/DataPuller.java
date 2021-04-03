@@ -16,8 +16,8 @@ import stu.xuronghao.ledger.entity.Income;
 import stu.xuronghao.ledger.entity.User;
 
 public class DataPuller {
-    private static final String          Login = "User/Login";
-    private static final String          SignUp   = "User/SignUp";
+    private static final String Login = "User/Login";
+    private static final String SignUp = "User/SignUp";
     private static final String AllCosts = "Cost/queryByCostUser";
     private static final String CostsByDate = "Cost/queryByCostDateOfUser";
     private static final String AllIncomes = "Income/queryByIncomeUser";
@@ -33,7 +33,7 @@ public class DataPuller {
     private static final String insertIncome = "Income/insertIncome";
     private static final String updateIncome = "Income/updateIncome";
     private static final String deleteIncome = "Income/deleteIncome";
-    private       GetHttpResponse response;
+    private GetHttpResponse response;
 
     public DataPuller() {
     }
@@ -57,13 +57,13 @@ public class DataPuller {
     }
 
     //注册
-    public boolean SignUpSender(User user){
+    public boolean SignUpSender(User user) {
         response = new GetHttpResponse();
-        String userJson = JSON.toJSONString(user,SerializerFeature.WriteClassName);
+        String userJson = JSON.toJSONString(user, SerializerFeature.WriteClassName);
         response.setService(SignUp);
         response.setJsonStr(userJson);
         userJson = response.Poster();
-        if(userJson.equals(""))
+        if (userJson.equals(""))
             return false;
         return (boolean) JSON.parse(userJson);
     }
@@ -153,16 +153,16 @@ public class DataPuller {
     }
 
     //提交反馈
-    public boolean HandOverFb(Feedback feedback){
+    public boolean HandOverFb(Feedback feedback) {
         String fbJson;
         response = new GetHttpResponse();
-        fbJson = JSON.toJSONString(feedback,SerializerFeature.WriteClassName);
+        fbJson = JSON.toJSONString(feedback, SerializerFeature.WriteClassName);
         response.setService(PushFeedback);
         response.setJsonStr(fbJson);
         fbJson = response.Poster();
-        if(fbJson.equals(""))
+        if (fbJson.equals(""))
             return false;
-        return (boolean)JSON.parse(fbJson);
+        return (boolean) JSON.parse(fbJson);
     }
 
     //获取公告
@@ -173,21 +173,21 @@ public class DataPuller {
         response.setService(PullAllAnno);
         Log.w("url: ", response.getUrl());
         Json = response.Getter();
-        if(Json.equals(""))
+        if (Json.equals(""))
             return null;
-        temp = JSONObject.parseArray(Json,Anno.class);
+        temp = JSONObject.parseArray(Json, Anno.class);
         return temp;
     }
 
     //获取历史互动记录
-    public List<ChatInfo> PullHistoryOf(String userNo){
+    public List<ChatInfo> PullHistoryOf(String userNo) {
         String Json;
         List<ChatInfo> temp;
 
         response = new GetHttpResponse();
 
         response.setService(PullAllHistory);
-        response.setParams("userNo",userNo);
+        response.setParams("userNo", userNo);
         Log.w("url: ", response.getUrl());
         Json = response.Getter();
 
@@ -201,79 +201,79 @@ public class DataPuller {
 
     //请求互动
     //请求收入互动
-    public ChatInfo requestIncomeChat(Income income,ChatInfo info){
-        String Json,incJson,infJson;
+    public ChatInfo requestIncomeChat(Income income, ChatInfo info) {
+        String Json, incJson, infJson;
         ChatInfo temp;
         response = new GetHttpResponse();
 
-        incJson = JSON.toJSONString(income,SerializerFeature.WriteClassName);
-        infJson = JSON.toJSONString(info,SerializerFeature.WriteClassName);
+        incJson = JSON.toJSONString(income, SerializerFeature.WriteClassName);
+        infJson = JSON.toJSONString(info, SerializerFeature.WriteClassName);
 
         Json = incJson + "<<->>" + infJson;
         response.setService(IncomeChat);
         response.setJsonStr(Json);
         Log.w("url: ", response.getUrl());
         Json = response.Poster();
-        if(Json.equals(""))
+        if (Json.equals(""))
             return null;
-        temp = JSON.parseObject(Json,ChatInfo.class);
+        temp = JSON.parseObject(Json, ChatInfo.class);
         return temp;
     }
 
     //请求支出互动
-    public ChatInfo requestCostChat(Cost cost,ChatInfo info){
-        String Json,costJson,infJson;
+    public ChatInfo requestCostChat(Cost cost, ChatInfo info) {
+        String Json, costJson, infJson;
         ChatInfo temp;
         response = new GetHttpResponse();
 
-        costJson = JSON.toJSONString(cost,SerializerFeature.WriteClassName);
-        infJson = JSON.toJSONString(info,SerializerFeature.WriteClassName);
+        costJson = JSON.toJSONString(cost, SerializerFeature.WriteClassName);
+        infJson = JSON.toJSONString(info, SerializerFeature.WriteClassName);
 
         Json = costJson + "<<->>" + infJson;
         response.setService(CostChat);
         response.setJsonStr(Json);
         Log.w("url: ", response.getUrl());
         Json = response.Poster();
-        if(Json.equals(""))
+        if (Json.equals(""))
             return null;
-        temp = JSON.parseObject(Json,ChatInfo.class);
+        temp = JSON.parseObject(Json, ChatInfo.class);
         return temp;
     }
 
     //记录收入
-    public boolean PushIncome(Income income){
+    public boolean PushIncome(Income income) {
         String Json;
         response = new GetHttpResponse();
-        Json = JSON.toJSONString(income,SerializerFeature.WriteClassName);
+        Json = JSON.toJSONString(income, SerializerFeature.WriteClassName);
         response.setService(insertIncome);
         response.setJsonStr(Json);
 
         Log.w("url: ", response.getUrl());
         Json = response.Poster();
 
-        if(Json.equals(""))
+        if (Json.equals(""))
             return false;
-        return (boolean)JSON.parse(Json);
+        return (boolean) JSON.parse(Json);
     }
 
     //记录支出
-    public boolean PushCost(Cost cost){
+    public boolean PushCost(Cost cost) {
         String Json;
         response = new GetHttpResponse();
-        Json = JSON.toJSONString(cost,SerializerFeature.WriteClassName);
+        Json = JSON.toJSONString(cost, SerializerFeature.WriteClassName);
         response.setService(insertCost);
         response.setJsonStr(Json);
 
         Log.w("url: ", response.getUrl());
         Json = response.Poster();
 
-        if(Json.equals(""))
+        if (Json.equals(""))
             return false;
-        return (boolean)JSON.parse(Json);
+        return (boolean) JSON.parse(Json);
     }
 
     //更新支出
-    public boolean UPDCost(Cost cost){
+    public boolean UPDCost(Cost cost) {
         String Json;
         response = new GetHttpResponse();
         Json = JSON.toJSONString(cost, SerializerFeature.WriteClassName);
@@ -281,13 +281,13 @@ public class DataPuller {
         response.setJsonStr(Json);
         Log.w("url: ", response.getUrl());
         Json = response.Poster();
-        if(Json.equals(""))
+        if (Json.equals(""))
             return false;
         return (boolean) JSON.parse(Json);
     }
 
     //更新收入
-    public boolean UPDIncome(Income income){
+    public boolean UPDIncome(Income income) {
         String Json;
         response = new GetHttpResponse();
         Json = JSON.toJSONString(income, SerializerFeature.WriteClassName);
@@ -295,13 +295,13 @@ public class DataPuller {
         response.setJsonStr(Json);
         Log.w("url: ", response.getUrl());
         Json = response.Poster();
-        if(Json.equals(""))
+        if (Json.equals(""))
             return false;
         return (boolean) JSON.parse(Json);
     }
 
     //删除支出记录
-    public boolean DELCost(Cost cost){
+    public boolean DELCost(Cost cost) {
         String Json;
         response = new GetHttpResponse();
         Json = JSON.toJSONString(cost);
@@ -309,13 +309,13 @@ public class DataPuller {
         response.setService(deleteCost);
         Log.w("url: ", response.getUrl());
         Json = response.Poster();
-        if(Json.equals(""))
+        if (Json.equals(""))
             return false;
         return (boolean) JSON.parse(Json);
     }
 
     //删除收入记录
-    public boolean DELIncome(Income income){
+    public boolean DELIncome(Income income) {
         String Json;
         response = new GetHttpResponse();
         Json = JSON.toJSONString(income);
@@ -323,7 +323,7 @@ public class DataPuller {
         response.setService(deleteIncome);
         Log.w("url: ", response.getUrl());
         Json = response.Poster();
-        if(Json.equals(""))
+        if (Json.equals(""))
             return false;
         return (boolean) JSON.parse(Json);
 

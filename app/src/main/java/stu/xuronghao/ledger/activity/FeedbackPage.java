@@ -50,7 +50,7 @@ public class FeedbackPage extends AppCompatActivity {
         group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.rbtn_advise:
                         feedback.setFbType("建议");
                         break;
@@ -67,7 +67,7 @@ public class FeedbackPage extends AppCompatActivity {
         push.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(getInputInfo()) {
+                if (getInputInfo()) {
                     if (dataPuller.HandOverFb(feedback)) {
                         Toast toast = Toast.makeText(context, "好的，治账酱收到了！", Toast.LENGTH_SHORT);
                         toast.show();
@@ -88,15 +88,15 @@ public class FeedbackPage extends AppCompatActivity {
         });
     }
 
-    private boolean getInputInfo(){
-       //获取输入框组件
+    private boolean getInputInfo() {
+        //获取输入框组件
         EditText fbTitle = findViewById(R.id.etx_fb_Title);
         EditText fbContent = findViewById(R.id.etx_fb_Content);
 
         String title = fbTitle.getText().toString();
         String content = fbContent.getText().toString();
 
-        if(checkInput(title,content)){
+        if (checkInput(title, content)) {
             feedback.setFbTitle(title);
             feedback.setFbContent(content);
             feedback.setFbDate(DateHandler.getCurrentDatetime());
@@ -108,15 +108,15 @@ public class FeedbackPage extends AppCompatActivity {
     }
 
     private boolean checkInput(String title, String content) {
-        if(!title.equals("")){
-            if(!content.equals("")){
+        if (!title.equals("")) {
+            if (!content.equals("")) {
                 return true;
             } else {
-                Toast toast = Toast.makeText(context,"说点什么吧...",Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(context, "说点什么吧...", Toast.LENGTH_SHORT);
                 toast.show();
             }
         } else {
-            Toast toast = Toast.makeText(context,"想个标题吧...",Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(context, "想个标题吧...", Toast.LENGTH_SHORT);
             toast.show();
         }
         return false;

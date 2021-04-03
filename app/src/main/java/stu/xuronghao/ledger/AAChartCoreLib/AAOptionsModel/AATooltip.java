@@ -3,21 +3,21 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 import stu.xuronghao.ledger.AAChartCoreLib.AATools.AAJSStringPurer;
 
 public class AATooltip {
-    public String  backgroundColor;
-    public String  borderColor;
-    public Float   borderRadius;
-    public Float   borderWidth;
+    public String backgroundColor;
+    public String borderColor;
+    public Float borderRadius;
+    public Float borderWidth;
     public AAStyle style;
     public Boolean enabled;
     public Boolean useHTML;
-    public String  formatter;
-    public String  headerFormat;
-    public String  pointFormat;
-    public String  footerFormat;
+    public String formatter;
+    public String headerFormat;
+    public String pointFormat;
+    public String footerFormat;
     public Integer valueDecimals;
     public Boolean shared;
     public Boolean crosshairs;
-    public String  valueSuffix;
+    public String valueSuffix;
 
     public AATooltip backgroundColor(String prop) {
         backgroundColor = prop;

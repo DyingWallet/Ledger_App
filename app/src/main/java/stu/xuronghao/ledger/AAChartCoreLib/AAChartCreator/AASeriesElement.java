@@ -42,28 +42,28 @@ import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AATooltip;
 
 public class AASeriesElement {
 
-    private String       type;
-    private String       name;
-    private Object[]     data;
-    private Float        lineWidth;//折线图、曲线图、直方折线图、折线填充图、曲线填充图、直方折线填充图的线条宽度
-    private Float        borderWidth;
-    private Object       color;
-    private Object       fillColor;
-    private Float        fillOpacity;//折线填充图、曲线填充图、直方折线填充图等填充图类型的填充颜色透明度
-    private Float        threshold;//The threshold, also called zero level or base level. For line type series this is only used in conjunction with negativeColor. default：0.
-    private String       negativeColor;// The color for the parts of the graph or points that are below the threshold
-    private String       dashStyle;
-    private Integer      yAxis;
+    private String type;
+    private String name;
+    private Object[] data;
+    private Float lineWidth;//折线图、曲线图、直方折线图、折线填充图、曲线填充图、直方折线填充图的线条宽度
+    private Float borderWidth;
+    private Object color;
+    private Object fillColor;
+    private Float fillOpacity;//折线填充图、曲线填充图、直方折线填充图等填充图类型的填充颜色透明度
+    private Float threshold;//The threshold, also called zero level or base level. For line type series this is only used in conjunction with negativeColor. default：0.
+    private String negativeColor;// The color for the parts of the graph or points that are below the threshold
+    private String dashStyle;
+    private Integer yAxis;
     private AADataLabels dataLabels;
-    private AAMarker     marker;
-    private Object       step;
-    private Boolean      colorByPoint;
-    private Integer      zIndex;
-    private Object[]     zones;
-    private AAShadow     shadow;
-    private String       stack;
-    private AATooltip    tooltip;
-    private Boolean      showInLegend;
+    private AAMarker marker;
+    private Object step;
+    private Boolean colorByPoint;
+    private Integer zIndex;
+    private Object[] zones;
+    private AAShadow shadow;
+    private String stack;
+    private AATooltip tooltip;
+    private Boolean showInLegend;
 
 
     public AASeriesElement type(String prop) {

@@ -8,7 +8,7 @@ public class Feedback implements Serializable {
     private String fbTitle;
     private String fbType;
     private String fbContent;
-    private int    fbRead;
+    private int fbRead;
     private String fbDate;
     private String userNo;
 

@@ -4,12 +4,12 @@ import stu.xuronghao.ledger.AAChartCoreLib.AAChartEnum.AAChartAlignType;
 import stu.xuronghao.ledger.AAChartCoreLib.AAChartEnum.AAChartVerticalAlignType;
 
 public class AATitle {
-    public String  text;
+    public String text;
     public AAStyle style;
-    public String  align;
-    public String  verticalAlign;
-    public Float   x;
-    public Float   y;
+    public String align;
+    public String verticalAlign;
+    public Float x;
+    public Float y;
     public Boolean userHTML;
 
     public AATitle text(String prop) {

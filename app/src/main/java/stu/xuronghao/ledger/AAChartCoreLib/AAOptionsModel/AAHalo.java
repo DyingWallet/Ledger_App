@@ -3,7 +3,7 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 import java.util.Map;
 
 public class AAHalo {
-    public Map   attributes;
+    public Map attributes;
     public Float opacity;
     public Float size;
 

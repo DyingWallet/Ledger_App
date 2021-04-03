@@ -3,8 +3,8 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 import stu.xuronghao.ledger.AAChartCoreLib.AAChartCreator.AASeriesElement;
 
 public class AAWaterfall extends AASeriesElement {
-    public String   upColor;
-    public String   color;
+    public String upColor;
+    public String color;
     //    public Float borderWidth;
     public Object[] data;
 

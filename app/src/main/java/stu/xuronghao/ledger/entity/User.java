@@ -6,8 +6,8 @@ public class User implements Serializable {
     private String userNo;
     private String userName;
     private String userPasswd;
-    private int    userStatus  = 0;
-    private int    userCredits = 0;
+    private int userStatus = 0;
+    private int userCredits = 0;
 
     public User() {
     }

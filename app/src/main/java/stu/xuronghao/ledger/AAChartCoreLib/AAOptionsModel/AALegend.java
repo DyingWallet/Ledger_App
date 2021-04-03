@@ -1,17 +1,17 @@
 package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AALegend {
-    public String      layout; //图例数据项的布局。布局类型： "horizontal" 或 "vertical" 即水平布局和垂直布局 默认是：horizontal.
-    public String      align; //设定图例在图表区中的水平对齐方式，合法值有left，center 和 right。
-    public String      verticalAlign; //设定图例在图表区中的垂直对齐方式，合法值有 top，middle 和 bottom。垂直位置可以通过 y 选项做进一步设定。
-    public Boolean     enabled;
-    public String      borderColor;
-    public Float       borderWidth;
-    public Float       itemMarginTop; //图例的每一项的顶部外边距，单位px。 默认是：0.
+    public String layout; //图例数据项的布局。布局类型： "horizontal" 或 "vertical" 即水平布局和垂直布局 默认是：horizontal.
+    public String align; //设定图例在图表区中的水平对齐方式，合法值有left，center 和 right。
+    public String verticalAlign; //设定图例在图表区中的垂直对齐方式，合法值有 top，middle 和 bottom。垂直位置可以通过 y 选项做进一步设定。
+    public Boolean enabled;
+    public String borderColor;
+    public Float borderWidth;
+    public Float itemMarginTop; //图例的每一项的顶部外边距，单位px。 默认是：0.
     public AAItemStyle itemStyle;
-    public Float       x;
-    public Float       y;
-    public Boolean     floating;
+    public Float x;
+    public Float y;
+    public Boolean floating;
 
     public AALegend layout(String prop) {
         layout = prop;

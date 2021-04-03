@@ -31,8 +31,8 @@ import stu.xuronghao.ledger.handler.DataPuller;
 public class IncomeFrag extends Fragment {
 
     // 设置需要从传入的bundle中获取的数据的Key值
-    private static final String ARG_USER_INFO    = "user";
-    private static final int    To_Income_Pusher = 1;
+    private static final String ARG_USER_INFO = "user";
+    private static final int To_Income_Pusher = 1;
 
     //进行收入图表类型匹配
     private static final HashMap<String, Integer> incomeTypeMap =
@@ -51,7 +51,7 @@ public class IncomeFrag extends Fragment {
     private View rootView;
     private User user;
     List<Income> incList;
-    ListView     listView;
+    ListView listView;
 
     public IncomeFrag() {
         // Required empty public constructor
@@ -110,7 +110,7 @@ public class IncomeFrag extends Fragment {
             String Tit = temp.getIncEvent() + ": " + temp.getIncType() + " " + temp.getIncAmount() + "元";
             HashMap<String, Object> map = new HashMap<String, Object>();
 //            map.put("ItemImage", R.drawable.icon_income);
-            map.put("ItemImage",incomeTypeMap.get(temp.getIncType()));
+            map.put("ItemImage", incomeTypeMap.get(temp.getIncType()));
             map.put("ItemTitle", Tit);
             map.put("ItemContent", temp.getIncDate());
             mapArrayList.add(map);
@@ -137,9 +137,9 @@ public class IncomeFrag extends Fragment {
         chatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.w("chatBtn","Ready to chat!");
+                Log.w("chatBtn", "Ready to chat!");
                 Intent intent = new Intent(getActivity(), ChatToRecordPage.class);
-                intent.putExtra("user",user);
+                intent.putExtra("user", user);
                 startActivity(intent);
             }
         });

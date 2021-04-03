@@ -16,7 +16,7 @@ import stu.xuronghao.ledger.R;
 public class BillDataAdapter extends BaseAdapter {
 
     //获取一个LayoutInflater来导入布局
-    private LayoutInflater                     inflater;
+    private LayoutInflater inflater;
     private ArrayList<HashMap<String, Object>> listItem;
 
     public BillDataAdapter(Context context, ArrayList<HashMap<String, Object>> listItem) {
@@ -47,8 +47,8 @@ public class BillDataAdapter extends BaseAdapter {
     //外部静态类
     static class ViewHolder {
         public ImageView imageView;
-        public TextView  title;
-        public TextView  content;
+        public TextView title;
+        public TextView content;
     }
 
     @Override

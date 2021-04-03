@@ -25,8 +25,8 @@ public class UserFrag extends Fragment {
 
     // 参数设置
     private Bundle args;
-    private User   user;
-    private View   rootView;
+    private User user;
+    private View rootView;
 
     public UserFrag() {
         // Required empty public constructor
@@ -64,7 +64,7 @@ public class UserFrag extends Fragment {
         storage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getContext(),"功能还在开发中哦......",Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getContext(), "功能还在开发中哦......", Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
@@ -72,7 +72,7 @@ public class UserFrag extends Fragment {
         shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getContext(),"功能还在开发中哦......",Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getContext(), "功能还在开发中哦......", Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
@@ -81,7 +81,7 @@ public class UserFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FeedbackPage.class);
-                intent.putExtra("user",user);
+                intent.putExtra("user", user);
                 startActivity(intent);
             }
         });
@@ -90,7 +90,7 @@ public class UserFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AnnoPage.class);
-                intent.putExtra("user",user);
+                intent.putExtra("user", user);
                 startActivity(intent);
             }
         });

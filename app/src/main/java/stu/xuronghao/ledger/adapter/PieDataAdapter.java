@@ -15,7 +15,7 @@ import stu.xuronghao.ledger.entity.TotalFee;
 
 public class PieDataAdapter extends BaseAdapter {
 
-    private LayoutInflater      inflater;
+    private LayoutInflater inflater;
     private ArrayList<TotalFee> feeList;
 
     public PieDataAdapter(Context context, ArrayList<TotalFee> feeList) {
@@ -41,8 +41,8 @@ public class PieDataAdapter extends BaseAdapter {
     //外部静态类
     static class PieItemHolder {
         public ImageView imageView;
-        public TextView  type;
-        public TextView  fee;
+        public TextView type;
+        public TextView fee;
     }
 
     @Override

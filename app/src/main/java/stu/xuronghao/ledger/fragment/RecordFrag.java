@@ -23,13 +23,13 @@ import stu.xuronghao.ledger.adapter.SwitchAdapter;
 
 public class RecordFrag extends Fragment {
     // 参数声明
-    private View                 rootView;
-    private ViewPager            viewPager;
-    private MenuItem             menuItem;
+    private View rootView;
+    private ViewPager viewPager;
+    private MenuItem menuItem;
     private BottomNavigationView navigationView;
 
     //声明子Fragment对象
-    CostFrag   costFrag   = new CostFrag();
+    CostFrag costFrag = new CostFrag();
     IncomeFrag incomeFrag = new IncomeFrag();
 
     public RecordFrag() {

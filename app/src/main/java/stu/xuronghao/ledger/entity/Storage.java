@@ -6,7 +6,7 @@ import java.util.Date;
 public class Storage implements Serializable {
     private String userNo;
     private String proNo;
-    private Date   purDate;
+    private Date purDate;
 
     public Storage() {
     }

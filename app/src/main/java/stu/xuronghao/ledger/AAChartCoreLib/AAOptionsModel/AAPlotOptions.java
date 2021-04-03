@@ -1,16 +1,16 @@
 package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AAPlotOptions {
-    public AAColumn      column;
-    public AALine        line;
-    public AAPie         pie;
-    public AABar         bar;
-    public AASpline      spline;
-    public AAArea        area;
-    public AAAreaspline  areaspline;
+    public AAColumn column;
+    public AALine line;
+    public AAPie pie;
+    public AABar bar;
+    public AASpline spline;
+    public AAArea area;
+    public AAAreaspline areaspline;
     public AAColumnrange columnrange;
-    public AAArearange   arearange;
-    public AASeries      series;
+    public AAArearange arearange;
+    public AASeries series;
 
 
     public AAPlotOptions column(AAColumn prop) {

@@ -20,12 +20,12 @@ import stu.xuronghao.ledger.handler.DataPuller;
 public class DetailPage extends AppCompatActivity {
 
     private static final int
-            COST   = 0,
+            COST = 0,
             INCOME = 1;
 
-    private int     index;
-    private Cost    cost;
-    private Income  income;
+    private int index;
+    private Cost cost;
+    private Income income;
     private Context context;
     private DataPuller dataPuller = new DataPuller();
 

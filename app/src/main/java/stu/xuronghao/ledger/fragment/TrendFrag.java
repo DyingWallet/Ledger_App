@@ -33,17 +33,17 @@ import stu.xuronghao.ledger.handler.DataPuller;
 public class TrendFrag extends Fragment {
     private static final String ARG_USER_INFO = "user";
 
-    private View       rootView;
-    private User       user;
+    private View rootView;
+    private User user;
     private DataPuller dataPuller = new DataPuller();
-    private int        currentYear,
+    private int currentYear,
             destinationYear;
-    Double[] monthlyCost    = new Double[12];
-    Double[] monthlyIncome  = new Double[12];
+    Double[] monthlyCost = new Double[12];
+    Double[] monthlyIncome = new Double[12];
     Double[] monthlySurplus = new Double[12];
-    private TrendData   yearlyData;
+    private TrendData yearlyData;
     private TrendData[] monthlyData = new TrendData[12];
-    private String      startDate,
+    private String startDate,
             endDate;
     private Calendar calendar;
 
@@ -234,7 +234,7 @@ public class TrendFrag extends Fragment {
         txv_yearTit.setText(destinationYear + "年");
         txv_totalIncome.setText(yearlyData.getIncome() + "元");
         txv_totalCost.setText(yearlyData.getCost() + "元");
-        if(yearlyData.getSurplus()>0){
+        if (yearlyData.getSurplus() > 0) {
             txv_totalSurplus.setTextColor(txv_totalSurplus.getResources().getColor(R.color.possurplus));
         } else {
             txv_totalSurplus.setTextColor(txv_totalSurplus.getResources().getColor(R.color.negsurplus));

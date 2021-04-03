@@ -2,7 +2,7 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AAAnimation {
     public Integer duration;
-    public String  easing;
+    public String easing;
 
     public AAAnimation duration(Integer prop) {
         duration = prop;

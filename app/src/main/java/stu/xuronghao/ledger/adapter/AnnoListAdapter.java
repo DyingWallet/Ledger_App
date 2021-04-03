@@ -14,7 +14,7 @@ import stu.xuronghao.ledger.entity.AnnoInfo;
 
 public class AnnoListAdapter extends BaseAdapter {
 
-    private LayoutInflater      inflater;
+    private LayoutInflater inflater;
     private ArrayList<AnnoInfo> annoList;
 
     public AnnoListAdapter(Context context, ArrayList<AnnoInfo> annoList) {
@@ -37,7 +37,7 @@ public class AnnoListAdapter extends BaseAdapter {
         return position;
     }
 
-    static class annoHolder{
+    static class annoHolder {
         public TextView title;
         public TextView datetime;
     }
@@ -47,9 +47,9 @@ public class AnnoListAdapter extends BaseAdapter {
 
         annoHolder holder;
 
-        if(convertView == null){
+        if (convertView == null) {
             holder = new annoHolder();
-            convertView = inflater.inflate(R.layout.anno_list_item,null);
+            convertView = inflater.inflate(R.layout.anno_list_item, null);
             holder.title = convertView.findViewById(R.id.txv_Anno_Item_Title);
             holder.datetime = convertView.findViewById(R.id.txv_Anno_Item_Date);
             convertView.setTag(holder);

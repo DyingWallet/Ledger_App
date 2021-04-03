@@ -15,7 +15,7 @@ import stu.xuronghao.ledger.entity.TrendData;
 
 public class TrendDataAdapter extends BaseAdapter {
 
-    private LayoutInflater       inflater;
+    private LayoutInflater inflater;
     private ArrayList<TrendData> dataList;
 
     public TrendDataAdapter(Context context, ArrayList<TrendData> dataList) {
@@ -41,10 +41,10 @@ public class TrendDataAdapter extends BaseAdapter {
     //外部静态类
     static class TrendItemHolder {
         public ImageView img;
-        public TextView  month;
-        public TextView  income;
-        public TextView  cost;
-        public TextView  surplus;
+        public TextView month;
+        public TextView income;
+        public TextView cost;
+        public TextView surplus;
     }
 
     @Override

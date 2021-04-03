@@ -29,21 +29,21 @@ import stu.xuronghao.ledger.handler.DataPuller;
 import stu.xuronghao.ledger.handler.DateHandler;
 
 public class ChatToRecordPage extends AppCompatActivity {
-    private static final String[] costType      = {"餐饮", "交通", "服饰", "日用", "其他"};
-    private static final String[] incomeType    = {"工资", "奖金", "借款", "红包", "其他"};
-    private static final String   ARG_USER_INFO = "user";
+    private static final String[] costType = {"餐饮", "交通", "服饰", "日用", "其他"};
+    private static final String[] incomeType = {"工资", "奖金", "借款", "红包", "其他"};
+    private static final String ARG_USER_INFO = "user";
 
     private ChatListAdapter adapter;
     private ArrayAdapter<String> spAdapter;
     private ListView listView;
     private List<ChatInfo> infoList;
-    private ChatInfo       userInfo,
+    private ChatInfo userInfo,
             npcInfo;
-    private User           user;
-    private DataPuller     dataPuller = new DataPuller();
+    private User user;
+    private DataPuller dataPuller = new DataPuller();
     private Context context;
     private String selected;
-    private Cost   cost;
+    private Cost cost;
     private Income income;
     private View view;
 
@@ -82,22 +82,22 @@ public class ChatToRecordPage extends AppCompatActivity {
 
     }
 
-    private void buildListView(){
+    private void buildListView() {
         infoList = dataPuller.PullHistoryOf(user.getUserNo());
 
-        if(infoList == null){
+        if (infoList == null) {
             Toast toast = Toast.makeText(context,
-                    "似乎和服务器君失去了联系...请检查网络连接哦~~~",Toast.LENGTH_SHORT);
+                    "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
 
-        adapter = new ChatListAdapter(context,infoList);
+        adapter = new ChatListAdapter(context, infoList);
         listView.setAdapter(adapter);
     }
 
-    private void showCostDialog(){
-        view = LayoutInflater.from(this).inflate(R.layout.chat_dialog,null,false);
+    private void showCostDialog() {
+        view = LayoutInflater.from(this).inflate(R.layout.chat_dialog, null, false);
         final AlertDialog dialog = new AlertDialog.Builder(this).setView(view).create();
 
         Button cancel = view.findViewById(R.id.btn_Chat_Dialog_Cancel);
@@ -113,7 +113,7 @@ public class ChatToRecordPage extends AppCompatActivity {
         txv_Type.setText("支出类型：");
         txv_Remark.setText("备注：");
 
-        spAdapter = new ArrayAdapter<String>(context,R.layout.spinner_item_sel,costType);
+        spAdapter = new ArrayAdapter<String>(context, R.layout.spinner_item_sel, costType);
         spAdapter.setDropDownViewResource(R.layout.spinner_item_drop);
         spinner.setAdapter(spAdapter);
 
@@ -124,7 +124,8 @@ public class ChatToRecordPage extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         //向服务器推送信息
@@ -141,19 +142,19 @@ public class ChatToRecordPage extends AppCompatActivity {
                         money = etx_CostMoney.getText().toString(),
                         remark = etx_CostRemark.getText().toString(),
                         dateStr = DateHandler.getCurrentDatetime();
-                if(CheckInput(event,money)){
-                    cost = new Cost(event,selected,Double.parseDouble(money),
-                            dateStr,remark,user.getUserNo());
-                    userInfo = new ChatInfo(user.getUserNo(),dateStr,
-                            dateStr + "："+ selected + "支出" + Double.parseDouble(money),
+                if (CheckInput(event, money)) {
+                    cost = new Cost(event, selected, Double.parseDouble(money),
+                            dateStr, remark, user.getUserNo());
+                    userInfo = new ChatInfo(user.getUserNo(), dateStr,
+                            dateStr + "：" + selected + "支出" + Double.parseDouble(money),
                             1);
                     infoList.add(userInfo);
                     adapter.notifyDataSetChanged();
                     dialog.dismiss();
-                    npcInfo = dataPuller.requestCostChat(cost,userInfo);
-                    if(npcInfo == null){
+                    npcInfo = dataPuller.requestCostChat(cost, userInfo);
+                    if (npcInfo == null) {
                         Toast toast = Toast.makeText(context,
-                                "似乎和服务器君失去了联系...请检查网络连接哦~~~",Toast.LENGTH_SHORT);
+                                "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_SHORT);
                         toast.show();
                     } else {
                         npcInfo.setIsMeSend(0);
@@ -173,9 +174,9 @@ public class ChatToRecordPage extends AppCompatActivity {
         dialog.show();
     }
 
-    private void showIncomeDialog(){
+    private void showIncomeDialog() {
         income = new Income();
-        view = LayoutInflater.from(this).inflate(R.layout.chat_dialog,null,false);
+        view = LayoutInflater.from(this).inflate(R.layout.chat_dialog, null, false);
         final AlertDialog dialog = new AlertDialog.Builder(this).setView(view).create();
 
         Button cancel = view.findViewById(R.id.btn_Chat_Dialog_Cancel);
@@ -193,7 +194,7 @@ public class ChatToRecordPage extends AppCompatActivity {
         txv_Type.setText("收入类型：");
         txv_Remark.setText("备注：");
 
-        spAdapter = new ArrayAdapter<String>(context,R.layout.spinner_item_sel,incomeType);
+        spAdapter = new ArrayAdapter<String>(context, R.layout.spinner_item_sel, incomeType);
         spAdapter.setDropDownViewResource(R.layout.spinner_item_drop);
         spinner.setAdapter(spAdapter);
 
@@ -204,7 +205,8 @@ public class ChatToRecordPage extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
         //向服务器推送信息
@@ -221,19 +223,19 @@ public class ChatToRecordPage extends AppCompatActivity {
                         money = etx_CostMoney.getText().toString(),
                         remark = etx_CostRemark.getText().toString(),
                         dateStr = DateHandler.getCurrentDatetime();
-                if(CheckInput(event,money)){
-                    income = new Income(event,selected,Double.parseDouble(money),
-                            dateStr,remark,user.getUserNo());
-                    userInfo = new ChatInfo(user.getUserNo(),dateStr,
-                            dateStr + "："+ selected + "收入" + Double.parseDouble(money),
+                if (CheckInput(event, money)) {
+                    income = new Income(event, selected, Double.parseDouble(money),
+                            dateStr, remark, user.getUserNo());
+                    userInfo = new ChatInfo(user.getUserNo(), dateStr,
+                            dateStr + "：" + selected + "收入" + Double.parseDouble(money),
                             1);
                     infoList.add(userInfo);
                     adapter.notifyDataSetChanged();
                     dialog.dismiss();
-                    npcInfo = dataPuller.requestIncomeChat(income,userInfo);
-                    if(npcInfo == null){
+                    npcInfo = dataPuller.requestIncomeChat(income, userInfo);
+                    if (npcInfo == null) {
                         Toast toast = Toast.makeText(context,
-                                "似乎和服务器君失去了联系...请检查网络连接哦~~~",Toast.LENGTH_SHORT);
+                                "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_SHORT);
                         toast.show();
                     } else {
                         npcInfo.setIsMeSend(0);

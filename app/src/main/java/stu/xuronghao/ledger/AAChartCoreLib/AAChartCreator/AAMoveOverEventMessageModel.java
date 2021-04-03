@@ -27,10 +27,10 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAChartCreator;
 import com.google.gson.internal.LinkedTreeMap;
 
 public class AAMoveOverEventMessageModel {
-    public String        name;
-    public Double        x;
-    public Double        y;
-    public String        category;
+    public String name;
+    public Double x;
+    public Double y;
+    public String category;
     public LinkedTreeMap offset;
-    public Integer       index;
+    public Integer index;
 }

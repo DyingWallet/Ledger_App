@@ -19,9 +19,9 @@ import stu.xuronghao.ledger.handler.DataPuller;
 import stu.xuronghao.ledger.handler.GetHttpResponse;
 
 public class SignUpPage extends AppCompatActivity {
-    private Context         context  = this;
+    private Context context = this;
     private GetHttpResponse response = new GetHttpResponse();
-    private User            user     = new User();
+    private User user = new User();
     private DataPuller dataPuller;
 
     @Override
@@ -85,7 +85,7 @@ public class SignUpPage extends AppCompatActivity {
     private boolean CheckInput(String userNo, String userName,
                                String userPasswd, String Confirm) {
         if (isEmail(userNo)) {
-            if(!(!userName.isEmpty() && (userName.length() < 3 || userName.length() > 16))) {
+            if (!(!userName.isEmpty() && (userName.length() < 3 || userName.length() > 16))) {
                 if (!userPasswd.isEmpty()) {
                     if (userPasswd.length() < 6) {
                         Toast toast = Toast.makeText(context, "密码最少要6位哦！", Toast.LENGTH_LONG);
@@ -100,7 +100,7 @@ public class SignUpPage extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, "密码不能为空！", Toast.LENGTH_LONG);
                     toast.show();
                 }
-            }else {
+            } else {
                 Toast toast = Toast.makeText(context, "昵称长度超出限制啦！", Toast.LENGTH_LONG);
                 toast.show();
             }
@@ -111,8 +111,8 @@ public class SignUpPage extends AppCompatActivity {
         return false;
     }
 
-    private boolean isEmail(String email){
-        if (null==email || "".equals(email)){
+    private boolean isEmail(String email) {
+        if (null == email || "".equals(email)) {
             return false;
         }
         String regEx1 = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";

@@ -3,7 +3,7 @@ package stu.xuronghao.ledger.entity;
 import java.io.Serializable;
 
 public class Sentence implements Serializable {
-    private int    SenId;
+    private int SenId;
     private String Content;
 
 

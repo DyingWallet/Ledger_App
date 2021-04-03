@@ -14,7 +14,7 @@ import java.util.concurrent.Callable;
 
 public class PostSender implements Callable<String> {
     private String
-            url     = "",
+            url = "",
             jsonStr = "";
 
     public PostSender(String url) {

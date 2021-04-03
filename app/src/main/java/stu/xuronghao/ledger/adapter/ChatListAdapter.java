@@ -39,7 +39,7 @@ public class ChatListAdapter extends BaseAdapter {
     }
 
     static class MsgHolder {
-        public TextView  msg;
+        public TextView msg;
         public ImageView print;
     }
 

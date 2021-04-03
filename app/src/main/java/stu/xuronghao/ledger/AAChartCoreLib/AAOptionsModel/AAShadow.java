@@ -2,10 +2,10 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AAShadow {
     public String color;
-    public Float  offsetX;
-    public Float  offsetY;
-    public Float  opacity;
-    public Float  width;
+    public Float offsetX;
+    public Float offsetY;
+    public Float opacity;
+    public Float width;
 
     public AAShadow color(String prop) {
         color = prop;

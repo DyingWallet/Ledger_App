@@ -2,7 +2,7 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AAHover {
     public String borderColor;
-    public Float  brightness;
+    public Float brightness;
     public String color;
     public AAHalo halo;
 

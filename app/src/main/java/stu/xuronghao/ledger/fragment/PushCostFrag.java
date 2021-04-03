@@ -23,14 +23,14 @@ import stu.xuronghao.ledger.handler.DateHandler;
 
 public class PushCostFrag extends Fragment {
 
-    private static final String[] costType      = {"餐饮", "交通", "服饰", "日用", "其他"};
-    private static final String   ARG_USER_INFO = "user";
+    private static final String[] costType = {"餐饮", "交通", "服饰", "日用", "其他"};
+    private static final String ARG_USER_INFO = "user";
 
-    private View                 rootView;
-    private Spinner              spinner;
+    private View rootView;
+    private Spinner spinner;
     private ArrayAdapter<String> adapter;
-    private String               selected;
-    private User                 user;
+    private String selected;
+    private User user;
     private DataPuller dataPuller = new DataPuller();
 
     public PushCostFrag() {

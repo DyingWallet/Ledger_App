@@ -22,18 +22,18 @@ import stu.xuronghao.ledger.fragment.PushIncomeFrag;
 
 public class PushDataPage extends AppCompatActivity {
 
-    private final        int    Cost_Pusher   = 0;
-    private final        int    Income_Pusher = 1;
+    private final int Cost_Pusher = 0;
+    private final int Income_Pusher = 1;
     private static final String ARG_USER_INFO = "user";
 
     //参数声明
-    private ViewPager            viewPager;
-    private MenuItem             menuItem;
+    private ViewPager viewPager;
+    private MenuItem menuItem;
     private BottomNavigationView navigationView;
-    private User                 user;
+    private User user;
 
     //声明Fragment对象
-    PushCostFrag   pushCostFrag   = new PushCostFrag();
+    PushCostFrag pushCostFrag = new PushCostFrag();
     PushIncomeFrag pushIncomeFrag = new PushIncomeFrag();
 
     @Override

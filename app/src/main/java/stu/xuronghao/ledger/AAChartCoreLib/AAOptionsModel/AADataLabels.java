@@ -4,20 +4,20 @@ public class AADataLabels {
     public Boolean enabled;
     public Boolean inside;
     public AAStyle style;
-    public String  format;
-    public Float   rotation;
+    public String format;
+    public Float rotation;
     public Boolean allowOverlap;
     public Boolean useHTML;
-    public Float   distance;
-    public String  verticalAlign;
-    public Float   x;
-    public Float   y;
-    public String  color;
-    public String  backgroundColor;
-    public String  borderColor;
-    public Float   borderRadius;
-    public Float   borderWidth;
-    public String  shape;
+    public Float distance;
+    public String verticalAlign;
+    public Float x;
+    public Float y;
+    public String color;
+    public String backgroundColor;
+    public String borderColor;
+    public Float borderRadius;
+    public Float borderWidth;
+    public String shape;
 
 
     public AADataLabels inside(Boolean prop) {

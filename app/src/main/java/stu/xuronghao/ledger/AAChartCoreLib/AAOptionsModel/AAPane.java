@@ -2,10 +2,10 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AAPane {
     public AABackground background;
-    public Object[]     center;
-    public Float        endAngle;
-    public Float        size;
-    public Float        startAngle;
+    public Object[] center;
+    public Float endAngle;
+    public Float size;
+    public Float startAngle;
 
     public AAPane background(AABackground prop) {
         background = prop;

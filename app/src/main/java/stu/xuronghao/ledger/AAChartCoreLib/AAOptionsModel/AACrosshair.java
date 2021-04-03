@@ -1,7 +1,7 @@
 package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AACrosshair {
-    public Float  width;
+    public Float width;
     public String color;
     public String dashStyle;
 

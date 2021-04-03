@@ -6,7 +6,7 @@ public class Admin implements Serializable {
     private String adminNo;
     private String adminName;
     private String adminPasswd;
-    private int    adminStatus;
+    private int adminStatus;
 
     public Admin() {
     }

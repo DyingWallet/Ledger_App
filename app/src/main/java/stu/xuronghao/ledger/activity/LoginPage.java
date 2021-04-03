@@ -22,12 +22,12 @@ import stu.xuronghao.ledger.handler.DataPuller;
 public class LoginPage extends AppCompatActivity {
     private static final int
             LoggedIn = 2,
-            Activited          = 1,
-            FrozenUser         = 0,
-            NoUser             = -1,
-            WrongPasswd        = -2;
-    private Context    context    = this;
-    private User       user       = new User();
+            Activited = 1,
+            FrozenUser = 0,
+            NoUser = -1,
+            WrongPasswd = -2;
+    private Context context = this;
+    private User user = new User();
     private DataPuller dataPuller = new DataPuller();
 
     @Override
@@ -41,7 +41,7 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View v) {
                 if (getLoginInfo()) {
                     User temp = dataPuller.LoginSender(user);
-                    if(temp == null){
+                    if (temp == null) {
                         Toast toast = Toast.makeText(context,
                                 "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_LONG);
                         toast.show();
@@ -91,7 +91,7 @@ public class LoginPage extends AppCompatActivity {
     private boolean CheckInput(String userNo, String Passwd) {
         if (isEmail(userNo)) {
             if (!Passwd.isEmpty()) {
-                if(Passwd.length() >= 6 && Passwd.length() <= 16)
+                if (Passwd.length() >= 6 && Passwd.length() <= 16)
                     return true;
                 else {
                     Toast toast = Toast.makeText(context, "密码长度超出限制啦！", Toast.LENGTH_LONG);
@@ -108,8 +108,8 @@ public class LoginPage extends AppCompatActivity {
         return false;
     }
 
-    private boolean isEmail(String email){
-        if (null==email || "".equals(email)){
+    private boolean isEmail(String email) {
+        if (null == email || "".equals(email)) {
             return false;
         }
         String regEx1 = "^([a-z0-9A-Z]+[-|.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";

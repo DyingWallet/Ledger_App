@@ -1,11 +1,11 @@
 package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AADataElement {
-    public String       name;
-    public Float        y;
-    public Object       color;
+    public String name;
+    public Float y;
+    public Object color;
     public AADataLabels dataLabels;
-    public AAMarker     marker;
+    public AAMarker marker;
 
     public AADataElement name(String prop) {
         name = prop;

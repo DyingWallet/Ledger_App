@@ -63,10 +63,10 @@ public class AAChartView extends WebView {
         );
     }
 
-    public Float               contentWidth;
-    public Float               contentHeight;
-    public Boolean             chartSeriesHidden;
-    public Boolean             isClearBackgroundColor;
+    public Float contentWidth;
+    public Float contentHeight;
+    public Boolean chartSeriesHidden;
+    public Boolean isClearBackgroundColor;
     public AAChartViewCallBack callBack;
 
     public void setContentWidth(Float contentWidth) {

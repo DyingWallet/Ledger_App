@@ -12,10 +12,10 @@ public class GetHttpResponse {
 //            url = "http://192.168.31.95:8090/",
 //            url = "http://192.168.123.64:8090/",
             url = "http://172.16.20.120:8090/",
-            result  = "",
+            result = "",
             jsonStr = "",
             service = "",
-            params  = "";
+            params = "";
     private int i = 1;
 
     public void setService(String service) {

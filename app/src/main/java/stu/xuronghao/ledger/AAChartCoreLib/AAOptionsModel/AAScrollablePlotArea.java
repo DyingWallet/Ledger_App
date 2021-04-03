@@ -3,9 +3,9 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 public class AAScrollablePlotArea {
     public Integer minHeight;
     public Integer minWidth;
-    public Float   opacity;
-    public Float   scrollPositionX;
-    public Float   scrollPositionY;
+    public Float opacity;
+    public Float scrollPositionX;
+    public Float scrollPositionY;
 
     public AAScrollablePlotArea minHeight(Integer prop) {
         minHeight = prop;

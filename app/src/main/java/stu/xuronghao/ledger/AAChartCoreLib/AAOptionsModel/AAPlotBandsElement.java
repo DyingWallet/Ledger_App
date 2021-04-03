@@ -1,12 +1,12 @@
 package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AAPlotBandsElement {
-    public Float   from;
-    public Float   to;
-    public Object  color;
-    public String  borderColor;
-    public Float   borderWidth;
-    public String  className;
+    public Float from;
+    public Float to;
+    public Object color;
+    public String borderColor;
+    public Float borderWidth;
+    public String className;
     public AALabel label;
     public Integer zIndex;
 

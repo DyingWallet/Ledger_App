@@ -28,7 +28,7 @@ import stu.xuronghao.ledger.handler.DataPuller;
 public class AnnoPage extends AppCompatActivity {
 
     private User user;
-    private ListView   listView;
+    private ListView listView;
     private List<Anno> annoList;
     private AnnoListAdapter adapter;
     private DataPuller dataPuller = new DataPuller();
@@ -55,18 +55,18 @@ public class AnnoPage extends AppCompatActivity {
         buildListView();
     }
 
-    private void buildListView(){
+    private void buildListView() {
         annoList = dataPuller.PullAnnos();
-        if(annoList == null){
+        if (annoList == null) {
             Toast toast = Toast.makeText(context,
-                    "似乎和服务器君失去了联系...请检查网络连接哦~~~",Toast.LENGTH_SHORT);
+                    "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
         ArrayList<AnnoInfo> infoList = new ArrayList<>();
-        for(Anno anno : annoList)
-            infoList.add(new AnnoInfo(anno.getAnnoTitle(),anno.getAnnoDate()));
-        adapter = new AnnoListAdapter(context,infoList);
+        for (Anno anno : annoList)
+            infoList.add(new AnnoInfo(anno.getAnnoTitle(), anno.getAnnoDate()));
+        adapter = new AnnoListAdapter(context, infoList);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -78,8 +78,8 @@ public class AnnoPage extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-    private void showDialog(Anno anno){
-        View view = LayoutInflater.from(this).inflate(R.layout.anno_detail,null,false);
+    private void showDialog(Anno anno) {
+        View view = LayoutInflater.from(this).inflate(R.layout.anno_detail, null, false);
         final AlertDialog dialog = new AlertDialog.Builder(this).setView(view).create();
 
         Button confirm = view.findViewById(R.id.btn_Anno_Detail_Dismiss);

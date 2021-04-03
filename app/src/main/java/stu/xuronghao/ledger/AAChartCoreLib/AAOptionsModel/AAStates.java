@@ -2,7 +2,7 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AAStates {
 
-    public AAHover  hover;
+    public AAHover hover;
     public AASelect select;
 
     public AAStates hover(AAHover prop) {

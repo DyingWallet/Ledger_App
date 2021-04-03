@@ -1,7 +1,7 @@
 package stu.xuronghao.ledger.entity;
 
 public class TotalFee {
-    private int    img;
+    private int img;
     private double fee;
     private String type;
 

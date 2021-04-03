@@ -1,18 +1,18 @@
 package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AAPie {
-    public String       name;
-    public Object[]     data;
+    public String name;
+    public Object[] data;
     public AADataLabels dataLabels;
-    public Float        size;
-    public String       innerSize;
-    public Boolean      allowPointSelect;
-    public String       cursor;
-    public Boolean      showInLegend;
-    public Float        startAngle;
-    public Float        endAngle;
-    public Float        depth;
-    public Float        center;
+    public Float size;
+    public String innerSize;
+    public Boolean allowPointSelect;
+    public String cursor;
+    public Boolean showInLegend;
+    public Float startAngle;
+    public Float endAngle;
+    public Float depth;
+    public Float center;
 
     public AAPie name(String prop) {
         name = prop;

@@ -31,11 +31,11 @@ import stu.xuronghao.ledger.handler.DataPuller;
 public class CostFrag extends Fragment {
 
     // 设置需要从传入的bundle中获取的数据的Key值
-    private static final String ARG_USER_INFO  = "user";
-    private static final int    To_Cost_Pusher = 0;
+    private static final String ARG_USER_INFO = "user";
+    private static final int To_Cost_Pusher = 0;
 
     //进行支出图表类型匹配
-    private static final HashMap<String, Integer> costTypeMap   =
+    private static final HashMap<String, Integer> costTypeMap =
             new HashMap<String, Integer>() {
                 {
                     put("餐饮", R.drawable.icon_dining);
@@ -51,7 +51,7 @@ public class CostFrag extends Fragment {
     private View rootView;
     private User user;
     List<Cost> costList;
-    ListView   listView;
+    ListView listView;
 
     public CostFrag() {
         // Required empty public constructor
@@ -108,7 +108,7 @@ public class CostFrag extends Fragment {
             String Tit = temp.getCostEvent() + ": " + temp.getCostType() + " " + temp.getCostAmount() + "元";
             HashMap<String, Object> map = new HashMap<String, Object>();
 //            map.put("ItemImage", R.drawable.icon_cost);
-            map.put("ItemImage",costTypeMap.get(temp.getCostType()));
+            map.put("ItemImage", costTypeMap.get(temp.getCostType()));
             map.put("ItemTitle", Tit);
             map.put("ItemContent", temp.getCostDate());
             mapArrayList.add(map);
@@ -135,9 +135,9 @@ public class CostFrag extends Fragment {
         chatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.w("chatBtn","Ready to chat!");
+                Log.w("chatBtn", "Ready to chat!");
                 Intent intent = new Intent(getActivity(), ChatToRecordPage.class);
-                intent.putExtra("user",user);
+                intent.putExtra("user", user);
                 startActivity(intent);
             }
         });

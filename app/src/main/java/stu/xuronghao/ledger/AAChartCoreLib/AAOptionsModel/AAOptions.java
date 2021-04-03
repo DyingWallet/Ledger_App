@@ -1,20 +1,20 @@
 package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AAOptions {
-    public AAChart       chart;
-    public AATitle       title;
-    public AASubtitle    subtitle;
-    public AAXAxis       xAxis;
-    public AAYAxis       yAxis;
-    public AAXAxis[]     xAxisArray;
-    public AAYAxis[]     yAxisArray;
-    public AATooltip     tooltip;
+    public AAChart chart;
+    public AATitle title;
+    public AASubtitle subtitle;
+    public AAXAxis xAxis;
+    public AAYAxis yAxis;
+    public AAXAxis[] xAxisArray;
+    public AAYAxis[] yAxisArray;
+    public AATooltip tooltip;
     public AAPlotOptions plotOptions;
-    public Object[]      series;
-    public AALegend      legend;
-    public AAPane        pane;
-    public Object[]      colors;
-    public Boolean       touchEventEnabled;
+    public Object[] series;
+    public AALegend legend;
+    public AAPane pane;
+    public Object[] colors;
+    public Boolean touchEventEnabled;
 
     public AAOptions chart(AAChart prop) {
         chart = prop;

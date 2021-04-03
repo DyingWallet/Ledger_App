@@ -3,12 +3,12 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 import stu.xuronghao.ledger.AAChartCoreLib.AAChartEnum.AAChartVerticalAlignType;
 
 public class AASubtitle {
-    public String  text;
+    public String text;
     public AAStyle style;
-    public String  align;
-    public String  verticalAlign;
-    public Float   x;
-    public Float   y;
+    public String align;
+    public String verticalAlign;
+    public Float x;
+    public Float y;
     public Boolean userHTML;
 
     public AASubtitle text(String prop) {

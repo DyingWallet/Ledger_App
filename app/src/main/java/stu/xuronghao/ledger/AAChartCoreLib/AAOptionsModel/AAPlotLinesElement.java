@@ -2,10 +2,10 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 
 public class AAPlotLinesElement {
 
-    public Object  color;
-    public String  dashStyle;
-    public Float   width;
-    public Float   value;
+    public Object color;
+    public String dashStyle;
+    public Float width;
+    public Float value;
     public Integer zIndex;
     public AALabel label;
 

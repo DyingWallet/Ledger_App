@@ -23,14 +23,14 @@ import stu.xuronghao.ledger.handler.DateHandler;
 
 public class PushIncomeFrag extends Fragment {
 
-    private static final String[] incomeType    = {"工资", "奖金", "借款", "红包", "其他"};
-    private static final String   ARG_USER_INFO = "user";
+    private static final String[] incomeType = {"工资", "奖金", "借款", "红包", "其他"};
+    private static final String ARG_USER_INFO = "user";
 
-    private View                 rootView;
-    private Spinner              spinner;
+    private View rootView;
+    private Spinner spinner;
     private ArrayAdapter<String> adapter;
-    private String               selected;
-    private User                 user;
+    private String selected;
+    private User user;
     private DataPuller dataPuller = new DataPuller();
 
     public PushIncomeFrag() {

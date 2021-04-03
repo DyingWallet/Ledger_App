@@ -3,10 +3,10 @@ package stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel;
 public class AABackground {
     public Object backgroundColor;
     public String borderColor;
-    public Float  borderWidth;
+    public Float borderWidth;
     public String className;
-    public Float  innerRadius;
-    public Float  outerRadius;
+    public Float innerRadius;
+    public Float outerRadius;
     public String shape;
 
     public AABackground backgroundColor(Object prop) {

@@ -10,7 +10,7 @@ public class DateHandler {
 //    private static int Start = 1,End = 2;
 
     //获取当前时间
-    public static String getCurrentDatetime(){
+    public static String getCurrentDatetime() {
         TimeZone zone = TimeZone.getTimeZone("GMT+8:00");
         dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.setTimeZone(zone);
