@@ -142,8 +142,8 @@ public class TrendFrag extends Fragment {
         //获取列表控件
         ListView listView = rootView.findViewById(R.id.lv_Trend_DivideByTypes);
         //暂存所有数据
-        List<Cost> tempCost = dataPuller.PullCostOfBetween(user, startDate, endDate);
-        List<Income> tempIncome = dataPuller.PullIncomeOfBetween(user, startDate, endDate);
+        List<Cost> tempCost = dataPuller.pullCostOfBetween(user, startDate, endDate);
+        List<Income> tempIncome = dataPuller.pullIncomeOfBetween(user, startDate, endDate);
         if (tempCost == null || tempIncome == null) {
             Toast toast = Toast.makeText(getContext(),
                     "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_LONG);

@@ -125,7 +125,7 @@ public class PushCostFrag extends Fragment {
         if (CheckInput(event, money)) {
             cost = new Cost(event, selected, Double.parseDouble(money),
                     dateStr, remark, user.getUserNo());
-            return dataPuller.PushCost(cost);
+            return dataPuller.pushCost(cost);
         }
         return false;
     }

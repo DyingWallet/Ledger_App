@@ -125,7 +125,7 @@ public class PushIncomeFrag extends Fragment {
         if (CheckInput(event, money)) {
             income = new Income(event, selected, Double.parseDouble(money),
                     dateStr, remark, user.getUserNo());
-            return dataPuller.PushIncome(income);
+            return dataPuller.pushIncome(income);
         }
         return false;
     }

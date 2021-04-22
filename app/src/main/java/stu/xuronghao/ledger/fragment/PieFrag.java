@@ -200,7 +200,7 @@ public class PieFrag extends Fragment {
         int[] data = new int[5];
         if (mode == COST_MODE) {
             //消费报表
-            costList = dataPuller.PullCostOfBetween(user, startDate, endDate);
+            costList = dataPuller.pullCostOfBetween(user, startDate, endDate);
             if (costList == null) {
                 Toast toast = Toast.makeText(getContext(),
                         "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_LONG);
@@ -236,7 +236,7 @@ public class PieFrag extends Fragment {
             listView.setAdapter(adapter);
         } else if (mode == INCOME_MODE) {
             //收入报表
-            incomeList = dataPuller.PullIncomeOfBetween(user, startDate, endDate);
+            incomeList = dataPuller.pullIncomeOfBetween(user, startDate, endDate);
             if (incomeList == null) {
                 Toast toast = Toast.makeText(getContext(),
                         "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_LONG);

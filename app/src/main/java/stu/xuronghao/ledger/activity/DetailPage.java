@@ -122,9 +122,9 @@ public class DetailPage extends AppCompatActivity {
 
     private boolean delete(int index) {
         if (index == COST)
-            return dataPuller.DELCost(cost);
+            return dataPuller.deleteCost(cost);
         else if (index == INCOME)
-            return dataPuller.DELIncome(income);
+            return dataPuller.deleteIncome(income);
         return false;
     }
 
@@ -142,12 +142,12 @@ public class DetailPage extends AppCompatActivity {
                 cost.setCostEvent(event);
                 cost.setCostAmount(Double.parseDouble(money));
                 cost.setCostRemark(remark);
-                return dataPuller.UPDCost(cost);
+                return dataPuller.updateCost(cost);
             } else if (index == INCOME) {
                 income.setIncEvent(event);
                 income.setIncAmount(Double.parseDouble(money));
                 income.setIncRemark(remark);
-                return dataPuller.UPDIncome(income);
+                return dataPuller.updateIncome(income);
             }
         }
         return false;

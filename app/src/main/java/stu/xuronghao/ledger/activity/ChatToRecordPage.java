@@ -25,27 +25,22 @@ import stu.xuronghao.ledger.entity.ChatInfo;
 import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.Income;
 import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 import stu.xuronghao.ledger.handler.DateHandler;
 
 public class ChatToRecordPage extends AppCompatActivity {
-    private static final String[] costType = {"餐饮", "交通", "服饰", "日用", "其他"};
-    private static final String[] incomeType = {"工资", "奖金", "借款", "红包", "其他"};
-    private static final String ARG_USER_INFO = "user";
-
     private ChatListAdapter adapter;
     private ArrayAdapter<String> spAdapter;
     private ListView listView;
     private List<ChatInfo> infoList;
-    private ChatInfo userInfo,
-            npcInfo;
+    private ChatInfo userInfo;
+    private ChatInfo npcInfo;
     private User user;
-    private DataPuller dataPuller = new DataPuller();
     private Context context;
     private String selected;
-    private Cost cost;
-    private Income income;
     private View view;
+    private final DataPuller dataPuller = new DataPuller();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +78,7 @@ public class ChatToRecordPage extends AppCompatActivity {
     }
 
     private void buildListView() {
-        infoList = dataPuller.PullHistoryOf(user.getUserNo());
+        infoList = dataPuller.pullHistoryOf(user.getUserNo());
 
         if (infoList == null) {
             Toast toast = Toast.makeText(context,
@@ -102,25 +97,25 @@ public class ChatToRecordPage extends AppCompatActivity {
 
         Button cancel = view.findViewById(R.id.btn_Chat_Dialog_Cancel);
         Button push = view.findViewById(R.id.btn_Chat_Dialog_Push);
-        TextView txv_Event = view.findViewById(R.id.txv_Chat_Dialog_Event);
-        TextView txv_Amount = view.findViewById(R.id.txv_Chat_Dialog_Amount);
-        TextView txv_Type = view.findViewById(R.id.txv_Chat_Dialog_Type);
-        TextView txv_Remark = view.findViewById(R.id.txv_Chat_Dialog_Remark);
+        TextView txvEvent = view.findViewById(R.id.txv_Chat_Dialog_Event);
+        TextView txvAmount = view.findViewById(R.id.txv_Chat_Dialog_Amount);
+        TextView txvType = view.findViewById(R.id.txv_Chat_Dialog_Type);
+        TextView txvRemark = view.findViewById(R.id.txv_Chat_Dialog_Remark);
         Spinner spinner = view.findViewById(R.id.sp_Chat_Type);
 
-        txv_Event.setText("支出事件：");
-        txv_Amount.setText("支出金额：");
-        txv_Type.setText("支出类型：");
-        txv_Remark.setText("备注：");
+        txvEvent.setText("支出事件：");
+        txvAmount.setText("支出金额：");
+        txvType.setText("支出类型：");
+        txvRemark.setText("备注：");
 
-        spAdapter = new ArrayAdapter<String>(context, R.layout.spinner_item_sel, costType);
+        spAdapter = new ArrayAdapter<>(context, R.layout.spinner_item_sel, ConstantVariable.getTypeArray(ConstantVariable.COST_TYPE));
         spAdapter.setDropDownViewResource(R.layout.spinner_item_drop);
         spinner.setAdapter(spAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selected = costType[position];
+                selected = ConstantVariable.getType(ConstantVariable.COST_TYPE, position);
             }
 
             @Override
@@ -133,17 +128,17 @@ public class ChatToRecordPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //获取输入对象
-                EditText etx_CostEvent = view.findViewById(R.id.etx_Chat_Dialog_Event);
-                EditText etx_CostMoney = view.findViewById(R.id.etx_Chat_Dialog_Amount);
-                EditText etx_CostRemark = view.findViewById(R.id.etx_Chat_Dialog_Remark);
+                EditText etxCostEvent = view.findViewById(R.id.etx_Chat_Dialog_Event);
+                EditText etxCostMoney = view.findViewById(R.id.etx_Chat_Dialog_Amount);
+                EditText etxCostRemark = view.findViewById(R.id.etx_Chat_Dialog_Remark);
 
                 //数据提取
-                String event = etx_CostEvent.getText().toString(),
-                        money = etx_CostMoney.getText().toString(),
-                        remark = etx_CostRemark.getText().toString(),
-                        dateStr = DateHandler.getCurrentDatetime();
-                if (CheckInput(event, money)) {
-                    cost = new Cost(event, selected, Double.parseDouble(money),
+                String event = etxCostEvent.getText().toString();
+                String money = etxCostMoney.getText().toString();
+                String remark = etxCostRemark.getText().toString();
+                String dateStr = DateHandler.getCurrentDatetime();
+                if (checkInput(event, money)) {
+                    Cost cost = new Cost(event, selected, Double.parseDouble(money),
                             dateStr, remark, user.getUserNo());
                     userInfo = new ChatInfo(user.getUserNo(), dateStr,
                             dateStr + "：" + selected + "支出" + Double.parseDouble(money),
@@ -175,33 +170,32 @@ public class ChatToRecordPage extends AppCompatActivity {
     }
 
     private void showIncomeDialog() {
-        income = new Income();
         view = LayoutInflater.from(this).inflate(R.layout.chat_dialog, null, false);
         final AlertDialog dialog = new AlertDialog.Builder(this).setView(view).create();
 
         Button cancel = view.findViewById(R.id.btn_Chat_Dialog_Cancel);
         Button push = view.findViewById(R.id.btn_Chat_Dialog_Push);
-        TextView txv_Event = view.findViewById(R.id.txv_Chat_Dialog_Event);
-        TextView txv_Amount = view.findViewById(R.id.txv_Chat_Dialog_Amount);
-        TextView txv_Type = view.findViewById(R.id.txv_Chat_Dialog_Type);
-        TextView txv_Remark = view.findViewById(R.id.txv_Chat_Dialog_Remark);
+        TextView txvEvent = view.findViewById(R.id.txv_Chat_Dialog_Event);
+        TextView txvAmount = view.findViewById(R.id.txv_Chat_Dialog_Amount);
+        TextView txvType = view.findViewById(R.id.txv_Chat_Dialog_Type);
+        TextView txvRemark = view.findViewById(R.id.txv_Chat_Dialog_Remark);
         Spinner spinner = view.findViewById(R.id.sp_Chat_Type);
         EditText text = view.findViewById(R.id.etx_Chat_Dialog_Event);
         text.setText("收入");
 
-        txv_Event.setText("收入事件：");
-        txv_Amount.setText("收入金额：");
-        txv_Type.setText("收入类型：");
-        txv_Remark.setText("备注：");
+        txvEvent.setText("收入事件：");
+        txvAmount.setText("收入金额：");
+        txvType.setText("收入类型：");
+        txvRemark.setText("备注：");
 
-        spAdapter = new ArrayAdapter<String>(context, R.layout.spinner_item_sel, incomeType);
+        spAdapter = new ArrayAdapter<>(context, R.layout.spinner_item_sel, ConstantVariable.getTypeArray(ConstantVariable.INCOME_TYPE));
         spAdapter.setDropDownViewResource(R.layout.spinner_item_drop);
         spinner.setAdapter(spAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selected = incomeType[position];
+                selected = ConstantVariable.getType(ConstantVariable.INCOME_TYPE, position);
             }
 
             @Override
@@ -214,17 +208,17 @@ public class ChatToRecordPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //获取输入对象
-                EditText etx_CostEvent = view.findViewById(R.id.etx_Chat_Dialog_Event);
-                EditText etx_CostMoney = view.findViewById(R.id.etx_Chat_Dialog_Amount);
-                EditText etx_CostRemark = view.findViewById(R.id.etx_Chat_Dialog_Remark);
+                EditText etxIncomeEvent = view.findViewById(R.id.etx_Chat_Dialog_Event);
+                EditText etxIncomeMoney = view.findViewById(R.id.etx_Chat_Dialog_Amount);
+                EditText etxIncomeRemark = view.findViewById(R.id.etx_Chat_Dialog_Remark);
 
                 //数据提取
-                String event = etx_CostEvent.getText().toString(),
-                        money = etx_CostMoney.getText().toString(),
-                        remark = etx_CostRemark.getText().toString(),
-                        dateStr = DateHandler.getCurrentDatetime();
-                if (CheckInput(event, money)) {
-                    income = new Income(event, selected, Double.parseDouble(money),
+                String event = etxIncomeEvent.getText().toString();
+                String money = etxIncomeMoney.getText().toString();
+                String remark = etxIncomeRemark.getText().toString();
+                String dateStr = DateHandler.getCurrentDatetime();
+                if (checkInput(event, money)) {
+                    Income income = new Income(event, selected, Double.parseDouble(money),
                             dateStr, remark, user.getUserNo());
                     userInfo = new ChatInfo(user.getUserNo(), dateStr,
                             dateStr + "：" + selected + "收入" + Double.parseDouble(money),
@@ -255,7 +249,7 @@ public class ChatToRecordPage extends AppCompatActivity {
         dialog.show();
     }
 
-    private boolean CheckInput(String event, String money) {
+    private boolean checkInput(String event, String money) {
         if (!event.isEmpty()) {
             if (!money.isEmpty()) {
                 return true;

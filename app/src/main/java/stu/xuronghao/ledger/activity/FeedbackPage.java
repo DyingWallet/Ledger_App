@@ -68,7 +68,7 @@ public class FeedbackPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (getInputInfo()) {
-                    if (dataPuller.HandOverFb(feedback)) {
+                    if (dataPuller.handOverFb(feedback)) {
                         Toast toast = Toast.makeText(context, "好的，治账酱收到了！", Toast.LENGTH_SHORT);
                         toast.show();
                         finish();

@@ -92,7 +92,7 @@ public class CostFrag extends Fragment {
     private void buildListView() {
         //从服务器拉取数据
         DataPuller dataPuller = new DataPuller();
-        costList = dataPuller.PullCostOf(user);
+        costList = dataPuller.pullCostOf(user);
         if (costList == null) {
             Toast toast = Toast.makeText(getContext(),
                     "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_LONG);

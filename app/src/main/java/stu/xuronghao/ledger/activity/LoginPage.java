@@ -40,7 +40,7 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (getLoginInfo()) {
-                    User temp = dataPuller.LoginSender(user);
+                    User temp = dataPuller.loginSender(user);
                     if (temp == null) {
                         Toast toast = Toast.makeText(context,
                                 "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_LONG);

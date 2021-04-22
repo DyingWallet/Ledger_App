@@ -35,7 +35,7 @@ public class SignUpPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (getSignUpInfo()) {
-                    if (dataPuller.SignUpSender(user)) {
+                    if (dataPuller.signUpSender(user)) {
                         Intent intent = new Intent(SignUpPage.this, LoginPage.class);
                         Toast toast = Toast.makeText(context,
                                 "好的！治账酱记住你了！", Toast.LENGTH_LONG);

@@ -94,7 +94,7 @@ public class IncomeFrag extends Fragment {
     private void buildListView() {
         //从服务器拉取数据
         DataPuller dataPuller = new DataPuller();
-        incList = dataPuller.PullIncomeOf(user);
+        incList = dataPuller.pullIncomeOf(user);
         if (incList == null) {
             Toast toast = Toast.makeText(getContext(),
                     "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_LONG);
