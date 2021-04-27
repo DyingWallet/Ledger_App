@@ -6,17 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.adapter.SwitchAdapter;
 
@@ -58,7 +54,6 @@ public class RecordFrag extends Fragment {
 
     //初始化ViewPager
     private void initView() {
-        //        Log.w("initView!", "ViewPager Init!");
         viewPager = rootView.findViewById(R.id.vp_Record_Top_Switch);
         navigationView = rootView.findViewById(R.id.Record_Top_Switch);
 
@@ -73,16 +68,8 @@ public class RecordFrag extends Fragment {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         menuItem = item;
-                        switch (item.getItemId()) {
-                            case R.id.costFrag:
-                                viewPager.setCurrentItem(0);
-                                //                                Log.w("00000", "" + item.getItemId());
-                                break;
-                            case R.id.incomeFrag:
-                                viewPager.setCurrentItem(1);
-                                //                                Log.w("11111", "" + item.getItemId());
-                                break;
-                        }
+                        //0-花销，1-收入
+                        viewPager.setCurrentItem(R.id.costFrag==item.getItemId() ? 0 :1);
                         return false;
                     }
                 }

@@ -22,16 +22,14 @@ import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.adapter.AnnoListAdapter;
 import stu.xuronghao.ledger.entity.Anno;
 import stu.xuronghao.ledger.entity.AnnoInfo;
-import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 
 public class AnnoPage extends AppCompatActivity {
 
-    private User user;
     private ListView listView;
     private List<Anno> annoList;
-    private AnnoListAdapter adapter;
-    private DataPuller dataPuller = new DataPuller();
+    private final DataPuller dataPuller = new DataPuller();
     private Context context;
 
     @Override
@@ -40,11 +38,10 @@ public class AnnoPage extends AppCompatActivity {
         setContentView(R.layout.activity_anno_page);
         context = this;
         listView = findViewById(R.id.lv_anno_list);
-        user = (User) getIntent().getSerializableExtra("user");
 
         //返回
-        ImageView img_back = findViewById(R.id.img_Anno_Back);
-        img_back.setOnClickListener(new View.OnClickListener() {
+        ImageView imgBack = findViewById(R.id.img_Anno_Back);
+        imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -59,14 +56,14 @@ public class AnnoPage extends AppCompatActivity {
         annoList = dataPuller.pullAnnos();
         if (annoList == null) {
             Toast toast = Toast.makeText(context,
-                    "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_SHORT);
+                    ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
         ArrayList<AnnoInfo> infoList = new ArrayList<>();
         for (Anno anno : annoList)
             infoList.add(new AnnoInfo(anno.getAnnoTitle(), anno.getAnnoDate()));
-        adapter = new AnnoListAdapter(context, infoList);
+        AnnoListAdapter adapter = new AnnoListAdapter(context, infoList);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

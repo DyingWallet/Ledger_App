@@ -13,7 +13,8 @@ public class User implements Serializable {
     }
 
     //注册
-    public User(String userName, String userPasswd) {
+    public User(String userNo, String userName, String userPasswd) {
+        this.userNo = userNo;
         this.userName = userName;
         this.userPasswd = userPasswd;
     }

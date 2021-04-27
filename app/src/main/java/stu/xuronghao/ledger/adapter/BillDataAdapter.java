@@ -8,20 +8,23 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import stu.xuronghao.ledger.R;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 
 public class BillDataAdapter extends BaseAdapter {
 
     //获取一个LayoutInflater来导入布局
     private LayoutInflater inflater;
-    private ArrayList<HashMap<String, Object>> listItem;
+    private int typeCode;
+    private List<HashMap<String, String>> listItem;
 
-    public BillDataAdapter(Context context, ArrayList<HashMap<String, Object>> listItem) {
+    public BillDataAdapter(Context context, int typeCode, List<HashMap<String, String>> listItem) {
         this.inflater = LayoutInflater.from(context);
         this.listItem = listItem;
+        this.typeCode = typeCode;
     }
 
     @Override
@@ -67,12 +70,11 @@ public class BillDataAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        HashMap<String, Object> item = listItem.get(position);
+        HashMap<String, String> item = listItem.get(position);
 
-        holder.imageView.setImageResource((Integer) item.get("ItemImage"));
-
-        holder.title.setText((String) item.get("ItemTitle"));
-        holder.content.setText((String) item.get("ItemContent"));
+        holder.imageView.setImageResource(ConstantVariable.getIcon(typeCode,item.get(ConstantVariable.ITEM_TYPE)));
+        holder.title.setText(item.get(ConstantVariable.ITEM_TITLE));
+        holder.content.setText(item.get(ConstantVariable.ITEM_CONTENT));
 
         return convertView;
     }

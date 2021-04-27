@@ -18,4 +18,7 @@ public class ServerPath {
     public static final String INSERT_INCOME = "Income/insertIncome";
     public static final String UPDATE_INCOME = "Income/updateIncome";
     public static final String DELETE_INCOME = "Income/deleteIncome";
+
+    private ServerPath() {
+    }
 }

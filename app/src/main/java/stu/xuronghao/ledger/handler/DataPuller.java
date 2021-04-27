@@ -26,7 +26,7 @@ public class DataPuller {
         String userJson = JSON.toJSONString(user, SerializerFeature.WriteClassName);
         response.setService(ServerPath.LOG_IN);
         response.setJsonStr(userJson);
-        userJson = response.Poster();
+        userJson = response.poster();
         Log.w(ConstantVariable.LOG_USER_JSON, userJson);
         if ("".equals(userJson))
             return null;
@@ -40,7 +40,7 @@ public class DataPuller {
         String userJson = JSON.toJSONString(user, SerializerFeature.WriteClassName);
         response.setService(ServerPath.SIGN_UP);
         response.setJsonStr(userJson);
-        userJson = response.Poster();
+        userJson = response.poster();
         if ("".equals(userJson))
             return false;
         return (boolean) JSON.parse(userJson);
@@ -56,7 +56,7 @@ public class DataPuller {
         response.setParams(ConstantVariable.USER_NO, user.getUserNo());
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
         //用Getter方法从服务器拉取数据
-        json = response.Getter();
+        json = response.getter();
         Log.w(ConstantVariable.LOG_JSON, json);
         if ("".equals(json))
             return new ArrayList<>();
@@ -75,7 +75,7 @@ public class DataPuller {
         response.setParams(ConstantVariable.USER_NO, user.getUserNo());
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
         //用Getter方法从服务器拉取数据
-        json = response.Getter();
+        json = response.getter();
         Log.w(ConstantVariable.LOG_JSON, json);
         if ("".equals(json))
             return new ArrayList<>();
@@ -96,7 +96,7 @@ public class DataPuller {
         response.setParams(ConstantVariable.END_DATE, endDate);
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
         //用Getter方法从服务器拉取数据
-        json = response.Getter();
+        json = response.getter();
         Log.w(ConstantVariable.LOG_JSON, json);
         if ("".equals(json))
             return new ArrayList<>();
@@ -117,7 +117,7 @@ public class DataPuller {
         response.setParams(ConstantVariable.END_DATE, endDate);
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
         //用Getter方法从服务器拉取数据
-        json = response.Getter();
+        json = response.getter();
         Log.w(ConstantVariable.LOG_JSON, json);
         if ("".equals(json))
             return new ArrayList<>();
@@ -133,7 +133,7 @@ public class DataPuller {
         json = JSON.toJSONString(feedback, SerializerFeature.WriteClassName);
         response.setService(ServerPath.PUSH_FEEDBACK);
         response.setJsonStr(json);
-        json = response.Poster();
+        json = response.poster();
         if ("".equals(json))
             return false;
         return (boolean) JSON.parse(json);
@@ -146,7 +146,7 @@ public class DataPuller {
         response = new GetHttpResponse();
         response.setService(ServerPath.PULL_ALL_ANNO);
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
-        json = response.Getter();
+        json = response.getter();
         if ("".equals(json))
             return new ArrayList<>();
         temp = JSON.parseArray(json, Anno.class);
@@ -163,7 +163,7 @@ public class DataPuller {
         response.setService(ServerPath.PULL_ALL_HISTORY);
         response.setParams(ConstantVariable.USER_NO, userNo);
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
-        json = response.Getter();
+        json = response.getter();
 
         if ("".equals(json))
             return new ArrayList<>();
@@ -184,11 +184,11 @@ public class DataPuller {
         incJson = JSON.toJSONString(income, SerializerFeature.WriteClassName);
         infJson = JSON.toJSONString(info, SerializerFeature.WriteClassName);
 
-        json = incJson + ConstantVariable.SPLITTER + infJson;
+        json = incJson + ConstantVariable.SPLITTER_REGEX + infJson;
         response.setService(ServerPath.INCOME_CHAT);
         response.setJsonStr(json);
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
-        json = response.Poster();
+        json = response.poster();
         if ("".equals(json))
             return null;
         temp = JSON.parseObject(json, ChatInfo.class);
@@ -206,11 +206,11 @@ public class DataPuller {
         costJson = JSON.toJSONString(cost, SerializerFeature.WriteClassName);
         infJson = JSON.toJSONString(info, SerializerFeature.WriteClassName);
 
-        json = costJson + ConstantVariable.SPLITTER + infJson;
+        json = costJson + ConstantVariable.SPLITTER_REGEX + infJson;
         response.setService(ServerPath.COST_CHAT);
         response.setJsonStr(json);
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
-        json = response.Poster();
+        json = response.poster();
         if ("".equals(json))
             return null;
         temp = JSON.parseObject(json, ChatInfo.class);
@@ -226,7 +226,7 @@ public class DataPuller {
         response.setJsonStr(json);
 
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
-        json = response.Poster();
+        json = response.poster();
 
         if ("".equals(json))
             return false;
@@ -242,7 +242,7 @@ public class DataPuller {
         response.setJsonStr(json);
 
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
-        json = response.Poster();
+        json = response.poster();
 
         if ("".equals(json))
             return false;
@@ -257,7 +257,7 @@ public class DataPuller {
         response.setService(ServerPath.UPDATE_COST);
         response.setJsonStr(json);
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
-        json = response.Poster();
+        json = response.poster();
         if ("".equals(json))
             return false;
         return (boolean) JSON.parse(json);
@@ -271,7 +271,7 @@ public class DataPuller {
         response.setService(ServerPath.UPDATE_INCOME);
         response.setJsonStr(json);
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
-        json = response.Poster();
+        json = response.poster();
         if ("".equals(json))
             return false;
         return (boolean) JSON.parse(json);
@@ -285,7 +285,7 @@ public class DataPuller {
         response.setJsonStr(json);
         response.setService(ServerPath.DELETE_COST);
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
-        json = response.Poster();
+        json = response.poster();
         if ("".equals(json))
             return false;
         return (boolean) JSON.parse(json);
@@ -299,7 +299,7 @@ public class DataPuller {
         response.setJsonStr(json);
         response.setService(ServerPath.DELETE_INCOME);
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
-        json = response.Poster();
+        json = response.poster();
         if ("".equals(json))
             return false;
         return (boolean) JSON.parse(json);

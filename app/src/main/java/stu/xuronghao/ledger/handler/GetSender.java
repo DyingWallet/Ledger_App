@@ -19,13 +19,13 @@ public class GetSender implements Callable<String> {
     @Override
     public String call() throws Exception {
         String res = null;
-//        Log.w("In Call. Before Get: ", "The url is: " + url);
-        res = GetRequest();
-        Log.w("In Call. After Get: ", "The result is: " + res);
+        Log.i("In Call. Before Get: ", "The url is: " + url);
+        res = getRequest();
+        Log.i("In Call. After Get: ", "The result is: " + res);
         return res;
     }
 
-    private String GetRequest() {
+    private String getRequest() {
         HttpURLConnection connection = null;
         StringBuilder result = new StringBuilder();
         try {

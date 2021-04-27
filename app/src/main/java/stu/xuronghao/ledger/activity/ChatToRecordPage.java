@@ -28,6 +28,7 @@ import stu.xuronghao.ledger.entity.User;
 import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 import stu.xuronghao.ledger.handler.DateHandler;
+import stu.xuronghao.ledger.handler.Validator;
 
 public class ChatToRecordPage extends AppCompatActivity {
     private ChatListAdapter adapter;
@@ -48,7 +49,7 @@ public class ChatToRecordPage extends AppCompatActivity {
         setContentView(R.layout.activity_chat_to_record_page);
         context = this;
         listView = findViewById(R.id.lv_chat);
-        user = (User) getIntent().getSerializableExtra("user");
+        user = (User) getIntent().getSerializableExtra(ConstantVariable.USER);
         //返回
         ImageView cancel = findViewById(R.id.img_chat_page_cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +83,7 @@ public class ChatToRecordPage extends AppCompatActivity {
 
         if (infoList == null) {
             Toast toast = Toast.makeText(context,
-                    "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_SHORT);
+                    ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
             toast.show();
             return;
         }
@@ -102,6 +103,8 @@ public class ChatToRecordPage extends AppCompatActivity {
         TextView txvType = view.findViewById(R.id.txv_Chat_Dialog_Type);
         TextView txvRemark = view.findViewById(R.id.txv_Chat_Dialog_Remark);
         Spinner spinner = view.findViewById(R.id.sp_Chat_Type);
+        EditText text = view.findViewById(R.id.etx_Chat_Dialog_Event);
+        text.setText(ConstantVariable.COST_CN);
 
         txvEvent.setText("支出事件：");
         txvAmount.setText("支出金额：");
@@ -137,11 +140,11 @@ public class ChatToRecordPage extends AppCompatActivity {
                 String money = etxCostMoney.getText().toString();
                 String remark = etxCostRemark.getText().toString();
                 String dateStr = DateHandler.getCurrentDatetime();
-                if (checkInput(event, money)) {
+                if (Validator.checkBillInfoInput(event, money,context)) {
                     Cost cost = new Cost(event, selected, Double.parseDouble(money),
                             dateStr, remark, user.getUserNo());
                     userInfo = new ChatInfo(user.getUserNo(), dateStr,
-                            dateStr + "：" + selected + "支出" + Double.parseDouble(money),
+                            dateStr + "：" + selected + ConstantVariable.COST_CN + Double.parseDouble(money),
                             1);
                     infoList.add(userInfo);
                     adapter.notifyDataSetChanged();
@@ -149,7 +152,7 @@ public class ChatToRecordPage extends AppCompatActivity {
                     npcInfo = dataPuller.requestCostChat(cost, userInfo);
                     if (npcInfo == null) {
                         Toast toast = Toast.makeText(context,
-                                "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_SHORT);
+                                ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
                         toast.show();
                     } else {
                         npcInfo.setIsMeSend(0);
@@ -181,7 +184,7 @@ public class ChatToRecordPage extends AppCompatActivity {
         TextView txvRemark = view.findViewById(R.id.txv_Chat_Dialog_Remark);
         Spinner spinner = view.findViewById(R.id.sp_Chat_Type);
         EditText text = view.findViewById(R.id.etx_Chat_Dialog_Event);
-        text.setText("收入");
+        text.setText(ConstantVariable.INCOME_CN);
 
         txvEvent.setText("收入事件：");
         txvAmount.setText("收入金额：");
@@ -217,11 +220,11 @@ public class ChatToRecordPage extends AppCompatActivity {
                 String money = etxIncomeMoney.getText().toString();
                 String remark = etxIncomeRemark.getText().toString();
                 String dateStr = DateHandler.getCurrentDatetime();
-                if (checkInput(event, money)) {
+                if (Validator.checkBillInfoInput(event, money,context)) {
                     Income income = new Income(event, selected, Double.parseDouble(money),
                             dateStr, remark, user.getUserNo());
                     userInfo = new ChatInfo(user.getUserNo(), dateStr,
-                            dateStr + "：" + selected + "收入" + Double.parseDouble(money),
+                            dateStr + "：" + selected + ConstantVariable.INCOME_CN + Double.parseDouble(money),
                             1);
                     infoList.add(userInfo);
                     adapter.notifyDataSetChanged();
@@ -229,7 +232,7 @@ public class ChatToRecordPage extends AppCompatActivity {
                     npcInfo = dataPuller.requestIncomeChat(income, userInfo);
                     if (npcInfo == null) {
                         Toast toast = Toast.makeText(context,
-                                "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_SHORT);
+                                ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
                         toast.show();
                     } else {
                         npcInfo.setIsMeSend(0);
@@ -248,20 +251,4 @@ public class ChatToRecordPage extends AppCompatActivity {
         });
         dialog.show();
     }
-
-    private boolean checkInput(String event, String money) {
-        if (!event.isEmpty()) {
-            if (!money.isEmpty()) {
-                return true;
-            } else {
-                Toast toast = Toast.makeText(context, "请输入金额！", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        } else {
-            Toast toast = Toast.makeText(context, "请输入事件！", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        return false;
-    }
-
 }

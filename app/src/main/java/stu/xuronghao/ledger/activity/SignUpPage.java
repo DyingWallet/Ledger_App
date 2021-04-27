@@ -15,28 +15,29 @@ import java.util.regex.Pattern;
 
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 import stu.xuronghao.ledger.handler.GetHttpResponse;
+import stu.xuronghao.ledger.handler.Validator;
 
 public class SignUpPage extends AppCompatActivity {
-    private Context context = this;
-    private GetHttpResponse response = new GetHttpResponse();
-    private User user = new User();
-    private DataPuller dataPuller;
+    private final Context context = this;
+    private final DataPuller dataPuller = new DataPuller();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        dataPuller = new DataPuller();
-        Button btn_SignUp = findViewById(R.id.btn_SignUp);
-        btn_SignUp.setOnClickListener(new View.OnClickListener() {
+        Button btnSignUp = findViewById(R.id.btn_SignUp);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getSignUpInfo()) {
+                User user = getSignUpInfo();
+                if (user != null) {
                     if (dataPuller.signUpSender(user)) {
                         Intent intent = new Intent(SignUpPage.this, LoginPage.class);
+                        intent.putExtra(ConstantVariable.USER, user);
                         Toast toast = Toast.makeText(context,
                                 "好的！治账酱记住你了！", Toast.LENGTH_LONG);
                         toast.show();
@@ -51,73 +52,29 @@ public class SignUpPage extends AppCompatActivity {
             }
         });
 
-        Button btn_Cancel = findViewById(R.id.btn_SignUp_Cancel);
-        btn_Cancel.setOnClickListener(new View.OnClickListener() {
+        Button btnCancel = findViewById(R.id.btn_SignUp_Cancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(SignUpPage.this,LoginPage.class);
-                //startActivity(intent);
                 finish();
             }
         });
     }
 
-    private boolean getSignUpInfo() {
+    private User getSignUpInfo() {
         //截取输入
-        EditText userNo = findViewById(R.id.etx_SignUp_UserNo),
-                userName = findViewById(R.id.etx_SignUp_UserName),
-                userPasswd = findViewById(R.id.etx_SignUp_Passwd),
-                Confirm = findViewById(R.id.etx_SignUp_Confirm);
-        String No = userNo.getText().toString(),
-                Name = userName.getText().toString(),
-                Passwd = userPasswd.getText().toString(),
-                str = Confirm.getText().toString();
+        EditText userNo = findViewById(R.id.etx_SignUp_UserNo);
+        EditText userName = findViewById(R.id.etx_SignUp_UserName);
+        EditText userPasswd = findViewById(R.id.etx_SignUp_Passwd);
+        EditText confirm = findViewById(R.id.etx_SignUp_Confirm);
+        String userNoStr = userNo.getText().toString();
+        String userNameStr = userName.getText().toString();
+        String userPasswdStr = userPasswd.getText().toString();
+        String confirmStr = confirm.getText().toString();
 
-        if (CheckInput(No, Name, Passwd, str)) {
-            user.setUserNo(No);
-            user.setUserName(Name);
-            user.setUserPasswd(Passwd);
-            return true;
+        if (Validator.checkSignUpInput(userNoStr, userNameStr, userPasswdStr, confirmStr, context)) {
+            return new User(userNoStr, userNameStr, userPasswdStr);
         }
-        return false;
-    }
-
-    private boolean CheckInput(String userNo, String userName,
-                               String userPasswd, String Confirm) {
-        if (isEmail(userNo)) {
-            if (!(!userName.isEmpty() && (userName.length() < 3 || userName.length() > 16))) {
-                if (!userPasswd.isEmpty()) {
-                    if (userPasswd.length() < 6) {
-                        Toast toast = Toast.makeText(context, "密码最少要6位哦！", Toast.LENGTH_LONG);
-                        toast.show();
-                    } else if (userPasswd.equals(Confirm)) {
-                        return true;
-                    } else {
-                        Toast toast = Toast.makeText(context, "请再次确认密码！", Toast.LENGTH_LONG);
-                        toast.show();
-                    }
-                } else {
-                    Toast toast = Toast.makeText(context, "密码不能为空！", Toast.LENGTH_LONG);
-                    toast.show();
-                }
-            } else {
-                Toast toast = Toast.makeText(context, "昵称长度超出限制啦！", Toast.LENGTH_LONG);
-                toast.show();
-            }
-        } else {
-            Toast toast = Toast.makeText(context, "邮箱格式有问题！！", Toast.LENGTH_LONG);
-            toast.show();
-        }
-        return false;
-    }
-
-    private boolean isEmail(String email) {
-        if (null == email || "".equals(email)) {
-            return false;
-        }
-        String regEx1 = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
-        Pattern p = Pattern.compile(regEx1);
-        Matcher m = p.matcher(email);
-        return m.matches();
+        return null;
     }
 }

@@ -13,13 +13,8 @@ import java.net.URL;
 import java.util.concurrent.Callable;
 
 public class PostSender implements Callable<String> {
-    private String
-            url = "",
-            jsonStr = "";
-
-    public PostSender(String url) {
-        this.url = url;
-    }
+    private String url = "";
+    private String jsonStr = "";
 
     public PostSender(String url, String jsonStr) {
         this.url = url;
@@ -30,13 +25,13 @@ public class PostSender implements Callable<String> {
     public String call() throws Exception {
         String res = null;
         Log.w("In Call. Before Post: ", "The url is: " + url);
-        Log.w("Ready to Post Json: ", jsonStr);
-        res = PostRequest();
+        Log.w("Ready to Post Json: ", "The jsonStr is: " + jsonStr);
+        res = postRequest();
         Log.w("In Call. After Post: ", "The result is: " + res);
         return res;
     }
 
-    private String PostRequest() {
+    private String postRequest() {
 
         HttpURLConnection connection = null;
         StringBuilder result = new StringBuilder();

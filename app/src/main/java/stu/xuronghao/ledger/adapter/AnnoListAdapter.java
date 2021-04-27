@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.AnnoInfo;
@@ -15,9 +15,9 @@ import stu.xuronghao.ledger.entity.AnnoInfo;
 public class AnnoListAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
-    private ArrayList<AnnoInfo> annoList;
+    private List<AnnoInfo> annoList;
 
-    public AnnoListAdapter(Context context, ArrayList<AnnoInfo> annoList) {
+    public AnnoListAdapter(Context context, List<AnnoInfo> annoList) {
         this.inflater = LayoutInflater.from(context);
         this.annoList = annoList;
     }
@@ -37,7 +37,7 @@ public class AnnoListAdapter extends BaseAdapter {
         return position;
     }
 
-    static class annoHolder {
+    static class AnnoHolder {
         public TextView title;
         public TextView datetime;
     }
@@ -45,16 +45,16 @@ public class AnnoListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        annoHolder holder;
+        AnnoHolder holder;
 
         if (convertView == null) {
-            holder = new annoHolder();
+            holder = new AnnoHolder();
             convertView = inflater.inflate(R.layout.anno_list_item, null);
             holder.title = convertView.findViewById(R.id.txv_Anno_Item_Title);
             holder.datetime = convertView.findViewById(R.id.txv_Anno_Item_Date);
             convertView.setTag(holder);
         } else {
-            holder = (annoHolder) convertView.getTag();
+            holder = (AnnoHolder) convertView.getTag();
         }
 
         holder.title.setText(annoList.get(position).getAnnoTitle());

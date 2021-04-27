@@ -14,53 +14,48 @@ import android.widget.Toast;
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.Feedback;
 import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 import stu.xuronghao.ledger.handler.DateHandler;
 
 public class FeedbackPage extends AppCompatActivity {
     private User user;
     private Feedback feedback;
-    private RadioGroup group;
     private Context context;
-    private DataPuller dataPuller = new DataPuller();
+    private final DataPuller dataPuller = new DataPuller();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback_page);
         context = this;
-        user = (User) getIntent().getSerializableExtra("user");
+        user = (User) getIntent().getSerializableExtra(ConstantVariable.USER);
         //与默认选中项对齐
         feedback = new Feedback();
-        feedback.setFbType("建议");
-        EditText Content = findViewById(R.id.etx_fb_Content);
+        feedback.setFbType(ConstantVariable.FB_TYPE_ADVICE);
+        EditText content = findViewById(R.id.etx_fb_Content);
         //获取按钮控件
         Button push = findViewById(R.id.btn_fb_push);
         Button cancel = findViewById(R.id.btn_fb_Cancel);
 
         //设置为多行输入
-        Content.setGravity(Gravity.TOP);
-        Content.setSingleLine(false);
-        Content.setHorizontallyScrolling(false);
+        content.setGravity(Gravity.TOP);
+        content.setSingleLine(false);
+        content.setHorizontallyScrolling(false);
 
         //获取选项组
-        group = findViewById(R.id.fb_type_group);
+        RadioGroup group = findViewById(R.id.fb_type_group);
 
         //RadioGroup监听器
         group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rbtn_advise:
-                        feedback.setFbType("建议");
-                        break;
-                    case R.id.rbtn_bug:
-                        feedback.setFbType("漏洞");
-                        break;
-                    case R.id.rbtn_froze:
-                        feedback.setFbType("冻结");
-                        break;
-                }
+                if(R.id.rbtn_advise == checkedId)
+                    feedback.setFbType(ConstantVariable.FB_TYPE_ADVICE);
+                else if(R.id.rbtn_bug == checkedId)
+                    feedback.setFbType(ConstantVariable.FB_TYPE_BUG);
+                else if(R.id.rbtn_froze == checkedId)
+                    feedback.setFbType(ConstantVariable.FB_TYPE_FROZE);
             }
         });
 
@@ -69,12 +64,12 @@ public class FeedbackPage extends AppCompatActivity {
             public void onClick(View v) {
                 if (getInputInfo()) {
                     if (dataPuller.handOverFb(feedback)) {
-                        Toast toast = Toast.makeText(context, "好的，治账酱收到了！", Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(context, ConstantVariable.INFO_RECEIVED, Toast.LENGTH_SHORT);
                         toast.show();
                         finish();
                     } else {
                         Toast toast = Toast.makeText(context,
-                                "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_LONG);
+                                ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                         toast.show();
                     }
                 }
@@ -108,15 +103,15 @@ public class FeedbackPage extends AppCompatActivity {
     }
 
     private boolean checkInput(String title, String content) {
-        if (!title.equals("")) {
-            if (!content.equals("")) {
+        if (!"".equals(title)) {
+            if (!"".equals(content)) {
                 return true;
             } else {
-                Toast toast = Toast.makeText(context, "说点什么吧...", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(context, ConstantVariable.HINT_EMPTY_CONTENT, Toast.LENGTH_SHORT);
                 toast.show();
             }
         } else {
-            Toast toast = Toast.makeText(context, "想个标题吧...", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(context, ConstantVariable.HINT_EMPTY_TITLE, Toast.LENGTH_SHORT);
             toast.show();
         }
         return false;

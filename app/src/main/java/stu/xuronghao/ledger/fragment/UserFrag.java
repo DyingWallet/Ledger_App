@@ -16,15 +16,11 @@ import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.activity.AnnoPage;
 import stu.xuronghao.ledger.activity.FeedbackPage;
 import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 
 public class UserFrag extends Fragment {
 
-
-    // 设置需要从bundle中取出的数据的Key值
-    private static final String ARG_USER_INFO = "user";
-
     // 参数设置
-    private Bundle args;
     private User user;
     private View rootView;
 
@@ -35,8 +31,6 @@ public class UserFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
@@ -50,8 +44,7 @@ public class UserFrag extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //获取用户信息
-        user = (User) getActivity().getIntent().getSerializableExtra(ARG_USER_INFO);
-//        Log.w("user frag user test", user.toString());
+        user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
         TextView userName = rootView.findViewById(R.id.txv_UserFrag_UserName);
         userName.setText(user.getUserName());
 
@@ -81,7 +74,7 @@ public class UserFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FeedbackPage.class);
-                intent.putExtra("user", user);
+                intent.putExtra(ConstantVariable.USER, user);
                 startActivity(intent);
             }
         });
@@ -90,7 +83,7 @@ public class UserFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AnnoPage.class);
-                intent.putExtra("user", user);
+                intent.putExtra(ConstantVariable.USER, user);
                 startActivity(intent);
             }
         });

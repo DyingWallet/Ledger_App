@@ -12,10 +12,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 
 public class HomePage extends AppCompatActivity {
-    private static User user;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +35,10 @@ public class HomePage extends AppCompatActivity {
 
         //        Log.w("id: ",""+id);
         //获取登录用户信息
-        Intent login_info = getIntent();
-        user = (User) login_info.getSerializableExtra("user");
+        Intent logInInfo = getIntent();
+        User user = (User) logInInfo.getSerializableExtra(ConstantVariable.USER);
         final Bundle bundle = new Bundle();
-        bundle.putSerializable("user", user);
+        bundle.putSerializable(ConstantVariable.USER, user);
     }
 
     @Override

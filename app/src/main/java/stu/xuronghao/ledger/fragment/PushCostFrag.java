@@ -18,8 +18,10 @@ import androidx.fragment.app.Fragment;
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 import stu.xuronghao.ledger.handler.DateHandler;
+import stu.xuronghao.ledger.handler.Validator;
 
 public class PushCostFrag extends Fragment {
 
@@ -93,7 +95,7 @@ public class PushCostFrag extends Fragment {
                     getActivity().finish();
                 } else {
                     Toast toast = Toast.makeText(getContext(),
-                            "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_LONG);
+                            ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                     toast.show();
                 }
             }
@@ -122,28 +124,11 @@ public class PushCostFrag extends Fragment {
                 dateStr = DateHandler.getCurrentDatetime();
 
         //输入检查
-        if (CheckInput(event, money)) {
+        if (Validator.checkBillInfoInput(event, money,getContext())) {
             cost = new Cost(event, selected, Double.parseDouble(money),
                     dateStr, remark, user.getUserNo());
             return dataPuller.pushCost(cost);
         }
         return false;
     }
-
-    //输入检查
-    private boolean CheckInput(String event, String money) {
-        if (!event.isEmpty()) {
-            if (!money.isEmpty() && Double.parseDouble(money) != 0) {
-                return true;
-            } else {
-                Toast toast = Toast.makeText(getContext(), "请输入金额！", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        } else {
-            Toast toast = Toast.makeText(getContext(), "请输入事件！", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        return false;
-    }
-
 }

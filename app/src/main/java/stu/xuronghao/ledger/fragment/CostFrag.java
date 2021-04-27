@@ -26,28 +26,10 @@ import stu.xuronghao.ledger.activity.PushDataPage;
 import stu.xuronghao.ledger.adapter.BillDataAdapter;
 import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 
 public class CostFrag extends Fragment {
-
-    // 设置需要从传入的bundle中获取的数据的Key值
-    private static final String ARG_USER_INFO = "user";
-    private static final int To_Cost_Pusher = 0;
-
-    //进行支出图表类型匹配
-    private static final HashMap<String, Integer> costTypeMap =
-            new HashMap<String, Integer>() {
-                {
-                    put("餐饮", R.drawable.icon_dining);
-                    put("交通", R.drawable.icon_trans);
-                    put("服饰", R.drawable.icon_cloth);
-                    put("日用", R.drawable.icon_daily);
-                    put("其他", R.drawable.icon_other_cost);
-                }
-            };
-
-    // 参数声明
-    //    private Bundle          args;
     private View rootView;
     private User user;
     List<Cost> costList;
@@ -60,8 +42,6 @@ public class CostFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //        if (getArguments() != null) {
-        //        }
     }
 
     @Override
@@ -78,8 +58,7 @@ public class CostFrag extends Fragment {
         //进行组建初始化
         //buildListView();
         setFloatBtn();
-        user = (User) getActivity().getIntent().getSerializableExtra(ARG_USER_INFO);
-        Log.w("cost frag user test", user.toString());
+        user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
     }
 
     @Override
@@ -95,26 +74,25 @@ public class CostFrag extends Fragment {
         costList = dataPuller.pullCostOf(user);
         if (costList == null) {
             Toast toast = Toast.makeText(getContext(),
-                    "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_LONG);
+                    ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
             toast.show();
             return;
         }
         //获取列表对象
         listView = rootView.findViewById(R.id.lv_CostDataList);
         //用HashMap来传递内容
-        ArrayList<HashMap<String, Object>> mapArrayList = new ArrayList<HashMap<String, Object>>();
+        ArrayList<HashMap<String, String>> mapArrayList = new ArrayList<>();
         for (int i = 0; i < costList.size(); i++) {
             Cost temp = costList.get(i);
-            String Tit = temp.getCostEvent() + ": " + temp.getCostType() + " " + temp.getCostAmount() + "元";
-            HashMap<String, Object> map = new HashMap<String, Object>();
-//            map.put("ItemImage", R.drawable.icon_cost);
-            map.put("ItemImage", costTypeMap.get(temp.getCostType()));
-            map.put("ItemTitle", Tit);
-            map.put("ItemContent", temp.getCostDate());
+            String title = temp.getCostEvent() + ": " + temp.getCostType() + " " + temp.getCostAmount() + "元";
+            HashMap<String, String> map = new HashMap<>();
+            map.put(ConstantVariable.ITEM_TITLE, title);
+            map.put(ConstantVariable.ITEM_TYPE,temp.getCostType());
+            map.put(ConstantVariable.ITEM_CONTENT, temp.getCostDate());
             mapArrayList.add(map);
         }
         //用HashMap将数据传入ListView适配器
-        BillDataAdapter adapter = new BillDataAdapter(this.getActivity(), mapArrayList);
+        BillDataAdapter adapter = new BillDataAdapter(this.getActivity(),ConstantVariable.COST_CODE , mapArrayList);
         //应用适配器并更新ListView
         listView.setAdapter(adapter);
 
@@ -122,7 +100,7 @@ public class CostFrag extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), DetailPage.class);
-                intent.putExtra("index", 0);
+                intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
                 intent.putExtra("cost", costList.get(position));
                 startActivity(intent);
             }
@@ -149,8 +127,8 @@ public class CostFrag extends Fragment {
                 //新增支出
                 Log.w("addBtn: ", "Ready to add cost!");
                 Intent intent = new Intent(getActivity(), PushDataPage.class);
-                intent.putExtra("index", To_Cost_Pusher);
-                intent.putExtra("user", user);
+                intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
+                intent.putExtra(ConstantVariable.USER, user);
                 startActivity(intent);
             }
         });
@@ -166,22 +144,4 @@ public class CostFrag extends Fragment {
             }
         });
     }
-
-    //    @Override
-    //    public void onDestroyView() {
-    //        Log.w("onDV","onDestroyView called!");
-    //        super.onDestroyView();
-    //    }
-    //
-    //    @Override
-    //    public void onDestroy() {
-    //        Log.w("onDes","onDestroy called!");
-    //        super.onDestroy();
-    //    }
-    //
-    //    @Override
-    //    public void onDetach() {
-    //        Log.w("onDet","onDetach called!");
-    //        super.onDetach();
-    //    }
 }

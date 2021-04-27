@@ -7,15 +7,11 @@ import java.util.concurrent.Future;
 
 public class GetHttpResponse {
     //设置为服务器的ip及端口
-    private String
-//            url     = "http://149.28.26.151:8090/",
-//            url = "http://192.168.31.95:8090/",
-//            url = "http://192.168.123.64:8090/",
-            url = "http://172.16.20.120:8090/",
-            result = "",
-            jsonStr = "",
-            service = "",
-            params = "";
+    private static final String URL = "http://172.16.20.120:8090/";
+    private String result = "";
+    private String jsonStr = "";
+    private String service = "";
+    private String params = "";
     private int i = 1;
 
     public void setService(String service) {
@@ -36,14 +32,14 @@ public class GetHttpResponse {
     }
 
     public String getUrl() {
-        return url + service + params;
+        return URL + service + params;
     }
 
-    public String Getter() {
+    public String getter() {
         //建立线程池
         ExecutorService pool = Executors.newCachedThreadPool();
         //建立&设置连接
-        GetSender sender = new GetSender(url + service + params);
+        GetSender sender = new GetSender(URL + service + params);
         //执行并获取Future对象，获取线程执行结果
         Future<String> future = pool.submit(sender);
         result = "";
@@ -52,12 +48,12 @@ public class GetHttpResponse {
             if (future.isDone()) {
                 try {
                     if (future.get() != null)
-                        result = future.get().toString();
-                    //                    Log.w("Getter future: ", result);
+                        result = future.get();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 } finally {
                     pool.shutdown();
                 }
@@ -67,21 +63,21 @@ public class GetHttpResponse {
         return result;
     }
 
-    public String Poster() {
+    public String poster() {
         ExecutorService pool = Executors.newCachedThreadPool();
-        PostSender sender = new PostSender(url + service, jsonStr);
+        PostSender sender = new PostSender(URL + service, jsonStr);
         Future<String> future = pool.submit(sender);
         result = "";
         while (true) {
             if (future.isDone()) {
                 try {
                     if (future.get() != null)
-                        result = future.get().toString();
-                    //                    Log.w("Poster future: ", result);
+                        result = future.get();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 } finally {
                     pool.shutdown();
                 }

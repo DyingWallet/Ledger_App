@@ -18,20 +18,16 @@ import androidx.fragment.app.Fragment;
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.Income;
 import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 import stu.xuronghao.ledger.handler.DateHandler;
+import stu.xuronghao.ledger.handler.Validator;
 
 public class PushIncomeFrag extends Fragment {
-
-    private static final String[] incomeType = {"工资", "奖金", "借款", "红包", "其他"};
-    private static final String ARG_USER_INFO = "user";
-
     private View rootView;
-    private Spinner spinner;
-    private ArrayAdapter<String> adapter;
     private String selected;
     private User user;
-    private DataPuller dataPuller = new DataPuller();
+    private final DataPuller dataPuller = new DataPuller();
 
     public PushIncomeFrag() {
         // Required empty public constructor
@@ -40,8 +36,6 @@ public class PushIncomeFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //        if (getArguments() != null) {
-        //        }
     }
 
     @Override
@@ -58,14 +52,14 @@ public class PushIncomeFrag extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        user = (User) getActivity().getIntent().getSerializableExtra(ARG_USER_INFO);
+        user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
 
         Button pushIncome = rootView.findViewById(R.id.btn_PushIncome);
         Button cancel = rootView.findViewById(R.id.btn_PushIncome_Cancel);
 
-        spinner = rootView.findViewById(R.id.sp_IncomeType);
+        Spinner spinner = rootView.findViewById(R.id.sp_IncomeType);
 
-        adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item_sel, incomeType);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item_sel, ConstantVariable.getTypeArray(ConstantVariable.INCOME_TYPE));
 
         adapter.setDropDownViewResource(R.layout.spinner_item_drop);
 
@@ -74,7 +68,7 @@ public class PushIncomeFrag extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selected = incomeType[position];
+                selected = ConstantVariable.getType(ConstantVariable.INCOME_TYPE,position);
                 Log.w("selected:", selected);
             }
 
@@ -93,7 +87,7 @@ public class PushIncomeFrag extends Fragment {
                     getActivity().finish();
                 } else {
                     Toast toast = Toast.makeText(getContext(),
-                            "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_LONG);
+                            ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                     toast.show();
                 }
             }
@@ -111,38 +105,22 @@ public class PushIncomeFrag extends Fragment {
         Income income;
 
         //获取输入对象
-        EditText etx_IncomeEvent = rootView.findViewById(R.id.etx_IncomeEvent);
-        EditText etx_IncomeMoney = rootView.findViewById(R.id.etx_IncomeMoney);
-        EditText etx_IncomeRemark = rootView.findViewById(R.id.etx_IncomeRemark);
+        EditText etxIncomeEvent = rootView.findViewById(R.id.etx_IncomeEvent);
+        EditText etxIncomeMoney = rootView.findViewById(R.id.etx_IncomeMoney);
+        EditText etxIncomeRemark = rootView.findViewById(R.id.etx_IncomeRemark);
 
         //数据提取
-        String event = etx_IncomeEvent.getText().toString(),
-                money = etx_IncomeMoney.getText().toString(),
-                remark = etx_IncomeRemark.getText().toString(),
-                dateStr = DateHandler.getCurrentDatetime();
+        String event = etxIncomeEvent.getText().toString();
+        String money = etxIncomeMoney.getText().toString();
+        String remark = etxIncomeRemark.getText().toString();
+        String dateStr = DateHandler.getCurrentDatetime();
 
         //输入检查
-        if (CheckInput(event, money)) {
+        if (Validator.checkBillInfoInput(event, money, getContext())) {
             income = new Income(event, selected, Double.parseDouble(money),
                     dateStr, remark, user.getUserNo());
             return dataPuller.pushIncome(income);
         }
         return false;
     }
-
-    private boolean CheckInput(String event, String money) {
-        if (!event.isEmpty()) {
-            if (!money.isEmpty() && Double.parseDouble(money) != 0) {
-                return true;
-            } else {
-                Toast toast = Toast.makeText(getContext(), "请输入金额！", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        } else {
-            Toast toast = Toast.makeText(getContext(), "请输入事件！", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        return false;
-    }
-
 }

@@ -28,6 +28,7 @@ import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.Income;
 import stu.xuronghao.ledger.entity.TrendData;
 import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 
 public class TrendFrag extends Fragment {
@@ -146,7 +147,7 @@ public class TrendFrag extends Fragment {
         List<Income> tempIncome = dataPuller.pullIncomeOfBetween(user, startDate, endDate);
         if (tempCost == null || tempIncome == null) {
             Toast toast = Toast.makeText(getContext(),
-                    "似乎和服务器君失去了联系...请检查网络连接哦~~~", Toast.LENGTH_LONG);
+                    ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
             toast.show();
             return;
         }
