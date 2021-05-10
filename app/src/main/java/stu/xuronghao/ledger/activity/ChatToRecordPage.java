@@ -104,12 +104,12 @@ public class ChatToRecordPage extends AppCompatActivity {
         TextView txvRemark = view.findViewById(R.id.txv_Chat_Dialog_Remark);
         Spinner spinner = view.findViewById(R.id.sp_Chat_Type);
         EditText text = view.findViewById(R.id.etx_Chat_Dialog_Event);
-        text.setText(ConstantVariable.COST_CN);
+        text.setText(ConstantVariable.TEXT_COST);
 
-        txvEvent.setText("支出事件：");
-        txvAmount.setText("支出金额：");
-        txvType.setText("支出类型：");
-        txvRemark.setText("备注：");
+        txvEvent.setText(ConstantVariable.TEXT_COST_EVENT);
+        txvAmount.setText(ConstantVariable.TEXT_COST_AMOUNT);
+        txvType.setText(ConstantVariable.TEXT_COST_TYPE);
+        txvRemark.setText(ConstantVariable.TEXT_REMARK);
 
         spAdapter = new ArrayAdapter<>(context, R.layout.spinner_item_sel, ConstantVariable.getTypeArray(ConstantVariable.COST_TYPE));
         spAdapter.setDropDownViewResource(R.layout.spinner_item_drop);
@@ -144,7 +144,7 @@ public class ChatToRecordPage extends AppCompatActivity {
                     Cost cost = new Cost(event, selected, Double.parseDouble(money),
                             dateStr, remark, user.getUserNo());
                     userInfo = new ChatInfo(user.getUserNo(), dateStr,
-                            dateStr + "：" + selected + ConstantVariable.COST_CN + Double.parseDouble(money),
+                            dateStr + "：" + selected + ConstantVariable.TEXT_COST + Double.parseDouble(money),
                             1);
                     infoList.add(userInfo);
                     adapter.notifyDataSetChanged();
@@ -184,12 +184,12 @@ public class ChatToRecordPage extends AppCompatActivity {
         TextView txvRemark = view.findViewById(R.id.txv_Chat_Dialog_Remark);
         Spinner spinner = view.findViewById(R.id.sp_Chat_Type);
         EditText text = view.findViewById(R.id.etx_Chat_Dialog_Event);
-        text.setText(ConstantVariable.INCOME_CN);
+        text.setText(ConstantVariable.TEXT_INCOME);
 
-        txvEvent.setText("收入事件：");
-        txvAmount.setText("收入金额：");
-        txvType.setText("收入类型：");
-        txvRemark.setText("备注：");
+        txvEvent.setText(ConstantVariable.TEXT_INCOME_EVENT);
+        txvAmount.setText(ConstantVariable.TEXT_INCOME_AMOUNT);
+        txvType.setText(ConstantVariable.TEXT_INCOME_TYPE);
+        txvRemark.setText(ConstantVariable.TEXT_REMARK);
 
         spAdapter = new ArrayAdapter<>(context, R.layout.spinner_item_sel, ConstantVariable.getTypeArray(ConstantVariable.INCOME_TYPE));
         spAdapter.setDropDownViewResource(R.layout.spinner_item_drop);
@@ -224,7 +224,7 @@ public class ChatToRecordPage extends AppCompatActivity {
                     Income income = new Income(event, selected, Double.parseDouble(money),
                             dateStr, remark, user.getUserNo());
                     userInfo = new ChatInfo(user.getUserNo(), dateStr,
-                            dateStr + "：" + selected + ConstantVariable.INCOME_CN + Double.parseDouble(money),
+                            dateStr + "：" + selected + ConstantVariable.TEXT_INCOME + Double.parseDouble(money),
                             1);
                     infoList.add(userInfo);
                     adapter.notifyDataSetChanged();

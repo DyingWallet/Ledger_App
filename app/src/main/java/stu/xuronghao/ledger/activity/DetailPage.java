@@ -43,7 +43,7 @@ public class DetailPage extends AppCompatActivity {
         TextView txvDate = findViewById(R.id.txv_Detail_DateTime);
         TextView txvType = findViewById(R.id.txv_Detail_CostType);
 
-        index = getIntent().getIntExtra("index", 0);
+        index = getIntent().getIntExtra(ConstantVariable.INDEX, 0);
 
         if (ConstantVariable.COST_CODE == index) {
             cost = (Cost) getIntent().getSerializableExtra(ConstantVariable.COST_TYPE);
@@ -75,14 +75,14 @@ public class DetailPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("！！>>>注意<<<！！");
+                builder.setTitle(ConstantVariable.TEXT_CAUTION);
                 builder.setIcon(R.drawable.icon_warn);
-                builder.setMessage("注意！资料删掉的话，治账酱就再也想不起来了哦。要继续吗？");
-                builder.setPositiveButton(">>>继续<<<", new DialogInterface.OnClickListener() {
+                builder.setMessage(ConstantVariable.TEXT_DELETE_HINT_MSG);
+                builder.setPositiveButton(ConstantVariable.TEXT_CONFIRM, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (delete(index)) {
-                            Toast toast = Toast.makeText(context, "哎嘿~~治账酱已经忘得一干二净了！", Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(context, ConstantVariable.INFO_DELETE_SUCCESS, Toast.LENGTH_SHORT);
                             toast.show();
                             finish();
                             return;
@@ -92,7 +92,7 @@ public class DetailPage extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-                builder.setNegativeButton("<<<算了>>>", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(ConstantVariable.TEXT_CANCEL, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -106,7 +106,7 @@ public class DetailPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (update(index)) {
-                    Toast toast = Toast.makeText(context, "修改已生效了哦！", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(context, ConstantVariable.INFO_UPDATE_SUCCESS, Toast.LENGTH_SHORT);
                     toast.show();
                     finish();
                     return;

@@ -57,7 +57,7 @@ public class UserFrag extends Fragment {
         storage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getContext(), "功能还在开发中哦......", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getContext(), ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
@@ -65,7 +65,7 @@ public class UserFrag extends Fragment {
         shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getContext(), "功能还在开发中哦......", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getContext(), ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
                 toast.show();
             }
         });

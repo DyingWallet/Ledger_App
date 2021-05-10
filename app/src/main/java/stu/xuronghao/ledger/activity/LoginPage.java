@@ -11,9 +11,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.User;
 import stu.xuronghao.ledger.handler.ConstantVariable;
@@ -84,7 +81,7 @@ public class LoginPage extends AppCompatActivity {
             //登陆成功
             Intent intent = new Intent(LoginPage.this, HomePage.class);
             //注意传递对象需要对象继承Serializable
-            intent.putExtra("user", user);
+            intent.putExtra(ConstantVariable.USER, user);
             Toast toast = Toast.makeText(
                     context, "欢迎回来，" + user.getUserName() + "君!", Toast.LENGTH_LONG);
             toast.show();
@@ -92,15 +89,15 @@ public class LoginPage extends AppCompatActivity {
             finish();
         } else if (user.getUserStatus() == ConstantVariable.FROZEN_USER) {
             Toast toast = Toast.makeText(context,
-                    "该账户已停止使用!", Toast.LENGTH_LONG);
+                    ConstantVariable.HINT_USER_FROZEN, Toast.LENGTH_LONG);
             toast.show();
         } else if (user.getUserStatus() == ConstantVariable.NO_USER) {
             Toast toast = Toast.makeText(context,
-                    "亲，你还没注册呢！", Toast.LENGTH_LONG);
+                    ConstantVariable.HINT_USER_NOT_FOUND, Toast.LENGTH_LONG);
             toast.show();
         } else if (user.getUserStatus() == ConstantVariable.WRONG_PASSWD) {
             Toast toast = Toast.makeText(context,
-                    "亲，密码错了哟！", Toast.LENGTH_LONG);
+                    ConstantVariable.HINT_WRONG_PASSWD, Toast.LENGTH_LONG);
             toast.show();
         }
     }
@@ -119,7 +116,7 @@ public class LoginPage extends AppCompatActivity {
         testUser.setUserStatus(1);
         Intent intent = new Intent(LoginPage.this, HomePage.class);
         intent.putExtra("user", testUser);
-        Toast toast = Toast.makeText(context, "你又要来调试了吗？程序员早晚头秃！Wryyyyy!", Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(context, "---调试账户---", Toast.LENGTH_SHORT);
         toast.show();
         startActivity(intent);
         finish();

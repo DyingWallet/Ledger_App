@@ -56,7 +56,6 @@ public class CostFrag extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //进行组建初始化
-        //buildListView();
         setFloatBtn();
         user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
     }

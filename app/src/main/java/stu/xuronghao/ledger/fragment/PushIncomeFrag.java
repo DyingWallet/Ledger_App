@@ -43,8 +43,6 @@ public class PushIncomeFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_push_income, container, false);
-
-        Log.w("PIF: ", "Called!");
         return rootView;
     }
 
@@ -69,7 +67,6 @@ public class PushIncomeFrag extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selected = ConstantVariable.getType(ConstantVariable.INCOME_TYPE,position);
-                Log.w("selected:", selected);
             }
 
             @Override
@@ -82,7 +79,7 @@ public class PushIncomeFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 if (push()) {
-                    Toast toast = Toast.makeText(getContext(), "好的！服务器君记住了！", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getContext(), ConstantVariable.INFO_OPERATE_SUCCESS, Toast.LENGTH_SHORT);
                     toast.show();
                     getActivity().finish();
                 } else {

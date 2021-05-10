@@ -32,21 +32,18 @@ import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 
 public class TrendFrag extends Fragment {
-    private static final String ARG_USER_INFO = "user";
-
     private View rootView;
     private User user;
     private DataPuller dataPuller = new DataPuller();
-    private int currentYear,
-            destinationYear;
+    private int currentYear;
+    private int destinationYear;
     Double[] monthlyCost = new Double[12];
     Double[] monthlyIncome = new Double[12];
     Double[] monthlySurplus = new Double[12];
     private TrendData yearlyData;
     private TrendData[] monthlyData = new TrendData[12];
-    private String startDate,
-            endDate;
-    private Calendar calendar;
+    private String startDate;
+    private String endDate;
 
     public TrendFrag() {
         // Required empty public constructor
@@ -70,7 +67,7 @@ public class TrendFrag extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        user = (User) getActivity().getIntent().getSerializableExtra(ARG_USER_INFO);
+        user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
         setCurrentYear();
         setDateRange();
         setDateChanger();
@@ -79,8 +76,8 @@ public class TrendFrag extends Fragment {
 
     //获取当前月份
     private void setCurrentYear() {
-        TimeZone zone = TimeZone.getTimeZone("GMT+8:00");
-        calendar = Calendar.getInstance(zone);
+        TimeZone zone = TimeZone.getTimeZone(ConstantVariable.TIME_ZONE);
+        Calendar calendar = Calendar.getInstance(zone);
         currentYear = calendar.get(Calendar.YEAR);
         destinationYear = currentYear;
     }
@@ -88,19 +85,19 @@ public class TrendFrag extends Fragment {
     //设置日期范围
     private void setDateRange() {
         //获取月初日期
-        startDate = destinationYear + "-01-01";
+        startDate = destinationYear + ConstantVariable.START_OF_YEAR;
 
         //获取月末日期
-        endDate = destinationYear + "-12-31";
+        endDate = destinationYear + ConstantVariable.END_OF_YEAR;
     }
 
     //设置日期选择器
     private void setDateChanger() {
         //图像控件
-        ImageView arrow_Left = rootView.findViewById(R.id.arrow_Trend_LastMonth);
-        ImageView arrow_Right = rootView.findViewById(R.id.arrow_Trend_NextMonth);
+        ImageView arrowLeft = rootView.findViewById(R.id.arrow_Trend_LastMonth);
+        ImageView arrowRight = rootView.findViewById(R.id.arrow_Trend_NextMonth);
 
-        arrow_Left.setOnClickListener(new View.OnClickListener() {
+        arrowLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 destinationYear--;
@@ -109,7 +106,7 @@ public class TrendFrag extends Fragment {
             }
         });
 
-        arrow_Right.setOnClickListener(new View.OnClickListener() {
+        arrowRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (destinationYear < currentYear) {
@@ -118,22 +115,13 @@ public class TrendFrag extends Fragment {
                     buildTrendChart();
                 } else {
                     Toast toast = Toast.makeText(getContext(),
-                            "果然不能预知未来呢~~~", Toast.LENGTH_SHORT);
+                            ConstantVariable.HINT_DATE_TO_FUTURE, Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
         });
 
     }
-
-    //获取月度信息
-    //    private void getMonthInfo(){
-    //        //月度
-    //        TextView txv_monthIncome = rootView.findViewById(R.id.txv_Trend_Month_Income);
-    //        TextView txv_monthCost = rootView.findViewById(R.id.txv_Trend_Month_Cost);
-    //        TextView txv_monthSurplus = rootView.findViewById(R.id.txv_Trend_Month_Surplus);
-    //
-    //    }
 
     //生成图形化报表
     private void buildTrendChart() {
@@ -153,8 +141,8 @@ public class TrendFrag extends Fragment {
         }
         double amount;
         int size = Math.max(tempCost.size(), tempIncome.size());
-        int index, month;
-        String type, date;
+        int month;
+        String date;
         String[] months = new String[12];
         //进行初始化
         for (int i = 0; i < 12; i++) {
@@ -168,7 +156,6 @@ public class TrendFrag extends Fragment {
             else
                 months[i] = (i + 1) + "月";
         }
-        //        yearlyData = new TrendData(destinationYear,0);
 
         //数据处理
         for (int i = 0; i < size; i++) {
@@ -178,7 +165,7 @@ public class TrendFrag extends Fragment {
                 amount = cost.getCostAmount();
                 date = cost.getCostDate();
                 //从日期中截取月份
-                month = Integer.parseInt(date.split("-")[1]);
+                month = Integer.parseInt(date.split(ConstantVariable.DATE_REGEX)[1]);
                 //进行分类累计
                 //进行月度累计
                 monthlyCost[month - 1] += amount;
@@ -189,13 +176,13 @@ public class TrendFrag extends Fragment {
                 amount = income.getIncAmount();
                 date = income.getIncDate();
                 //从日其中截取月份
-                month = Integer.parseInt(date.split("-")[1]);
+                month = Integer.parseInt(date.split(ConstantVariable.DATE_REGEX)[1]);
                 //进行月度累计
                 monthlyIncome[month - 1] += amount;
             }
         }
         //分别存储信息
-        ArrayList<TrendData> listData = new ArrayList<TrendData>();
+        ArrayList<TrendData> listData = new ArrayList<>();
         //计算结余
         for (int i = 0; i < 12; i++) {
             monthlySurplus[i] = monthlyIncome[i] - monthlyCost[i];
@@ -227,20 +214,20 @@ public class TrendFrag extends Fragment {
         trendView.aa_drawChartWithChartModel(trendModel);
 
         //设置年度信息
-        TextView txv_yearTit = rootView.findViewById(R.id.txv_Trend_Year);
-        TextView txv_totalIncome = rootView.findViewById(R.id.txv_Trend_Total_Income);
-        TextView txv_totalCost = rootView.findViewById(R.id.txv_Trend_Total_Cost);
-        TextView txv_totalSurplus = rootView.findViewById(R.id.txv_Trend_Total_Surplus);
+        TextView txvYearTit = rootView.findViewById(R.id.txv_Trend_Year);
+        TextView txvTotalIncome = rootView.findViewById(R.id.txv_Trend_Total_Income);
+        TextView txvTotalCost = rootView.findViewById(R.id.txv_Trend_Total_Cost);
+        TextView txvTotalSurplus = rootView.findViewById(R.id.txv_Trend_Total_Surplus);
 
-        txv_yearTit.setText(destinationYear + "年");
-        txv_totalIncome.setText(yearlyData.getIncome() + "元");
-        txv_totalCost.setText(yearlyData.getCost() + "元");
+        txvYearTit.setText(destinationYear + "年");
+        txvTotalIncome.setText(yearlyData.getIncome() + "元");
+        txvTotalCost.setText(yearlyData.getCost() + "元");
         if (yearlyData.getSurplus() > 0) {
-            txv_totalSurplus.setTextColor(txv_totalSurplus.getResources().getColor(R.color.possurplus));
+            txvTotalSurplus.setTextColor(txvTotalSurplus.getResources().getColor(R.color.possurplus));
         } else {
-            txv_totalSurplus.setTextColor(txv_totalSurplus.getResources().getColor(R.color.negsurplus));
+            txvTotalSurplus.setTextColor(txvTotalSurplus.getResources().getColor(R.color.negsurplus));
         }
-        txv_totalSurplus.setText(yearlyData.getSurplus() + "元");
+        txvTotalSurplus.setText(yearlyData.getSurplus() + "元");
 
         //生成下方列表
         TrendDataAdapter adapter = new TrendDataAdapter(getContext(), listData);

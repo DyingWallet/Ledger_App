@@ -17,7 +17,6 @@ import com.don.pieviewlibrary.PercentPieView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -41,43 +40,17 @@ public class PieFrag extends Fragment {
             R.drawable.icon_cloth, R.drawable.icon_daily, R.drawable.icon_other_cost};
     private static final int[] incomeIcons = {R.drawable.icon_salary, R.drawable.icon_bonus,
             R.drawable.icon_loan, R.drawable.icon_redpkt, R.drawable.icon_other_income};
-    private static final String ARG_USER_INFO = "user";
-    private static final String[] costType = {"餐饮", "交通", "服饰", "日用", "其他"};
-    private static final String[] incomeType = {"工资", "奖金", "借款", "红包", "其他"};
 
-    private static final HashMap<String, Integer> costTypeMap =
-            new HashMap<String, Integer>() {
-                {
-                    put("餐饮", 0);
-                    put("交通", 1);
-                    put("服饰", 2);
-                    put("日用", 3);
-                    put("其他", 4);
-                }
-            };
-
-    private static final HashMap<String, Integer> incomeTypeMap =
-            new HashMap<String, Integer>() {
-                {
-                    put("工资", 0);
-                    put("奖金", 1);
-                    put("借款", 2);
-                    put("红包", 3);
-                    put("其他", 4);
-                }
-            };
     //模式标记
     private static int mode = COST_MODE;
 
     private View rootView;
     private User user;
     private DataPuller dataPuller = new DataPuller();
-    private int currentMonth,
-            destinationMonth;
-    private String startDate,
-            endDate;
-    private List<Cost> costList;
-    private List<Income> incomeList;
+    private int currentMonth;
+    private int destinationMonth;
+    private String startDate;
+    private String endDate;
     private Calendar calendar;
 
     public PieFrag() {
@@ -87,8 +60,6 @@ public class PieFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //        if (getArguments() != null) {
-        //        }
     }
 
     @Override
@@ -102,7 +73,7 @@ public class PieFrag extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        user = (User) getActivity().getIntent().getSerializableExtra(ARG_USER_INFO);
+        user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
         //获取当前月份
         setCurrentMonth();
         //设置日期范围
@@ -112,8 +83,8 @@ public class PieFrag extends Fragment {
         //生成图形化报表
         buildPieView(mode);
         //设置模式转换监听器
-        ImageView img_switch = rootView.findViewById(R.id.pie_click_switch);
-        img_switch.setOnClickListener(new View.OnClickListener() {
+        ImageView imgSwitch = rootView.findViewById(R.id.pie_click_switch);
+        imgSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mode != COST_MODE) {
@@ -136,24 +107,24 @@ public class PieFrag extends Fragment {
 
     //设置日期范围
     private void setDateRange() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(ConstantVariable.DATE_FORMAT);
         calendar.set(Calendar.MONTH, destinationMonth);
         //获取月初日期
         calendar.set(Calendar.DAY_OF_MONTH, 1);
-        startDate = dateFormat.format(calendar.getTime()) + " 00:00:00";
+        startDate = dateFormat.format(calendar.getTime()) + ConstantVariable.START_OF_DAY;
 
         //获取月末日期
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-        endDate = dateFormat.format(calendar.getTime()) + " 24:00:00";
+        endDate = dateFormat.format(calendar.getTime()) + ConstantVariable.END_OF_DAY;
     }
 
     //设置日期选择器
     private void setDateChanger() {
         //图像控件
-        ImageView arrow_Left = rootView.findViewById(R.id.arrow_Pie_LastMonth);
-        ImageView arrow_Right = rootView.findViewById(R.id.arrow_Pie_NextMonth);
+        ImageView arrowLeft = rootView.findViewById(R.id.arrow_Pie_LastMonth);
+        ImageView arrowRight = rootView.findViewById(R.id.arrow_Pie_NextMonth);
 
-        arrow_Left.setOnClickListener(new View.OnClickListener() {
+        arrowLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 destinationMonth--;
@@ -162,7 +133,7 @@ public class PieFrag extends Fragment {
             }
         });
 
-        arrow_Right.setOnClickListener(new View.OnClickListener() {
+        arrowRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (destinationMonth < currentMonth) {
@@ -181,8 +152,8 @@ public class PieFrag extends Fragment {
     //生成图形化报表
     private void buildPieView(int mode) {
         //文本控件
-        TextView txv_StartDate = rootView.findViewById(R.id.txv_Pie_StartDate);
-        TextView txv_EndDate = rootView.findViewById(R.id.txv_Pie_EndDate);
+        TextView txvStartDate = rootView.findViewById(R.id.txv_Pie_StartDate);
+        TextView txvEndDate = rootView.findViewById(R.id.txv_Pie_EndDate);
         TextView pieTit = rootView.findViewById(R.id.pie_chart_title);
         TextView pieAmount = rootView.findViewById(R.id.pie_chart_money);
         //可视化控件
@@ -192,16 +163,15 @@ public class PieFrag extends Fragment {
         //适配器
         PieDataAdapter adapter;
         //设置始止时间
-        txv_StartDate.setText(startDate.split("\\s")[0]);
-        txv_EndDate.setText(endDate.split("\\s")[0]);
-        //设置比较器
-//        FeeSortUtil sortUtil = new FeeSortUtil();
+        txvStartDate.setText(startDate.split(ConstantVariable.TIME_REGEX)[0]);
+        txvEndDate.setText(endDate.split(ConstantVariable.TIME_REGEX)[0]);
+
         String total;
         double tmp = 0;
         int[] data = new int[5];
         if (mode == COST_MODE) {
             //消费报表
-            costList = dataPuller.pullCostOfBetween(user, startDate, endDate);
+            List<Cost> costList = dataPuller.pullCostOfBetween(user, startDate, endDate);
             if (costList == null) {
                 Toast toast = Toast.makeText(getContext(),
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
@@ -211,9 +181,8 @@ public class PieFrag extends Fragment {
             double[] costs = {0, 0, 0, 0, 0};
 
             for (Cost cost : costList) {
-                //costType = {"餐饮","交通","服饰","日用","其他"}
                 String type = cost.getCostType();
-                int index = costTypeMap.get(type).intValue();
+                int index = ConstantVariable.getTypeIndex(ConstantVariable.COST_CODE, type);
                 costs[index] += cost.getCostAmount();
             }
             for (int i = 0; i < costs.length; i++) {
@@ -221,7 +190,7 @@ public class PieFrag extends Fragment {
                 tmp += costs[i];
             }
             total = tmp + "元";
-            pieView.setData(data, costType, colors);
+            pieView.setData(data, ConstantVariable.getTypeArray(ConstantVariable.COST_TYPE), colors);
             //设置金额总和
             pieAmount.setText(total);
             //设置报表标题
@@ -230,14 +199,14 @@ public class PieFrag extends Fragment {
             ArrayList<TotalFee> feeList = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 if (costs[i] != 0)
-                    feeList.add(new TotalFee(costIcons[i], costs[i], costType[i]));
+                    feeList.add(new TotalFee(costIcons[i], costs[i], ConstantVariable.getType(ConstantVariable.COST_TYPE, i)));
             }
             new FeeSortUtil().sortByAmount(feeList);
             adapter = new PieDataAdapter(getContext(), feeList);
             listView.setAdapter(adapter);
         } else if (mode == INCOME_MODE) {
             //收入报表
-            incomeList = dataPuller.pullIncomeOfBetween(user, startDate, endDate);
+            List<Income> incomeList = dataPuller.pullIncomeOfBetween(user, startDate, endDate);
             if (incomeList == null) {
                 Toast toast = Toast.makeText(getContext(),
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
@@ -247,9 +216,8 @@ public class PieFrag extends Fragment {
             double[] incomes = {0, 0, 0, 0, 0};
 
             for (Income income : incomeList) {
-                //incomeType = {"工资","奖金","借款","红包","其他"};
                 String type = income.getIncType();
-                int index = incomeTypeMap.get(type);
+                int index = ConstantVariable.getTypeIndex(ConstantVariable.INCOME_CODE, type);
                 incomes[index] += income.getIncAmount();
             }
             for (int i = 0; i < incomes.length; i++) {
@@ -257,14 +225,14 @@ public class PieFrag extends Fragment {
                 tmp += incomes[i];
             }
             total = tmp + "元";
-            pieView.setData(data, incomeType, colors);
+            pieView.setData(data, ConstantVariable.getTypeArray(ConstantVariable.INCOME_TYPE), colors);
             pieAmount.setText(total);
             pieTit.setText("总收入");
             //分类列表
             ArrayList<TotalFee> feeList = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 if (incomes[i] != 0)
-                    feeList.add(new TotalFee(incomeIcons[i], incomes[i], incomeType[i]));
+                    feeList.add(new TotalFee(incomeIcons[i], incomes[i], ConstantVariable.getType(ConstantVariable.INCOME_TYPE, i)));
             }
             new FeeSortUtil().sortByAmount(feeList);
             adapter = new PieDataAdapter(getContext(), feeList);

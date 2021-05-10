@@ -19,12 +19,12 @@ import stu.xuronghao.ledger.adapter.SwitchAdapter;
 import stu.xuronghao.ledger.entity.User;
 import stu.xuronghao.ledger.fragment.PushCostFrag;
 import stu.xuronghao.ledger.fragment.PushIncomeFrag;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 
 public class PushDataPage extends AppCompatActivity {
 
     private final int Cost_Pusher = 0;
     private final int Income_Pusher = 1;
-    private static final String ARG_USER_INFO = "user";
 
     //参数声明
     private ViewPager viewPager;
@@ -41,12 +41,12 @@ public class PushDataPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_push_data_page);
 
-        user = (User) getIntent().getSerializableExtra(ARG_USER_INFO);
+        user = (User) getIntent().getSerializableExtra(ConstantVariable.USER);
 
         //初始化导航
         initView();
 
-        int index = getIntent().getIntExtra("index", 0);
+        int index = getIntent().getIntExtra(ConstantVariable.INDEX, 0);
         Log.w("index is: ", "" + index);
 
         toView(index);

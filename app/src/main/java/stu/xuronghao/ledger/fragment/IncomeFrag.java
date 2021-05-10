@@ -23,6 +23,7 @@ import java.util.Objects;
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.activity.ChatToRecordPage;
 import stu.xuronghao.ledger.activity.DetailPage;
+import stu.xuronghao.ledger.activity.LoginPage;
 import stu.xuronghao.ledger.activity.PushDataPage;
 import stu.xuronghao.ledger.adapter.BillDataAdapter;
 import stu.xuronghao.ledger.entity.Income;
@@ -62,10 +63,6 @@ public class IncomeFrag extends Fragment {
         //进行组建初始化
         setFloatBtn();
         user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
-        if(null == user){
-
-        }
-        Log.w("income frag user test", user.toString());
     }
 
     @Override

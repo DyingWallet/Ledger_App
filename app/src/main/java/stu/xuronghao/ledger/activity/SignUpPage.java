@@ -39,13 +39,13 @@ public class SignUpPage extends AppCompatActivity {
                         Intent intent = new Intent(SignUpPage.this, LoginPage.class);
                         intent.putExtra(ConstantVariable.USER, user);
                         Toast toast = Toast.makeText(context,
-                                "好的！治账酱记住你了！", Toast.LENGTH_LONG);
+                                ConstantVariable.INFO_SIGN_UP_SUCCESS, Toast.LENGTH_LONG);
                         toast.show();
                         startActivity(intent);
                         finish();
                     } else {
                         Toast toast = Toast.makeText(context,
-                                "该账号已经被注册了哦，换一个吧", Toast.LENGTH_LONG);
+                                ConstantVariable.HINT_USER_EXIST, Toast.LENGTH_LONG);
                         toast.show();
                     }
                 }
