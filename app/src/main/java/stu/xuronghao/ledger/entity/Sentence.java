@@ -3,40 +3,38 @@ package stu.xuronghao.ledger.entity;
 import java.io.Serializable;
 
 public class Sentence implements Serializable {
-    private int SenId;
-    private String Content;
-
+    private int sentenceId;
+    private String content;
 
     public Sentence() {
-
     }
 
-    public Sentence(int senId, String content) {
-        SenId = senId;
-        Content = content;
+    public Sentence(int sentenceId, String content) {
+        this.sentenceId = sentenceId;
+        this.content = content;
     }
 
-    public int getSenId() {
-        return SenId;
+    public int getSentenceId() {
+        return sentenceId;
     }
 
-    public void setSenId(int senId) {
-        SenId = senId;
+    public void setSentenceId(int sentenceId) {
+        this.sentenceId = sentenceId;
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 
     @Override
     public String toString() {
         return "Sentence{" +
-                "SenId=" + SenId +
-                ", Content='" + Content + '\'' +
+                "SenId=" + sentenceId +
+                ", Content='" + content + '\'' +
                 '}';
     }
 }

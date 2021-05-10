@@ -3,8 +3,8 @@ package stu.xuronghao.ledger.entity;
 public class ChatInfo {
 
     private String userNo;
-    private String Datetime;
-    private String Content;
+    private String datetime;
+    private String content;
     private int img;
     private int isMeSend;
 
@@ -13,8 +13,8 @@ public class ChatInfo {
 
     public ChatInfo(String userNo, String datetime, String content, int isMeSend) {
         this.userNo = userNo;
-        Datetime = datetime;
-        Content = content;
+        this.datetime = datetime;
+        this.content = content;
         this.isMeSend = isMeSend;
     }
 
@@ -27,19 +27,19 @@ public class ChatInfo {
     }
 
     public String getDatetime() {
-        return Datetime;
+        return datetime;
     }
 
     public void setDatetime(String datetime) {
-        Datetime = datetime;
+        this.datetime = datetime;
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 
     public int getImg() {

@@ -15,7 +15,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
-            android:allowBackup="false"
+            android:allowBackup="true"
             tools:targetApi="m">
         <activity android:name="stu.xuronghao.ledger.activity.ChatToRecordPage" />
         <activity android:name="stu.xuronghao.ledger.activity.AnnoPage" />

@@ -78,7 +78,7 @@ public class ConstantVariable {
     public static final String HINT_EMPTY_EVENT = "请输入事件！";
     public static final String HINT_DATE_TO_FUTURE = "怎么想都不可能预知未来吧！";
 
-    public static final String HINT_EMPTY_EMAIL = "";
+    public static final String HINT_EMPTY_EMAIL = "邮箱不能为空！";
     public static final String HINT_WRONG_EMAIL_FORMAT = "邮箱格式有问题！";
     public static final String HINT_WRONG_NICKNAME_LENGTH = "昵称长度超出限制啦！";
     public static final String HINT_EMPTY_PASSWD = "密码不能为空！";

@@ -7,7 +7,7 @@ import java.util.concurrent.Future;
 
 public class GetHttpResponse {
     //设置为服务器的ip及端口
-    private static final String URL = "http://172.16.20.120:8090/";
+    private static final String URL = "http://192.168.123.64:8090/";
     private String result = "";
     private String jsonStr = "";
     private String service = "";

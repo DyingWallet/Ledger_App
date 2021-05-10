@@ -1,6 +1,5 @@
 package stu.xuronghao.ledger.entity;
 
-
 import java.io.Serializable;
 
 public class Anno implements Serializable {
