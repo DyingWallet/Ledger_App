@@ -21,6 +21,19 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
 
+        <com.wang.avi.AVLoadingIndicatorView
+                android:id="@+id/avi_income"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                style="@style/AVLoadingIndicatorView"
+                android:visibility="visible"
+                app:indicatorName="LineScalePulseOutIndicator"
+                app:indicatorColor="@color/picaPink"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="128dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
         <com.getbase.floatingactionbutton.FloatingActionsMenu
             android:id="@+id/income_Menu"
             android:layout_width="wrap_content"

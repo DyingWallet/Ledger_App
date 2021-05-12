@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 
 import stu.xuronghao.ledger.R;
@@ -26,32 +27,24 @@ import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.Income;
 import stu.xuronghao.ledger.entity.TotalFee;
 import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.ColorsHandler;
 import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 import stu.xuronghao.ledger.handler.FeeSortUtil;
+import stu.xuronghao.ledger.handler.IconHandler;
 
 public class PieFrag extends Fragment {
-    //设置模式
-    private static final int COST_MODE = 0;
-    private static final int INCOME_MODE = 1;
-    private static final int[] colors = {R.color.picaPink, R.color.dining,
-            R.color.trans, R.color.cloth, R.color.daily};
-    private static final int[] costIcons = {R.drawable.icon_dining, R.drawable.icon_trans,
-            R.drawable.icon_cloth, R.drawable.icon_daily, R.drawable.icon_other_cost};
-    private static final int[] incomeIcons = {R.drawable.icon_salary, R.drawable.icon_bonus,
-            R.drawable.icon_loan, R.drawable.icon_redpkt, R.drawable.icon_other_income};
-
     //模式标记
-    private static int mode = COST_MODE;
+    private static int mode = ConstantVariable.COST_CODE;
 
     private View rootView;
     private User user;
-    private DataPuller dataPuller = new DataPuller();
     private int currentMonth;
     private int destinationMonth;
     private String startDate;
     private String endDate;
     private Calendar calendar;
+    private DataPuller dataPuller = new DataPuller();
 
     public PieFrag() {
         // Required empty public constructor
@@ -87,10 +80,10 @@ public class PieFrag extends Fragment {
         imgSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mode != COST_MODE) {
-                    mode = COST_MODE;
-                } else {
-                    mode = INCOME_MODE;
+                if(ConstantVariable.COST_CODE != mode){
+                    mode = ConstantVariable.COST_CODE;
+                }else {
+                    mode = ConstantVariable.INCOME_CODE;
                 }
                 buildPieView(mode);
             }
@@ -107,7 +100,7 @@ public class PieFrag extends Fragment {
 
     //设置日期范围
     private void setDateRange() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(ConstantVariable.DATE_FORMAT);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(ConstantVariable.DATE_FORMAT, Locale.CHINA);
         calendar.set(Calendar.MONTH, destinationMonth);
         //获取月初日期
         calendar.set(Calendar.DAY_OF_MONTH, 1);
@@ -169,7 +162,7 @@ public class PieFrag extends Fragment {
         String total;
         double tmp = 0;
         int[] data = new int[5];
-        if (mode == COST_MODE) {
+        if (mode == ConstantVariable.COST_CODE) {
             //消费报表
             List<Cost> costList = dataPuller.pullCostOfBetween(user, startDate, endDate);
             if (costList == null) {
@@ -190,7 +183,7 @@ public class PieFrag extends Fragment {
                 tmp += costs[i];
             }
             total = tmp + "元";
-            pieView.setData(data, ConstantVariable.getTypeArray(ConstantVariable.COST_TYPE), colors);
+            pieView.setData(data, ConstantVariable.getTypeArray(ConstantVariable.COST_TYPE), ColorsHandler.getColors());
             //设置金额总和
             pieAmount.setText(total);
             //设置报表标题
@@ -199,12 +192,13 @@ public class PieFrag extends Fragment {
             ArrayList<TotalFee> feeList = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 if (costs[i] != 0)
-                    feeList.add(new TotalFee(costIcons[i], costs[i], ConstantVariable.getType(ConstantVariable.COST_TYPE, i)));
+                    feeList.add(new TotalFee(IconHandler.getIconByArray(ConstantVariable.COST_CODE,i),
+                            costs[i], ConstantVariable.getType(ConstantVariable.COST_TYPE, i)));
             }
             new FeeSortUtil().sortByAmount(feeList);
             adapter = new PieDataAdapter(getContext(), feeList);
             listView.setAdapter(adapter);
-        } else if (mode == INCOME_MODE) {
+        } else if (mode == ConstantVariable.INCOME_CODE) {
             //收入报表
             List<Income> incomeList = dataPuller.pullIncomeOfBetween(user, startDate, endDate);
             if (incomeList == null) {
@@ -225,14 +219,15 @@ public class PieFrag extends Fragment {
                 tmp += incomes[i];
             }
             total = tmp + "元";
-            pieView.setData(data, ConstantVariable.getTypeArray(ConstantVariable.INCOME_TYPE), colors);
+            pieView.setData(data, ConstantVariable.getTypeArray(ConstantVariable.INCOME_TYPE), ColorsHandler.getColors());
             pieAmount.setText(total);
             pieTit.setText("总收入");
             //分类列表
             ArrayList<TotalFee> feeList = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 if (incomes[i] != 0)
-                    feeList.add(new TotalFee(incomeIcons[i], incomes[i], ConstantVariable.getType(ConstantVariable.INCOME_TYPE, i)));
+                    feeList.add(new TotalFee(IconHandler.getIconByArray(ConstantVariable.INCOME_CODE,i),
+                            incomes[i], ConstantVariable.getType(ConstantVariable.INCOME_TYPE, i)));
             }
             new FeeSortUtil().sortByAmount(feeList);
             adapter = new PieDataAdapter(getContext(), feeList);

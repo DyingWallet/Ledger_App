@@ -20,6 +20,7 @@ public class ConstantVariable {
     public static final String END_OF_DAY = " 24:00:00";
     public static final String START_OF_YEAR = "-01-01";
     public static final String END_OF_YEAR = "-12-31";
+    public static final String URL = "url";
 
     public static final String TYPE_CODE = "typeCode";
 
@@ -110,36 +111,14 @@ public class ConstantVariable {
         TYPE.put(INCOME_TYPE, new String[]{"工资", "奖金", "借款", "红包", "其他"});
     }
 
-    private static final Map<String, Integer> COST_ICON_MAP;
-
-    static {
-        COST_ICON_MAP = new HashMap<>();
-        COST_ICON_MAP.put("餐饮", R.drawable.icon_dining);
-        COST_ICON_MAP.put("交通", R.drawable.icon_trans);
-        COST_ICON_MAP.put("服饰", R.drawable.icon_cloth);
-        COST_ICON_MAP.put("日用", R.drawable.icon_daily);
-        COST_ICON_MAP.put("其他", R.drawable.icon_other_cost);
-    }
-
-    private static final Map<String, Integer> INCOME_ICON_MAP;
-
-    static {
-        INCOME_ICON_MAP = new HashMap<>();
-        INCOME_ICON_MAP.put("工资", R.drawable.icon_salary);
-        INCOME_ICON_MAP.put("奖金", R.drawable.icon_bonus);
-        INCOME_ICON_MAP.put("借款", R.drawable.icon_loan);
-        INCOME_ICON_MAP.put("红包", R.drawable.icon_redpkt);
-        INCOME_ICON_MAP.put("其他", R.drawable.icon_other_income);
-    }
-
     private static final Map<String, Integer> COST_INDEX_MAP;
 
     static {
         COST_INDEX_MAP = new HashMap<>();
-        COST_INDEX_MAP.put("工资", 0);
-        COST_INDEX_MAP.put("奖金", 1);
-        COST_INDEX_MAP.put("借款", 2);
-        COST_INDEX_MAP.put("红包", 3);
+        COST_INDEX_MAP.put("餐饮", 0);
+        COST_INDEX_MAP.put("交通", 1);
+        COST_INDEX_MAP.put("服饰", 2);
+        COST_INDEX_MAP.put("日用", 3);
         COST_INDEX_MAP.put("其他", 4);
     }
 
@@ -176,19 +155,8 @@ public class ConstantVariable {
         return TYPE.get(type)[i];
     }
 
-    public static Integer getIcon(int typeCode, String key) {
-        switch (typeCode) {
-            case COST_CODE:
-                return COST_ICON_MAP.get(key);
-            case INCOME_CODE:
-                return INCOME_ICON_MAP.get(key);
-            default:
-                return -1;
-        }
-    }
 
     public static Integer getTypeIndex(int typeCode, String key) {
-
         switch (typeCode) {
             case COST_CODE:
                 return COST_INDEX_MAP.get(key);
@@ -198,4 +166,5 @@ public class ConstantVariable {
                 return -1;
         }
     }
+
 }

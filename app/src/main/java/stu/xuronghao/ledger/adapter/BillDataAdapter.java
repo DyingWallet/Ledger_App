@@ -13,6 +13,7 @@ import java.util.List;
 
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.handler.ConstantVariable;
+import stu.xuronghao.ledger.handler.IconHandler;
 
 public class BillDataAdapter extends BaseAdapter {
 
@@ -72,7 +73,7 @@ public class BillDataAdapter extends BaseAdapter {
 
         HashMap<String, String> item = listItem.get(position);
 
-        holder.imageView.setImageResource(ConstantVariable.getIcon(typeCode,item.get(ConstantVariable.ITEM_TYPE)));
+        holder.imageView.setImageResource(IconHandler.getIcon(typeCode,item.get(ConstantVariable.ITEM_TYPE)));
         holder.title.setText(item.get(ConstantVariable.ITEM_TITLE));
         holder.content.setText(item.get(ConstantVariable.ITEM_CONTENT));
 
