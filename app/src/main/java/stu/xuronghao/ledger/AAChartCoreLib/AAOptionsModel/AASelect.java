@@ -15,7 +15,7 @@ public class AASelect {
         return this;
     }
 
-    public AASelect halo(AAHalo prop) {
+    public  AASelect halo(AAHalo prop) {
         halo = prop;
         return this;
     }

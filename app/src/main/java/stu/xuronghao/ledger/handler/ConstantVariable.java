@@ -13,6 +13,9 @@ public class ConstantVariable {
     public static final String END_DATE = "endDate";
     public static final String COST_TYPE = "cost";
     public static final String INCOME_TYPE = "income";
+    public static final String DATA_LIST = "data";
+    public static final String FEE_LIST = "fee";
+    public static final String MONTH_DATA_LIST = "month";
     public static final String TIME_ZONE = "GMT+8:00";
     public static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
     public static final String DATE_FORMAT = "yyyy-MM-dd";
@@ -39,6 +42,7 @@ public class ConstantVariable {
     public static final String TEXT_INCOME_AMOUNT = "收入金额：";
     public static final String TEXT_INCOME_TYPE = "收入类型：";
     public static final String TEXT_REMARK = "备注：";
+    public static final String TEXT_YUAN = "元";
 
     public static final String TEXT_CAUTION = "！！>>>注意<<<！！";
     public static final String TEXT_DELETE_HINT_MSG = "注意！资料删掉的话，治账酱就再也想不起来了哦。要继续吗？";
@@ -53,6 +57,8 @@ public class ConstantVariable {
     //state
     public static final int COST_CODE = 0;
     public static final int INCOME_CODE = 1;
+    public static final int START_CODE = 0;
+    public static final int END_CODE = 1;
 
     //userState
     public static final int LOGGED_IN = 2;

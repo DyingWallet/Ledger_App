@@ -26,7 +26,7 @@ public class AALabels {
     }
 
     public AALabels autoRotation(Object prop) {
-        autoRotation = prop;
+        autoRotation = prop;        
         return this;
     }
 
@@ -78,7 +78,7 @@ public class AALabels {
     }
 
     public AALabels style(AAStyle prop) {
-        style = prop;
+        style =  prop;
         return this;
     }
 

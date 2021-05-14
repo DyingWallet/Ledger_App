@@ -8,17 +8,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.TotalFee;
+import stu.xuronghao.ledger.handler.ConstantVariable;
 
 public class PieDataAdapter extends BaseAdapter {
-
     private LayoutInflater inflater;
-    private ArrayList<TotalFee> feeList;
+    private List<TotalFee> feeList;
 
-    public PieDataAdapter(Context context, ArrayList<TotalFee> feeList) {
+    public PieDataAdapter(Context context, List<TotalFee> feeList) {
         this.inflater = LayoutInflater.from(context);
         this.feeList = feeList;
     }
@@ -61,9 +61,10 @@ public class PieDataAdapter extends BaseAdapter {
             holder = (PieItemHolder) convertView.getTag();
         }
         TotalFee data = feeList.get(position);
+        String feeText = data.getFee() + ConstantVariable.TEXT_YUAN;
         holder.imageView.setImageResource(data.getImg());
         holder.type.setText(data.getType());
-        holder.fee.setText(data.getFee() + "元");
+        holder.fee.setText(feeText);
 
         return convertView;
     }

@@ -2,7 +2,7 @@ package stu.xuronghao.ledger.entity;
 
 public class TotalFee {
     private int img;
-    private double fee;
+    private Double fee;
     private String type;
 
     public TotalFee(int img, double fee, String type) {
@@ -19,11 +19,11 @@ public class TotalFee {
         this.img = img;
     }
 
-    public double getFee() {
+    public Double getFee() {
         return fee;
     }
 
-    public void setFee(double fee) {
+    public void setFee(Double fee) {
         this.fee = fee;
     }
 

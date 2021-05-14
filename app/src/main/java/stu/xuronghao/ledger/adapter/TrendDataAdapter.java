@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.TrendData;
@@ -16,9 +16,9 @@ import stu.xuronghao.ledger.entity.TrendData;
 public class TrendDataAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
-    private ArrayList<TrendData> dataList;
+    private List<TrendData> dataList;
 
-    public TrendDataAdapter(Context context, ArrayList<TrendData> dataList) {
+    public TrendDataAdapter(Context context, List<TrendData> dataList) {
         this.inflater = LayoutInflater.from(context);
         this.dataList = dataList;
     }

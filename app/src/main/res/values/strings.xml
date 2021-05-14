@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">治账</string>
+    <string name="text_yuan">%1$f元</string>
+
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

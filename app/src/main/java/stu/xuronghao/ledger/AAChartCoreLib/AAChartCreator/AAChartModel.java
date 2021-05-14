@@ -1,22 +1,22 @@
 /**
- * //  AAChartModel.java
- * //  AAChartCore
- * //
- * //  Created by AnAn on 2017/9/5.
- * //  Copyright © 2018年 An An. All rights reserved.
- * <p>
+//  AAChartModel.java
+//  AAChartCore
+//
+//  Created by AnAn on 2017/9/5.
+//  Copyright © 2018年 An An. All rights reserved.
+
  * ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉ ...... SOURCE CODE ......◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
  * ◉◉◉...................................................       ◉◉◉
  * ◉◉◉   https://github.com/AAChartModel/AAChartCore            ◉◉◉
  * ◉◉◉   https://github.com/AAChartModel/AAChartCore-Kotlin     ◉◉◉
  * ◉◉◉...................................................       ◉◉◉
  * ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉ ...... SOURCE CODE ......◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
- * <p>
- * <p>
+
+
  * -------------------------------------------------------------------------------
- * <p>
- * 🌕 🌖 🌗 🌘  ❀❀❀   WARM TIPS!!!   ❀❀❀ 🌑 🌒 🌓 🌔
- * <p>
+ *
+ *  🌕 🌖 🌗 🌘  ❀❀❀   WARM TIPS!!!   ❀❀❀ 🌑 🌒 🌓 🌔
+ *
  * Please contact me on GitHub,if there are any problems encountered in use.
  * GitHub Issues : https://github.com/AAChartModel/AAChartCore/issues
  * -------------------------------------------------------------------------------
@@ -25,8 +25,9 @@
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
  * JianShu       : http://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
- * <p>
+ *
  * -------------------------------------------------------------------------------
+
  */
 
 package stu.xuronghao.ledger.AAChartCoreLib.AAChartCreator;
@@ -36,62 +37,57 @@ import stu.xuronghao.ledger.AAChartCoreLib.AAChartEnum.AAChartStackingType;
 import stu.xuronghao.ledger.AAChartCoreLib.AAChartEnum.AAChartSymbolStyleType;
 import stu.xuronghao.ledger.AAChartCoreLib.AAChartEnum.AAChartType;
 import stu.xuronghao.ledger.AAChartCoreLib.AAChartEnum.AAChartZoomType;
+import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAOptions;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAScrollablePlotArea;
+import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAStyle;
 
 public class AAChartModel {
 
-    public String animationType;         //动画类型
+    public String  animationType;         //动画类型
     public Integer animationDuration;     //动画时间
-    public String title;                 //标题内容
-    public String titleFontColor;        //标题字体颜色
-    public Float titleFontSize;         //标题字体大小
-    public String titleFontWeight;       //标题字体粗细
-    public String subtitle;              //副标题内容
-    public String subtitleAlign;
-    public String subtitleFontColor;     //副标题字体颜色
-    public Float subtitleFontSize;      //副标题字体大小
-    public String subtitleFontWeight;    //副标题字体粗细
-    public String axesTextColor;         //x 轴和 y 轴文字颜色
-    public String chartType;             //图表类型
-    public String stacking;              //堆积样式
-    public String markerSymbol;          //折线曲线连接点的类型："circle", "square", "diamond", "triangle","triangle-down"，默认是"circle"
-    public String markerSymbolStyle;
-    public String zoomType;              //缩放类型 AAChartZoomTypeX表示可沿着 x 轴进行手势缩放
+    public String  title;                 //标题内容
+    public AAStyle titleStyle;            //标题文本风格样式
+    public String  subtitle;              //副标题内容
+    public String  subtitleAlign;         //副标题水平对齐方式
+    public AAStyle subtitleStyle;         //副标题文本风格样式
+    public String  axesTextColor;         //x 轴和 y 轴文字颜色
+    public String  chartType;             //图表类型
+    public String  stacking;              //堆积样式
+    public String  markerSymbol;          //折线曲线连接点的类型："circle", "square", "diamond", "triangle","triangle-down"，默认是"circle"
+    public String  markerSymbolStyle;     //折线曲线连接点的自定义风格样式
+    public String  zoomType;              //缩放类型 AAChartZoomTypeX表示可沿着 x 轴进行手势缩放
     public Boolean inverted;              //x 轴是否翻转(垂直)
     public Boolean xAxisReversed;         //x 轴翻转
     public Boolean yAxisReversed;         //y 轴翻转
     public Boolean tooltipEnabled;        //是否显示浮动提示框(默认显示)
-    public String tooltipValueSuffix;    //浮动提示框单位后缀
-    public Boolean tooltipCrosshairs;     //是否显示准星线(默认显示)
+    public String  tooltipValueSuffix;    //浮动提示框单位后缀
     public Boolean gradientColorEnable;   //是否要为渐变色
     public Boolean polar;                 //是否极化图形(变为雷达图)
-    public Float marginLeft;
-    public Float marginRight;
-    public Boolean dataLabelsEnabled;      //是否显示数据
-    public String dataLabelsFontColor;
-    public Float dataLabelsFontSize;
-    public String dataLabelsFontWeight;
-    public Boolean xAxisLabelsEnabled;    //x轴是否显示数据
-    public Integer xAxisTickInterval;
-    public String[] categories;            //x轴是否显示数据
-    public Float xAxisGridLineWidth;    //x轴网格线的宽度
+    public Float[] margin;                //图表外边缘和绘图区域之间的边距
+    public Boolean dataLabelsEnabled;     //是否显示数据
+    public AAStyle dataLabelsStyle;       //数据文本风格样式
+    public Boolean xAxisLabelsEnabled;    //x 轴是否显示数据
+    public Integer xAxisTickInterval;     //x 轴刻度点间隔数(设置每隔几个点显示一个 X轴的内容)
+    public String[]categories;            //x 轴是否显示数据
+    public Float   xAxisGridLineWidth;    //x 轴网格线的宽度
     public Boolean xAxisVisible;          //x 轴是否显示
     public Boolean yAxisVisible;          //y 轴是否显示
-    public Boolean yAxisLabelsEnabled;    //y轴是否显示数据
-    public String yAxisTitle;            //y轴标题
-    public Float yAxisLineWidth;        //y 轴轴线的宽度
-    public Float yAxisMin;
-    public Float yAxisMax;
-    public Boolean yAxisAllowDecimals;
-    public Float yAxisGridLineWidth;    //y轴网格线的宽度
-    public Object[] colorsTheme;           //图表主题颜色数组
+    public Boolean yAxisLabelsEnabled;    //y 轴是否显示数据
+    public String  yAxisTitle;            //y 轴标题
+    public Float   yAxisLineWidth;        //y 轴轴线的宽度
+    public Float   yAxisMin;              //y 轴最小值
+    public Float   yAxisMax;              //y 轴最大值
+    public Boolean yAxisAllowDecimals;    //y 轴是否允许显示小数
+    public Float   yAxisGridLineWidth;    //y 轴网格线的宽度
+    public Object[]colorsTheme;           //图表主题颜色数组
     public Boolean legendEnabled;         //是否显示图例
-    public Object backgroundColor;       //图表背景色
-    public Float borderRadius;          //柱状图长条图头部圆角半径(可用于设置头部的形状,仅对条形图,柱状图有效)
-    public Float markerRadius;          //折线连接点的半径长度
-    public Object[] series;
+    public Object  backgroundColor;       //图表背景色
+    public Float   borderRadius;          //柱状图长条图头部圆角半径(可用于设置头部的形状,仅对条形图,柱状图有效)
+    public Float   markerRadius;          //折线连接点的半径长度
+    public Object[] series;               //图表的数据列内容
     public Boolean touchEventEnabled;     //是否支持用户触摸事件
     public AAScrollablePlotArea scrollablePlotArea;
+
 
 
     public AAChartModel animationType(String prop) {
@@ -109,18 +105,8 @@ public class AAChartModel {
         return this;
     }
 
-    public AAChartModel titleFontColor(String prop) {
-        titleFontColor = prop;
-        return this;
-    }
-
-    public AAChartModel titleFontSize(Float prop) {
-        titleFontSize = prop;
-        return this;
-    }
-
-    public AAChartModel titleFontWeight(String prop) {
-        titleFontWeight = prop;
+    public AAChartModel titleStyle(AAStyle prop) {
+        titleStyle = prop;
         return this;
     }
 
@@ -134,18 +120,8 @@ public class AAChartModel {
         return this;
     }
 
-    public AAChartModel subtitleFontColor(String prop) {
-        subtitleFontColor = prop;
-        return this;
-    }
-
-    public AAChartModel subtitleFontSize(Float prop) {
-        subtitleFontSize = prop;
-        return this;
-    }
-
-    public AAChartModel subtitleFontWeight(String prop) {
-        subtitleFontWeight = prop;
+    public AAChartModel subtitleStyle(AAStyle prop) {
+        subtitleStyle = prop;
         return this;
     }
 
@@ -199,13 +175,8 @@ public class AAChartModel {
         return this;
     }
 
-    public AAChartModel tooltipValueSuffixSet(String prop) {
+    public AAChartModel tooltipValueSuffix(String prop) {
         tooltipValueSuffix = prop;
-        return this;
-    }
-
-    public AAChartModel tooltipCrosshairs(Boolean prop) {
-        tooltipCrosshairs = prop;
         return this;
     }
 
@@ -219,13 +190,8 @@ public class AAChartModel {
         return this;
     }
 
-    public AAChartModel marginLeft(Float prop) {
-        marginLeft = prop;
-        return this;
-    }
-
-    public AAChartModel marginRight(Float prop) {
-        marginRight = prop;
+    public AAChartModel margin(Float[] prop) {
+        margin = prop;
         return this;
     }
 
@@ -234,18 +200,8 @@ public class AAChartModel {
         return this;
     }
 
-    public AAChartModel dataLabelsFontColor(String prop) {
-        dataLabelsFontColor = prop;
-        return this;
-    }
-
-    public AAChartModel dataLabelsFontSize(Float prop) {
-        dataLabelsFontSize = prop;
-        return this;
-    }
-
-    public AAChartModel dataLabelsFontWeight(String prop) {
-        dataLabelsFontWeight = prop;
+    public AAChartModel dataLabelsStyle(AAStyle prop) {
+        dataLabelsStyle = prop;
         return this;
     }
 
@@ -355,41 +311,33 @@ public class AAChartModel {
         return this;
     }
 
-    public AAChartModel() {
-        chartType = AAChartType.Line;
-        animationDuration = 500;//以毫秒为单位
-        animationType = AAChartAnimationType.Linear;
-        inverted = false;
-        stacking = AAChartStackingType.False;
-        xAxisReversed = false;
-        yAxisReversed = false;
-        zoomType = AAChartZoomType.None;
-        dataLabelsEnabled = false;
-        markerSymbolStyle = AAChartSymbolStyleType.Normal;
-        colorsTheme = new String[]{"#fe117c", "#ffc069", "#06caf4", "#7dffc0"};//默认的颜色数组(必须要添加默认数组,否则就会出错)
-        tooltipCrosshairs = true;
-        gradientColorEnable = false;
-        polar = false;
-        xAxisLabelsEnabled = true;
-        xAxisGridLineWidth = 0f;
-        yAxisLabelsEnabled = true;
-        yAxisGridLineWidth = 1f;
-        legendEnabled = true;
-        backgroundColor = "#ffffff";
-        borderRadius = 0f;//柱状图长条图头部圆角半径(可用于设置头部的形状,仅对条形图,柱状图有效,设置为1000时,柱形图或者条形图头部为楔形)
-        markerRadius = 6f;//折线连接点的半径长度,如果值设置为0,这样就相当于不显示了
-        titleFontColor = "#000000";//标题字体颜色为黑色
-        titleFontWeight = "regular";//常规字体
-        titleFontSize = 11f;
-        subtitleFontColor = "#000000";//副标题字体颜色为黑色
-        subtitleFontWeight = "regular";//常规字体
-        subtitleFontSize = 9f;
-        dataLabelsFontColor = "#000000";//数据标签默认颜色为黑色
-        dataLabelsFontWeight = "bold";//图表的数据字体为粗体
-        dataLabelsFontSize = 10f;
-
+    public AAOptions aa_toAAOptions() {
+        return AAOptionsConstructor.configureChartOptions(this);
     }
 
+    public AAChartModel() {
+        chartType             = AAChartType.Line;
+        animationDuration     = 500;//以毫秒为单位
+        animationType         = AAChartAnimationType.Linear;
+        inverted              = false;
+        stacking              = AAChartStackingType.False;
+        xAxisReversed         = false;
+        yAxisReversed         = false;
+        zoomType              = AAChartZoomType.None;
+        dataLabelsEnabled     = false;
+        markerSymbolStyle     = AAChartSymbolStyleType.Normal;
+        colorsTheme           = new String[]{"#fe117c","#ffc069","#06caf4","#7dffc0"};//默认的颜色数组(必须要添加默认数组,否则就会出错)
+        gradientColorEnable   = false;
+        polar                 = false;
+        xAxisLabelsEnabled    = true;
+        xAxisGridLineWidth    = 0f;
+        yAxisLabelsEnabled    = true;
+        yAxisGridLineWidth    = 1f;
+        legendEnabled         = true;
+        backgroundColor       = "#ffffff";
+        borderRadius          = 0f;//柱状图长条图头部圆角半径(可用于设置头部的形状,仅对条形图,柱状图有效,设置为1000时,柱形图或者条形图头部为楔形)
+        markerRadius          = 6f;//折线连接点的半径长度,如果值设置为0,这样就相当于不显示了
+    }
 
 }
 

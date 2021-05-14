@@ -18,6 +18,8 @@ public class AAChart {
     public Float marginBottom; //👇
     public Float marginLeft; //👈
     public AAScrollablePlotArea scrollablePlotArea;
+    public AAResetZoomButton resetZoomButton;
+
 
     public AAChart type(String prop) {
         type = prop;
@@ -93,6 +95,12 @@ public class AAChart {
         scrollablePlotArea = prop;
         return this;
     }
+
+    public AAChart resetZoomButton(AAResetZoomButton prop) {
+        resetZoomButton = prop;
+        return this;
+    }
+
 
 
 }

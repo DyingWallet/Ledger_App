@@ -13,7 +13,6 @@ public class AABackground {
         backgroundColor = prop;
         return this;
     }
-
     public AABackground borderColor(String prop) {
         borderColor = prop;
         return this;

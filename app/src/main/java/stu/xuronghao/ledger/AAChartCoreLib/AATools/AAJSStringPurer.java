@@ -2,7 +2,7 @@ package stu.xuronghao.ledger.AAChartCoreLib.AATools;
 
 public class AAJSStringPurer {
 
-    public static String pureJavaScriptFunctionString(String jsFunctionStr) {
+    public static String pureJavaScriptFunctionString(String jsFunctionStr)  {
         String pureJSFunctionStr = jsFunctionStr;
         pureJSFunctionStr = pureJSFunctionStr.replace("'", "\"");
         pureJSFunctionStr = pureJSFunctionStr.replace("\0", "");
@@ -13,7 +13,7 @@ public class AAJSStringPurer {
         pureJSFunctionStr = pureJSFunctionStr.replace("\r", "\\r");
         pureJSFunctionStr = pureJSFunctionStr.replace("\f", "\\f");
         pureJSFunctionStr = pureJSFunctionStr.replace("\u2028", "\\u2028");
-        pureJSFunctionStr = pureJSFunctionStr.replace("\u2029", "\\u2029");
+        pureJSFunctionStr = pureJSFunctionStr.replace("\u2029","\\u2029" );
         return pureJSFunctionStr;
     }
 }

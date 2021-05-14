@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimary">#08BAFF</color>
+    <color name="colorPrimaryDark">#B0C4DE</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="picaPink">#EC97B6</color>
-    <color name="dining">#2196F3</color>
-    <color name="trans">#8BC34A</color>
+    <color name="dining">#106D9C</color>
+    <color name="trans">#5A92AD</color>
     <color name="cloth">#FFC107</color>
-    <color name="daily">#3F51B5</color>
+    <color name="daily">#00FFFF</color>
     <color name="possurplus">#32CD32</color>
     <color name="negsurplus">#FF0000</color>
 </resources>

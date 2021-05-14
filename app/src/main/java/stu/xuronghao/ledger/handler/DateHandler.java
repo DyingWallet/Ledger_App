@@ -1,19 +1,49 @@
 package stu.xuronghao.ledger.handler;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
 public class DateHandler {
-
+    private static final TimeZone zone = TimeZone.getTimeZone(ConstantVariable.TIME_ZONE);
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat(ConstantVariable.DATETIME_FORMAT, Locale.CHINA);
     //获取当前时间
     public static String getCurrentDatetime() {
-        TimeZone zone = TimeZone.getTimeZone(ConstantVariable.TIME_ZONE);
-        SimpleDateFormat dateFormat = new SimpleDateFormat(ConstantVariable.DATETIME_FORMAT, Locale.CHINA);
         dateFormat.setTimeZone(zone);
         return dateFormat.format(new Date());
     }
+
+    //获取当前月份
+    public static int getCurrentMonth(){
+        Calendar calendar = Calendar.getInstance(zone);
+        return calendar.get(Calendar.MONTH);
+    }
+
+    //获取当前年份
+    public static int getCurrentYear(){
+        Calendar calendar = Calendar.getInstance(zone);
+        return calendar.get(Calendar.YEAR);
+    }
+
+    //设置开始/结束日期
+    public static String setDateRange(int code,int destinationMonth) {
+        Calendar calendar = Calendar.getInstance(zone);
+        calendar.set(Calendar.MONTH, destinationMonth);
+        switch (code) {
+            case ConstantVariable.START_CODE:
+                calendar.set(Calendar.DAY_OF_MONTH, 1);
+                return dateFormat.format(calendar.getTime()) + ConstantVariable.START_OF_DAY;
+            case ConstantVariable.END_CODE:
+                calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+                return dateFormat.format(calendar.getTime()) + ConstantVariable.END_OF_DAY;
+            default:
+                return "";
+        }
+    }
+
+
     private DateHandler() {
     }
 }

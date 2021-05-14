@@ -64,14 +64,12 @@ public class RecordFrag extends Fragment {
 
         //设置导航条监听器
         navigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        menuItem = item;
-                        //0-花销，1-收入
-                        viewPager.setCurrentItem(R.id.costFrag==item.getItemId() ? 0 :1);
-                        return false;
-                    }
+                item -> {
+                    menuItem = item;
+                    //0-花销，1-收入
+                    viewPager.setCurrentItem(R.id.costFrag==item.getItemId() ? 0 :1);
+
+                    return false;
                 }
         );
 

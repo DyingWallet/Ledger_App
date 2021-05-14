@@ -22,7 +22,6 @@ import stu.xuronghao.ledger.adapter.SwitchAdapter;
 public class ReportFrag extends Fragment {
     // 参数声明
     private View rootView;
-    private ViewPager viewPager;
     private MenuItem menuItem;
     private BottomNavigationView navigationView;
 
@@ -56,7 +55,7 @@ public class ReportFrag extends Fragment {
     }
 
     private void initView() {
-        viewPager = rootView.findViewById(R.id.vp_Report_Top_Switch);
+        ViewPager viewPager = rootView.findViewById(R.id.vp_Report_Top_Switch);
         navigationView = rootView.findViewById(R.id.Report_Top_Switch);
 
         List<Fragment> pageList = new ArrayList<>();
@@ -66,22 +65,17 @@ public class ReportFrag extends Fragment {
 
         //设置导航条监听器
         navigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        menuItem = item;
-                        switch (item.getItemId()) {
-                            case R.id.pieFrag:
-                                viewPager.setCurrentItem(0);
-                                //                                Log.w("00000", "" + item.getItemId());
-                                break;
-                            case R.id.lineFrag:
-                                viewPager.setCurrentItem(1);
-                                //                                Log.w("11111", "" + item.getItemId());
-                                break;
-                        }
-                        return false;
+                item -> {
+                    menuItem = item;
+                    switch (item.getItemId()) {
+                        case R.id.pieFrag:
+                            viewPager.setCurrentItem(0);
+                            break;
+                        case R.id.lineFrag:
+                            viewPager.setCurrentItem(1);
+                            break;
                     }
+                    return false;
                 }
         );
 

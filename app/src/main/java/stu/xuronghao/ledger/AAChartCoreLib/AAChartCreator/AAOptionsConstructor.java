@@ -1,65 +1,20 @@
 /**
- * //  AAOptionsConstructor.java
- * //  AAChartCore
- * //
- * //  Created by AnAn on 2018/12/08.
- * //  Copyright © 2018年 An An. All rights reserved.
- * /**
+ //  AAOptionsConstructor.java
+ //  AAChartCore
+ //
+ //  Created by AnAn on 2018/12/08.
+ //  Copyright © 2018年 An An. All rights reserved.
+ /**
  * ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉ ...... SOURCE CODE ......◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
  * ◉◉◉...................................................       ◉◉◉
  * ◉◉◉   https://github.com/AAChartModel/AAChartCore            ◉◉◉
  * ◉◉◉   https://github.com/AAChartModel/AAChartCore-Kotlin     ◉◉◉
  * ◉◉◉...................................................       ◉◉◉
  * ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉ ...... SOURCE CODE ......◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
- * <p>
- * <p>
- * -------------------------------------------------------------------------------
- * <p>
- * 🌕 🌖 🌗 🌘  ❀❀❀   WARM TIPS!!!   ❀❀❀ 🌑 🌒 🌓 🌔
- * <p>
- * Please contact me on GitHub,if there are any problems encountered in use.
- * GitHub Issues : https://github.com/AAChartModel/AAChartCore/issues
- * -------------------------------------------------------------------------------
- * And if you want to contribute for this project, please contact me as well
- * GitHub        : https://github.com/AAChartModel
- * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
- * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
- * <p>
- * -------------------------------------------------------------------------------
- * <p>
- * -------------------------------------------------------------------------------
- * <p>
- * 🌕 🌖 🌗 🌘  ❀❀❀   WARM TIPS!!!   ❀❀❀ 🌑 🌒 🌓 🌔
- * <p>
- * Please contact me on GitHub,if there are any problems encountered in use.
- * GitHub Issues : https://github.com/AAChartModel/AAChartCore/issues
- * -------------------------------------------------------------------------------
- * And if you want to contribute for this project, please contact me as well
- * GitHub        : https://github.com/AAChartModel
- * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
- * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
- * <p>
- * -------------------------------------------------------------------------------
- * <p>
- * -------------------------------------------------------------------------------
- * <p>
- * 🌕 🌖 🌗 🌘  ❀❀❀   WARM TIPS!!!   ❀❀❀ 🌑 🌒 🌓 🌔
- * <p>
- * Please contact me on GitHub,if there are any problems encountered in use.
- * GitHub Issues : https://github.com/AAChartModel/AAChartCore/issues
- * -------------------------------------------------------------------------------
- * And if you want to contribute for this project, please contact me as well
- * GitHub        : https://github.com/AAChartModel
- * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
- * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
- * <p>
- * -------------------------------------------------------------------------------
  */
 
 /**
+
  * -------------------------------------------------------------------------------
  *
  *  🌕 🌖 🌗 🌘  ❀❀❀   WARM TIPS!!!   ❀❀❀ 🌑 🌒 🌓 🌔
@@ -84,9 +39,6 @@ import stu.xuronghao.ledger.AAChartCoreLib.AAChartEnum.AAChartAnimationType;
 import stu.xuronghao.ledger.AAChartCoreLib.AAChartEnum.AAChartSymbolStyleType;
 import stu.xuronghao.ledger.AAChartCoreLib.AAChartEnum.AAChartType;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAAnimation;
-import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAArea;
-import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAArearange;
-import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAAreaspline;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AABar;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAChart;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAColumn;
@@ -95,13 +47,11 @@ import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AADataLabels;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAItemStyle;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AALabels;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AALegend;
-import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AALine;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAMarker;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAOptions;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAPie;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAPlotOptions;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AASeries;
-import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AASpline;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAStyle;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AASubtitle;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AATitle;
@@ -109,8 +59,9 @@ import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AATooltip;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAXAxis;
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAYAxis;
 
-public class AAOptionsConstructor {
-    public static AAOptions configureChartOptions(
+public class AAOptionsConstructor
+{
+    public static AAOptions configureChartOptions (
             AAChartModel aaChartModel
     ) {
         AAChart aaChart = new AAChart()
@@ -120,26 +71,20 @@ public class AAOptionsConstructor {
                 .pinchType(aaChartModel.zoomType) //设置手势缩放方向
                 .panning(true) //设置手势缩放后是否可平移
                 .polar(aaChartModel.polar) //是否极化图表(开启极坐标模式)
-                .marginLeft(aaChartModel.marginLeft) //图表左边距
-                .marginRight(aaChartModel.marginRight) //图表右边距
-                .scrollablePlotArea(aaChartModel.scrollablePlotArea);
+                .margin(aaChartModel.margin) //图表边距
+                .scrollablePlotArea(aaChartModel.scrollablePlotArea)
+                ;
 
         AATitle aaTitle = new AATitle()
                 .text(aaChartModel.title) //标题文本内容
-                .style(new AAStyle()
-                        .color(aaChartModel.titleFontColor) //Title font color
-                        .fontSize(aaChartModel.titleFontSize) //Title font size
-                        .fontWeight(aaChartModel.titleFontWeight) //Title font weight
-                );
+                .style(aaChartModel.titleStyle)
+                ;
 
         AASubtitle aaSubtitle = new AASubtitle()
                 .text(aaChartModel.subtitle) //副标题内容
                 .align(aaChartModel.subtitleAlign) //图表副标题文本水平对齐方式。可选的值有 “left”，”center“和“right”。 默认是：center.
-                .style(new AAStyle()
-                        .color(aaChartModel.subtitleFontColor) //Subtitle font color
-                        .fontSize(aaChartModel.subtitleFontSize) //Subtitle font size
-                        .fontWeight(aaChartModel.subtitleFontWeight) //Subtitle font weight
-                );
+                .style(aaChartModel.subtitleStyle)
+                ;
 
         AATooltip aaTooltip = new AATooltip()
                 .enabled(aaChartModel.tooltipEnabled) //启用浮动提示框
@@ -151,7 +96,8 @@ public class AAOptionsConstructor {
         AAPlotOptions aaPlotOptions = new AAPlotOptions()
                 .series(new AASeries()
                         .stacking(aaChartModel.stacking) //设置是否百分比堆叠显示图形
-                );
+                )
+                ;
 
         if (!aaChartModel.animationType.equals(AAChartAnimationType.Linear)) {
             aaPlotOptions.series.animation((new AAAnimation()
@@ -160,13 +106,14 @@ public class AAOptionsConstructor {
             ));
         }
 
-        configureAAPlotOptionsMarkerStyle(aaChartModel, aaPlotOptions);
-        configureAAPlotOptionsDataLabels(aaPlotOptions, aaChartModel);
+        configureAAPlotOptionsMarkerStyle(aaChartModel,aaPlotOptions);
+        configureAAPlotOptionsDataLabels(aaPlotOptions,aaChartModel);
 
         AALegend aaLegend = new AALegend()
                 .enabled(aaChartModel.legendEnabled) //是否显示 legend
                 .itemStyle(new AAItemStyle()
-                        .color(aaChartModel.axesTextColor));
+                        .color(aaChartModel.axesTextColor))
+                ;
 
         AAOptions aaOptions = new AAOptions()
                 .chart(aaChart)
@@ -180,25 +127,26 @@ public class AAOptionsConstructor {
                 .touchEventEnabled(aaChartModel.touchEventEnabled) //是否支持点击事件
                 ;
 
-        configureAxisContentAndStyle(aaOptions, aaChartModel);
+        configureAxisContentAndStyle(aaOptions,aaChartModel);
 
         return aaOptions;
     }
 
-    private static void configureAAPlotOptionsMarkerStyle(
+    private static void configureAAPlotOptionsMarkerStyle (
             AAChartModel aaChartModel,
             AAPlotOptions aaPlotOptions
     ) {
-        String chartType = aaChartModel.chartType;
+        String aaChartType = aaChartModel.chartType;
         //数据点标记相关配置，只有线性图(折线图、曲线图、折线区域填充图、曲线区域填充图、散点图、折线范围填充图、曲线范围填充图、多边形图)才有数据点标记
-        if (chartType.equals(AAChartType.Area)
-                || chartType.equals(AAChartType.Areaspline)
-                || chartType.equals(AAChartType.Line)
-                || chartType.equals(AAChartType.Spline)
-                || chartType.equals(AAChartType.Scatter)
-                || chartType.equals(AAChartType.Arearange)
-                || chartType.equals(AAChartType.Areasplinerange)
-                || chartType.equals(AAChartType.Polygon)) {
+        if (       aaChartType.equals(AAChartType.Area)
+                || aaChartType.equals(AAChartType.Areaspline)
+                || aaChartType.equals(AAChartType.Line)
+                || aaChartType.equals(AAChartType.Spline)
+                || aaChartType.equals(AAChartType.Scatter)
+                || aaChartType.equals(AAChartType.Arearange)
+                || aaChartType.equals(AAChartType.Areasplinerange)
+                || aaChartType.equals(AAChartType.Polygon))
+        {
             AAMarker aaMarker = new AAMarker()
                     .radius(aaChartModel.markerRadius) //曲线连接点半径，默认是4
                     .symbol(aaChartModel.markerSymbol); //曲线点类型："circle", "square", "diamond", "triangle","triangle-down"，默认是"circle"
@@ -217,29 +165,24 @@ public class AAOptionsConstructor {
     }
 
 
-    private static void configureAAPlotOptionsDataLabels(
+    private static void configureAAPlotOptionsDataLabels (
             AAPlotOptions aaPlotOptions,
             AAChartModel aaChartModel
     ) {
-        String chartType = aaChartModel.chartType;
+        String aaChartType = aaChartModel.chartType;
 
         AADataLabels aaDataLabels = new AADataLabels()
                 .enabled(aaChartModel.dataLabelsEnabled);
         if (aaChartModel.dataLabelsEnabled) {
-            aaDataLabels = aaDataLabels
-                    .style(new AAStyle()
-                            .color(aaChartModel.dataLabelsFontColor)
-                            .fontSize(aaChartModel.dataLabelsFontSize)
-                            .fontWeight(aaChartModel.dataLabelsFontWeight)
-                    );
+            aaDataLabels
+                    .style(aaChartModel.dataLabelsStyle);
         }
 
-        switch (chartType) {
+        switch (aaChartType) {
             case AAChartType.Column:
                 AAColumn aaColumn = new AAColumn()
                         .borderWidth(0f)
-                        .borderRadius(aaChartModel.borderRadius)
-                        .dataLabels(aaDataLabels);
+                        .borderRadius(aaChartModel.borderRadius);
                 if (aaChartModel.polar) {
                     aaColumn.pointPadding(0f)
                             .groupPadding(0.005f);
@@ -247,27 +190,15 @@ public class AAOptionsConstructor {
                 aaPlotOptions.column(aaColumn);
                 break;
             case AAChartType.Bar:
-                AABar aaBar = (new AABar()
+                AABar aaBar = new AABar()
                         .borderWidth(0f)
                         .borderRadius(aaChartModel.borderRadius)
-                        .dataLabels(aaDataLabels));
+                        ;
                 if (aaChartModel.polar) {
                     aaBar.pointPadding(0f)
                             .groupPadding(0.005f);
                 }
                 aaPlotOptions.bar(aaBar);
-                break;
-            case AAChartType.Area:
-                aaPlotOptions.area(new AAArea().dataLabels(aaDataLabels));
-                break;
-            case AAChartType.Areaspline:
-                aaPlotOptions.areaspline(new AAAreaspline().dataLabels(aaDataLabels));
-                break;
-            case AAChartType.Line:
-                aaPlotOptions.line(new AALine().dataLabels(aaDataLabels));
-                break;
-            case AAChartType.Spline:
-                aaPlotOptions.spline(new AASpline().dataLabels(aaDataLabels));
                 break;
             case AAChartType.Pie:
                 AAPie aaPie = new AAPie()
@@ -277,58 +208,68 @@ public class AAOptionsConstructor {
                 if (aaChartModel.dataLabelsEnabled) {
                     aaDataLabels.format("<b>{point.name}</b>: {point.percentage:.1f} %");
                 }
-                aaPie.dataLabels(aaDataLabels);
                 aaPlotOptions.pie(aaPie);
                 break;
             case AAChartType.Columnrange:
                 AAColumnrange aaColumnrange = new AAColumnrange()
                         .borderRadius(0f) //The color of the border surrounding each column or bar
                         .borderWidth(0f) //The corner radius of the border surrounding each column or bar. default：0
-                        .dataLabels(aaDataLabels);
+                        ;
                 aaPlotOptions.columnrange(aaColumnrange);
                 break;
-            case AAChartType.Arearange:
-                AAArearange aaArearange = new AAArearange()
-                        .dataLabels(aaDataLabels);
-                aaPlotOptions.arearange(aaArearange);
-                break;
         }
+        aaPlotOptions.series.dataLabels(aaDataLabels);
+
     }
 
-    private static void configureAxisContentAndStyle(
+    private static void configureAxisContentAndStyle (
             AAOptions aaOptions,
             AAChartModel aaChartModel
     ) {
-        String chartType = aaChartModel.chartType;
+        String aaChartType = aaChartModel.chartType;
         //x 轴和 Y 轴的相关配置,扇形图、金字塔图和漏斗图则不需要设置 X 轴和 Y 轴的相关内容
-        if (!chartType.equals(AAChartType.Pie)
-                && !chartType.equals(AAChartType.Pyramid)
-                && !chartType.equals(AAChartType.Funnel)
+        if  (      aaChartType.equals(AAChartType.Column)
+                || aaChartType.equals(AAChartType.Bar)
+                || aaChartType.equals(AAChartType.Area)
+                || aaChartType.equals(AAChartType.Areaspline)
+                || aaChartType.equals(AAChartType.Line)
+                || aaChartType.equals(AAChartType.Spline)
+                || aaChartType.equals(AAChartType.Scatter)
+                || aaChartType.equals(AAChartType.Bubble)
+                || aaChartType.equals(AAChartType.Columnrange)
+                || aaChartType.equals(AAChartType.Arearange)
+                || aaChartType.equals(AAChartType.Areasplinerange)
+                || aaChartType.equals(AAChartType.Boxplot)
+                || aaChartType.equals(AAChartType.Waterfall)
+                || aaChartType.equals(AAChartType.Polygon)
+                || aaChartType.equals(AAChartType.Gauge)
         ) {
-            Boolean aaXAxisLabelsEnabled = aaChartModel.xAxisLabelsEnabled;
-            AALabels aaXAxisLabels = new AALabels()
-                    .enabled(aaXAxisLabelsEnabled);//设置 x 轴是否显示文字
-            if (aaXAxisLabelsEnabled) {
-                aaXAxisLabels.style(new AAStyle()
-                        .color(aaChartModel.axesTextColor)
-                );
-            }
+            if (!aaChartType.equals(AAChartType.Gauge)) {
+                Boolean aaXAxisLabelsEnabled = aaChartModel.xAxisLabelsEnabled;
+                AALabels aaXAxisLabels = new AALabels()
+                        .enabled(aaXAxisLabelsEnabled);//设置 x 轴是否显示文字
+                if (aaXAxisLabelsEnabled) {
+                    aaXAxisLabels.style(new AAStyle()
+                            .color(aaChartModel.axesTextColor));
+                }
 
-            AAXAxis aaXAxis = new AAXAxis()
-                    .labels(aaXAxisLabels) //设置 x 轴是否显示文字
-                    .reversed(aaChartModel.xAxisReversed)
-                    .gridLineWidth(aaChartModel.xAxisGridLineWidth) //x轴网格线宽度
-                    .categories(aaChartModel.categories)
-                    .visible(aaChartModel.xAxisVisible) //x轴是否可见
-                    .tickInterval(aaChartModel.xAxisTickInterval);//x轴坐标点间隔数
+                AAXAxis aaXAxis = new AAXAxis()
+                        .labels(aaXAxisLabels) //设置 x 轴是否显示文字
+                        .reversed(aaChartModel.xAxisReversed)
+                        .gridLineWidth(aaChartModel.xAxisGridLineWidth) //x轴网格线宽度
+                        .categories(aaChartModel.categories)
+                        .visible(aaChartModel.xAxisVisible) //x轴是否可见
+                        .tickInterval(aaChartModel.xAxisTickInterval);//x轴坐标点间隔数
+
+                aaOptions.xAxis(aaXAxis);
+            }
 
             Boolean aaYAxisLabelsEnabled = aaChartModel.yAxisLabelsEnabled;
             AALabels aaYAxisLabels = new AALabels()
                     .enabled(aaChartModel.yAxisLabelsEnabled);
             if (aaYAxisLabelsEnabled) {
                 aaYAxisLabels.style(new AAStyle()
-                        .color(aaChartModel.axesTextColor)
-                );
+                        .color(aaChartModel.axesTextColor));
             }
 
             AAYAxis aaYAxis = new AAYAxis()
@@ -341,13 +282,12 @@ public class AAOptionsConstructor {
                     .title(new AATitle()
                             .text(aaChartModel.yAxisTitle)
                             .style(new AAStyle()
-                                    .color(aaChartModel.axesTextColor))
-                    ) //y 轴标题
+                                    .color(aaChartModel.axesTextColor)))
                     .lineWidth(aaChartModel.yAxisLineWidth) //设置 y轴轴线的宽度,为0即是隐藏 y轴轴线
-                    .visible(aaChartModel.yAxisVisible);
+                    .visible(aaChartModel.yAxisVisible)
+                    ;
 
-            aaOptions.xAxis(aaXAxis)
-                    .yAxis(aaYAxis);
+            aaOptions.yAxis(aaYAxis);
         }
     }
 

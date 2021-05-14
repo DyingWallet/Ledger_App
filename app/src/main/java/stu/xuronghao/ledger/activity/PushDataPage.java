@@ -22,15 +22,11 @@ import stu.xuronghao.ledger.fragment.PushIncomeFrag;
 import stu.xuronghao.ledger.handler.ConstantVariable;
 
 public class PushDataPage extends AppCompatActivity {
-
-    private final int Cost_Pusher = 0;
-    private final int Income_Pusher = 1;
-
     //参数声明
+    private User user;
     private ViewPager viewPager;
     private MenuItem menuItem;
     private BottomNavigationView navigationView;
-    private User user;
 
     //声明Fragment对象
     PushCostFrag pushCostFrag = new PushCostFrag();
@@ -46,12 +42,10 @@ public class PushDataPage extends AppCompatActivity {
         //初始化导航
         initView();
 
-        int index = getIntent().getIntExtra(ConstantVariable.INDEX, 0);
+        int index = getIntent().getIntExtra(ConstantVariable.TYPE_CODE, 0);
         Log.w("index is: ", "" + index);
 
         toView(index);
-
-
     }
 
     //初始化ViewPager
@@ -67,22 +61,19 @@ public class PushDataPage extends AppCompatActivity {
 
         //设置导航条监听器
         navigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        menuItem = item;
-                        switch (item.getItemId()) {
-                            case R.id.costPusher:
-                                viewPager.setCurrentItem(Cost_Pusher);
-                                Log.w("PushDataPage00000", "" + item.getItemId());
-                                break;
-                            case R.id.incomePusher:
-                                viewPager.setCurrentItem(Income_Pusher);
-                                Log.w("PushDataPage11111", "" + item.getItemId());
-                                break;
-                        }
-                        return false;
+                item -> {
+                    menuItem = item;
+                    switch (item.getItemId()) {
+                        case R.id.costPusher:
+                            viewPager.setCurrentItem(ConstantVariable.COST_CODE);
+                            Log.w("PushDataPage00000", "" + item.getItemId());
+                            break;
+                        case R.id.incomePusher:
+                            viewPager.setCurrentItem(ConstantVariable.INCOME_CODE);
+                            Log.w("PushDataPage11111", "" + item.getItemId());
+                            break;
                     }
+                    return false;
                 }
         );
 

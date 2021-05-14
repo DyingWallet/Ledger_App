@@ -1,22 +1,22 @@
 /**
- * //  AAChartModel.java
- * //  AAChartCore
- * //
- * //  Created by AnAn on 2017/9/8..
- * //  Copyright © 2018年 An An. All rights reserved.
- * <p>
+//  AAChartModel.java
+//  AAChartCore
+//
+//  Created by AnAn on 2017/9/8..
+//  Copyright © 2018年 An An. All rights reserved.
+
  * ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉ ...... SOURCE CODE ......◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
  * ◉◉◉...................................................       ◉◉◉
  * ◉◉◉   https://github.com/AAChartModel/AAChartCore            ◉◉◉
  * ◉◉◉   https://github.com/AAChartModel/AAChartCore-Kotlin     ◉◉◉
  * ◉◉◉...................................................       ◉◉◉
  * ◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉ ...... SOURCE CODE ......◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉◉
- * <p>
- * <p>
+
+
  * -------------------------------------------------------------------------------
- * <p>
- * 🌕 🌖 🌗 🌘  ❀❀❀   WARM TIPS!!!   ❀❀❀ 🌑 🌒 🌓 🌔
- * <p>
+ *
+ *  🌕 🌖 🌗 🌘  ❀❀❀   WARM TIPS!!!   ❀❀❀ 🌑 🌒 🌓 🌔
+ *
  * Please contact me on GitHub,if there are any problems encountered in use.
  * GitHub Issues : https://github.com/AAChartModel/AAChartCore/issues
  * -------------------------------------------------------------------------------
@@ -25,8 +25,9 @@
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
  * JianShu       : http://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
- * <p>
+ *
  * -------------------------------------------------------------------------------
+
  */
 
 package stu.xuronghao.ledger.AAChartCoreLib.AAChartCreator;
@@ -41,22 +42,18 @@ import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
-import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import stu.xuronghao.ledger.AAChartCoreLib.AAOptionsModel.AAOptions;
 import stu.xuronghao.ledger.AAChartCoreLib.AATools.AAJSStringPurer;
+import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class AAChartView extends WebView {
 
     public interface AAChartViewCallBack {
         void chartViewDidFinishLoad(AAChartView aaChartView);
-
         void chartViewMoveOverEventMessage(
                 AAChartView aaChartView,
                 AAMoveOverEventMessageModel messageModel
@@ -152,20 +149,20 @@ public class AAChartView extends WebView {
         messageBody = gson.fromJson(message, messageBody.getClass());
         AAMoveOverEventMessageModel eventMessageModel = getEventMessageModel(messageBody);
         if (callBack != null) {
-            callBack.chartViewMoveOverEventMessage(this, eventMessageModel);
+            callBack.chartViewMoveOverEventMessage(this,eventMessageModel);
         }
-        //       Log.i("androidMethod","++++++++++++++++显示总共调用了几次");
+//       Log.i("androidMethod","++++++++++++++++显示总共调用了几次");
         return "";
     }
 
 
     public void aa_drawChartWithChartModel(final AAChartModel chartModel) {
-        AAOptions aaOptions = AAOptionsConstructor.configureChartOptions(chartModel);
+        AAOptions aaOptions = chartModel.aa_toAAOptions();
         this.aa_drawChartWithChartOptions(aaOptions);
     }
 
     public void aa_refreshChartWithChartModel(AAChartModel chartModel) {
-        AAOptions aaOptions = AAOptionsConstructor.configureChartOptions(chartModel);
+        AAOptions aaOptions = chartModel.aa_toAAOptions();
         this.aa_refreshChartWithChartOptions(aaOptions);
     }
 
@@ -186,7 +183,7 @@ public class AAChartView extends WebView {
     public void aa_onlyRefreshTheChartDataWithChartOptionsSeriesArray(
             AASeriesElement[] seriesElementsArr
     ) {
-        aa_onlyRefreshTheChartDataWithChartOptionsSeriesArray(seriesElementsArr, true);
+        aa_onlyRefreshTheChartDataWithChartOptionsSeriesArray(seriesElementsArr,true);
     }
 
     public void aa_onlyRefreshTheChartDataWithChartOptionsSeriesArray(
@@ -200,21 +197,21 @@ public class AAChartView extends WebView {
     }
 
 
-    public void aa_updateChartWithOptions(
+    public  void aa_updateChartWithOptions(
             Object options,
             Boolean redraw
     ) {
         String classNameStr = options.getClass().getSimpleName();
-        classNameStr = classNameStr.replace("AA", "");
+        classNameStr = classNameStr.replace("AA","");
 
         //convert fist character to be lowercase string
-        String firstChar = classNameStr.substring(0, 1);
+        String firstChar = classNameStr.substring(0,1);
         String lowercaseFirstStr = firstChar.toLowerCase();
         classNameStr = classNameStr.substring(1);
         String finalClassName = lowercaseFirstStr + classNameStr;
 
         Map finalOptionsMap = new HashMap();
-        finalOptionsMap.put(finalClassName, options);
+        finalOptionsMap.put(finalClassName,options);
 
         String optionsStr = new Gson().toJson(finalOptionsMap);
         String javaScriptStr = "updateChart('" + optionsStr + "','" + redraw + "')";
@@ -230,7 +227,6 @@ public class AAChartView extends WebView {
                 options,
                 true);
     }
-
     public void aa_addPointToChartSeriesElement(
             Integer elementIndex,
             Object options,
@@ -253,7 +249,7 @@ public class AAChartView extends WebView {
             Boolean animation
     ) {
         String optionsStr;
-        if (options instanceof Integer
+        if (       options instanceof Integer
                 || options instanceof Float
                 || options instanceof Double) {
             optionsStr = String.valueOf(options);
@@ -304,12 +300,13 @@ public class AAChartView extends WebView {
     }
 
 
+
     private void loadLocalFilesAndDrawChart(final AAOptions aaOptions) {
         this.loadUrl("file:///android_asset/AAChartView.html");
         this.setWebViewClient(new WebViewClient() {
             @Override
-            public void onPageFinished(WebView view, String url) {
-                //                Log.i("js files load","图表加载完成!!!!!!!! ");
+            public void onPageFinished(WebView view,String url) {
+//                Log.i("js files load","图表加载完成!!!!!!!! ");
                 configureChartOptionsAndDrawChart(aaOptions);
 
                 if (callBack != null) {
@@ -352,7 +349,7 @@ public class AAChartView extends WebView {
                 new AlertDialog.Builder(getContext())
                         .setTitle("JavaScript alert Information")//设置对话框标题
                         .setMessage(alertMessageStr)
-                        .setNeutralButton("sure", null)
+                        .setNeutralButton("sure",null)
                         .show();
 
                 return true;
@@ -361,7 +358,7 @@ public class AAChartView extends WebView {
     }
 
     private AAMoveOverEventMessageModel getEventMessageModel(Map messageBody) {
-        AAMoveOverEventMessageModel eventMessageModel = new AAMoveOverEventMessageModel();
+        AAMoveOverEventMessageModel eventMessageModel =  new AAMoveOverEventMessageModel();
         eventMessageModel.name = messageBody.get("name").toString();
         eventMessageModel.x = (Double) messageBody.get("x");
         eventMessageModel.y = (Double) messageBody.get("y");
@@ -375,16 +372,18 @@ public class AAChartView extends WebView {
 
     private void safeEvaluateJavaScriptString(String javaScriptString) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            this.evaluateJavascript("javascript:" + javaScriptString, new ValueCallback<String>() {
+            this.evaluateJavascript("javascript:"+javaScriptString, new ValueCallback<String>() {
                 @Override
                 public void onReceiveValue(String s) {
-                    //                    Log.i("call back information","输出打印查看回调的结果"+s);
+//                    Log.i("call back information","输出打印查看回调的结果"+s);
                 }
             });
         } else {
-            this.loadUrl("javascript:" + javaScriptString);
+            this.loadUrl("javascript:"+javaScriptString);
         }
     }
+
+
 
 
 }

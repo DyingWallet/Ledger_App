@@ -14,6 +14,8 @@ public class AAOptions {
     public AALegend legend;
     public AAPane pane;
     public Object[] colors;
+    public AACredits credits;
+    public AALang defaultOptions;
     public Boolean touchEventEnabled;
 
     public AAOptions chart(AAChart prop) {
@@ -81,9 +83,26 @@ public class AAOptions {
         return this;
     }
 
+    public AAOptions credits(AACredits prop) {
+        credits = prop;
+        return this;
+    }
+
+    public AAOptions defaultOptions(AALang prop) {
+        defaultOptions = prop;
+        return this;
+    }
+
     public AAOptions touchEventEnabled(Boolean prop) {
         touchEventEnabled = prop;
         return this;
+    }
+
+
+    public AAOptions() {
+        AACredits aaCredits = new AACredits();
+        aaCredits.enabled = false;
+        this.credits = aaCredits;
     }
 
 }
