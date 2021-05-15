@@ -41,12 +41,7 @@ public class AnnoPage extends AppCompatActivity {
 
         //返回
         ImageView imgBack = findViewById(R.id.img_Anno_Back);
-        imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        imgBack.setOnClickListener(v -> finish());
 
         //拉取数据并建立公告列表
         buildListView();
@@ -65,12 +60,7 @@ public class AnnoPage extends AppCompatActivity {
             infoList.add(new AnnoInfo(anno.getAnnoTitle(), anno.getAnnoDate()));
         AnnoListAdapter adapter = new AnnoListAdapter(context, infoList);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showDialog(annoList.get(position));
-            }
-        });
+        listView.setOnItemClickListener((parent, view, position, id) -> showDialog(annoList.get(position)));
 
         listView.setAdapter(adapter);
     }
@@ -95,12 +85,7 @@ public class AnnoPage extends AppCompatActivity {
 
 
         //设置监听器
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        confirm.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
     }
 }

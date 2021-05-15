@@ -13,27 +13,19 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.don.pieviewlibrary.PercentPieView;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.TimeZone;
-import java.util.stream.Collectors;
 
 import stu.xuronghao.ledger.AAChartCoreLib.AAChartCreator.AAChartModel;
 import stu.xuronghao.ledger.AAChartCoreLib.AAChartCreator.AAChartView;
 import stu.xuronghao.ledger.AAChartCoreLib.AAChartCreator.AASeriesElement;
 import stu.xuronghao.ledger.AAChartCoreLib.AAChartEnum.AAChartType;
 import stu.xuronghao.ledger.R;
-import stu.xuronghao.ledger.activity.DetailPage;
-import stu.xuronghao.ledger.adapter.BillDataAdapter;
 import stu.xuronghao.ledger.adapter.PieDataAdapter;
 import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.Income;
@@ -57,19 +49,16 @@ public class PieFrag extends Fragment {
     private String startDate;
     private String endDate;
     private String total;
-    //图标控件
-    private ImageView imgSwitch;
     private ImageView arrowLeft;
     private ImageView arrowRight;
     //文本控件
-    TextView txvStartDate;
-    TextView txvEndDate;
+    private TextView txvStartDate;
+    private TextView txvEndDate;
+    private TextView txvNoRecord;
     //可视化控件
-    AAChartView pieView;
+    private AAChartView pieView;
     //列表控件
-    ListView listView;
-    //适配器
-    PieDataAdapter adapter;
+    private ListView listView;
     private AVLoadingIndicatorView indicatorView;
     private AsyncPiePuller asyncPiePuller;
 
@@ -93,13 +82,48 @@ public class PieFrag extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
+        ////图标控件
+        //ImageView imgSwitch = rootView.findViewById(R.id.pie_click_switch);
+        //arrowLeft = rootView.findViewById(R.id.arrow_Pie_LastMonth);
+        //arrowRight = rootView.findViewById(R.id.arrow_Pie_NextMonth);
+        //indicatorView = rootView.findViewById(R.id.avi_pie);
+        //txvStartDate = rootView.findViewById(R.id.txv_Pie_StartDate);
+        //txvEndDate = rootView.findViewById(R.id.txv_Pie_EndDate);
+        //txvNoRecord = rootView.findViewById(R.id.pie_no_record_notice);
+        //pieView = rootView.findViewById(R.id.pie_chart);
+        //listView = rootView.findViewById(R.id.lv_Pie_DivideByTypes);
+        ////获取当前月份
+        //currentMonth = DateHandler.getCurrentMonth();
+        //destinationMonth = currentMonth;
+        ////设置日期范围
+        //setDateRange();
+        ////设置日期转换器
+        //setDateChanger();
+        ////设置模式转换监听器
+        //imgSwitch.setOnClickListener(v -> {
+        //    if (ConstantVariable.COST_CODE != mode) {
+        //        mode = ConstantVariable.COST_CODE;
+        //    } else {
+        //        mode = ConstantVariable.INCOME_CODE;
+        //    }
+        //    asyncPiePuller = new AsyncPiePuller();
+        //    asyncPiePuller.execute();
+        //});
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
-        imgSwitch = rootView.findViewById(R.id.pie_click_switch);
+        //图标控件
+        ImageView imgSwitch = rootView.findViewById(R.id.pie_click_switch);
         arrowLeft = rootView.findViewById(R.id.arrow_Pie_LastMonth);
         arrowRight = rootView.findViewById(R.id.arrow_Pie_NextMonth);
         indicatorView = rootView.findViewById(R.id.avi_pie);
         txvStartDate = rootView.findViewById(R.id.txv_Pie_StartDate);
         txvEndDate = rootView.findViewById(R.id.txv_Pie_EndDate);
+        txvNoRecord = rootView.findViewById(R.id.pie_no_record_notice);
         pieView = rootView.findViewById(R.id.pie_chart);
         listView = rootView.findViewById(R.id.lv_Pie_DivideByTypes);
         //获取当前月份
@@ -119,11 +143,6 @@ public class PieFrag extends Fragment {
             asyncPiePuller = new AsyncPiePuller();
             asyncPiePuller.execute();
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         //生成图形化报表
         asyncPiePuller = new AsyncPiePuller();
         asyncPiePuller.execute();
@@ -163,6 +182,7 @@ public class PieFrag extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            txvNoRecord.setVisibility(View.INVISIBLE);
             indicatorView.show();
         }
 
@@ -174,7 +194,7 @@ public class PieFrag extends Fragment {
             Map<String, List> result = new HashMap<>();
             double tmp = 0;
             double[] arr = {0, 0, 0, 0, 0};
-            String modeType = ConstantVariable.COST_CODE == mode? ConstantVariable.COST_TYPE : ConstantVariable.INCOME_TYPE;
+            String modeType = ConstantVariable.COST_CODE == mode ? ConstantVariable.COST_TYPE : ConstantVariable.INCOME_TYPE;
 
             if (ConstantVariable.COST_CODE == mode) {
                 //消费报表
@@ -186,9 +206,7 @@ public class PieFrag extends Fragment {
                         arr[index] += cost.getCostAmount();
                     }
                 } else {
-                    Toast toast = Toast.makeText(getContext(),
-                            ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
-                    toast.show();
+                    return null;
                 }
             } else if (ConstantVariable.INCOME_CODE == mode) {
                 //收入报表
@@ -200,9 +218,7 @@ public class PieFrag extends Fragment {
                         arr[index] += income.getIncAmount();
                     }
                 } else {
-                    Toast toast = Toast.makeText(getContext(),
-                            ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
-                    toast.show();
+                    return null;
                 }
             }
 
@@ -224,8 +240,17 @@ public class PieFrag extends Fragment {
         @Override
         protected void onPostExecute(Map<String, List> result) {
             super.onPostExecute(result);
+            if(result == null){
+                Toast toast = Toast.makeText(getContext(),
+                        ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
             List<TotalFee> feeList = result.get(ConstantVariable.FEE_LIST);
             List<Object[]> dataList = result.get(ConstantVariable.DATA_LIST);
+            if (feeList.isEmpty()) {
+                txvNoRecord.setVisibility(View.VISIBLE);
+            }
             String totalStr = ConstantVariable.COST_CODE == mode ? "总消费:" + total : "总收入:" + total;
 
             Object[] data = dataList.stream().filter(Objects::nonNull).toArray();
@@ -239,11 +264,11 @@ public class PieFrag extends Fragment {
                     .dataLabelsEnabled(true)
                     .series(new AASeriesElement[]{
                             new AASeriesElement()
-                            .size("100%")
-                            .innerSize("50%")
-                            .borderWidth(3f)
-                            .allowPointSelect(false)
-                            .data(data)
+                                    .size("100%")
+                                    .innerSize("50%")
+                                    .borderWidth(3f)
+                                    .allowPointSelect(false)
+                                    .data(data)
                     })
                     .yAxisTitle("111")
                     .colorsTheme(ColorsHandler.getColorStr(data.length))
@@ -253,7 +278,8 @@ public class PieFrag extends Fragment {
             //设置日期
             txvStartDate.setText(startDate.split(ConstantVariable.TIME_REGEX)[0]);
             txvEndDate.setText(endDate.split(ConstantVariable.TIME_REGEX)[0]);
-            adapter = new PieDataAdapter(getContext(), feeList);
+            //适配器
+            PieDataAdapter adapter = new PieDataAdapter(getContext(), feeList);
             listView.setAdapter(adapter);
             indicatorView.hide();
         }

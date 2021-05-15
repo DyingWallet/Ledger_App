@@ -1,6 +1,5 @@
 package stu.xuronghao.ledger.handler;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -17,6 +16,6 @@ public class FeeSortUtil {
     };
 
     public void sortByAmount(List<TotalFee> totalFees) {
-        Collections.sort(totalFees, feeComparatorByAmount);
+        totalFees.sort(feeComparatorByAmount);
     }
 }

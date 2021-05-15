@@ -1,7 +1,6 @@
 package stu.xuronghao.ledger.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,27 +74,19 @@ public class PushIncomeFrag extends Fragment {
             }
         });
 
-        pushIncome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (push()) {
-                    Toast toast = Toast.makeText(getContext(), ConstantVariable.INFO_OPERATE_SUCCESS, Toast.LENGTH_SHORT);
-                    toast.show();
-                    getActivity().finish();
-                } else {
-                    Toast toast = Toast.makeText(getContext(),
-                            ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
-                    toast.show();
-                }
+        pushIncome.setOnClickListener(v -> {
+            if (push()) {
+                Toast toast = Toast.makeText(getContext(), ConstantVariable.INFO_OPERATE_SUCCESS, Toast.LENGTH_SHORT);
+                toast.show();
+                getActivity().finish();
+            } else {
+                Toast toast = Toast.makeText(getContext(),
+                        ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
+                toast.show();
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().finish();
-            }
-        });
+        cancel.setOnClickListener(v -> getActivity().finish());
     }
 
     private boolean push() {

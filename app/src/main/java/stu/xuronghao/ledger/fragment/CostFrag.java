@@ -31,7 +31,6 @@ import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.User;
 import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
-import stu.xuronghao.ledger.handler.GetHttpResponse;
 
 public class CostFrag extends Fragment {
     private FragmentActivity activity;
@@ -83,39 +82,30 @@ public class CostFrag extends Fragment {
     private void setFloatBtn() {
 
         final FloatingActionButton chatBtn = rootView.findViewById(R.id.to_chat);
-        chatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.w("chatBtn", "Ready to chat!");
-                Intent intent = new Intent(getActivity(), ChatToRecordPage.class);
-                intent.putExtra("user", user);
-                startActivity(intent);
-            }
+        chatBtn.setOnClickListener(v -> {
+            Log.w("chatBtn", "Ready to chat!");
+            Intent intent = new Intent(getActivity(), ChatToRecordPage.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
         });
 
         final FloatingActionButton addBtn = rootView.findViewById(R.id.add_cost);
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //新增支出
-                Log.w("addBtn: ", "Ready to add cost!");
-                Intent intent = new Intent(getActivity(), PushDataPage.class);
-                intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
-                intent.putExtra(ConstantVariable.USER, user);
-                startActivity(intent);
-            }
+        addBtn.setOnClickListener(v -> {
+            //新增支出
+            Log.w("addBtn: ", "Ready to add cost!");
+            Intent intent = new Intent(getActivity(), PushDataPage.class);
+            intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
+            intent.putExtra(ConstantVariable.USER, user);
+            startActivity(intent);
         });
 
         final FloatingActionButton refreshBtn = rootView.findViewById(R.id.refresh_cost);
-        refreshBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //更新事件
-                listPuller = new AsyncCostPuller();
-                listPuller.execute();
-                Toast toast = Toast.makeText(getContext(), "收到服务器君发送的消费数据！", Toast.LENGTH_SHORT);
-                toast.show();
-            }
+        refreshBtn.setOnClickListener(v -> {
+            //更新事件
+            listPuller = new AsyncCostPuller();
+            listPuller.execute();
+            Toast toast = Toast.makeText(getContext(), "收到服务器君发送的消费数据！", Toast.LENGTH_SHORT);
+            toast.show();
         });
     }
 
@@ -132,10 +122,7 @@ public class CostFrag extends Fragment {
             DataPuller dataPuller = new DataPuller();
             costList = dataPuller.pullCostOf(user);
             if (costList == null) {
-                Toast toast = Toast.makeText(getContext(),
-                        ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
-                toast.show();
-                return new ArrayList<>();
+                return null;
             }
             //用HashMap来传递内容
             List<HashMap<String, String>> mapArrayList = new ArrayList<>();
@@ -155,20 +142,24 @@ public class CostFrag extends Fragment {
         protected void onPostExecute(List<HashMap<String, String>> mapArrayList) {
             super.onPostExecute(mapArrayList);
 
+            if(mapArrayList == null){
+                Toast toast = Toast.makeText(getContext(),
+                        ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
+
             //用HashMap将数据传入ListView适配器
             BillDataAdapter adapter = new BillDataAdapter(activity,ConstantVariable.COST_CODE , mapArrayList);
 
             //应用适配器并更新ListView
             listView.setAdapter(adapter);
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(getActivity(), DetailPage.class);
-                    intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
-                    intent.putExtra("cost", costList.get(position));
-                    startActivity(intent);
-                }
+            listView.setOnItemClickListener((parent, view, position, id) -> {
+                Intent intent = new Intent(getActivity(), DetailPage.class);
+                intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
+                intent.putExtra("cost", costList.get(position));
+                startActivity(intent);
             });
             indicatorView.hide();
         }
@@ -178,6 +169,8 @@ public class CostFrag extends Fragment {
             super.onCancelled();
             indicatorView.hide();
         }
+
+
     }
 
 }

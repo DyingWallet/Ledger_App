@@ -59,7 +59,7 @@ public class DataPuller {
         json = response.getter();
         Log.w(ConstantVariable.LOG_JSON, json);
         if ("".equals(json))
-            return new ArrayList<>();
+            return null;
         //类型转换
         temp = JSON.parseArray(json, Cost.class);
         return temp;
@@ -78,7 +78,7 @@ public class DataPuller {
         json = response.getter();
         Log.w(ConstantVariable.LOG_JSON, json);
         if ("".equals(json))
-            return new ArrayList<>();
+            return null;
         //类型转换
         temp = JSON.parseArray(json, Income.class);
         return temp;
@@ -99,7 +99,7 @@ public class DataPuller {
         json = response.getter();
         Log.w(ConstantVariable.LOG_JSON, json);
         if ("".equals(json))
-            return new ArrayList<>();
+            return null;
         //类型转换
         temp = JSON.parseArray(json, Cost.class);
         return temp;
@@ -120,7 +120,7 @@ public class DataPuller {
         json = response.getter();
         Log.w(ConstantVariable.LOG_JSON, json);
         if ("".equals(json))
-            return new ArrayList<>();
+            return null;
         //类型转换
         temp = JSON.parseArray(json, Income.class);
         return temp;
@@ -148,7 +148,7 @@ public class DataPuller {
         Log.w(ConstantVariable.LOG_URL, response.getUrl());
         json = response.getter();
         if ("".equals(json))
-            return new ArrayList<>();
+            return null;
         temp = JSON.parseArray(json, Anno.class);
         return temp;
     }
@@ -166,7 +166,7 @@ public class DataPuller {
         json = response.getter();
 
         if ("".equals(json))
-            return new ArrayList<>();
+            return null;
         //类型转换
         temp = JSON.parseArray(json, ChatInfo.class);
         return temp;

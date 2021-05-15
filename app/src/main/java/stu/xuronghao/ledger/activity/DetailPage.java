@@ -3,7 +3,6 @@ package stu.xuronghao.ledger.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -64,56 +63,45 @@ public class DetailPage extends AppCompatActivity {
         }
 
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        btnCancel.setOnClickListener(v -> finish());
 
-        btnDel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle(ConstantVariable.TEXT_CAUTION);
-                builder.setIcon(R.drawable.icon_warn);
-                builder.setMessage(ConstantVariable.TEXT_DELETE_HINT_MSG);
-                builder.setPositiveButton(ConstantVariable.TEXT_CONFIRM, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (delete(index)) {
-                            Toast toast = Toast.makeText(context, ConstantVariable.INFO_DELETE_SUCCESS, Toast.LENGTH_SHORT);
-                            toast.show();
-                            finish();
-                            return;
-                        }
-                        Toast toast = Toast.makeText(context, ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
+        btnDel.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle(ConstantVariable.TEXT_CAUTION);
+            builder.setIcon(R.drawable.icon_warn);
+            builder.setMessage(ConstantVariable.TEXT_DELETE_HINT_MSG);
+            builder.setPositiveButton(ConstantVariable.TEXT_CONFIRM, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (delete(index)) {
+                        Toast toast = Toast.makeText(context, ConstantVariable.INFO_DELETE_SUCCESS, Toast.LENGTH_SHORT);
                         toast.show();
-                        dialog.dismiss();
+                        finish();
+                        return;
                     }
-                });
-                builder.setNegativeButton(ConstantVariable.TEXT_CANCEL, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                builder.show();
-            }
+                    Toast toast = Toast.makeText(context, ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
+                    toast.show();
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton(ConstantVariable.TEXT_CANCEL, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
         });
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (update(index)) {
-                    Toast toast = Toast.makeText(context, ConstantVariable.INFO_UPDATE_SUCCESS, Toast.LENGTH_SHORT);
-                    toast.show();
-                    finish();
-                    return;
-                }
-                Toast toast = Toast.makeText(context, ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
+        btnSave.setOnClickListener(v -> {
+            if (update(index)) {
+                Toast toast = Toast.makeText(context, ConstantVariable.INFO_UPDATE_SUCCESS, Toast.LENGTH_SHORT);
                 toast.show();
+                finish();
+                return;
             }
+            Toast toast = Toast.makeText(context, ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
+            toast.show();
         });
     }
 

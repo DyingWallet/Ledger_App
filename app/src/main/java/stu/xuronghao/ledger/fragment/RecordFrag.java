@@ -2,7 +2,6 @@ package stu.xuronghao.ledger.fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.adapter.SwitchAdapter;
-
 
 public class RecordFrag extends Fragment {
     // 参数声明

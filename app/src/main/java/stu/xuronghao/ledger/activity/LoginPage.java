@@ -3,7 +3,6 @@ package stu.xuronghao.ledger.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,53 +22,57 @@ public class LoginPage extends AppCompatActivity {
     private User user = new User();
     private final DataPuller dataPuller = new DataPuller();
 
+    TextView txvSignUp;
+    TextView txvForHelp;
+    EditText edtxUserNo;
+    EditText edtxUserPasswd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         Button btnLogin = findViewById(R.id.btn_Login);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getLoginInfo()) {
-                    User temp = dataPuller.loginSender(user);
-                    if (temp == null) {
-                        Toast toast = Toast.makeText(context,
-                                ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
-                        toast.show();
-                        return;
-                    }
-                    user = temp;
-                    checkStatus();
+        btnLogin.setOnClickListener(v -> {
+            if (getLoginInfo()) {
+                User temp = dataPuller.loginSender(user);
+                if (temp == null) {
+                    Toast toast = Toast.makeText(context,
+                            ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
+                    toast.show();
+                    return;
                 }
+                user = temp;
+                checkStatus();
             }
         });
-        TextView txvSignUp = findViewById(R.id.txv_Login_SignUp);
-        txvSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoSignUp();
-            }
-        });
-        TextView txvForHelp = findViewById(R.id.txv_Login_ForHelp);
-        txvForHelp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                skipLogin();
-            }
-        });
+        edtxUserNo = findViewById(R.id.etxv_Login_userNo);
+        edtxUserPasswd = findViewById(R.id.etxv_Login_Passwd);
+        txvSignUp = findViewById(R.id.txv_Login_SignUp);
+        txvForHelp = findViewById(R.id.txv_Login_ForHelp);
+        txvSignUp.setOnClickListener(v -> gotoSignUp());
+        txvForHelp.setOnClickListener(v -> skipLogin());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent signUoInfo = getIntent();
+        User signUpUser;
+        if((signUpUser = (User) signUoInfo.getSerializableExtra(ConstantVariable.USER))!=null){
+            user = signUpUser;
+            edtxUserNo.setText(user.getUserNo());
+            edtxUserPasswd.setText(user.getUserPasswd());
+        }
     }
 
     private boolean getLoginInfo() {
-        EditText userNo = findViewById(R.id.etxv_Login_userNo);
-        EditText userPasswd = findViewById(R.id.etxv_Login_Passwd);
-        String userNoStr = userNo.getText().toString();
-        String userPasswdStr = userPasswd.getText().toString();
+        String userNoStr = edtxUserNo.getText().toString();
+        String userPasswdStr = edtxUserPasswd.getText().toString();
 
         if (Validator.checkLoginInput(userNoStr, userPasswdStr,context)) {
-            user.setUserNo(userNo.getText().toString());
-            user.setUserPasswd(userPasswd.getText().toString());
+            user.setUserNo(edtxUserNo.getText().toString());
+            user.setUserPasswd(edtxUserPasswd.getText().toString());
             user.setUserStatus(ConstantVariable.ACTIVE);
             return true;
         }

@@ -21,20 +21,16 @@ import com.wang.avi.AVLoadingIndicatorView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.activity.ChatToRecordPage;
 import stu.xuronghao.ledger.activity.DetailPage;
-import stu.xuronghao.ledger.activity.LoginPage;
 import stu.xuronghao.ledger.activity.PushDataPage;
 import stu.xuronghao.ledger.adapter.BillDataAdapter;
-import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.Income;
 import stu.xuronghao.ledger.entity.User;
 import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
-import stu.xuronghao.ledger.handler.GetHttpResponse;
 
 public class IncomeFrag extends Fragment {
     // 参数声明
@@ -85,39 +81,30 @@ public class IncomeFrag extends Fragment {
     private void setFloatBtn() {
 
         final FloatingActionButton chatBtn = rootView.findViewById(R.id.to_chat);
-        chatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.w("chatBtn", "Ready to chat!");
-                Intent intent = new Intent(getActivity(), ChatToRecordPage.class);
-                intent.putExtra("user", user);
-                startActivity(intent);
-            }
+        chatBtn.setOnClickListener(v -> {
+            Log.w("chatBtn", "Ready to chat!");
+            Intent intent = new Intent(getActivity(), ChatToRecordPage.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
         });
 
         final FloatingActionButton addBtn = rootView.findViewById(R.id.add_income);
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //新增支出
-                Log.w("addBtn: ", "Ready to add income!");
-                Intent intent = new Intent(getActivity(), PushDataPage.class);
-                intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.INCOME_CODE);
-                intent.putExtra("user", user);
-                startActivity(intent);
-            }
+        addBtn.setOnClickListener(v -> {
+            //新增支出
+            Log.w("addBtn: ", "Ready to add income!");
+            Intent intent = new Intent(getActivity(), PushDataPage.class);
+            intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.INCOME_CODE);
+            intent.putExtra("user", user);
+            startActivity(intent);
         });
 
         final FloatingActionButton refreshBtn = rootView.findViewById(R.id.refresh_income);
-        refreshBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //更新事件
-                listPuller = new AsyncIncomePuller();
-                listPuller.execute();
-                Toast toast = Toast.makeText(getContext(), "已更新收入数据！", Toast.LENGTH_SHORT);
-                toast.show();
-            }
+        refreshBtn.setOnClickListener(v -> {
+            //更新事件
+            listPuller = new AsyncIncomePuller();
+            listPuller.execute();
+            Toast toast = Toast.makeText(getContext(), "已更新收入数据！", Toast.LENGTH_SHORT);
+            toast.show();
         });
     }
 
@@ -135,10 +122,7 @@ public class IncomeFrag extends Fragment {
             DataPuller dataPuller = new DataPuller();
             incList = dataPuller.pullIncomeOf(user);
             if (incList == null) {
-                Toast toast = Toast.makeText(getContext(),
-                        ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
-                toast.show();
-                return new ArrayList<>();
+                return null;
             }
             //获取列表对象
             listView = rootView.findViewById(R.id.lv_IncomeDataList);
@@ -159,20 +143,24 @@ public class IncomeFrag extends Fragment {
         @Override
         protected void onPostExecute(List<HashMap<String, String>> mapArrayList) {
             super.onPostExecute(mapArrayList);
+            if(mapArrayList == null){
+                Toast toast = Toast.makeText(getContext(),
+                        ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
+
             //用HashMap将数据传入ListView适配器
             BillDataAdapter adapter = new BillDataAdapter(activity,ConstantVariable.INCOME_CODE , mapArrayList);
 
             //应用适配器并更新ListView
             listView.setAdapter(adapter);
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(getActivity(), DetailPage.class);
-                    intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
-                    intent.putExtra(ConstantVariable.INCOME_TYPE, incList.get(position));
-                    startActivity(intent);
-                }
+            listView.setOnItemClickListener((parent, view, position, id) -> {
+                Intent intent = new Intent(getActivity(), DetailPage.class);
+                intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
+                intent.putExtra(ConstantVariable.INCOME_TYPE, incList.get(position));
+                startActivity(intent);
             });
             indicatorView.hide();
         }

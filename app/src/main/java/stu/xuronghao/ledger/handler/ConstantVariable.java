@@ -3,8 +3,6 @@ package stu.xuronghao.ledger.handler;
 import java.util.HashMap;
 import java.util.Map;
 
-import stu.xuronghao.ledger.R;
-
 public class ConstantVariable {
     //params
     public static final String USER = "user";

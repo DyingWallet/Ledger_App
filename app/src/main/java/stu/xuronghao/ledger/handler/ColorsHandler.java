@@ -10,21 +10,27 @@ public class ColorsHandler {
     private static final int[] colors = {R.color.picaPink, R.color.dining,
             R.color.trans, R.color.cloth, R.color.daily};
 
-    private static final String[] colorStr = {"#EC97B6","#106D9C","#5A92AD","#FFC107","#00FFFF"};
+    public static final String PICA_PINK = "#EC97B6";
+    public static final String ROSE_RED = "#FA6594";
+    public static final String LIGHT_BLUE = "#DEEFFF";
+    public static final String LIGHT_EARTHY = "#FFEADC";
+    public static final String DEEP_PINK = "#C8839C";
+    public static final String INDIGO = "#B5C9D9";
+    private static final String[] colorStr = {ROSE_RED,LIGHT_BLUE, LIGHT_EARTHY,DEEP_PINK, INDIGO};
 
     private static final Map<String,String> colorMap;
 
     static {
         colorMap = new HashMap<>();
-        colorMap.put("餐饮","#EC97B6");
-        colorMap.put("交通","#106D9C");
-        colorMap.put("服饰","#5A92AD");
-        colorMap.put("日用","#FFC107");
-        colorMap.put("工资","#EC97B6");
-        colorMap.put("奖金","#106D9C");
-        colorMap.put("借款","#5A92AD");
-        colorMap.put("红包","#FFC107");
-        colorMap.put("其他","#00FFFF");
+        colorMap.put("餐饮", ROSE_RED);
+        colorMap.put("交通", LIGHT_BLUE);
+        colorMap.put("服饰", LIGHT_EARTHY);
+        colorMap.put("日用", DEEP_PINK);
+        colorMap.put("工资", ROSE_RED);
+        colorMap.put("奖金", LIGHT_BLUE);
+        colorMap.put("借款", LIGHT_EARTHY);
+        colorMap.put("红包", DEEP_PINK);
+        colorMap.put("其他", INDIGO);
     }
 
     public static String[] getColorStr(int length){

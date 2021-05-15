@@ -79,27 +79,19 @@ public class PushCostFrag extends Fragment {
             }
         });
 
-        pushCost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (push()) {
-                    Toast toast = Toast.makeText(getContext(), ConstantVariable.INFO_OPERATE_SUCCESS, Toast.LENGTH_SHORT);
-                    toast.show();
-                    getActivity().finish();
-                } else {
-                    Toast toast = Toast.makeText(getContext(),
-                            ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
-                    toast.show();
-                }
+        pushCost.setOnClickListener(v -> {
+            if (push()) {
+                Toast toast = Toast.makeText(getContext(), ConstantVariable.INFO_OPERATE_SUCCESS, Toast.LENGTH_SHORT);
+                toast.show();
+                getActivity().finish();
+            } else {
+                Toast toast = Toast.makeText(getContext(),
+                        ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
+                toast.show();
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().finish();
-            }
-        });
+        cancel.setOnClickListener(v -> getActivity().finish());
     }
 
     private boolean push() {

@@ -215,9 +215,7 @@ public class TrendFrag extends Fragment {
                 }
                 yearlyData.setSurplus(yearlyData.getIncome() - yearlyData.getCost());
             }else {
-                Toast toast = Toast.makeText(getContext(),
-                        ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
-                toast.show();
+                return null;
             }
             result.put(ConstantVariable.DATA_LIST,listData);
             result.put(ConstantVariable.MONTH_DATA_LIST,months);
@@ -226,8 +224,14 @@ public class TrendFrag extends Fragment {
 
         @Override
         protected void onPostExecute(Map<String,List> result) {
-            super.onPostExecute(result);//UI绘制
-            //生成趋势报表
+            super.onPostExecute(result);
+            if(result == null){
+                Toast toast = Toast.makeText(getContext(),
+                        ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
+            //UI绘制
             List<TrendData> listData = result.get(ConstantVariable.DATA_LIST);
             List<String> monthDataList = result.get(ConstantVariable.MONTH_DATA_LIST);
             String[] months = monthDataList.toArray(new String[0]);

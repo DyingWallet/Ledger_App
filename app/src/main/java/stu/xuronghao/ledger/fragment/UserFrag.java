@@ -54,38 +54,26 @@ public class UserFrag extends Fragment {
         ImageView storage = rootView.findViewById(R.id.img_UserFrag_Storage_BG);
 
 
-        storage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast toast = Toast.makeText(getContext(), ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
-                toast.show();
-            }
+        storage.setOnClickListener(v -> {
+            Toast toast = Toast.makeText(getContext(), ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
+            toast.show();
         });
 
-        shop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast toast = Toast.makeText(getContext(), ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
-                toast.show();
-            }
+        shop.setOnClickListener(v -> {
+            Toast toast = Toast.makeText(getContext(), ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
+            toast.show();
         });
 
-        feedback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FeedbackPage.class);
-                intent.putExtra(ConstantVariable.USER, user);
-                startActivity(intent);
-            }
+        feedback.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), FeedbackPage.class);
+            intent.putExtra(ConstantVariable.USER, user);
+            startActivity(intent);
         });
 
-        anno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AnnoPage.class);
-                intent.putExtra(ConstantVariable.USER, user);
-                startActivity(intent);
-            }
+        anno.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AnnoPage.class);
+            intent.putExtra(ConstantVariable.USER, user);
+            startActivity(intent);
         });
     }
 }

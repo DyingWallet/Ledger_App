@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -59,28 +58,20 @@ public class FeedbackPage extends AppCompatActivity {
             }
         });
 
-        push.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getInputInfo()) {
-                    if (dataPuller.handOverFb(feedback)) {
-                        Toast toast = Toast.makeText(context, ConstantVariable.INFO_RECEIVED, Toast.LENGTH_SHORT);
-                        toast.show();
-                        finish();
-                    } else {
-                        Toast toast = Toast.makeText(context,
-                                ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
-                        toast.show();
-                    }
+        push.setOnClickListener(v -> {
+            if (getInputInfo()) {
+                if (dataPuller.handOverFb(feedback)) {
+                    Toast toast = Toast.makeText(context, ConstantVariable.INFO_RECEIVED, Toast.LENGTH_SHORT);
+                    toast.show();
+                    finish();
+                } else {
+                    Toast toast = Toast.makeText(context,
+                            ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
+                    toast.show();
                 }
             }
         });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        cancel.setOnClickListener(v -> finish());
     }
 
     private boolean getInputInfo() {
