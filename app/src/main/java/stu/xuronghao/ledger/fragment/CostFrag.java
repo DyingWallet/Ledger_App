@@ -142,25 +142,25 @@ public class CostFrag extends Fragment {
         protected void onPostExecute(List<HashMap<String, String>> mapArrayList) {
             super.onPostExecute(mapArrayList);
 
-            if(mapArrayList == null){
+            if(mapArrayList != null){
+                //用HashMap将数据传入ListView适配器
+                BillDataAdapter adapter = new BillDataAdapter(activity, ConstantVariable.COST_CODE, mapArrayList);
+
+                //应用适配器并更新ListView
+                listView.setAdapter(adapter);
+
+                listView.setOnItemClickListener((parent, view, position, id) -> {
+                    Intent intent = new Intent(getActivity(), DetailPage.class);
+                    intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
+                    intent.putExtra("cost", costList.get(position));
+                    startActivity(intent);
+                });
+
+            }else {
                 Toast toast = Toast.makeText(getContext(),
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                 toast.show();
-                return;
             }
-
-            //用HashMap将数据传入ListView适配器
-            BillDataAdapter adapter = new BillDataAdapter(activity,ConstantVariable.COST_CODE , mapArrayList);
-
-            //应用适配器并更新ListView
-            listView.setAdapter(adapter);
-
-            listView.setOnItemClickListener((parent, view, position, id) -> {
-                Intent intent = new Intent(getActivity(), DetailPage.class);
-                intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
-                intent.putExtra("cost", costList.get(position));
-                startActivity(intent);
-            });
             indicatorView.hide();
         }
 

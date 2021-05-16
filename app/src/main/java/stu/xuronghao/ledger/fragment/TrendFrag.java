@@ -225,52 +225,52 @@ public class TrendFrag extends Fragment {
         @Override
         protected void onPostExecute(Map<String,List> result) {
             super.onPostExecute(result);
-            if(result == null){
+            if (result != null) {//UI绘制
+                List<TrendData> listData = result.get(ConstantVariable.DATA_LIST);
+                List<String> monthDataList = result.get(ConstantVariable.MONTH_DATA_LIST);
+                String[] months = monthDataList.toArray(new String[0]);
+                AAChartModel trendModel = new AAChartModel()
+                        .chartType(AAChartType.Line)
+                        .title("年度走势")
+                        .backgroundColor("#FFFFFF")
+                        .dataLabelsEnabled(false)
+                        .yAxisGridLineWidth(0f)
+                        .markerRadius(2f)
+                        .animationDuration(1000);
+                trendModel.yAxisTitle = "金额";
+                trendModel.categories(months);
+                trendModel.series(new AASeriesElement[]{
+                        new AASeriesElement().name("收入").data(monthlyIncome).color("#2BA951"),
+                        new AASeriesElement().name("支出").data(monthlyCost).color("#D33428"),
+                        new AASeriesElement().name("结余").data(monthlySurplus).color("#2BB1EA")
+                });
+                //绘制线条
+                trendView.aa_drawChartWithChartModel(trendModel);
+
+                //设置年度信息
+                if (yearlyData.getSurplus() > 0) {
+                    txvTotalSurplus.setTextColor(txvTotalSurplus.getResources().getColor(R.color.possurplus));
+                } else {
+                    txvTotalSurplus.setTextColor(txvTotalSurplus.getResources().getColor(R.color.negsurplus));
+                }
+                String yearTitle = destinationYear + "年";
+                String totalIncome = yearlyData.getIncome() + "元";
+                String totalCost = yearlyData.getCost() + "元";
+                String surplus = yearlyData.getSurplus() + "元";
+                txvYearTit.setText(yearTitle);
+                txvTotalIncome.setText(totalIncome);
+                txvTotalCost.setText(totalCost);
+                txvTotalSurplus.setText(surplus);
+
+                //生成下方列表
+                TrendDataAdapter adapter = new TrendDataAdapter(getContext(), listData);
+                listView.setAdapter(adapter);
+            } else {
                 Toast toast = Toast.makeText(getContext(),
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                 toast.show();
-                return;
-            }
-            //UI绘制
-            List<TrendData> listData = result.get(ConstantVariable.DATA_LIST);
-            List<String> monthDataList = result.get(ConstantVariable.MONTH_DATA_LIST);
-            String[] months = monthDataList.toArray(new String[0]);
-            AAChartModel trendModel = new AAChartModel()
-                    .chartType(AAChartType.Line)
-                    .title("年度走势")
-                    .backgroundColor("#FFFFFF")
-                    .dataLabelsEnabled(false)
-                    .yAxisGridLineWidth(0f)
-                    .markerRadius(2f)
-                    .animationDuration(1000);
-            trendModel.yAxisTitle = "金额";
-            trendModel.categories(months);
-            trendModel.series(new AASeriesElement[]{
-                    new AASeriesElement().name("收入").data(monthlyIncome).color("#2BA951"),
-                    new AASeriesElement().name("支出").data(monthlyCost).color("#D33428"),
-                    new AASeriesElement().name("结余").data(monthlySurplus).color("#2BB1EA")
-            });
-            //绘制线条
-            trendView.aa_drawChartWithChartModel(trendModel);
 
-            //设置年度信息
-            if (yearlyData.getSurplus() > 0) {
-                txvTotalSurplus.setTextColor(txvTotalSurplus.getResources().getColor(R.color.possurplus));
-            } else {
-                txvTotalSurplus.setTextColor(txvTotalSurplus.getResources().getColor(R.color.negsurplus));
             }
-            String yearTitle = destinationYear + "年";
-            String totalIncome = yearlyData.getIncome() + "元";
-            String totalCost = yearlyData.getCost() + "元";
-            String surplus = yearlyData.getSurplus() + "元";
-            txvYearTit.setText(yearTitle);
-            txvTotalIncome.setText(totalIncome);
-            txvTotalCost.setText(totalCost);
-            txvTotalSurplus.setText(surplus);
-
-            //生成下方列表
-            TrendDataAdapter adapter = new TrendDataAdapter(getContext(), listData);
-            listView.setAdapter(adapter);
             indicatorView.hide();
         }
 

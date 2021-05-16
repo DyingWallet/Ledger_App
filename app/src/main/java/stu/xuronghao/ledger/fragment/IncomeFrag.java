@@ -108,7 +108,7 @@ public class IncomeFrag extends Fragment {
         });
     }
 
-    private class AsyncIncomePuller extends AsyncTask<Void,Void,List<HashMap<String, String>>> {
+    private class AsyncIncomePuller extends AsyncTask<Void, Void, List<HashMap<String, String>>> {
 
         @Override
         protected void onPreExecute() {
@@ -133,7 +133,7 @@ public class IncomeFrag extends Fragment {
                 String title = temp.getIncEvent() + ": " + temp.getIncType() + " " + temp.getIncAmount() + "元";
                 HashMap<String, String> map = new HashMap<>();
                 map.put(ConstantVariable.ITEM_TITLE, title);
-                map.put(ConstantVariable.ITEM_TYPE,temp.getIncType());
+                map.put(ConstantVariable.ITEM_TYPE, temp.getIncType());
                 map.put(ConstantVariable.ITEM_CONTENT, temp.getIncDate());
                 mapArrayList.add(map);
             }
@@ -143,25 +143,23 @@ public class IncomeFrag extends Fragment {
         @Override
         protected void onPostExecute(List<HashMap<String, String>> mapArrayList) {
             super.onPostExecute(mapArrayList);
-            if(mapArrayList == null){
+            if (mapArrayList != null) {//用HashMap将数据传入ListView适配器
+                BillDataAdapter adapter = new BillDataAdapter(activity, ConstantVariable.INCOME_CODE, mapArrayList);
+
+                //应用适配器并更新ListView
+                listView.setAdapter(adapter);
+
+                listView.setOnItemClickListener((parent, view, position, id) -> {
+                    Intent intent = new Intent(getActivity(), DetailPage.class);
+                    intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
+                    intent.putExtra(ConstantVariable.INCOME_TYPE, incList.get(position));
+                    startActivity(intent);
+                });
+            } else {
                 Toast toast = Toast.makeText(getContext(),
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                 toast.show();
-                return;
             }
-
-            //用HashMap将数据传入ListView适配器
-            BillDataAdapter adapter = new BillDataAdapter(activity,ConstantVariable.INCOME_CODE , mapArrayList);
-
-            //应用适配器并更新ListView
-            listView.setAdapter(adapter);
-
-            listView.setOnItemClickListener((parent, view, position, id) -> {
-                Intent intent = new Intent(getActivity(), DetailPage.class);
-                intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
-                intent.putExtra(ConstantVariable.INCOME_TYPE, incList.get(position));
-                startActivity(intent);
-            });
             indicatorView.hide();
         }
 

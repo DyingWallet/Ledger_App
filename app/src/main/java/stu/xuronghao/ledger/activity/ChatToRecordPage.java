@@ -42,6 +42,7 @@ public class ChatToRecordPage extends AppCompatActivity {
     private Context context;
     private String selected;
     private View view;
+    private EditText etxEvent;
     private AVLoadingIndicatorView indicatorView;
     private String event;
     private String money;
@@ -72,9 +73,9 @@ public class ChatToRecordPage extends AppCompatActivity {
         TextView txvType = view.findViewById(R.id.txv_Chat_Dialog_Type);
         TextView txvRemark = view.findViewById(R.id.txv_Chat_Dialog_Remark);
         Spinner spinner = view.findViewById(R.id.sp_Chat_Type);
-        EditText text = view.findViewById(R.id.etx_Chat_Dialog_Event);
+        etxEvent = view.findViewById(R.id.etx_Chat_Dialog_Event);
 
-        text.setText(mode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST : ConstantVariable.TEXT_INCOME);
+        etxEvent.setText(mode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST : ConstantVariable.TEXT_INCOME);
         txvEvent.setText(mode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_EVENT : ConstantVariable.TEXT_INCOME_EVENT);
         txvAmount.setText(mode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_AMOUNT : ConstantVariable.TEXT_INCOME_AMOUNT);
         txvType.setText(mode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_TYPE : ConstantVariable.TEXT_INCOME_TYPE);
@@ -101,7 +102,6 @@ public class ChatToRecordPage extends AppCompatActivity {
         //向服务器推送信息
         add.setOnClickListener(v -> {
             //获取输入对象
-            EditText etxEvent = view.findViewById(R.id.etx_Chat_Dialog_Event);
             EditText etxMoney = view.findViewById(R.id.etx_Chat_Dialog_Amount);
             EditText etxRemark = view.findViewById(R.id.etx_Chat_Dialog_Remark);
 
@@ -146,15 +146,15 @@ public class ChatToRecordPage extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<ChatInfo> chatInfos) {
             super.onPostExecute(chatInfos);
-            if(chatInfos == null){
+            if (chatInfos != null) {
+                adapter = new ChatListAdapter(context, infoList);
+                listView.setAdapter(adapter);
+            } else {
                 Toast toast = Toast.makeText(context,
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
                 toast.show();
-                indicatorView.hide();
-                return;
             }
-            adapter = new ChatListAdapter(context, infoList);
-            listView.setAdapter(adapter);
+            indicatorView.hide();
         }
 
         @Override
@@ -197,14 +197,15 @@ public class ChatToRecordPage extends AppCompatActivity {
         @Override
         protected void onPostExecute(ChatInfo chatInfo) {
             super.onPostExecute(chatInfo);
-            if(chatInfo == null){
+            if(chatInfo != null){
+                infoList.add(chatInfo);
+                adapter.notifyDataSetChanged();
+            }else {
                 Toast toast = Toast.makeText(context,
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
                 toast.show();
             }
             indicatorView.hide();
-            infoList.add(chatInfo);
-            adapter.notifyDataSetChanged();
         }
 
         @Override

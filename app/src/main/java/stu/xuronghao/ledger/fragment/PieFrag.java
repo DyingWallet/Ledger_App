@@ -82,34 +82,6 @@ public class PieFrag extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
-        ////图标控件
-        //ImageView imgSwitch = rootView.findViewById(R.id.pie_click_switch);
-        //arrowLeft = rootView.findViewById(R.id.arrow_Pie_LastMonth);
-        //arrowRight = rootView.findViewById(R.id.arrow_Pie_NextMonth);
-        //indicatorView = rootView.findViewById(R.id.avi_pie);
-        //txvStartDate = rootView.findViewById(R.id.txv_Pie_StartDate);
-        //txvEndDate = rootView.findViewById(R.id.txv_Pie_EndDate);
-        //txvNoRecord = rootView.findViewById(R.id.pie_no_record_notice);
-        //pieView = rootView.findViewById(R.id.pie_chart);
-        //listView = rootView.findViewById(R.id.lv_Pie_DivideByTypes);
-        ////获取当前月份
-        //currentMonth = DateHandler.getCurrentMonth();
-        //destinationMonth = currentMonth;
-        ////设置日期范围
-        //setDateRange();
-        ////设置日期转换器
-        //setDateChanger();
-        ////设置模式转换监听器
-        //imgSwitch.setOnClickListener(v -> {
-        //    if (ConstantVariable.COST_CODE != mode) {
-        //        mode = ConstantVariable.COST_CODE;
-        //    } else {
-        //        mode = ConstantVariable.INCOME_CODE;
-        //    }
-        //    asyncPiePuller = new AsyncPiePuller();
-        //    asyncPiePuller.execute();
-        //});
     }
 
     @Override
@@ -170,7 +142,7 @@ public class PieFrag extends Fragment {
                 asyncPiePuller = new AsyncPiePuller();
                 asyncPiePuller.execute();
             } else {
-                Toast toast = Toast.makeText(getContext(), "果然不能预知未来呢~~~", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getContext(), ConstantVariable.HINT_DATE_TO_FUTURE, Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
@@ -240,47 +212,48 @@ public class PieFrag extends Fragment {
         @Override
         protected void onPostExecute(Map<String, List> result) {
             super.onPostExecute(result);
-            if(result == null){
+            if (result != null) {
+                List<TotalFee> feeList = result.get(ConstantVariable.FEE_LIST);
+                List<Object[]> dataList = result.get(ConstantVariable.DATA_LIST);
+                if (feeList.isEmpty()) {
+                    txvNoRecord.setVisibility(View.VISIBLE);
+                }
+                String totalStr = ConstantVariable.COST_CODE == mode ? "总消费:" + total : "总收入:" + total;
+
+                Object[] data = dataList.stream().filter(Objects::nonNull).toArray();
+
+                new FeeSortUtil().sortByAmount(feeList);
+
+                AAChartModel pieModel = new AAChartModel()
+                        .chartType(AAChartType.Pie)
+                        .title(totalStr)
+                        .backgroundColor("#FFFFFF")
+                        .dataLabelsEnabled(true)
+                        .yAxisTitle("111")
+                        .colorsTheme(ColorsHandler.getColorStr(data.length))
+                        .animationDuration(1000)
+                        .series(new AASeriesElement[]{
+                                new AASeriesElement()
+                                        .size("100%")
+                                        .innerSize("50%")
+                                        .borderWidth(3f)
+                                        .allowPointSelect(false)
+                                        .data(data)
+                        });
+
+                pieView.aa_drawChartWithChartModel(pieModel);
+                //设置日期
+                txvStartDate.setText(startDate.split(ConstantVariable.TIME_REGEX)[0]);
+                txvEndDate.setText(endDate.split(ConstantVariable.TIME_REGEX)[0]);
+                //适配器
+                PieDataAdapter adapter = new PieDataAdapter(getContext(), feeList);
+                listView.setAdapter(adapter);
+            } else {
                 Toast toast = Toast.makeText(getContext(),
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                 toast.show();
-                return;
+
             }
-            List<TotalFee> feeList = result.get(ConstantVariable.FEE_LIST);
-            List<Object[]> dataList = result.get(ConstantVariable.DATA_LIST);
-            if (feeList.isEmpty()) {
-                txvNoRecord.setVisibility(View.VISIBLE);
-            }
-            String totalStr = ConstantVariable.COST_CODE == mode ? "总消费:" + total : "总收入:" + total;
-
-            Object[] data = dataList.stream().filter(Objects::nonNull).toArray();
-
-            new FeeSortUtil().sortByAmount(feeList);
-
-            AAChartModel pieModel = new AAChartModel()
-                    .chartType(AAChartType.Pie)
-                    .title(totalStr)
-                    .backgroundColor("#FFFFFF")
-                    .dataLabelsEnabled(true)
-                    .series(new AASeriesElement[]{
-                            new AASeriesElement()
-                                    .size("100%")
-                                    .innerSize("50%")
-                                    .borderWidth(3f)
-                                    .allowPointSelect(false)
-                                    .data(data)
-                    })
-                    .yAxisTitle("111")
-                    .colorsTheme(ColorsHandler.getColorStr(data.length))
-                    .animationDuration(1000);
-
-            pieView.aa_drawChartWithChartModel(pieModel);
-            //设置日期
-            txvStartDate.setText(startDate.split(ConstantVariable.TIME_REGEX)[0]);
-            txvEndDate.setText(endDate.split(ConstantVariable.TIME_REGEX)[0]);
-            //适配器
-            PieDataAdapter adapter = new PieDataAdapter(getContext(), feeList);
-            listView.setAdapter(adapter);
             indicatorView.hide();
         }
 
