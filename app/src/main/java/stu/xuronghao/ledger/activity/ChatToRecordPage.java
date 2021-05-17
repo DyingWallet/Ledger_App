@@ -41,15 +41,12 @@ public class ChatToRecordPage extends AppCompatActivity {
     private ChatInfo userInfo;
     private Context context;
     private String selected;
-    private View view;
-    private EditText etxEvent;
     private AVLoadingIndicatorView indicatorView;
     private String event;
     private String money;
     private String remark;
     private String dateStr;
     private AsyncChatTask asyncChatTask;
-    private AsyncPullHistoryTask asyncPullHistoryTask;
 
     private final DataPuller dataPuller = new DataPuller();
 
@@ -59,13 +56,21 @@ public class ChatToRecordPage extends AppCompatActivity {
         setContentView(R.layout.activity_chat_to_record_page);
         user = (User) getIntent().getSerializableExtra(ConstantVariable.USER);
         context = this;
-        asyncPullHistoryTask = new AsyncPullHistoryTask();
+        listView = findViewById(R.id.lv_chat);
+        indicatorView = findViewById(R.id.avi_chat);
+        ImageView cancel = findViewById(R.id.img_chat_page_cancel);
+        cancel.setOnClickListener(v -> finish());
+        Button costBtn = findViewById(R.id.btn_Cost_Dialog);
+        costBtn.setOnClickListener(v -> showPusherDialog(ConstantVariable.COST_CODE));
+        Button incomeBtn = findViewById(R.id.btn_Income_Dialog);
+        incomeBtn.setOnClickListener(v -> showPusherDialog(ConstantVariable.INCOME_CODE));
+        AsyncPullHistoryTask asyncPullHistoryTask = new AsyncPullHistoryTask();
         asyncPullHistoryTask.execute();
     }
 
     private void showPusherDialog(int mode) {
+        View view = LayoutInflater.from(context).inflate(R.layout.chat_dialog, null, false);
         final AlertDialog dialog = new AlertDialog.Builder(this).setView(view).create();
-        view = LayoutInflater.from(this).inflate(R.layout.chat_dialog, null, false);
         Button cancel = view.findViewById(R.id.btn_Chat_Dialog_Cancel);
         Button add = view.findViewById(R.id.btn_Chat_Dialog_Push);
         TextView txvEvent = view.findViewById(R.id.txv_Chat_Dialog_Event);
@@ -73,7 +78,7 @@ public class ChatToRecordPage extends AppCompatActivity {
         TextView txvType = view.findViewById(R.id.txv_Chat_Dialog_Type);
         TextView txvRemark = view.findViewById(R.id.txv_Chat_Dialog_Remark);
         Spinner spinner = view.findViewById(R.id.sp_Chat_Type);
-        etxEvent = view.findViewById(R.id.etx_Chat_Dialog_Event);
+        EditText etxEvent = view.findViewById(R.id.etx_Chat_Dialog_Event);
 
         etxEvent.setText(mode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST : ConstantVariable.TEXT_INCOME);
         txvEvent.setText(mode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_EVENT : ConstantVariable.TEXT_INCOME_EVENT);
@@ -113,7 +118,7 @@ public class ChatToRecordPage extends AppCompatActivity {
             if (Validator.checkBillInfoInput(event, money, context)) {
                 dialog.dismiss();
                 asyncChatTask = new AsyncChatTask();
-                asyncChatTask.execute();
+                asyncChatTask.execute(mode);
             }
         });
 
@@ -121,19 +126,10 @@ public class ChatToRecordPage extends AppCompatActivity {
         dialog.show();
     }
 
-    private class AsyncPullHistoryTask extends AsyncTask<Void,Void,List<ChatInfo>>{
+    private class AsyncPullHistoryTask extends AsyncTask<Void, Void, List<ChatInfo>> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            listView = findViewById(R.id.lv_chat);
-            indicatorView = findViewById(R.id.avi_chat);
-            //返回
-            ImageView cancel = findViewById(R.id.img_chat_page_cancel);
-            cancel.setOnClickListener(v -> finish());
-            Button costBtn = findViewById(R.id.btn_Cost_Dialog);
-            costBtn.setOnClickListener(v -> showPusherDialog(ConstantVariable.COST_CODE));
-            Button incomeBtn = findViewById(R.id.btn_Income_Dialog);
-            incomeBtn.setOnClickListener(v -> showPusherDialog(ConstantVariable.INCOME_CODE));
             indicatorView.show();
         }
 
@@ -188,22 +184,25 @@ public class ChatToRecordPage extends AppCompatActivity {
                         dateStr, remark, user.getUserNo());
                 npcInfo = dataPuller.requestIncomeChat(income, userInfo);
             }
-            if (npcInfo == null) {
-                return null;
-            }
             return npcInfo;
         }
 
         @Override
         protected void onPostExecute(ChatInfo chatInfo) {
             super.onPostExecute(chatInfo);
-            if(chatInfo != null){
+            if (chatInfo != null) {
                 infoList.add(chatInfo);
                 adapter.notifyDataSetChanged();
-            }else {
+            } else {
                 Toast toast = Toast.makeText(context,
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
                 toast.show();
+            }
+            try {
+                Thread.sleep(500L);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                e.printStackTrace();
             }
             indicatorView.hide();
         }

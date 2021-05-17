@@ -1,5 +1,6 @@
 package stu.xuronghao.ledger.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +24,10 @@ import stu.xuronghao.ledger.handler.DateHandler;
 import stu.xuronghao.ledger.handler.Validator;
 
 public class PushIncomeFrag extends Fragment {
-    private View rootView;
-    private String selected;
     private User user;
+    private View rootView;
+    private Context context;
+    private String selected;
     private final DataPuller dataPuller = new DataPuller();
 
     public PushIncomeFrag() {
@@ -35,6 +37,7 @@ public class PushIncomeFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getContext();
     }
 
     @Override
@@ -56,7 +59,7 @@ public class PushIncomeFrag extends Fragment {
 
         Spinner spinner = rootView.findViewById(R.id.sp_IncomeType);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item_sel, ConstantVariable.getTypeArray(ConstantVariable.INCOME_TYPE));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.spinner_item_sel, ConstantVariable.getTypeArray(ConstantVariable.INCOME_TYPE));
 
         adapter.setDropDownViewResource(R.layout.spinner_item_drop);
 
@@ -76,11 +79,11 @@ public class PushIncomeFrag extends Fragment {
 
         pushIncome.setOnClickListener(v -> {
             if (push()) {
-                Toast toast = Toast.makeText(getContext(), ConstantVariable.INFO_OPERATE_SUCCESS, Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(context, ConstantVariable.INFO_OPERATE_SUCCESS, Toast.LENGTH_SHORT);
                 toast.show();
                 getActivity().finish();
             } else {
-                Toast toast = Toast.makeText(getContext(),
+                Toast toast = Toast.makeText(context,
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                 toast.show();
             }

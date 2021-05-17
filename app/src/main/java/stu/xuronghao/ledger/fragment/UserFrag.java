@@ -1,5 +1,6 @@
 package stu.xuronghao.ledger.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ public class UserFrag extends Fragment {
     // 参数设置
     private User user;
     private View rootView;
+    private Context context;
 
     public UserFrag() {
         // Required empty public constructor
@@ -31,6 +33,7 @@ public class UserFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getContext();
     }
 
     @Override
@@ -55,12 +58,12 @@ public class UserFrag extends Fragment {
 
 
         storage.setOnClickListener(v -> {
-            Toast toast = Toast.makeText(getContext(), ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(context, ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
             toast.show();
         });
 
         shop.setOnClickListener(v -> {
-            Toast toast = Toast.makeText(getContext(), ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(context, ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
             toast.show();
         });
 

@@ -1,5 +1,6 @@
 package stu.xuronghao.ledger.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,9 +25,10 @@ import stu.xuronghao.ledger.handler.DateHandler;
 import stu.xuronghao.ledger.handler.Validator;
 
 public class PushCostFrag extends Fragment {
-    private View rootView;
-    private String selected;
     private User user;
+    private View rootView;
+    private Context context;
+    private String selected;
     private DataPuller dataPuller = new DataPuller();
 
     public PushCostFrag() {
@@ -36,8 +38,7 @@ public class PushCostFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //        if (getArguments() != null) {
-        //        }
+        context = getContext();
     }
 
     @Override
@@ -61,7 +62,7 @@ public class PushCostFrag extends Fragment {
 
         Spinner spinner = rootView.findViewById(R.id.sp_CostType);
         //进行数据填充
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item_sel, ConstantVariable.getTypeArray(ConstantVariable.COST_TYPE));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.spinner_item_sel, ConstantVariable.getTypeArray(ConstantVariable.COST_TYPE));
         //自定义下拉样式
         adapter.setDropDownViewResource(R.layout.spinner_item_drop);
 
@@ -81,11 +82,11 @@ public class PushCostFrag extends Fragment {
 
         pushCost.setOnClickListener(v -> {
             if (push()) {
-                Toast toast = Toast.makeText(getContext(), ConstantVariable.INFO_OPERATE_SUCCESS, Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(context, ConstantVariable.INFO_OPERATE_SUCCESS, Toast.LENGTH_SHORT);
                 toast.show();
                 getActivity().finish();
             } else {
-                Toast toast = Toast.makeText(getContext(),
+                Toast toast = Toast.makeText(context,
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                 toast.show();
             }

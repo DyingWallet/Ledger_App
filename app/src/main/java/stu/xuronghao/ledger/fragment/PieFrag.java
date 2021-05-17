@@ -1,5 +1,6 @@
 package stu.xuronghao.ledger.fragment;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -41,9 +42,9 @@ import stu.xuronghao.ledger.handler.IconHandler;
 public class PieFrag extends Fragment {
     //模式标记
     private static int mode = ConstantVariable.COST_CODE;
-
     private User user;
     private View rootView;
+    private Context context;
     private int currentMonth;
     private int destinationMonth;
     private String startDate;
@@ -69,6 +70,7 @@ public class PieFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getContext();
     }
 
     @Override
@@ -142,7 +144,7 @@ public class PieFrag extends Fragment {
                 asyncPiePuller = new AsyncPiePuller();
                 asyncPiePuller.execute();
             } else {
-                Toast toast = Toast.makeText(getContext(), ConstantVariable.HINT_DATE_TO_FUTURE, Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(context, ConstantVariable.HINT_DATE_TO_FUTURE, Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
@@ -246,10 +248,10 @@ public class PieFrag extends Fragment {
                 txvStartDate.setText(startDate.split(ConstantVariable.TIME_REGEX)[0]);
                 txvEndDate.setText(endDate.split(ConstantVariable.TIME_REGEX)[0]);
                 //适配器
-                PieDataAdapter adapter = new PieDataAdapter(getContext(), feeList);
+                PieDataAdapter adapter = new PieDataAdapter(context, feeList);
                 listView.setAdapter(adapter);
             } else {
-                Toast toast = Toast.makeText(getContext(),
+                Toast toast = Toast.makeText(context,
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                 toast.show();
 

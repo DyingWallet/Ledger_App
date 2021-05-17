@@ -1,5 +1,6 @@
 package stu.xuronghao.ledger.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ public class IncomeFrag extends Fragment {
     private FragmentActivity activity;
     private View rootView;
     private User user;
+    private Context context;
     private List<Income> incList;
     private ListView listView;
     private AVLoadingIndicatorView indicatorView;
@@ -49,6 +51,7 @@ public class IncomeFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getContext();
     }
 
     @Override
@@ -103,7 +106,7 @@ public class IncomeFrag extends Fragment {
             //更新事件
             listPuller = new AsyncIncomePuller();
             listPuller.execute();
-            Toast toast = Toast.makeText(getContext(), "已更新收入数据！", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(context, "已更新收入数据！", Toast.LENGTH_SHORT);
             toast.show();
         });
     }
@@ -156,7 +159,7 @@ public class IncomeFrag extends Fragment {
                     startActivity(intent);
                 });
             } else {
-                Toast toast = Toast.makeText(getContext(),
+                Toast toast = Toast.makeText(context,
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                 toast.show();
             }

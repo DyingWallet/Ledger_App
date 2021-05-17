@@ -1,5 +1,6 @@
 package stu.xuronghao.ledger.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -34,8 +35,9 @@ import stu.xuronghao.ledger.handler.DataPuller;
 
 public class CostFrag extends Fragment {
     private FragmentActivity activity;
-    private View rootView;
     private User user;
+    private View rootView;
+    private Context context;
     private List<Cost> costList;
     private ListView listView;
     private AVLoadingIndicatorView indicatorView;
@@ -48,6 +50,7 @@ public class CostFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getContext();
     }
 
     @Override
@@ -104,7 +107,7 @@ public class CostFrag extends Fragment {
             //更新事件
             listPuller = new AsyncCostPuller();
             listPuller.execute();
-            Toast toast = Toast.makeText(getContext(), "收到服务器君发送的消费数据！", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(context, "收到服务器君发送的消费数据！", Toast.LENGTH_SHORT);
             toast.show();
         });
     }
@@ -157,7 +160,7 @@ public class CostFrag extends Fragment {
                 });
 
             }else {
-                Toast toast = Toast.makeText(getContext(),
+                Toast toast = Toast.makeText(context,
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                 toast.show();
             }

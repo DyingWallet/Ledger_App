@@ -1,5 +1,6 @@
 package stu.xuronghao.ledger.fragment;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -38,6 +39,7 @@ import stu.xuronghao.ledger.handler.DateHandler;
 public class TrendFrag extends Fragment {
     private User user;
     private View rootView;
+    private Context context;
     private int currentYear;
     private int destinationYear;
     private String startDate;
@@ -65,6 +67,7 @@ public class TrendFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getContext();
     }
 
     @Override
@@ -131,7 +134,7 @@ public class TrendFrag extends Fragment {
                 asyncTrendPuller = new AsyncTrendPuller();
                 asyncTrendPuller.execute();
             } else {
-                Toast toast = Toast.makeText(getContext(),
+                Toast toast = Toast.makeText(context,
                         ConstantVariable.HINT_DATE_TO_FUTURE, Toast.LENGTH_SHORT);
                 toast.show();
             }
@@ -263,10 +266,10 @@ public class TrendFrag extends Fragment {
                 txvTotalSurplus.setText(surplus);
 
                 //生成下方列表
-                TrendDataAdapter adapter = new TrendDataAdapter(getContext(), listData);
+                TrendDataAdapter adapter = new TrendDataAdapter(context, listData);
                 listView.setAdapter(adapter);
             } else {
-                Toast toast = Toast.makeText(getContext(),
+                Toast toast = Toast.makeText(context,
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                 toast.show();
 
