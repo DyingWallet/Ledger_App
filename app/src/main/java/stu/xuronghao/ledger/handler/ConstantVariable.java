@@ -161,15 +161,13 @@ public class ConstantVariable {
     }
 
     private static final Map<String, Integer> COST_OR_INCOME_MAP;
-
     static {
         COST_OR_INCOME_MAP = new HashMap<>();
         //花销关键词
         COST_OR_INCOME_MAP.put("用了", COST_CODE);
         COST_OR_INCOME_MAP.put("买", COST_CODE);
-        COST_OR_INCOME_MAP.put("花费", COST_CODE);
         COST_OR_INCOME_MAP.put("支出", COST_CODE);
-        COST_OR_INCOME_MAP.put("花销", COST_CODE);
+        COST_OR_INCOME_MAP.put("花", COST_CODE);
         COST_OR_INCOME_MAP.put("订购", COST_CODE);
         COST_OR_INCOME_MAP.put("开支", COST_CODE);
         COST_OR_INCOME_MAP.put("租", COST_CODE);
@@ -178,12 +176,15 @@ public class ConstantVariable {
         COST_OR_INCOME_MAP.put("交", COST_CODE);
         COST_OR_INCOME_MAP.put("支付", COST_CODE);
         COST_OR_INCOME_MAP.put("乘", COST_CODE);
+        COST_OR_INCOME_MAP.put("坐", COST_CODE);
         COST_OR_INCOME_MAP.put("购", COST_CODE);
         COST_OR_INCOME_MAP.put("吃", COST_CODE);
         COST_OR_INCOME_MAP.put("喝", COST_CODE);
         COST_OR_INCOME_MAP.put("发红包", COST_CODE);
         COST_OR_INCOME_MAP.put("借出", COST_CODE);
         COST_OR_INCOME_MAP.put("出借", COST_CODE);
+        COST_OR_INCOME_MAP.put("住院", COST_CODE);
+        COST_OR_INCOME_MAP.put("住宿", COST_CODE);
 
         //收入关键词
         COST_OR_INCOME_MAP.put("收款", INCOME_CODE);
@@ -193,6 +194,8 @@ public class ConstantVariable {
         COST_OR_INCOME_MAP.put("补贴", INCOME_CODE);
         COST_OR_INCOME_MAP.put("奖金", INCOME_CODE);
         COST_OR_INCOME_MAP.put("生活费", INCOME_CODE);
+        COST_OR_INCOME_MAP.put("卖", INCOME_CODE);
+
     }
 
     private static final Map<String, String> COST_MAP_TO_TYPE;

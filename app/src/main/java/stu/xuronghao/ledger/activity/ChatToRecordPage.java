@@ -166,7 +166,65 @@ public class ChatToRecordPage extends AppCompatActivity {
         dialog.show();
     }
 
-    private void showPusherDialog(String eventStr, String montyStr, String remarkStr, int typeIndex) {
+    private void initSpeech() {
+        RecognizerDialog mDialog = new RecognizerDialog(context, null);
+        mDialog.setParameter(SpeechConstant.LANGUAGE, ConstantVariable.LANGUAGE);
+        mDialog.setParameter(SpeechConstant.ACCENT, ConstantVariable.MANDARIN);
+        mDialog.setParameter(SpeechConstant.ASR_PTT,"1");
+
+        mDialog.setListener(new RecognizerDialogListener() {
+            @Override
+            public void onResult(RecognizerResult recognizerResult, boolean isLast) {
+                if (!isLast) {
+                    //获取分词list
+                    List<String> wordList = parseWordArray(recognizerResult.getResultString());
+                    String result = parseVoice(wordList);
+                    String tmp;
+                    int type = ConstantVariable.ERROR_CODE;
+                    int typeIndex = 4;
+                    String moneyStr = ConstantVariable.NULL_STR;
+                    String typeStr = ConstantVariable.NULL_STR;
+
+                    //获取金额
+                    if (result.contains("块")) tmp = result.replace("块", ".");
+                    else tmp = result;
+                    Pattern pattern = Pattern.compile(ConstantVariable.AMOUNT_REGEX);
+                    Matcher matcher = pattern.matcher(tmp);
+                    if (matcher.find()) {
+                        moneyStr = matcher.group();
+                    }
+                    //保证小数点后数据的正确
+                    moneyStr = StringChecker.CheckDoubleValue(moneyStr);
+                    //获取收支
+                    type = StringChecker.CostOrIncome(wordList);
+                    //获取收支类型
+                    typeStr = StringChecker.CostOrIncomeType(wordList, type);
+                    if (!Validator.checkVoiceParseResult(moneyStr, typeStr, type)) {
+                        //字符串解析失败，终止
+                        Toast toast = Toast.makeText(context,
+                                ConstantVariable.ERR_RESOLVE_VOICE_FAILED, Toast.LENGTH_SHORT);
+                        toast.show();
+                        return;
+                    }
+                    //页面跳转
+                    typeIndex = ConstantVariable.getTypeIndex(typeStr,typeCode);
+                    typeCode = type;
+                    showVoicePusherDialog(moneyStr, result, typeIndex);
+                }
+            }
+
+            @Override
+            public void onError(SpeechError speechError) {
+                Log.e(ConstantVariable.ERR_XUNFEI,speechError.getErrorCode() + speechError.getErrorDescription());
+            }
+        });
+        mDialog.show();
+        TextView recorderDialogTextView = (TextView) mDialog.getWindow().getDecorView().findViewWithTag("textlink");
+
+        recorderDialogTextView.setText(ConstantVariable.HINT_VOICE);
+    }
+
+    private void showVoicePusherDialog(String montyStr, String remarkStr, int typeIndex) {
         View view = LayoutInflater.from(context).inflate(R.layout.chat_dialog, null, false);
         final AlertDialog dialog = new AlertDialog.Builder(this).setView(view).create();
         Button cancel = view.findViewById(R.id.btn_Chat_Dialog_Cancel);
@@ -176,13 +234,21 @@ public class ChatToRecordPage extends AppCompatActivity {
         TextView txvType = view.findViewById(R.id.txv_Chat_Dialog_Type);
         TextView txvRemark = view.findViewById(R.id.txv_Chat_Dialog_Remark);
         Spinner spinner = view.findViewById(R.id.sp_Chat_Type);
+        //获取输入对象
+        EditText etxMoney = view.findViewById(R.id.etx_Chat_Dialog_Amount);
+        EditText etxRemark = view.findViewById(R.id.etx_Chat_Dialog_Remark);
         EditText etxEvent = view.findViewById(R.id.etx_Chat_Dialog_Event);
-        txvEvent.setText(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_EVENT : ConstantVariable.TEXT_INCOME_EVENT);
-        txvType.setText(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_TYPE : ConstantVariable.TEXT_INCOME_TYPE);
 
-        etxEvent.setText(eventStr);
-        txvAmount.setText(montyStr);
-        txvRemark.setText(remarkStr);
+        txvEvent.setText(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_EVENT : ConstantVariable.TEXT_INCOME_EVENT);
+        txvAmount.setText(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_AMOUNT : ConstantVariable.TEXT_INCOME_AMOUNT);
+        txvType.setText(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_TYPE : ConstantVariable.TEXT_INCOME_TYPE);
+        txvRemark.setText(ConstantVariable.TEXT_REMARK);
+
+        etxEvent.setText(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST : ConstantVariable.TEXT_INCOME);
+        //设置语音识别获取的结果值
+        etxMoney.setText(montyStr);
+        etxRemark.setText(remarkStr);
+
 
         ArrayAdapter<String> spAdapter = new ArrayAdapter<>(context, R.layout.spinner_item_sel,
                 ConstantVariable.getTypeArray(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.COST_TYPE : ConstantVariable.INCOME_TYPE));
@@ -205,10 +271,6 @@ public class ChatToRecordPage extends AppCompatActivity {
 
         //向服务器推送信息
         add.setOnClickListener(v -> {
-            //获取输入对象
-            EditText etxMoney = view.findViewById(R.id.etx_Chat_Dialog_Amount);
-            EditText etxRemark = view.findViewById(R.id.etx_Chat_Dialog_Remark);
-
             //数据提取
             event = etxEvent.getText().toString();
             money = etxMoney.getText().toString();
@@ -223,67 +285,6 @@ public class ChatToRecordPage extends AppCompatActivity {
 
         cancel.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
-    }
-
-    private void initSpeech() {
-        RecognizerDialog mDialog = new RecognizerDialog(context, null);
-        mDialog.setParameter(SpeechConstant.LANGUAGE, ConstantVariable.LANGUAGE);
-        mDialog.setParameter(SpeechConstant.ACCENT, ConstantVariable.MANDARIN);
-
-        mDialog.setListener(new RecognizerDialogListener() {
-            @Override
-            public void onResult(RecognizerResult recognizerResult, boolean isLast) {
-                if (!isLast) {
-                    //获取分词list
-                    List<String> wordList = parseWordArray(recognizerResult.getResultString());
-                    String result = parseVoice(wordList);
-                    String tmp;
-                    int type = ConstantVariable.ERROR_CODE;
-                    int typeIndex = 0;
-                    String eventStr = ConstantVariable.NULL_STR;
-                    String moneyStr = ConstantVariable.NULL_STR;
-                    String typeStr = ConstantVariable.NULL_STR;
-
-                    //获取金额
-                    if (result.contains("块")) tmp = result.replace("块", ".");
-                    else tmp = result;
-                    String regExAmount = ConstantVariable.AMOUNT_REGEX;
-                    Pattern pattern = Pattern.compile(regExAmount);
-                    Matcher matcher = pattern.matcher(tmp);
-                    if (matcher.find()) {
-                        moneyStr = matcher.group();
-                    }
-                    //保证小数点后数据的正确
-                    moneyStr = StringChecker.CheckDoubleValue(moneyStr);
-                    //获取收支事件
-                    eventStr = result.split(ConstantVariable.AMOUNT_REGEX)[0];
-                    //获取收支
-                    type = StringChecker.CostOrIncome(wordList);
-                    //获取收支类型
-                    typeStr = StringChecker.CostOrIncomeType(wordList, type);
-                    if (!Validator.checkVoiceParseResult(eventStr, moneyStr, typeStr, type)) {
-                        //字符串解析失败，终止
-                        Toast toast = Toast.makeText(context,
-                                ConstantVariable.ERR_RESOLVE_VOICE_FAILED, Toast.LENGTH_SHORT);
-                        toast.show();
-                        return;
-                    }
-                    //页面跳转
-                    typeIndex = ConstantVariable.getTypeIndex(typeStr,typeCode);
-                    typeCode = type;
-                    showPusherDialog(eventStr, moneyStr, result, typeIndex);
-                }
-            }
-
-            @Override
-            public void onError(SpeechError speechError) {
-                Log.e(ConstantVariable.ERR_XUNFEI,speechError.getErrorCode() + speechError.getErrorDescription());
-            }
-        });
-        mDialog.show();
-        TextView recorderDialogTextView = (TextView) mDialog.getWindow().getDecorView().findViewWithTag("textlink");
-
-        recorderDialogTextView.setText(ConstantVariable.HINT_VOICE);
     }
 
     private List<String> parseWordArray(String resultString){

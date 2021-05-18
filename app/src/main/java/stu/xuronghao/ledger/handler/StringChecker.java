@@ -44,11 +44,13 @@ public class StringChecker {
     }
 
     public static String CheckDoubleValue(String moneyStr) {
-        String[] strArr = moneyStr.split(ConstantVariable.DOT_REGEX, -1);
-        String last = strArr[strArr.length - 1];
         StringBuilder sb = new StringBuilder(moneyStr);
-        if (last.isEmpty()) {
-            sb.append(ConstantVariable.ZERO_STR);
+        if (moneyStr.contains(ConstantVariable.DOT_REGEX)) {
+            String[] strArr = moneyStr.split(ConstantVariable.DOT_REGEX, -1);
+            String last = strArr[strArr.length - 1];
+            if (last.isEmpty()) {
+                sb.append(ConstantVariable.ZERO_STR);
+            }
         }
         return sb.toString();
     }
