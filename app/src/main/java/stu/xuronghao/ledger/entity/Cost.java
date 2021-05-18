@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Cost implements Serializable {
     private String costNo;
     private String costEvent = "支出";
-    private String costType = "消费";
+    private String costType;
     private double costAmount;
     private String costDate;
     private String costRemark;

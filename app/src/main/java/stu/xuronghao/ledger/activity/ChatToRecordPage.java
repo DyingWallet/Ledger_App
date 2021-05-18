@@ -2,10 +2,14 @@ package stu.xuronghao.ledger.activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,9 +22,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.iflytek.cloud.RecognizerResult;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechError;
+import com.iflytek.cloud.SpeechUtility;
+import com.iflytek.cloud.ui.RecognizerDialog;
+import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.adapter.ChatListAdapter;
@@ -31,6 +47,7 @@ import stu.xuronghao.ledger.entity.User;
 import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 import stu.xuronghao.ledger.handler.DateHandler;
+import stu.xuronghao.ledger.handler.StringChecker;
 import stu.xuronghao.ledger.handler.Validator;
 
 public class ChatToRecordPage extends AppCompatActivity {
@@ -42,6 +59,7 @@ public class ChatToRecordPage extends AppCompatActivity {
     private Context context;
     private String selected;
     private AVLoadingIndicatorView indicatorView;
+    private int typeCode = ConstantVariable.COST_CODE;
     private String event;
     private String money;
     private String remark;
@@ -58,17 +76,40 @@ public class ChatToRecordPage extends AppCompatActivity {
         context = this;
         listView = findViewById(R.id.lv_chat);
         indicatorView = findViewById(R.id.avi_chat);
+        SpeechUtility.createUtility(context, SpeechConstant.APPID + ConstantVariable.APP_ID);
+
+        Button costBtn = findViewById(R.id.btn_Cost_Dialog);
+        Button incomeBtn = findViewById(R.id.btn_Income_Dialog);
+        costBtn.setOnClickListener(v -> {
+            typeCode = ConstantVariable.COST_CODE;
+            showPusherDialog();
+        });
+        incomeBtn.setOnClickListener(v -> {
+            typeCode = ConstantVariable.INCOME_CODE;
+            showPusherDialog();
+        });
+
         ImageView cancel = findViewById(R.id.img_chat_page_cancel);
         cancel.setOnClickListener(v -> finish());
-        Button costBtn = findViewById(R.id.btn_Cost_Dialog);
-        costBtn.setOnClickListener(v -> showPusherDialog(ConstantVariable.COST_CODE));
-        Button incomeBtn = findViewById(R.id.btn_Income_Dialog);
-        incomeBtn.setOnClickListener(v -> showPusherDialog(ConstantVariable.INCOME_CODE));
+        ImageView voiceBtn = findViewById(R.id.img_voice);
+        voiceBtn.setOnClickListener(v -> {
+            //申请权限
+            if (ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.RECORD_AUDIO) ==
+                    PackageManager.PERMISSION_GRANTED) {
+                // You can use the API that requires the permission.
+                initSpeech();
+            } else {
+                // You can directly ask for the permission.
+                // The registered ActivityResultCallback gets the result of this request.
+                requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, ConstantVariable.REQUEST_CODE);
+            }
+        });
         AsyncPullHistoryTask asyncPullHistoryTask = new AsyncPullHistoryTask();
         asyncPullHistoryTask.execute();
     }
 
-    private void showPusherDialog(int mode) {
+    private void showPusherDialog() {
         View view = LayoutInflater.from(context).inflate(R.layout.chat_dialog, null, false);
         final AlertDialog dialog = new AlertDialog.Builder(this).setView(view).create();
         Button cancel = view.findViewById(R.id.btn_Chat_Dialog_Cancel);
@@ -80,23 +121,22 @@ public class ChatToRecordPage extends AppCompatActivity {
         Spinner spinner = view.findViewById(R.id.sp_Chat_Type);
         EditText etxEvent = view.findViewById(R.id.etx_Chat_Dialog_Event);
 
-        etxEvent.setText(mode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST : ConstantVariable.TEXT_INCOME);
-        txvEvent.setText(mode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_EVENT : ConstantVariable.TEXT_INCOME_EVENT);
-        txvAmount.setText(mode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_AMOUNT : ConstantVariable.TEXT_INCOME_AMOUNT);
-        txvType.setText(mode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_TYPE : ConstantVariable.TEXT_INCOME_TYPE);
+        etxEvent.setText(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST : ConstantVariable.TEXT_INCOME);
+        txvEvent.setText(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_EVENT : ConstantVariable.TEXT_INCOME_EVENT);
+        txvAmount.setText(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_AMOUNT : ConstantVariable.TEXT_INCOME_AMOUNT);
+        txvType.setText(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_TYPE : ConstantVariable.TEXT_INCOME_TYPE);
         txvRemark.setText(ConstantVariable.TEXT_REMARK);
 
         ArrayAdapter<String> spAdapter = new ArrayAdapter<>(context, R.layout.spinner_item_sel,
-                ConstantVariable.getTypeArray(mode == ConstantVariable.COST_CODE ? ConstantVariable.COST_TYPE : ConstantVariable.INCOME_TYPE));
+                ConstantVariable.getTypeArray(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.COST_TYPE : ConstantVariable.INCOME_TYPE));
         spAdapter.setDropDownViewResource(R.layout.spinner_item_drop);
         spinner.setAdapter(spAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selected = ConstantVariable.getType(
-                        mode == ConstantVariable.COST_CODE ? ConstantVariable.COST_TYPE : ConstantVariable.INCOME_TYPE,
-                        position);
+                selected = ConstantVariable.getTypeByTypeStr(position,
+                        typeCode == ConstantVariable.COST_CODE ? ConstantVariable.COST_TYPE : ConstantVariable.INCOME_TYPE);
             }
 
             @Override
@@ -118,12 +158,152 @@ public class ChatToRecordPage extends AppCompatActivity {
             if (Validator.checkBillInfoInput(event, money, context)) {
                 dialog.dismiss();
                 asyncChatTask = new AsyncChatTask();
-                asyncChatTask.execute(mode);
+                asyncChatTask.execute();
             }
         });
 
         cancel.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
+    }
+
+    private void showPusherDialog(String eventStr, String montyStr, String remarkStr, int typeIndex) {
+        View view = LayoutInflater.from(context).inflate(R.layout.chat_dialog, null, false);
+        final AlertDialog dialog = new AlertDialog.Builder(this).setView(view).create();
+        Button cancel = view.findViewById(R.id.btn_Chat_Dialog_Cancel);
+        Button add = view.findViewById(R.id.btn_Chat_Dialog_Push);
+        TextView txvEvent = view.findViewById(R.id.txv_Chat_Dialog_Event);
+        TextView txvAmount = view.findViewById(R.id.txv_Chat_Dialog_Amount);
+        TextView txvType = view.findViewById(R.id.txv_Chat_Dialog_Type);
+        TextView txvRemark = view.findViewById(R.id.txv_Chat_Dialog_Remark);
+        Spinner spinner = view.findViewById(R.id.sp_Chat_Type);
+        EditText etxEvent = view.findViewById(R.id.etx_Chat_Dialog_Event);
+        txvEvent.setText(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_EVENT : ConstantVariable.TEXT_INCOME_EVENT);
+        txvType.setText(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.TEXT_COST_TYPE : ConstantVariable.TEXT_INCOME_TYPE);
+
+        etxEvent.setText(eventStr);
+        txvAmount.setText(montyStr);
+        txvRemark.setText(remarkStr);
+
+        ArrayAdapter<String> spAdapter = new ArrayAdapter<>(context, R.layout.spinner_item_sel,
+                ConstantVariable.getTypeArray(typeCode == ConstantVariable.COST_CODE ? ConstantVariable.COST_TYPE : ConstantVariable.INCOME_TYPE));
+        spAdapter.setDropDownViewResource(R.layout.spinner_item_drop);
+        spinner.setAdapter(spAdapter);
+
+        spinner.setSelection(typeIndex);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selected = ConstantVariable.getTypeByTypeStr(position,
+                        typeCode == ConstantVariable.COST_CODE ? ConstantVariable.COST_TYPE : ConstantVariable.INCOME_TYPE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        //向服务器推送信息
+        add.setOnClickListener(v -> {
+            //获取输入对象
+            EditText etxMoney = view.findViewById(R.id.etx_Chat_Dialog_Amount);
+            EditText etxRemark = view.findViewById(R.id.etx_Chat_Dialog_Remark);
+
+            //数据提取
+            event = etxEvent.getText().toString();
+            money = etxMoney.getText().toString();
+            remark = etxRemark.getText().toString();
+            dateStr = DateHandler.getCurrentDatetime();
+            if (Validator.checkBillInfoInput(event, money, context)) {
+                dialog.dismiss();
+                asyncChatTask = new AsyncChatTask();
+                asyncChatTask.execute();
+            }
+        });
+
+        cancel.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+    }
+
+    private void initSpeech() {
+        RecognizerDialog mDialog = new RecognizerDialog(context, null);
+        mDialog.setParameter(SpeechConstant.LANGUAGE, ConstantVariable.LANGUAGE);
+        mDialog.setParameter(SpeechConstant.ACCENT, ConstantVariable.MANDARIN);
+
+        mDialog.setListener(new RecognizerDialogListener() {
+            @Override
+            public void onResult(RecognizerResult recognizerResult, boolean isLast) {
+                if (!isLast) {
+                    //获取分词list
+                    List<String> wordList = parseWordArray(recognizerResult.getResultString());
+                    String result = parseVoice(wordList);
+                    String tmp;
+                    int type = ConstantVariable.ERROR_CODE;
+                    int typeIndex = 0;
+                    String eventStr = ConstantVariable.NULL_STR;
+                    String moneyStr = ConstantVariable.NULL_STR;
+                    String typeStr = ConstantVariable.NULL_STR;
+
+                    //获取金额
+                    if (result.contains("块")) tmp = result.replace("块", ".");
+                    else tmp = result;
+                    String regExAmount = ConstantVariable.AMOUNT_REGEX;
+                    Pattern pattern = Pattern.compile(regExAmount);
+                    Matcher matcher = pattern.matcher(tmp);
+                    if (matcher.find()) {
+                        moneyStr = matcher.group();
+                    }
+                    //保证小数点后数据的正确
+                    moneyStr = StringChecker.CheckDoubleValue(moneyStr);
+                    //获取收支事件
+                    eventStr = result.split(ConstantVariable.AMOUNT_REGEX)[0];
+                    //获取收支
+                    type = StringChecker.CostOrIncome(wordList);
+                    //获取收支类型
+                    typeStr = StringChecker.CostOrIncomeType(wordList, type);
+                    if (!Validator.checkVoiceParseResult(eventStr, moneyStr, typeStr, type)) {
+                        //字符串解析失败，终止
+                        Toast toast = Toast.makeText(context,
+                                ConstantVariable.ERR_RESOLVE_VOICE_FAILED, Toast.LENGTH_SHORT);
+                        toast.show();
+                        return;
+                    }
+                    //页面跳转
+                    typeIndex = ConstantVariable.getTypeIndex(typeStr,typeCode);
+                    typeCode = type;
+                    showPusherDialog(eventStr, moneyStr, result, typeIndex);
+                }
+            }
+
+            @Override
+            public void onError(SpeechError speechError) {
+                Log.e(ConstantVariable.ERR_XUNFEI,speechError.getErrorCode() + speechError.getErrorDescription());
+            }
+        });
+        mDialog.show();
+        TextView recorderDialogTextView = (TextView) mDialog.getWindow().getDecorView().findViewWithTag("textlink");
+
+        recorderDialogTextView.setText(ConstantVariable.HINT_VOICE);
+    }
+
+    private List<String> parseWordArray(String resultString){
+        List<String> singleWordList = new ArrayList<>();
+        JSONArray array = JSON.parseObject(resultString).getJSONArray(ConstantVariable.WORDS);
+        for (int i = 0; i < array.size(); i++) {
+            JSONObject wordsObj = array.getJSONObject(i);
+            JSONArray cnWordsArr = wordsObj.getJSONArray(ConstantVariable.CHINESE_WORDS);
+            JSONObject singleWordObj = cnWordsArr.getJSONObject(0);
+            singleWordList.add(singleWordObj.getString(ConstantVariable.SINGLE_WORD));
+        }
+        return singleWordList;
+    }
+
+    private String parseVoice(List<String> stringList) {
+        StringBuilder sb = new StringBuilder();
+        for (String str : stringList) {
+            sb.append(str);
+        }
+        return sb.toString();
     }
 
     private class AsyncPullHistoryTask extends AsyncTask<Void, Void, List<ChatInfo>> {
@@ -160,26 +340,29 @@ public class ChatToRecordPage extends AppCompatActivity {
         }
     }
 
-    private class AsyncChatTask extends AsyncTask<Integer, Void, ChatInfo> {
+    private class AsyncChatTask extends AsyncTask<Void, Void, ChatInfo> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             indicatorView.show();
+            String billType = ConstantVariable.COST_CODE == typeCode ? ConstantVariable.TEXT_COST : ConstantVariable.TEXT_INCOME;
             userInfo = new ChatInfo(user.getUserNo(), dateStr,
-                    dateStr + "：" + selected + ConstantVariable.TEXT_COST + Double.parseDouble(money),
+                    dateStr + "：" + selected +
+                            billType +
+                            Double.parseDouble(money),
                     1);
             infoList.add(userInfo);
             adapter.notifyDataSetChanged();
         }
 
         @Override
-        protected ChatInfo doInBackground(Integer... mode) {
+        protected ChatInfo doInBackground(Void... voids) {
             ChatInfo npcInfo = null;
-            if (ConstantVariable.COST_CODE == mode[0]) {
+            if (ConstantVariable.COST_CODE == typeCode) {
                 Cost cost = new Cost(event, selected, Double.parseDouble(money),
                         dateStr, remark, user.getUserNo());
                 npcInfo = dataPuller.requestCostChat(cost, userInfo);
-            } else if (ConstantVariable.INCOME_CODE == mode[0]) {
+            } else if (ConstantVariable.INCOME_CODE == typeCode) {
                 Income income = new Income(event, selected, Double.parseDouble(money),
                         dateStr, remark, user.getUserNo());
                 npcInfo = dataPuller.requestIncomeChat(income, userInfo);

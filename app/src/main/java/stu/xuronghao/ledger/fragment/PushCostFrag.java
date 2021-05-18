@@ -71,7 +71,7 @@ public class PushCostFrag extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selected = ConstantVariable.getType(ConstantVariable.COST_TYPE,position);
+                selected = ConstantVariable.getTypeByTypeStr(position, ConstantVariable.COST_TYPE);
             }
 
             @Override

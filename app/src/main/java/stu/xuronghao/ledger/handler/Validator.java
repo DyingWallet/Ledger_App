@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validator {
+    private Validator() {
+    }
 
     /**
      * 检查邮箱格式
@@ -131,6 +133,8 @@ public class Validator {
         return false;
     }
 
-    private Validator() {
+    public static boolean checkVoiceParseResult(String eventStr, String moneyStr, String typeStr, int typeCode) {
+        return !ConstantVariable.NULL_STR.equals(eventStr) && !ConstantVariable.NULL_STR.equals(moneyStr) &&
+                !ConstantVariable.NULL_STR.equals(typeStr) && ConstantVariable.ERROR_CODE != typeCode;
     }
 }

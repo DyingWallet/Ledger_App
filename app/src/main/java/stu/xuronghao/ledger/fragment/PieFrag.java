@@ -36,12 +36,12 @@ import stu.xuronghao.ledger.handler.ColorsHandler;
 import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
 import stu.xuronghao.ledger.handler.DateHandler;
-import stu.xuronghao.ledger.handler.FeeSortUtil;
+import stu.xuronghao.ledger.handler.ListSortUtil;
 import stu.xuronghao.ledger.handler.IconHandler;
 
 public class PieFrag extends Fragment {
     //模式标记
-    private static int mode = ConstantVariable.COST_CODE;
+    private static int typeCode = ConstantVariable.COST_CODE;
     private User user;
     private View rootView;
     private Context context;
@@ -109,10 +109,10 @@ public class PieFrag extends Fragment {
         setDateChanger();
         //设置模式转换监听器
         imgSwitch.setOnClickListener(v -> {
-            if (ConstantVariable.COST_CODE != mode) {
-                mode = ConstantVariable.COST_CODE;
+            if (ConstantVariable.COST_CODE != typeCode) {
+                typeCode = ConstantVariable.COST_CODE;
             } else {
-                mode = ConstantVariable.INCOME_CODE;
+                typeCode = ConstantVariable.INCOME_CODE;
             }
             asyncPiePuller = new AsyncPiePuller();
             asyncPiePuller.execute();
@@ -168,27 +168,27 @@ public class PieFrag extends Fragment {
             Map<String, List> result = new HashMap<>();
             double tmp = 0;
             double[] arr = {0, 0, 0, 0, 0};
-            String modeType = ConstantVariable.COST_CODE == mode ? ConstantVariable.COST_TYPE : ConstantVariable.INCOME_TYPE;
+            String modeType = ConstantVariable.COST_CODE == typeCode ? ConstantVariable.COST_TYPE : ConstantVariable.INCOME_TYPE;
 
-            if (ConstantVariable.COST_CODE == mode) {
+            if (ConstantVariable.COST_CODE == typeCode) {
                 //消费报表
                 List<Cost> costList = dataPuller.pullCostOfBetween(user, startDate, endDate);
                 if (costList != null) {
                     for (Cost cost : costList) {
                         String type = cost.getCostType();
-                        int index = ConstantVariable.getTypeIndex(ConstantVariable.COST_CODE, type);
+                        int index = ConstantVariable.getTypeIndex(type, ConstantVariable.COST_CODE);
                         arr[index] += cost.getCostAmount();
                     }
                 } else {
                     return null;
                 }
-            } else if (ConstantVariable.INCOME_CODE == mode) {
+            } else if (ConstantVariable.INCOME_CODE == typeCode) {
                 //收入报表
                 List<Income> incomeList = dataPuller.pullIncomeOfBetween(user, startDate, endDate);
                 if (incomeList != null) {
                     for (Income income : incomeList) {
                         String type = income.getIncType();
-                        int index = ConstantVariable.getTypeIndex(ConstantVariable.INCOME_CODE, type);
+                        int index = ConstantVariable.getTypeIndex(type, ConstantVariable.INCOME_CODE);
                         arr[index] += income.getIncAmount();
                     }
                 } else {
@@ -198,9 +198,9 @@ public class PieFrag extends Fragment {
 
             for (int i = 0; i < arr.length; i++) {
                 if (arr[i] != 0) {
-                    data.add(new Object[]{ConstantVariable.getType(modeType, i), arr[i]});
-                    feeList.add(new TotalFee(IconHandler.getIconByArray(mode, i),
-                            arr[i], ConstantVariable.getType(modeType, i)));
+                    data.add(new Object[]{ConstantVariable.getTypeByTypeStr(i,modeType), arr[i]});
+                    feeList.add(new TotalFee(IconHandler.getIconByArray(typeCode, i),
+                            arr[i], ConstantVariable.getTypeByTypeStr(i,modeType)));
                     tmp += arr[i];
                 }
             }
@@ -220,11 +220,11 @@ public class PieFrag extends Fragment {
                 if (feeList.isEmpty()) {
                     txvNoRecord.setVisibility(View.VISIBLE);
                 }
-                String totalStr = ConstantVariable.COST_CODE == mode ? "总消费:" + total : "总收入:" + total;
+                String totalStr = ConstantVariable.COST_CODE == typeCode ? "总消费:" + total : "总收入:" + total;
 
                 Object[] data = dataList.stream().filter(Objects::nonNull).toArray();
 
-                new FeeSortUtil().sortByAmount(feeList);
+                new ListSortUtil().sortByAmount(feeList);
 
                 AAChartModel pieModel = new AAChartModel()
                         .chartType(AAChartType.Pie)

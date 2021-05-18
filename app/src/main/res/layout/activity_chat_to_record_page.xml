@@ -89,6 +89,13 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="48dp" />
 
+            <ImageView
+                    android:id="@+id/img_voice"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/circle"
+                    app:srcCompat="@drawable/icon_microphone" />
+
             <Button
                     android:id="@+id/btn_Cost_Dialog"
                     android:layout_width="wrap_content"

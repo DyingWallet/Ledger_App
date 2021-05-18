@@ -68,7 +68,7 @@ public class PushIncomeFrag extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selected = ConstantVariable.getType(ConstantVariable.INCOME_TYPE,position);
+                selected = ConstantVariable.getTypeByTypeStr(position, ConstantVariable.INCOME_TYPE);
             }
 
             @Override

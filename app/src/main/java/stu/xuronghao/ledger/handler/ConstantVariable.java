@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class ConstantVariable {
     //params
+    public static final String APP_ID = "=528359aa";
     public static final String USER = "user";
     public static final String USER_NO = "userNo";
     public static final String BEGIN_DATE = "beginDate";
@@ -22,6 +23,15 @@ public class ConstantVariable {
     public static final String START_OF_YEAR = "-01-01";
     public static final String END_OF_YEAR = "-12-31";
     public static final String URL = "url";
+    public static final String LANGUAGE = "zh_cn";
+    public static final String MANDARIN = "mandarin";
+    public static final String RESULT_TYPE = "json";
+    public static final String WORDS = "ws";
+    public static final String CHINESE_WORDS = "cw";
+    public static final String SINGLE_WORD = "w";
+    public static final String ERR_XUNFEI = "讯飞:";
+    public static final String NULL_STR = "NULL";
+    public static final String ZERO_STR = "00";
 
     public static final String TYPE_CODE = "typeCode";
 
@@ -29,6 +39,8 @@ public class ConstantVariable {
     public static final String EMAIL_REGEX = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
     public static final String TIME_REGEX = "\\s";
     public static final String DATE_REGEX = "-";
+    public static final String AMOUNT_REGEX = "(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,2})?";
+    public static final String DOT_REGEX = ".";
 
     //text
     public static final String TEXT_COST = "支出";
@@ -53,10 +65,13 @@ public class ConstantVariable {
     public static final String ITEM_TYPE = "itemType";
 
     //state
+    public static final int REQUEST_CODE_CONTRACT = 101;
+    public static final int REQUEST_CODE = 1;
     public static final int COST_CODE = 0;
     public static final int INCOME_CODE = 1;
     public static final int START_CODE = 0;
     public static final int END_CODE = 1;
+    public static final int ERROR_CODE = -1;
 
     //userState
     public static final int LOGGED_IN = 2;
@@ -65,9 +80,14 @@ public class ConstantVariable {
     public static final int NO_USER = -1;
     public static final int WRONG_PASSWD = -2;
 
+    //weightFactor
+    public static final int NORMAL_TYPE_WEIGHT_FACTOR = 3;
+    public static final int OTHER_TYPE_WEIGHT_FACTOR = 1;
+
     public static final String FB_TYPE_ADVICE = "建议";
     public static final String FB_TYPE_BUG = "漏洞";
     public static final String FB_TYPE_FROZE = "冻结";
+    public static final String OTHER_TYPE = "其他";
 
     //info
     public static final String INFO_RECEIVED = "好的，反馈收到了！";
@@ -97,8 +117,11 @@ public class ConstantVariable {
 
     public static final String HINT_IN_DEVELOPING = "功能还在开发中...";
 
+    public static final String HINT_VOICE = "请尽量按  格式说出账目信息";
+
     //error
-    public static final String ERR_CONNECT_FAILED = "似乎和服务器失去了联系...请检查网络连接哦~~~";
+    public static final String ERR_CONNECT_FAILED = "似乎和服务器失去了联系...请检查网络连接哦";
+    public static final String ERR_RESOLVE_VOICE_FAILED = "你说的账目信息有点复杂，理解不能啊";
 
     //Logger
     public static final String LOG_URL = "url:";
@@ -112,7 +135,7 @@ public class ConstantVariable {
     static {
         TYPE = new HashMap<>();
         TYPE.put(COST_TYPE, new String[]{"餐饮", "交通", "服饰", "日用", "其他"});
-        TYPE.put(INCOME_TYPE, new String[]{"工资", "奖金", "借款", "红包", "其他"});
+        TYPE.put(INCOME_TYPE, new String[]{"工资", "奖金", "补贴", "红包", "其他"});
     }
 
     private static final Map<String, Integer> COST_INDEX_MAP;
@@ -132,9 +155,114 @@ public class ConstantVariable {
         INCOME_INDEX_MAP = new HashMap<>();
         INCOME_INDEX_MAP.put("工资", 0);
         INCOME_INDEX_MAP.put("奖金", 1);
-        INCOME_INDEX_MAP.put("借款", 2);
+        INCOME_INDEX_MAP.put("补贴", 2);
         INCOME_INDEX_MAP.put("红包", 3);
         INCOME_INDEX_MAP.put("其他", 4);
+    }
+
+    private static final Map<String, Integer> COST_OR_INCOME_MAP;
+
+    static {
+        COST_OR_INCOME_MAP = new HashMap<>();
+        //花销关键词
+        COST_OR_INCOME_MAP.put("用了", COST_CODE);
+        COST_OR_INCOME_MAP.put("买", COST_CODE);
+        COST_OR_INCOME_MAP.put("花费", COST_CODE);
+        COST_OR_INCOME_MAP.put("支出", COST_CODE);
+        COST_OR_INCOME_MAP.put("花销", COST_CODE);
+        COST_OR_INCOME_MAP.put("订购", COST_CODE);
+        COST_OR_INCOME_MAP.put("开支", COST_CODE);
+        COST_OR_INCOME_MAP.put("租", COST_CODE);
+        COST_OR_INCOME_MAP.put("充", COST_CODE);
+        COST_OR_INCOME_MAP.put("缴", COST_CODE);
+        COST_OR_INCOME_MAP.put("交", COST_CODE);
+        COST_OR_INCOME_MAP.put("支付", COST_CODE);
+        COST_OR_INCOME_MAP.put("乘", COST_CODE);
+        COST_OR_INCOME_MAP.put("购", COST_CODE);
+        COST_OR_INCOME_MAP.put("吃", COST_CODE);
+        COST_OR_INCOME_MAP.put("喝", COST_CODE);
+        COST_OR_INCOME_MAP.put("发红包", COST_CODE);
+        COST_OR_INCOME_MAP.put("借出", COST_CODE);
+        COST_OR_INCOME_MAP.put("出借", COST_CODE);
+
+        //收入关键词
+        COST_OR_INCOME_MAP.put("收款", INCOME_CODE);
+        COST_OR_INCOME_MAP.put("收入", INCOME_CODE);
+        COST_OR_INCOME_MAP.put("发工资", INCOME_CODE);
+        COST_OR_INCOME_MAP.put("收红包", INCOME_CODE);
+        COST_OR_INCOME_MAP.put("补贴", INCOME_CODE);
+        COST_OR_INCOME_MAP.put("奖金", INCOME_CODE);
+        COST_OR_INCOME_MAP.put("生活费", INCOME_CODE);
+    }
+
+    private static final Map<String, String> COST_MAP_TO_TYPE;
+
+    static {
+        COST_MAP_TO_TYPE = new HashMap<>();
+        //餐饮
+        COST_MAP_TO_TYPE.put("饭", "餐饮");
+        COST_MAP_TO_TYPE.put("餐", "餐饮");
+        COST_MAP_TO_TYPE.put("饮", "餐饮");
+        COST_MAP_TO_TYPE.put("面", "餐饮");
+        COST_MAP_TO_TYPE.put("肉", "餐饮");
+        COST_MAP_TO_TYPE.put("鸡蛋", "餐饮");
+        COST_MAP_TO_TYPE.put("鸭蛋", "餐饮");
+        COST_MAP_TO_TYPE.put("鹅蛋", "餐饮");
+        COST_MAP_TO_TYPE.put("咸蛋", "餐饮");
+        COST_MAP_TO_TYPE.put("牛奶", "餐饮");
+        COST_MAP_TO_TYPE.put("羊奶", "餐饮");
+        COST_MAP_TO_TYPE.put("酸奶", "餐饮");
+        COST_MAP_TO_TYPE.put("粮", "餐饮");
+        COST_MAP_TO_TYPE.put("油", "餐饮");
+        COST_MAP_TO_TYPE.put("米", "餐饮");
+        COST_MAP_TO_TYPE.put("鱼", "餐饮");
+        COST_MAP_TO_TYPE.put("菜", "餐饮");
+        COST_MAP_TO_TYPE.put("包子", "餐饮");
+        COST_MAP_TO_TYPE.put("馒头", "餐饮");
+        COST_MAP_TO_TYPE.put("豆", "餐饮");
+        COST_MAP_TO_TYPE.put("火锅", "餐饮");
+        COST_MAP_TO_TYPE.put("干锅", "餐饮");
+        //交通
+        COST_MAP_TO_TYPE.put("单车", "交通");
+        COST_MAP_TO_TYPE.put("飞机", "交通");
+        COST_MAP_TO_TYPE.put("航班", "交通");
+        COST_MAP_TO_TYPE.put("地铁", "交通");
+        COST_MAP_TO_TYPE.put("公交", "交通");
+        COST_MAP_TO_TYPE.put("打的", "交通");
+        COST_MAP_TO_TYPE.put("打车", "交通");
+        COST_MAP_TO_TYPE.put("的士", "交通");
+        COST_MAP_TO_TYPE.put("火车", "交通");
+        //服饰
+        COST_MAP_TO_TYPE.put("衣", "服饰");
+        COST_MAP_TO_TYPE.put("裙", "服饰");
+        COST_MAP_TO_TYPE.put("裤", "服饰");
+        COST_MAP_TO_TYPE.put("袜", "服饰");
+        COST_MAP_TO_TYPE.put("鞋", "服饰");
+        COST_MAP_TO_TYPE.put("手套", "服饰");
+        //日用
+        COST_MAP_TO_TYPE.put("洗面奶", "日用");
+        COST_MAP_TO_TYPE.put("洗发水", "日用");
+        COST_MAP_TO_TYPE.put("香波", "日用");
+        COST_MAP_TO_TYPE.put("话费", "日用");
+        COST_MAP_TO_TYPE.put("化妆品", "日用");
+        COST_MAP_TO_TYPE.put("护肤品", "日用");
+        COST_MAP_TO_TYPE.put("锅", "日用");
+        COST_MAP_TO_TYPE.put("碗", "日用");
+    }
+
+    private static final Map<String, String> INCOME_MAP_TO_TYPE;
+
+    static {
+        INCOME_MAP_TO_TYPE = new HashMap<>();
+        //工资
+        INCOME_MAP_TO_TYPE.put("工资", "工资");
+        INCOME_MAP_TO_TYPE.put("薪水", "工资");
+        //奖金
+        INCOME_MAP_TO_TYPE.put("奖金", "奖金");
+        //补贴
+        INCOME_MAP_TO_TYPE.put("补", "补贴");
+        //红包
+        INCOME_MAP_TO_TYPE.put("红包", "红包");
     }
 
     private ConstantVariable() {
@@ -155,20 +283,49 @@ public class ConstantVariable {
      * @param i    下标
      * @return 对应的类型数据
      */
-    public static String getType(String type, int i) {
+    public static String getTypeByTypeStr(int i, String type) {
         return TYPE.get(type)[i];
     }
 
+    public static String getTypeByTypeCode(int index, int typeCode){
+        switch (typeCode){
+            case COST_CODE:
+                return getTypeByTypeStr(index, COST_TYPE);
+            case INCOME_CODE:
+                return getTypeByTypeStr(index, INCOME_TYPE);
+            default:
+                return NULL_STR;
+        }
+    }
 
-    public static Integer getTypeIndex(int typeCode, String key) {
+    public static Integer getTypeIndex(String key, int typeCode) {
         switch (typeCode) {
             case COST_CODE:
                 return COST_INDEX_MAP.get(key);
             case INCOME_CODE:
                 return INCOME_INDEX_MAP.get(key);
             default:
-                return -1;
+                return ERROR_CODE;
         }
     }
 
+    public static Integer getCostOrIncomeCode(String str) {
+        if (COST_OR_INCOME_MAP.containsKey(str))
+            return COST_OR_INCOME_MAP.get(str);
+        else
+            return ERROR_CODE;
+    }
+
+    public static String getCostOrIncomeType(String str, int typeCode) {
+        if (COST_CODE == typeCode) {
+            if (COST_MAP_TO_TYPE.containsKey(str)) {
+                return COST_MAP_TO_TYPE.get(str);
+            }
+        } else if (INCOME_CODE == typeCode) {
+            if (INCOME_MAP_TO_TYPE.containsKey(str)) {
+                return INCOME_MAP_TO_TYPE.get(str);
+            }
+        }
+        return OTHER_TYPE;
+    }
 }

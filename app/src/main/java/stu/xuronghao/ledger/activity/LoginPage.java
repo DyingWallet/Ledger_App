@@ -1,7 +1,9 @@
 package stu.xuronghao.ledger.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +54,22 @@ public class LoginPage extends AppCompatActivity {
         txvForHelp = findViewById(R.id.txv_Login_ForHelp);
         txvSignUp.setOnClickListener(v -> gotoSignUp());
         txvForHelp.setOnClickListener(v -> skipLogin());
+
+        String[] permissions = {Manifest.permission.INTERNET,
+                Manifest.permission.ACCESS_NETWORK_STATE,
+                Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.CHANGE_NETWORK_STATE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_SETTINGS,
+        };
+        //验证是否许可权限
+        for (String str : permissions) {
+            if (this.checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {
+                //申请权限
+                this.requestPermissions(permissions, ConstantVariable.REQUEST_CODE_CONTRACT);
+            }
+        }
     }
 
     @Override

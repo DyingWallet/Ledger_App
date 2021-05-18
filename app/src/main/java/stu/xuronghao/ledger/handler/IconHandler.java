@@ -10,10 +10,9 @@ public class IconHandler {
     private static final int[] costIcons = {R.drawable.icon_dining, R.drawable.icon_trans,
             R.drawable.icon_cloth, R.drawable.icon_daily, R.drawable.icon_other_cost};
     private static final int[] incomeIcons = {R.drawable.icon_salary, R.drawable.icon_bonus,
-            R.drawable.icon_loan, R.drawable.icon_redpkt, R.drawable.icon_other_income};
+            R.drawable.icon_subsidy, R.drawable.icon_redpkt, R.drawable.icon_other_income};
 
     private static final Map<String, Integer> COST_ICON_MAP;
-
     static {
         COST_ICON_MAP = new HashMap<>();
         COST_ICON_MAP.put("餐饮", R.drawable.icon_dining);
@@ -24,12 +23,11 @@ public class IconHandler {
     }
 
     private static final Map<String, Integer> INCOME_ICON_MAP;
-
     static {
         INCOME_ICON_MAP = new HashMap<>();
         INCOME_ICON_MAP.put("工资", R.drawable.icon_salary);
         INCOME_ICON_MAP.put("奖金", R.drawable.icon_bonus);
-        INCOME_ICON_MAP.put("借款", R.drawable.icon_loan);
+        INCOME_ICON_MAP.put("补贴", R.drawable.icon_subsidy);
         INCOME_ICON_MAP.put("红包", R.drawable.icon_redpkt);
         INCOME_ICON_MAP.put("其他", R.drawable.icon_other_income);
     }

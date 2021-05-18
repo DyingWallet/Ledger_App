@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.iflytek.cloud.Setting;
 import com.iflytek.cloud.SpeechUtility;
 
 import stu.xuronghao.ledger.R;
@@ -19,6 +20,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Setting.setLocationEnable(false);
         setContentView(R.layout.activity_home_page);
 
         //获取底部导航栏

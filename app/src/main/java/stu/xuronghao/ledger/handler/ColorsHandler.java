@@ -28,7 +28,7 @@ public class ColorsHandler {
         colorMap.put("日用", DEEP_PINK);
         colorMap.put("工资", ROSE_RED);
         colorMap.put("奖金", LIGHT_BLUE);
-        colorMap.put("借款", LIGHT_EARTHY);
+        colorMap.put("补贴", LIGHT_EARTHY);
         colorMap.put("红包", DEEP_PINK);
         colorMap.put("其他", INDIGO);
     }
