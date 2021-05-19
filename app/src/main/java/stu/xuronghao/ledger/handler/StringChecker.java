@@ -1,5 +1,7 @@
 package stu.xuronghao.ledger.handler;
 
+import android.util.Pair;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,15 +9,21 @@ import java.util.Map;
 
 public class StringChecker {
     //判断账目收支类型
-    public static int CostOrIncome(List<String> wordList) {
-        int code = ConstantVariable.ERROR_CODE;
+    public static int CostOrIncome(String result) {
+        int weightVal = 0;
+        List<Pair<String, Integer>> costTypeList = ConstantVariable.getCostTypeList();
+        List<Pair<String, Integer>> incomeTypeList = ConstantVariable.getIncomeTypeList();
 
-        for (String word : wordList) {
-            if (code == ConstantVariable.ERROR_CODE) {
-                code = ConstantVariable.getCostOrIncomeCode(word);
-            }
+        for (Pair<String, Integer> cost : costTypeList) {
+            if (result.contains(cost.first))
+                weightVal -= cost.second;
         }
-        return code;
+        for (Pair<String, Integer> income : incomeTypeList) {
+            if (result.contains(income.first))
+                weightVal += income.second;
+        }
+        if (weightVal == 0) return ConstantVariable.ERROR_CODE;
+        else return weightVal < 0 ? ConstantVariable.COST_CODE : ConstantVariable.INCOME_CODE;
     }
 
     public static String CostOrIncomeType(List<String> wordList, int typeCode) {

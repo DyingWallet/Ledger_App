@@ -1,7 +1,13 @@
 package stu.xuronghao.ledger.handler;
 
+
+import android.util.Pair;
+
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+
 
 public class ConstantVariable {
     //params
@@ -81,7 +87,7 @@ public class ConstantVariable {
     public static final int WRONG_PASSWD = -2;
 
     //weightFactor
-    public static final int NORMAL_TYPE_WEIGHT_FACTOR = 3;
+    public static final int NORMAL_TYPE_WEIGHT_FACTOR = 5;
     public static final int OTHER_TYPE_WEIGHT_FACTOR = 1;
 
     public static final String FB_TYPE_ADVICE = "建议";
@@ -117,7 +123,7 @@ public class ConstantVariable {
 
     public static final String HINT_IN_DEVELOPING = "功能还在开发中...";
 
-    public static final String HINT_VOICE = "请尽量按  格式说出账目信息";
+    public static final String HINT_VOICE = "说出的账目信息中请尽量包含收、发、出、入类的关键词";
 
     //error
     public static final String ERR_CONNECT_FAILED = "似乎和服务器失去了联系...请检查网络连接哦";
@@ -131,7 +137,6 @@ public class ConstantVariable {
 
 
     private static final Map<String, String[]> TYPE;
-
     static {
         TYPE = new HashMap<>();
         TYPE.put(COST_TYPE, new String[]{"餐饮", "交通", "服饰", "日用", "其他"});
@@ -139,7 +144,6 @@ public class ConstantVariable {
     }
 
     private static final Map<String, Integer> COST_INDEX_MAP;
-
     static {
         COST_INDEX_MAP = new HashMap<>();
         COST_INDEX_MAP.put("餐饮", 0);
@@ -150,7 +154,6 @@ public class ConstantVariable {
     }
 
     private static final Map<String, Integer> INCOME_INDEX_MAP;
-
     static {
         INCOME_INDEX_MAP = new HashMap<>();
         INCOME_INDEX_MAP.put("工资", 0);
@@ -160,46 +163,95 @@ public class ConstantVariable {
         INCOME_INDEX_MAP.put("其他", 4);
     }
 
-    private static final Map<String, Integer> COST_OR_INCOME_MAP;
+    private static final List<Pair<String,Integer>> COST_TYPE_LIST;
     static {
-        COST_OR_INCOME_MAP = new HashMap<>();
-        //花销关键词
-        COST_OR_INCOME_MAP.put("用了", COST_CODE);
-        COST_OR_INCOME_MAP.put("买", COST_CODE);
-        COST_OR_INCOME_MAP.put("支出", COST_CODE);
-        COST_OR_INCOME_MAP.put("花", COST_CODE);
-        COST_OR_INCOME_MAP.put("订购", COST_CODE);
-        COST_OR_INCOME_MAP.put("开支", COST_CODE);
-        COST_OR_INCOME_MAP.put("租", COST_CODE);
-        COST_OR_INCOME_MAP.put("充", COST_CODE);
-        COST_OR_INCOME_MAP.put("缴", COST_CODE);
-        COST_OR_INCOME_MAP.put("交", COST_CODE);
-        COST_OR_INCOME_MAP.put("支付", COST_CODE);
-        COST_OR_INCOME_MAP.put("乘", COST_CODE);
-        COST_OR_INCOME_MAP.put("坐", COST_CODE);
-        COST_OR_INCOME_MAP.put("购", COST_CODE);
-        COST_OR_INCOME_MAP.put("吃", COST_CODE);
-        COST_OR_INCOME_MAP.put("喝", COST_CODE);
-        COST_OR_INCOME_MAP.put("发红包", COST_CODE);
-        COST_OR_INCOME_MAP.put("借出", COST_CODE);
-        COST_OR_INCOME_MAP.put("出借", COST_CODE);
-        COST_OR_INCOME_MAP.put("住院", COST_CODE);
-        COST_OR_INCOME_MAP.put("住宿", COST_CODE);
+        COST_TYPE_LIST = new LinkedList<>();
+        int weight;
+        //极高
+        weight = WeightValue.ABSOLUTE;
+        COST_TYPE_LIST.add(new Pair<>("购入",weight));
+        COST_TYPE_LIST.add(new Pair<>("购买",weight));
+        COST_TYPE_LIST.add(new Pair<>("买入",weight));
+        COST_TYPE_LIST.add(new Pair<>("被骗",weight));
+        COST_TYPE_LIST.add(new Pair<>("税",weight));
+        COST_TYPE_LIST.add(new Pair<>("网购",weight));
 
-        //收入关键词
-        COST_OR_INCOME_MAP.put("收款", INCOME_CODE);
-        COST_OR_INCOME_MAP.put("收入", INCOME_CODE);
-        COST_OR_INCOME_MAP.put("发工资", INCOME_CODE);
-        COST_OR_INCOME_MAP.put("收红包", INCOME_CODE);
-        COST_OR_INCOME_MAP.put("补贴", INCOME_CODE);
-        COST_OR_INCOME_MAP.put("奖金", INCOME_CODE);
-        COST_OR_INCOME_MAP.put("生活费", INCOME_CODE);
-        COST_OR_INCOME_MAP.put("卖", INCOME_CODE);
+        //高
+        weight = WeightValue.HIGH;
+        COST_TYPE_LIST.add(new Pair<>("购",weight));
+        COST_TYPE_LIST.add(new Pair<>("买",weight));
+        COST_TYPE_LIST.add(new Pair<>("交",weight));
+        COST_TYPE_LIST.add(new Pair<>("缴",weight));
+        COST_TYPE_LIST.add(new Pair<>("看",weight));
+        COST_TYPE_LIST.add(new Pair<>("用了",weight));
+        COST_TYPE_LIST.add(new Pair<>("花了",weight));
+        COST_TYPE_LIST.add(new Pair<>("吃了",weight));
+        COST_TYPE_LIST.add(new Pair<>("喝了",weight));
+        COST_TYPE_LIST.add(new Pair<>("订购",weight));
+        COST_TYPE_LIST.add(new Pair<>("支出",weight));
+        COST_TYPE_LIST.add(new Pair<>("支付",weight));
+        COST_TYPE_LIST.add(new Pair<>("开支",weight));
+        COST_TYPE_LIST.add(new Pair<>("旅游",weight));
+        COST_TYPE_LIST.add(new Pair<>("扣费",weight));
+        COST_TYPE_LIST.add(new Pair<>("发红包",weight));
 
+        //中
+        weight = WeightValue.MID;
+        COST_TYPE_LIST.add(new Pair<>("订了",weight));
+        COST_TYPE_LIST.add(new Pair<>("借出",weight));
+        COST_TYPE_LIST.add(new Pair<>("借给",weight));
+        COST_TYPE_LIST.add(new Pair<>("出借",weight));
+        COST_TYPE_LIST.add(new Pair<>("住院",weight));
+        COST_TYPE_LIST.add(new Pair<>("住宿",weight));
+        COST_TYPE_LIST.add(new Pair<>("住宾馆",weight));
+        COST_TYPE_LIST.add(new Pair<>("充值",weight));
+        COST_TYPE_LIST.add(new Pair<>("租",weight));
+        COST_TYPE_LIST.add(new Pair<>("乘",weight));
+        COST_TYPE_LIST.add(new Pair<>("坐",weight));
+        COST_TYPE_LIST.add(new Pair<>("转账",weight));
+        COST_TYPE_LIST.add(new Pair<>("打赏",weight));
+
+        //低
+        weight = WeightValue.LOW;
+        COST_TYPE_LIST.add(new Pair<>("租",weight));
+        COST_TYPE_LIST.add(new Pair<>("赔了",weight));
+        COST_TYPE_LIST.add(new Pair<>("充",weight));
+        COST_TYPE_LIST.add(new Pair<>("续",weight));
+    }
+
+    private static final List<Pair<String,Integer>> INCOME_TYPE_LIST;
+    static {
+        INCOME_TYPE_LIST = new LinkedList<>();
+        int weight;
+        //极高
+        weight = WeightValue.ABSOLUTE;
+        INCOME_TYPE_LIST.add(new Pair<>("收", weight));
+        INCOME_TYPE_LIST.add(new Pair<>("卖了", weight));
+        INCOME_TYPE_LIST.add(new Pair<>("卖出", weight));
+        INCOME_TYPE_LIST.add(new Pair<>("赚了", weight));
+        INCOME_TYPE_LIST.add(new Pair<>("发工资", weight));
+        INCOME_TYPE_LIST.add(new Pair<>("收到工资", weight));
+
+        //高
+        weight = WeightValue.HIGH;
+        INCOME_TYPE_LIST.add(new Pair<>("工资", weight));
+        INCOME_TYPE_LIST.add(new Pair<>("卖出", weight));
+        INCOME_TYPE_LIST.add(new Pair<>("收到打赏", weight));
+
+        //中
+        weight = WeightValue.MID;
+        INCOME_TYPE_LIST.add(new Pair<>("收入", weight));
+        INCOME_TYPE_LIST.add(new Pair<>("红包", weight));
+        INCOME_TYPE_LIST.add(new Pair<>("补贴", weight));
+        INCOME_TYPE_LIST.add(new Pair<>("奖金", weight));
+
+        //低
+        weight = WeightValue.LOW;
+        INCOME_TYPE_LIST.add(new Pair<>("生活费", weight));
+        INCOME_TYPE_LIST.add(new Pair<>("借了", weight));
     }
 
     private static final Map<String, String> COST_MAP_TO_TYPE;
-
     static {
         COST_MAP_TO_TYPE = new HashMap<>();
         //餐饮
@@ -254,7 +306,6 @@ public class ConstantVariable {
     }
 
     private static final Map<String, String> INCOME_MAP_TO_TYPE;
-
     static {
         INCOME_MAP_TO_TYPE = new HashMap<>();
         //工资
@@ -312,13 +363,6 @@ public class ConstantVariable {
         }
     }
 
-    public static Integer getCostOrIncomeCode(String str) {
-        if (COST_OR_INCOME_MAP.containsKey(str))
-            return COST_OR_INCOME_MAP.get(str);
-        else
-            return ERROR_CODE;
-    }
-
     public static String getCostOrIncomeType(String str, int typeCode) {
         if (COST_CODE == typeCode) {
             if (COST_MAP_TO_TYPE.containsKey(str)) {
@@ -330,5 +374,13 @@ public class ConstantVariable {
             }
         }
         return OTHER_TYPE;
+    }
+
+    public static List<Pair<String, Integer>> getCostTypeList() {
+        return COST_TYPE_LIST;
+    }
+
+    public static List<Pair<String, Integer>> getIncomeTypeList() {
+        return INCOME_TYPE_LIST;
     }
 }

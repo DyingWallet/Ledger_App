@@ -196,7 +196,7 @@ public class ChatToRecordPage extends AppCompatActivity {
                     //保证小数点后数据的正确
                     moneyStr = StringChecker.CheckDoubleValue(moneyStr);
                     //获取收支
-                    type = StringChecker.CostOrIncome(wordList);
+                    type = StringChecker.CostOrIncome(result);
                     //获取收支类型
                     typeStr = StringChecker.CostOrIncomeType(wordList, type);
                     if (!Validator.checkVoiceParseResult(moneyStr, typeStr, type)) {
