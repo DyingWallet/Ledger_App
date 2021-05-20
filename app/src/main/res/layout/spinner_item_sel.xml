@@ -3,5 +3,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:textColor="@color/picaPink"
+    android:textColor="@color/themePink"
     android:textSize="24sp" />

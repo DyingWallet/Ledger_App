@@ -7,8 +7,8 @@ import java.util.Map;
 import stu.xuronghao.ledger.R;
 
 public class ColorsHandler {
-    private static final int[] colors = {R.color.picaPink, R.color.dining,
-            R.color.trans, R.color.cloth, R.color.daily};
+    private static final int[] colors = {R.color.themePink, R.color.wightBlue,
+            R.color.lightEarth, R.color.deepPink, R.color.indigo};
 
     public static final String PICA_PINK = "#EC97B6";
     public static final String ROSE_RED = "#FA6594";

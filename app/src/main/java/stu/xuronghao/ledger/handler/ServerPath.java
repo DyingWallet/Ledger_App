@@ -3,6 +3,8 @@ package stu.xuronghao.ledger.handler;
 public class ServerPath {
     public static final String LOG_IN = "User/Login";
     public static final String SIGN_UP = "User/SignUp";
+    public static final String UPDATE_USER_INFO = "User/updateUserInfo";
+    public static final String GET_USER_INFO = "User/getUserInfo";
     public static final String ALL_COSTS = "Cost/queryByCostUser";
     public static final String COSTS_BY_DATE = "Cost/queryByCostDateOfUser";
     public static final String ALL_INCOMES = "Income/queryByIncomeUser";

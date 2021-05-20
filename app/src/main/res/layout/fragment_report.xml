@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.ReportFrag"
-    android:background="@drawable/polygon_bg">
+    android:background="@color/pureWhite">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -18,7 +18,7 @@
             android:id="@+id/Report_Top_Switch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/picaPink"
+            android:background="@color/themePink"
             app:itemIconTint="@color/icon_sel"
             app:itemTextColor="@color/text_sel"
             app:menu="@menu/report_top_switch_menu" />

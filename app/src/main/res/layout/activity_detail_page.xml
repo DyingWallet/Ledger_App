@@ -51,7 +51,7 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/picaPink"
+        android:background="@color/themePink"
         app:itemTextColor="@color/text_sel"
         app:itemIconTint="@color/icon_sel"
         app:menu="@menu/detail_top"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="支出事件"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -111,7 +111,7 @@
                 android:gravity="center_horizontal"
                 android:inputType="textPersonName"
                 android:text="日常开支"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="支出金额"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -141,7 +141,7 @@
                 android:ems="10"
                 android:gravity="center_horizontal"
                 android:inputType="numberDecimal"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp" />
         </LinearLayout>
 
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="支出类型"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -167,7 +167,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -184,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="记录时间"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24dp"
                 android:textStyle="bold" />
 
@@ -194,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24dp"
                 android:textStyle="bold" />
 
@@ -212,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="备注："
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -224,7 +224,7 @@
                 android:background="#00FFFFFF"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="18sp" />
 
         </LinearLayout>

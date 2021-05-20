@@ -145,4 +145,8 @@ public class Validator {
                !ConstantVariable.NULL_STR.equals(typeStr) &&
                 ConstantVariable.ERROR_CODE != typeCode;
     }
+
+    public static boolean checkDashBoardBudget(String budget) {
+        return !budget.isEmpty() && Double.parseDouble(budget) >= 0;
+    }
 }

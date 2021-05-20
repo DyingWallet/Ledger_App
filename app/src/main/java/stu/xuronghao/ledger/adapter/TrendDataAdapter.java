@@ -71,11 +71,11 @@ public class TrendDataAdapter extends BaseAdapter {
         if (surplus > 0) {
             holder.img.setImageResource(R.drawable.icon_good);
             monthStr += "盈:";
-            holder.surplus.setTextColor(holder.surplus.getResources().getColor(R.color.possurplus));
+            holder.surplus.setTextColor(holder.surplus.getResources().getColor(R.color.green));
         } else {
             holder.img.setImageResource(R.drawable.icon_bad);
             monthStr += "亏:";
-            holder.surplus.setTextColor(holder.surplus.getResources().getColor(R.color.negsurplus));
+            holder.surplus.setTextColor(holder.surplus.getResources().getColor(R.color.roseRed));
         }
         holder.month.setText(monthStr);
         holder.surplus.setText(surplus + "元");

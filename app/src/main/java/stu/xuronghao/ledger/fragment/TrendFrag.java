@@ -252,9 +252,9 @@ public class TrendFrag extends Fragment {
 
                 //设置年度信息
                 if (yearlyData.getSurplus() > 0) {
-                    txvTotalSurplus.setTextColor(txvTotalSurplus.getResources().getColor(R.color.possurplus));
+                    txvTotalSurplus.setTextColor(txvTotalSurplus.getResources().getColor(R.color.green));
                 } else {
-                    txvTotalSurplus.setTextColor(txvTotalSurplus.getResources().getColor(R.color.negsurplus));
+                    txvTotalSurplus.setTextColor(txvTotalSurplus.getResources().getColor(R.color.roseRed));
                 }
                 String yearTitle = destinationYear + "年";
                 String totalIncome = yearlyData.getIncome() + "元";

@@ -23,7 +23,7 @@
                 android:layout_height="56dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@color/picaPink">
+                android:background="@color/themePink">
 
             <ImageView
                     android:id="@+id/img_chat_page_cancel"
@@ -73,9 +73,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp"
-                android:layout_gravity="center_horizontal">
+                android:layout_marginBottom="24dp">
 
             <Button
                     android:id="@+id/btn_Income_Dialog"
@@ -118,7 +118,7 @@
             style="@style/AVLoadingIndicatorView"
             android:visibility="visible"
             app:indicatorName="LineScalePulseOutIndicator"
-            app:indicatorColor="@color/picaPink"
+            app:indicatorColor="@color/themePink"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="128dp"
             app:layout_constraintStart_toStartOf="parent"

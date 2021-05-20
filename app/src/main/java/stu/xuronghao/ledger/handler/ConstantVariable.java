@@ -38,6 +38,9 @@ public class ConstantVariable {
     public static final String ERR_XUNFEI = "讯飞:";
     public static final String NULL_STR = "NULL";
     public static final String ZERO_STR = "00";
+    public static final String DASHBOARD_BUDGET = "dashboard_budget";
+    public static final String DASHBOARD_COST = "dashboard_cost";
+    public static final String DASHBOARD_SURPLUS = "dashboard_surplus";
 
     public static final String TYPE_CODE = "typeCode";
 
@@ -124,6 +127,13 @@ public class ConstantVariable {
     public static final String HINT_IN_DEVELOPING = "功能还在开发中...";
 
     public static final String HINT_VOICE = "说出的账目信息中请尽量包含收、发、出、入类的关键词";
+    public static final String HINT_REST_TO_COST = "结余：";
+    public static final String WARNING_OVER_COST = "超支：";
+    public static final String HINT_POSITIVE_BUDGET_HIGH = "简直就是省钱达人！";
+    public static final String HINT_POSITIVE_BUDGET_LOW = "当月花费已经过半，请注意不要超支哦!";
+
+    public static final String HINT_NEGATIVE_BUDGET_HIGH = "别花了，别花了，再花钱包真的受不了了！";
+    public static final String HINT_NEGATIVE_BUDGET_LOW = "当月财政状况不容乐观！快省着点！";
 
     //error
     public static final String ERR_CONNECT_FAILED = "似乎和服务器失去了联系...请检查网络连接哦";
@@ -134,7 +144,6 @@ public class ConstantVariable {
     public static final String LOG_JSON = "response Json: ";
     public static final String LOG_USER_JSON = "userJson";
     public static final String INDEX = "index";
-
 
     private static final Map<String, String[]> TYPE;
     static {

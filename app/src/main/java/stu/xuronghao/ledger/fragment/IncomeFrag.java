@@ -65,8 +65,7 @@ public class IncomeFrag extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //进行组建初始化
-        setFloatBtn();
+        //进行组件初始化
         user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
     }
 
@@ -81,37 +80,7 @@ public class IncomeFrag extends Fragment {
         listPuller.execute();
     }
 
-    private void setFloatBtn() {
-
-        final FloatingActionButton chatBtn = rootView.findViewById(R.id.to_chat);
-        chatBtn.setOnClickListener(v -> {
-            Log.w("chatBtn", "Ready to chat!");
-            Intent intent = new Intent(getActivity(), ChatToRecordPage.class);
-            intent.putExtra("user", user);
-            startActivity(intent);
-        });
-
-        final FloatingActionButton addBtn = rootView.findViewById(R.id.add_income);
-        addBtn.setOnClickListener(v -> {
-            //新增支出
-            Log.w("addBtn: ", "Ready to add income!");
-            Intent intent = new Intent(getActivity(), PushDataPage.class);
-            intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.INCOME_CODE);
-            intent.putExtra("user", user);
-            startActivity(intent);
-        });
-
-        final FloatingActionButton refreshBtn = rootView.findViewById(R.id.refresh_income);
-        refreshBtn.setOnClickListener(v -> {
-            //更新事件
-            listPuller = new AsyncIncomePuller();
-            listPuller.execute();
-            Toast toast = Toast.makeText(context, "已更新收入数据！", Toast.LENGTH_SHORT);
-            toast.show();
-        });
-    }
-
-    private class AsyncIncomePuller extends AsyncTask<Void, Void, List<HashMap<String, String>>> {
+    class AsyncIncomePuller extends AsyncTask<Void, Void, List<HashMap<String, String>>> {
 
         @Override
         protected void onPreExecute() {
@@ -171,5 +140,9 @@ public class IncomeFrag extends Fragment {
             super.onCancelled();
             indicatorView.hide();
         }
+    }
+
+    public AsyncIncomePuller incomePullerFactory(){
+        return new AsyncIncomePuller();
     }
 }

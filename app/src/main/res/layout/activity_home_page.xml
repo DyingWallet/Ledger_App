@@ -20,7 +20,7 @@
         android:id="@+id/nav_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/picaPink"
+        android:background="@color/themePink"
         app:menu="@menu/navigation"
         app:itemIconTint="@color/icon_sel"
         app:itemTextColor="@color/text_sel" />

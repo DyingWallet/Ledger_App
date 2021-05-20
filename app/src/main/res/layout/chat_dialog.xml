@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:text="TextView" />
@@ -53,7 +53,7 @@
                 android:ems="10"
                 android:gravity="center_horizontal"
                 android:text="开支"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:text="TextView" />
@@ -81,7 +81,7 @@
                 android:background="#00FFFFFF"
                 android:ems="10"
                 android:gravity="center_horizontal"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:inputType="numberDecimal" />
@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:text="TextView" />
@@ -108,7 +108,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -123,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:text="TextView" />
@@ -135,7 +135,7 @@
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
                 android:ems="10"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="18sp"
                 android:hint="要写一些备注吗？"/>
         </LinearLayout>

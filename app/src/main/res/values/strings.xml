@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">治账</string>
     <string name="text_yuan">%1$f元</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="typeSwitch">切换</string>
+    <string name="noRecord">本月暂无记录</string>
+    <string name="startTime">startTime</string>
+    <string name="endTime">endTime</string>
+    <string name="midLine">  —  </string>
+    <string name="txtDashBoardCost">已花：</string>
+    <string name="txtDashBoardSurplus">结余：</string>
+    <string name="txtDashBoardIncome">收入：</string>
+    <string name="txtDashBoardBudget">预算：</string>
+    <string name="txtDashBoardTitle">当月总览</string>
+    <string name="zeroValue">0.00</string>
 </resources>

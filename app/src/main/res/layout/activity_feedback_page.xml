@@ -21,7 +21,7 @@
         android:id="@+id/nav_fb_tit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/picaPink"
+        android:background="@color/themePink"
         app:itemIconTint="@color/icon_sel"
         app:itemTextColor="@color/text_sel"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="反馈主题："
-            android:textColor="@color/picaPink"
+            android:textColor="@color/themePink"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:textColor="@color/picaPink"
+            android:textColor="@color/themePink"
             android:textStyle="bold" />
 
         <TextView
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="反馈类型："
-            android:textColor="@color/picaPink"
+            android:textColor="@color/themePink"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="我有一些建议"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="18sp" />
 
             <RadioButton
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我发现了一个BUG!"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="18sp" />
 
             <RadioButton
@@ -101,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我想停用我的账号"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textSize="18sp" />
         </RadioGroup>
 
@@ -113,7 +113,7 @@
             android:ems="10"
             android:hint="请写下你想对治账酱说的话吧！（不要超过250字哦！）"
             android:maxLength="250"
-            android:textColor="@color/picaPink" />
+            android:textColor="@color/themePink" />
 
     </LinearLayout>
 

@@ -29,52 +29,11 @@
                 style="@style/AVLoadingIndicatorView"
                 android:visibility="visible"
                 app:indicatorName="LineScalePulseOutIndicator"
-                app:indicatorColor="@color/picaPink"
+                app:indicatorColor="@color/themePink"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="128dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
-
-        <com.getbase.floatingactionbutton.FloatingActionsMenu
-            android:id="@+id/cost_Menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:fab_addButtonColorNormal="@color/picaPink"
-            app:fab_addButtonColorPressed="#FFFFFF"
-            app:fab_addButtonPlusIconColor="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/to_chat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:fab_colorNormal="@color/picaPink"
-                app:fab_colorPressed="#FFFFFF"
-                app:fab_icon="@drawable/icon_smile"
-                app:fab_title="记一笔" />
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/add_cost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:fab_colorNormal="@color/picaPink"
-                app:fab_colorPressed="#FFFFFF"
-                app:fab_icon="@drawable/icon_record"
-                app:fab_title="记一笔" />
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/refresh_cost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:fab_colorNormal="@color/picaPink"
-                app:fab_colorPressed="#FFFFFF"
-                app:fab_icon="@drawable/icon_refresh"
-                app:fab_title="刷新" />
-
-        </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

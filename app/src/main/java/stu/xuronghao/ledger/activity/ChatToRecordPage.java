@@ -111,7 +111,7 @@ public class ChatToRecordPage extends AppCompatActivity {
 
     private void showPusherDialog() {
         View view = LayoutInflater.from(context).inflate(R.layout.chat_dialog, null, false);
-        final AlertDialog dialog = new AlertDialog.Builder(this).setView(view).create();
+        final AlertDialog dialog = new AlertDialog.Builder(context).setView(view).create();
         Button cancel = view.findViewById(R.id.btn_Chat_Dialog_Cancel);
         Button add = view.findViewById(R.id.btn_Chat_Dialog_Push);
         TextView txvEvent = view.findViewById(R.id.txv_Chat_Dialog_Event);

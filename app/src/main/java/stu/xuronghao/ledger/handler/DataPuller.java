@@ -5,7 +5,6 @@ import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import stu.xuronghao.ledger.entity.Anno;
@@ -44,6 +43,32 @@ public class DataPuller {
         if ("".equals(userJson))
             return false;
         return (boolean) JSON.parse(userJson);
+    }
+
+    //更新用户数据
+    public boolean updateUserInfo(User user){
+        response = new GetHttpResponse();
+        String userJson = JSON.toJSONString(user,SerializerFeature.WriteClassName);
+        response.setService(ServerPath.UPDATE_USER_INFO);
+        response.setJsonStr(userJson);
+        userJson = response.poster();
+        if("".equals(userJson))
+            return false;
+        return (boolean) JSON.parse(userJson);
+    }
+
+    //获取用户数据
+    public User getUserInfo(User user){
+        User temp;
+        response = new GetHttpResponse();
+        String userJson = JSON.toJSONString(user,SerializerFeature.WriteClassName);
+        response.setService(ServerPath.GET_USER_INFO);
+        response.setJsonStr(userJson);
+        userJson = response.poster();
+        if("".equals(userJson))
+            return null;
+        temp = JSON.parseObject(userJson, User.class);
+        return temp;
     }
 
     //获取全部支出数据

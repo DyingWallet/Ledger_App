@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="注册"
-            android:textColor="@color/picaPink"
+            android:textColor="@color/themePink"
             android:textSize="32sp"
             android:textStyle="bold" />
 
@@ -56,7 +56,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="8dp"
             android:text="*账号：(这里请输入邮箱哦)"
-            android:textColor="@color/picaPink"
+            android:textColor="@color/themePink"
             android:textStyle="bold" />
 
         <EditText
@@ -66,7 +66,7 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:textColor="@color/picaPink" />
+            android:textColor="@color/themePink" />
 
         <TextView
             android:id="@+id/txv_SignUp_UserName"
@@ -76,7 +76,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
             android:text="昵称：（默认等于邮箱，3-16个字符）"
-            android:textColor="@color/picaPink"
+            android:textColor="@color/themePink"
             android:textStyle="bold" />
 
         <EditText
@@ -86,7 +86,7 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:textColor="@color/picaPink" />
+            android:textColor="@color/themePink" />
 
         <TextView
             android:id="@+id/txv_SignUp_Passwd"
@@ -96,7 +96,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
             android:text="*输入密码：（6-16位字母数字）"
-            android:textColor="@color/picaPink"
+            android:textColor="@color/themePink"
             android:textStyle="bold" />
 
         <EditText
@@ -106,7 +106,7 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:textColor="@color/picaPink" />
+            android:textColor="@color/themePink" />
 
         <TextView
             android:id="@+id/txv_SignUp_Confirm"
@@ -116,7 +116,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
             android:text="*确认密码："
-            android:textColor="@color/picaPink"
+            android:textColor="@color/themePink"
             android:textStyle="bold" />
 
         <EditText
@@ -126,7 +126,7 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:textColor="@color/picaPink" />
+            android:textColor="@color/themePink" />
 
         <LinearLayout
             android:layout_width="match_parent"

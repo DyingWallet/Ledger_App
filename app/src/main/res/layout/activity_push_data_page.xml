@@ -12,7 +12,7 @@
         android:id="@+id/pusher_top_switch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/picaPink"
+        android:background="@color/themePink"
         app:itemIconTint="@color/icon_sel"
         app:itemTextColor="@color/text_sel"
         app:menu="@menu/pusher_menu" />

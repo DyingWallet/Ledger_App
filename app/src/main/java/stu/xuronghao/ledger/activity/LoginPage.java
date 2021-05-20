@@ -136,7 +136,7 @@ public class LoginPage extends AppCompatActivity {
         testUser.setUserCredits(0);
         testUser.setUserStatus(1);
         Intent intent = new Intent(LoginPage.this, HomePage.class);
-        intent.putExtra("user", testUser);
+        intent.putExtra(ConstantVariable.USER, testUser);
         Toast toast = Toast.makeText(context, "---调试账户---", Toast.LENGTH_SHORT);
         toast.show();
         startActivity(intent);

@@ -170,7 +170,7 @@
                 style="@style/AVLoadingIndicatorView"
                 android:visibility="visible"
                 app:indicatorName="LineScalePulseOutIndicator"
-                app:indicatorColor="@color/picaPink"
+                app:indicatorColor="@color/themePink"
                 android:layout_marginTop="180dp"
                 android:layout_centerHorizontal="true"/>
 

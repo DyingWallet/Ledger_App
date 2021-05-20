@@ -41,15 +41,15 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/txv_Login_Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:fontFamily="sans-serif-black"
-            android:text="请登录"
-            android:textColor="#000000"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+                android:id="@+id/txv_Login_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:fontFamily="sans-serif-black"
+                android:text="请登录"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txv_Login_UserNo"
@@ -60,7 +60,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="5dp"
             android:text="账号："
-            android:textColor="@color/picaPink"
+            android:textColor="@color/themePink"
             android:textStyle="bold" />
 
         <EditText
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:textColor="@color/picaPink" />
+            android:textColor="@color/themePink" />
 
         <TextView
             android:id="@+id/txv_Login_Passwd"
@@ -79,7 +79,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:text="密码："
-            android:textColor="@color/picaPink"
+            android:textColor="@color/themePink"
             android:textStyle="bold" />
 
         <EditText
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
-            android:textColor="@color/picaPink" />
+            android:textColor="@color/themePink" />
 
         <Button
             android:id="@+id/btn_Login"
@@ -112,7 +112,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginLeft="40dp"
                 android:text="去注册！"
-                android:textColor="@color/picaPink" />
+                android:textColor="@color/themePink" />
 
             <TextView
                 android:id="@+id/txv_Login_Nothing"
@@ -127,7 +127,7 @@
                 android:layout_marginEnd="40dp"
                 android:layout_marginRight="40dp"
                 android:text="忘记密码？"
-                android:textColor="@color/picaPink"
+                android:textColor="@color/themePink"
                 android:textStyle="bold" />
         </LinearLayout>
 

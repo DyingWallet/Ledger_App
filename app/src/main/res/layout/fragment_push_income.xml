@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:text="收入事件："
-                    android:textColor="@color/picaPink"
+                    android:textColor="@color/themePink"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
                     android:gravity="center_horizontal"
                     android:inputType="textPersonName"
                     android:text="收入"
-                    android:textColor="@color/picaPink"
+                    android:textColor="@color/themePink"
                     android:textSize="24sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:text="收入金额："
-                    android:textColor="@color/picaPink"
+                    android:textColor="@color/themePink"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -92,7 +92,7 @@
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:inputType="numberDecimal"
-                    android:textColor="@color/picaPink"
+                    android:textColor="@color/themePink"
                     android:textSize="24sp" />
             </LinearLayout>
 
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:text="收入类型："
-                    android:textColor="@color/picaPink"
+                    android:textColor="@color/themePink"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -118,7 +118,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
-                    android:textColor="@color/picaPink"
+                    android:textColor="@color/themePink"
                     android:textSize="24sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:text="备注："
-                    android:textColor="@color/picaPink"
+                    android:textColor="@color/themePink"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -147,7 +147,7 @@
                     android:background="#00FFFFFF"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textColor="@color/picaPink"
+                    android:textColor="@color/themePink"
                     android:textSize="18sp" />
 
             </LinearLayout>
