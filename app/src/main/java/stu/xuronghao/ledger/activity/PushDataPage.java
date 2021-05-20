@@ -22,7 +22,6 @@ import stu.xuronghao.ledger.handler.ConstantVariable;
 
 public class PushDataPage extends AppCompatActivity {
     //参数声明
-    private User user;
     private ViewPager viewPager;
     private MenuItem menuItem;
     private BottomNavigationView navigationView;
@@ -35,8 +34,6 @@ public class PushDataPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_push_data_page);
-
-        user = (User) getIntent().getSerializableExtra(ConstantVariable.USER);
 
         //初始化导航
         initView();
@@ -62,15 +59,10 @@ public class PushDataPage extends AppCompatActivity {
         navigationView.setOnNavigationItemSelectedListener(
                 item -> {
                     menuItem = item;
-                    switch (item.getItemId()) {
-                        case R.id.costPusher:
-                            viewPager.setCurrentItem(ConstantVariable.COST_CODE);
-                            Log.w("PushDataPage00000", "" + item.getItemId());
-                            break;
-                        case R.id.incomePusher:
-                            viewPager.setCurrentItem(ConstantVariable.INCOME_CODE);
-                            Log.w("PushDataPage11111", "" + item.getItemId());
-                            break;
+                    if(R.id.costPusher == item.getItemId()){
+                        viewPager.setCurrentItem(ConstantVariable.COST_CODE);
+                    }else if(R.id.incomePusher == item.getItemId()){
+                        viewPager.setCurrentItem(ConstantVariable.INCOME_CODE);
                     }
                     return false;
                 }
@@ -81,7 +73,7 @@ public class PushDataPage extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                //Not Used
             }
 
             @Override
@@ -97,7 +89,7 @@ public class PushDataPage extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
+                //Not Used
             }
         });
 

@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -94,8 +95,6 @@ public class TrendFrag extends Fragment {
 
         currentYear = DateHandler.getCurrentYear();
         destinationYear = currentYear;
-        setDateRange();
-        setDateChanger();
     }
 
     @Override
@@ -105,49 +104,14 @@ public class TrendFrag extends Fragment {
         asyncTrendPuller.execute();
     }
 
-    //设置日期范围
-    private void setDateRange() {
-        //获取月初日期
-        startDate = destinationYear + ConstantVariable.START_OF_YEAR;
-
-        //获取月末日期
-        endDate = destinationYear + ConstantVariable.END_OF_YEAR;
-    }
-
-    //设置日期选择器
-    private void setDateChanger() {
-        //图像控件
-        arrowLeft = rootView.findViewById(R.id.arrow_Trend_LastMonth);
-        arrowRight = rootView.findViewById(R.id.arrow_Trend_NextMonth);
-
-        arrowLeft.setOnClickListener(v -> {
-            destinationYear--;
-            setDateRange();
-            asyncTrendPuller = new AsyncTrendPuller();
-            asyncTrendPuller.execute();
-        });
-
-        arrowRight.setOnClickListener(v -> {
-            if (destinationYear < currentYear) {
-                destinationYear++;
-                setDateRange();
-                asyncTrendPuller = new AsyncTrendPuller();
-                asyncTrendPuller.execute();
-            } else {
-                Toast toast = Toast.makeText(context,
-                        ConstantVariable.HINT_DATE_TO_FUTURE, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-
-    }
-
     private class AsyncTrendPuller extends AsyncTask<Void,Void, Map<String,List>> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             indicatorView.show();
+            setDateRange();
+            setDateChanger();
         }
 
         @Override
@@ -252,9 +216,9 @@ public class TrendFrag extends Fragment {
 
                 //设置年度信息
                 if (yearlyData.getSurplus() > 0) {
-                    txvTotalSurplus.setTextColor(txvTotalSurplus.getResources().getColor(R.color.green));
+                    txvTotalSurplus.setTextColor(ContextCompat.getColor(context,R.color.green));
                 } else {
-                    txvTotalSurplus.setTextColor(txvTotalSurplus.getResources().getColor(R.color.roseRed));
+                    txvTotalSurplus.setTextColor(ContextCompat.getColor(context,R.color.warnRed));
                 }
                 String yearTitle = destinationYear + "年";
                 String totalIncome = yearlyData.getIncome() + "元";
@@ -281,6 +245,41 @@ public class TrendFrag extends Fragment {
         protected void onCancelled() {
             super.onCancelled();
             indicatorView.hide();
+        }
+        //设置日期选择器
+        private void setDateChanger() {
+            //图像控件
+            arrowLeft = rootView.findViewById(R.id.arrow_Trend_LastMonth);
+            arrowRight = rootView.findViewById(R.id.arrow_Trend_NextMonth);
+
+            arrowLeft.setOnClickListener(v -> {
+                destinationYear--;
+                setDateRange();
+                asyncTrendPuller = new AsyncTrendPuller();
+                asyncTrendPuller.execute();
+            });
+
+            arrowRight.setOnClickListener(v -> {
+                if (destinationYear < currentYear) {
+                    destinationYear++;
+                    setDateRange();
+                    asyncTrendPuller = new AsyncTrendPuller();
+                    asyncTrendPuller.execute();
+                } else {
+                    Toast toast = Toast.makeText(context,
+                            ConstantVariable.HINT_DATE_TO_FUTURE, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            });
+        }
+
+        //设置日期范围
+        private void setDateRange() {
+            //获取月初日期
+            startDate = destinationYear + ConstantVariable.START_OF_YEAR;
+
+            //获取月末日期
+            endDate = destinationYear + ConstantVariable.END_OF_YEAR;
         }
     }
 }

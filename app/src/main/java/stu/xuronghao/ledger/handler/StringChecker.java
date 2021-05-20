@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 public class StringChecker {
+    private StringChecker() {
+    }
+
     //判断账目收支类型
-    public static int CostOrIncome(String result) {
+    public static int costOrIncome(String result) {
         int weightVal = 0;
         List<Pair<String, Integer>> costTypeList = ConstantVariable.getCostTypeList();
         List<Pair<String, Integer>> incomeTypeList = ConstantVariable.getIncomeTypeList();
@@ -26,7 +29,7 @@ public class StringChecker {
         else return weightVal < 0 ? ConstantVariable.COST_CODE : ConstantVariable.INCOME_CODE;
     }
 
-    public static String CostOrIncomeType(List<String> wordList, int typeCode) {
+    public static String costOrIncomeType(List<String> wordList, int typeCode) {
         //初始化权重表
         Map<Integer, Integer> weightTable = new HashMap<>();
         for (int i = 0; i < 5; i++) {
@@ -51,7 +54,7 @@ public class StringChecker {
         return ConstantVariable.NULL_STR;
     }
 
-    public static String CheckDoubleValue(String moneyStr) {
+    public static String checkDoubleValue(String moneyStr) {
         StringBuilder sb = new StringBuilder(moneyStr);
         if (moneyStr.contains(ConstantVariable.DOT_REGEX)) {
             String[] strArr = moneyStr.split(ConstantVariable.DOT_REGEX, -1);

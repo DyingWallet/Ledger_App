@@ -2,7 +2,8 @@ package stu.xuronghao.ledger.entity;
 
 public class AnnoInfo {
 
-    private String annoTitle, annoDate;
+    private String annoTitle;
+    private String annoDate;
 
     public AnnoInfo(String annoTitle, String annoDate) {
         this.annoTitle = annoTitle;

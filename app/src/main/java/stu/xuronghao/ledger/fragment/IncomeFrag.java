@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -24,9 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import stu.xuronghao.ledger.R;
-import stu.xuronghao.ledger.activity.ChatToRecordPage;
 import stu.xuronghao.ledger.activity.DetailPage;
-import stu.xuronghao.ledger.activity.PushDataPage;
 import stu.xuronghao.ledger.adapter.BillDataAdapter;
 import stu.xuronghao.ledger.entity.Income;
 import stu.xuronghao.ledger.entity.User;

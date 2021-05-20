@@ -70,26 +70,18 @@ public class DetailPage extends AppCompatActivity {
             builder.setTitle(ConstantVariable.TEXT_CAUTION);
             builder.setIcon(R.drawable.icon_warn);
             builder.setMessage(ConstantVariable.TEXT_DELETE_HINT_MSG);
-            builder.setPositiveButton(ConstantVariable.TEXT_CONFIRM, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if (delete(index)) {
-                        Toast toast = Toast.makeText(context, ConstantVariable.INFO_DELETE_SUCCESS, Toast.LENGTH_SHORT);
-                        toast.show();
-                        finish();
-                        return;
-                    }
-                    Toast toast = Toast.makeText(context, ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
+            builder.setPositiveButton(ConstantVariable.TEXT_CONFIRM, (dialog, which) -> {
+                if (delete(index)) {
+                    Toast toast = Toast.makeText(context, ConstantVariable.INFO_DELETE_SUCCESS, Toast.LENGTH_SHORT);
                     toast.show();
-                    dialog.dismiss();
+                    finish();
+                    return;
                 }
+                Toast toast = Toast.makeText(context, ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_SHORT);
+                toast.show();
+                dialog.dismiss();
             });
-            builder.setNegativeButton(ConstantVariable.TEXT_CANCEL, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
+            builder.setNegativeButton(ConstantVariable.TEXT_CANCEL, (dialog, which) -> dialog.dismiss());
             builder.show();
         });
 

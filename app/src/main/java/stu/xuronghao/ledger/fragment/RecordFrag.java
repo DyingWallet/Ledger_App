@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -143,7 +144,7 @@ public class RecordFrag extends Fragment {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                //Not Used
             }
 
             @Override
@@ -165,6 +166,7 @@ public class RecordFrag extends Fragment {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+                //Not Used
             }
         });
 
@@ -265,27 +267,27 @@ public class RecordFrag extends Fragment {
                 if(userBudget >= userCost){
                     //未超支
                     txvDashBoardSurplusTit.setText(ConstantVariable.HINT_REST_TO_COST);
-                    linearLayoutDashBoard.setBackgroundColor(getResources().getColor(R.color.themePink));
+                    linearLayoutDashBoard.setBackgroundColor(ContextCompat.getColor(context,R.color.themePink));
                     if(userBudget/userCost>=2){
                         txvDashBoardHint.setText(ConstantVariable.HINT_POSITIVE_BUDGET_HIGH);
-                        txvMonthlySurplus.setTextColor(getResources().getColor(R.color.green));
+                        txvMonthlySurplus.setTextColor(ContextCompat.getColor(context,R.color.green));
                     }else {
                         txvDashBoardHint.setText(ConstantVariable.HINT_POSITIVE_BUDGET_LOW);
-                        txvMonthlySurplus.setTextColor(getResources().getColor(R.color.pureWhite));
+                        txvMonthlySurplus.setTextColor(ContextCompat.getColor(context,R.color.pureWhite));
                     }
                 }else {
                     //超支
                     txvDashBoardSurplusTit.setText(ConstantVariable.WARNING_OVER_COST);
-                    txvMonthlySurplus.setTextColor(getResources().getColor(R.color.pureWhite));
+                    txvMonthlySurplus.setTextColor(ContextCompat.getColor(context,R.color.pureWhite));
                     double overCost = userCost - userBudget;
                     if(userBudget / overCost > 1.5){
                         //低超支
                         txvDashBoardHint.setText(ConstantVariable.HINT_NEGATIVE_BUDGET_LOW);
-                        linearLayoutDashBoard.setBackgroundColor(getResources().getColor(R.color.orange));
+                        linearLayoutDashBoard.setBackgroundColor(ContextCompat.getColor(context,R.color.orange));
                     }else {
                         //高超支
                         txvDashBoardHint.setText(ConstantVariable.HINT_NEGATIVE_BUDGET_HIGH);
-                        linearLayoutDashBoard.setBackgroundColor(getResources().getColor(R.color.warnRed));
+                        linearLayoutDashBoard.setBackgroundColor(ContextCompat.getColor(context,R.color.warnRed));
                     }
                 }
 

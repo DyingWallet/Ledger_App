@@ -141,6 +141,7 @@ public class ChatToRecordPage extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                //Not Used
             }
         });
 
@@ -180,10 +181,10 @@ public class ChatToRecordPage extends AppCompatActivity {
                     List<String> wordList = parseWordArray(recognizerResult.getResultString());
                     String result = parseVoice(wordList);
                     String tmp;
-                    int type = ConstantVariable.ERROR_CODE;
-                    int typeIndex = 4;
+                    int type;
+                    int typeIndex;
+                    String typeStr;
                     String moneyStr = ConstantVariable.NULL_STR;
-                    String typeStr = ConstantVariable.NULL_STR;
 
                     //获取金额
                     if (result.contains("块")) tmp = result.replace("块", ".");
@@ -194,11 +195,11 @@ public class ChatToRecordPage extends AppCompatActivity {
                         moneyStr = matcher.group();
                     }
                     //保证小数点后数据的正确
-                    moneyStr = StringChecker.CheckDoubleValue(moneyStr);
+                    moneyStr = StringChecker.checkDoubleValue(moneyStr);
                     //获取收支
-                    type = StringChecker.CostOrIncome(result);
+                    type = StringChecker.costOrIncome(result);
                     //获取收支类型
-                    typeStr = StringChecker.CostOrIncomeType(wordList, type);
+                    typeStr = StringChecker.costOrIncomeType(wordList, type);
                     if (!Validator.checkVoiceParseResult(moneyStr, typeStr, type)) {
                         //字符串解析失败，终止
                         Toast toast = Toast.makeText(context,
@@ -266,6 +267,7 @@ public class ChatToRecordPage extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                //Not Used
             }
         });
 

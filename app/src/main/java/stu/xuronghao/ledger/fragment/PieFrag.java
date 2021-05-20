@@ -50,8 +50,6 @@ public class PieFrag extends Fragment {
     private String startDate;
     private String endDate;
     private String total;
-    private ImageView arrowLeft;
-    private ImageView arrowRight;
     //文本控件
     private TextView txvStartDate;
     private TextView txvEndDate;
@@ -84,16 +82,8 @@ public class PieFrag extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
         //图标控件
-        ImageView imgSwitch = rootView.findViewById(R.id.pie_click_switch);
-        arrowLeft = rootView.findViewById(R.id.arrow_Pie_LastMonth);
-        arrowRight = rootView.findViewById(R.id.arrow_Pie_NextMonth);
         indicatorView = rootView.findViewById(R.id.avi_pie);
         txvStartDate = rootView.findViewById(R.id.txv_Pie_StartDate);
         txvEndDate = rootView.findViewById(R.id.txv_Pie_EndDate);
@@ -103,11 +93,8 @@ public class PieFrag extends Fragment {
         //获取当前月份
         currentMonth = DateHandler.getCurrentMonth();
         destinationMonth = currentMonth;
-        //设置日期范围
-        setDateRange();
-        //设置日期转换器
-        setDateChanger();
         //设置模式转换监听器
+        ImageView imgSwitch = rootView.findViewById(R.id.pie_click_switch);
         imgSwitch.setOnClickListener(v -> {
             if (ConstantVariable.COST_CODE != typeCode) {
                 typeCode = ConstantVariable.COST_CODE;
@@ -117,38 +104,14 @@ public class PieFrag extends Fragment {
             asyncPiePuller = new AsyncPiePuller();
             asyncPiePuller.execute();
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         //生成图形化报表
         asyncPiePuller = new AsyncPiePuller();
         asyncPiePuller.execute();
-    }
-
-    //设置日期范围
-    private void setDateRange() {
-        startDate = DateHandler.setDateRange(ConstantVariable.START_CODE, destinationMonth);
-        endDate = DateHandler.setDateRange(ConstantVariable.END_CODE, destinationMonth);
-    }
-
-    //设置日期选择器
-    private void setDateChanger() {
-        //图像控件
-        arrowLeft.setOnClickListener(v -> {
-            destinationMonth--;
-            setDateRange();
-            asyncPiePuller = new AsyncPiePuller();
-            asyncPiePuller.execute();
-        });
-        arrowRight.setOnClickListener(v -> {
-            if (destinationMonth < currentMonth) {
-                destinationMonth++;
-                setDateRange();
-                asyncPiePuller = new AsyncPiePuller();
-                asyncPiePuller.execute();
-            } else {
-                Toast toast = Toast.makeText(context, ConstantVariable.HINT_DATE_TO_FUTURE, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-
     }
 
     private class AsyncPiePuller extends AsyncTask<Void, Void, Map<String, List>> {
@@ -158,6 +121,10 @@ public class PieFrag extends Fragment {
             super.onPreExecute();
             txvNoRecord.setVisibility(View.INVISIBLE);
             indicatorView.show();
+            //设置日期范围
+            setDateRange();
+            //设置日期转换器
+            setDateChanger();
         }
 
         @Override
@@ -198,9 +165,9 @@ public class PieFrag extends Fragment {
 
             for (int i = 0; i < arr.length; i++) {
                 if (arr[i] != 0) {
-                    data.add(new Object[]{ConstantVariable.getTypeByTypeStr(i,modeType), arr[i]});
+                    data.add(new Object[]{ConstantVariable.getTypeByTypeStr(i, modeType), arr[i]});
                     feeList.add(new TotalFee(IconHandler.getIconByArray(typeCode, i),
-                            arr[i], ConstantVariable.getTypeByTypeStr(i,modeType)));
+                            arr[i], ConstantVariable.getTypeByTypeStr(i, modeType)));
                     tmp += arr[i];
                 }
             }
@@ -264,6 +231,36 @@ public class PieFrag extends Fragment {
             super.onCancelled();
             indicatorView.hide();
         }
-    }
 
+        //设置日期选择器
+        private void setDateChanger() {
+            //图像控件
+            ImageView arrowLeft = rootView.findViewById(R.id.arrow_Pie_LastMonth);
+            ImageView arrowRight = rootView.findViewById(R.id.arrow_Pie_NextMonth);
+            arrowLeft.setOnClickListener(v -> {
+                destinationMonth--;
+                setDateRange();
+                asyncPiePuller = new AsyncPiePuller();
+                asyncPiePuller.execute();
+            });
+            arrowRight.setOnClickListener(v -> {
+                if (destinationMonth < currentMonth) {
+                    destinationMonth++;
+                    setDateRange();
+                    asyncPiePuller = new AsyncPiePuller();
+                    asyncPiePuller.execute();
+                } else {
+                    Toast toast = Toast.makeText(context, ConstantVariable.HINT_DATE_TO_FUTURE, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            });
+        }
+
+        //设置日期范围
+        private void setDateRange() {
+            startDate = DateHandler.setDateRange(ConstantVariable.START_CODE, destinationMonth);
+            endDate = DateHandler.setDateRange(ConstantVariable.END_CODE, destinationMonth);
+        }
+
+    }
 }

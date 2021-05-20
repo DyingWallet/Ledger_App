@@ -73,7 +73,7 @@ public class PushIncomeFrag extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //Not Used
             }
         });
 

@@ -46,16 +46,13 @@ public class FeedbackPage extends AppCompatActivity {
         RadioGroup group = findViewById(R.id.fb_type_group);
 
         //RadioGroup监听器
-        group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(R.id.rbtn_advise == checkedId)
-                    feedback.setFbType(ConstantVariable.FB_TYPE_ADVICE);
-                else if(R.id.rbtn_bug == checkedId)
-                    feedback.setFbType(ConstantVariable.FB_TYPE_BUG);
-                else if(R.id.rbtn_froze == checkedId)
-                    feedback.setFbType(ConstantVariable.FB_TYPE_FROZE);
-            }
+        group.setOnCheckedChangeListener((group1, checkedId) -> {
+            if(R.id.rbtn_advise == checkedId)
+                feedback.setFbType(ConstantVariable.FB_TYPE_ADVICE);
+            else if(R.id.rbtn_bug == checkedId)
+                feedback.setFbType(ConstantVariable.FB_TYPE_BUG);
+            else if(R.id.rbtn_froze == checkedId)
+                feedback.setFbType(ConstantVariable.FB_TYPE_FROZE);
         });
 
         push.setOnClickListener(v -> {

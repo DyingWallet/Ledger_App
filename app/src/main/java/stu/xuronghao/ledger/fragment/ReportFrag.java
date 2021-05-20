@@ -33,13 +33,6 @@ public class ReportFrag extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //        if (getArguments() != null) {
-        //        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -66,13 +59,10 @@ public class ReportFrag extends Fragment {
         navigationView.setOnNavigationItemSelectedListener(
                 item -> {
                     menuItem = item;
-                    switch (item.getItemId()) {
-                        case R.id.pieFrag:
-                            viewPager.setCurrentItem(0);
-                            break;
-                        case R.id.lineFrag:
-                            viewPager.setCurrentItem(1);
-                            break;
+                    if(R.id.pieFrag == item.getItemId()){
+                        viewPager.setCurrentItem(0);
+                    }else if(R.id.lineFrag == item.getItemId()){
+                        viewPager.setCurrentItem(1);
                     }
                     return false;
                 }
@@ -83,7 +73,7 @@ public class ReportFrag extends Fragment {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                //Not Used
             }
 
             @Override
@@ -99,6 +89,7 @@ public class ReportFrag extends Fragment {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+                //Not Used
             }
         });
 

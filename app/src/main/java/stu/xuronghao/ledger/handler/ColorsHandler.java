@@ -33,6 +33,9 @@ public class ColorsHandler {
         colorMap.put("其他", INDIGO);
     }
 
+    private ColorsHandler() {
+    }
+
     public static String[] getColorStr(int length){
 
         return Arrays.copyOfRange(colorStr,0,length);
