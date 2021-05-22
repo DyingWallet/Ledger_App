@@ -12,4 +12,16 @@
     <string name="txtDashBoardBudget">预算：</string>
     <string name="txtDashBoardTitle">当月总览</string>
     <string name="zeroValue">0.00</string>
+    <string name="costTab">支出</string>
+    <string name="incomeTab">收入</string>
+    <string name="monthlyTable">月度统计</string>
+    <string name="yearlyTable">年度走势</string>
+    <string name="recordCost">记支出</string>
+    <string name="recordIncome">记收入</string>
+    <string name="accountingPage">记账</string>
+    <string name="statisticPage">报表</string>
+    <string name="mePage">我的</string>
+    <string name="feedbackPage">反馈系统</string>
+    <string name="detailedInfo">详情</string>
+    <string name="systemAnno">系统公告</string>
 </resources>

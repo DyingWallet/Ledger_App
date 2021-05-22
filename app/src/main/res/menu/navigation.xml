@@ -3,13 +3,13 @@
     <item
         android:id="@+id/recordFrag"
         android:icon="@drawable/icon_record"
-        android:title="记账" />
+        android:title="@string/accountingPage" />
     <item
         android:id="@+id/reportFrag"
         android:icon="@drawable/icon_feedback"
-        android:title="报表" />
+        android:title="@string/statisticPage" />
     <item
         android:id="@+id/userFrag"
         android:icon="@drawable/icon_user"
-        android:title="我的" />
+        android:title="@string/mePage" />
 </menu>

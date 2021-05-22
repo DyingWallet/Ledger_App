@@ -3,9 +3,9 @@
     <item
         android:id="@+id/costFrag"
         android:icon="@drawable/icon_top_cost"
-        android:title="支出" />
+        android:title="@string/costTab" />
     <item
         android:id="@+id/incomeFrag"
         android:icon="@drawable/icon_top_income"
-        android:title="收入" />
+        android:title="@string/incomeTab" />
 </menu>

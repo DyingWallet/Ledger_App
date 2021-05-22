@@ -3,9 +3,9 @@
     <item
         android:id="@+id/costPusher"
         android:icon="@drawable/icon_top_cost"
-        android:title="记支出" />
+        android:title="@string/recordCost" />
     <item
         android:id="@+id/incomePusher"
         android:icon="@drawable/icon_top_income"
-        android:title="记收入" />
+        android:title="@string/recordIncome" />
 </menu>

@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:icon="@drawable/icon_feedback"
-        android:title="反馈系统"
+        android:title="@string/feedbackPage"
         />
 </menu>
