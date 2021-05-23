@@ -21,7 +21,7 @@
         android:id="@+id/img_SignUp_Head"
         android:layout_width="175dp"
         android:layout_height="200dp"
-        android:src="@drawable/background"
+        android:src="@drawable/background_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/img_SignUp_BG0" />
 

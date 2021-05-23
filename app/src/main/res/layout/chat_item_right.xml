@@ -23,7 +23,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_gravity="top"
-        android:src="@drawable/background"
+        android:src="@drawable/background_2"
         android:scaleType="centerCrop"
         android:contentDescription="USER" />
 

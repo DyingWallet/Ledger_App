@@ -63,7 +63,7 @@ public class ChatListAdapter extends BaseAdapter {
         holder.msg.setText(info.getContent());
 
         if (info.getIsMeSend() == 1)
-            holder.print.setImageResource(R.drawable.background);
+            holder.print.setImageResource(R.drawable.background_2);
         else
             holder.print.setImageResource(R.drawable.app_icon);
         return convertView;

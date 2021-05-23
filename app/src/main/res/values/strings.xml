@@ -24,4 +24,13 @@
     <string name="feedbackPage">反馈系统</string>
     <string name="detailedInfo">详情</string>
     <string name="systemAnno">系统公告</string>
+    <string name="usernameStr">用户名</string>
+    <string name="annoStr">公告</string>
+    <string name="annoDescStr">管理员发出的消息</string>
+    <string name="themeMarketStr">主题商城</string>
+    <string name="themeMarketDescStr">浏览最新炫酷主题</string>
+    <string name="feedbackStr">反馈</string>
+    <string name="feedbackDescStr">我们需要您的改进建议</string>
+    <string name="storageStr">主题仓库</string>
+    <string name="storageDescStr">炫酷主题，即刻更换</string>
 </resources>
