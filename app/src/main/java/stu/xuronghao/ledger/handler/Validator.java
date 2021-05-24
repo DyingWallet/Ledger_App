@@ -6,6 +6,8 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import stu.xuronghao.ledger.entity.User;
+
 public class Validator {
     private Validator() {
     }
@@ -142,11 +144,25 @@ public class Validator {
 
     public static boolean checkVoiceParseResult(String moneyStr, String typeStr, int typeCode) {
         return !ConstantVariable.NULL_STR.equals(moneyStr) &&
-               !ConstantVariable.NULL_STR.equals(typeStr) &&
+                !ConstantVariable.NULL_STR.equals(typeStr) &&
                 ConstantVariable.ERROR_CODE != typeCode;
     }
 
     public static boolean checkDashBoardBudget(String budget) {
         return !budget.isEmpty() && Double.parseDouble(budget) >= 0;
+    }
+
+    public static boolean checkUsername(String newUsername, Context context) {
+        return checkNickName(newUsername, context);
+    }
+
+    public static boolean checkChangePasswd(User user, String originPasswd, String newPasswd, String confirmPasswd, Context context) {
+        if (originPasswd.equals(user.getUserPasswd())) {
+            return checkPasswd(newPasswd, context) && confirmPasswd(newPasswd, confirmPasswd, context);
+        } else {
+            Toast toast = Toast.makeText(context, ConstantVariable.HINT_WRONG_ORIGIN_PASSWD, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        return false;
     }
 }

@@ -40,6 +40,8 @@
         <activity android:name="stu.xuronghao.ledger.activity.PushDataPage" />
         <activity android:name="stu.xuronghao.ledger.activity.HomePage" />
         <activity android:name="stu.xuronghao.ledger.activity.SignUpPage" />
+        <activity android:name="stu.xuronghao.ledger.activity.ChangePasswdPage"/>
+        <activity android:name="stu.xuronghao.ledger.activity.ChangeUsernamePage"/>
         <activity android:name="stu.xuronghao.ledger.activity.LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

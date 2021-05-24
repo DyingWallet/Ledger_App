@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.activity.AnnoPage;
+import stu.xuronghao.ledger.activity.ChangePasswdPage;
+import stu.xuronghao.ledger.activity.ChangeUsernamePage;
 import stu.xuronghao.ledger.activity.FeedbackPage;
 import stu.xuronghao.ledger.entity.User;
 import stu.xuronghao.ledger.handler.ConstantVariable;
@@ -55,6 +57,7 @@ public class UserFrag extends Fragment {
         ImageView feedback = rootView.findViewById(R.id.img_UserFrag_Feedback_BG);
         ImageView shop = rootView.findViewById(R.id.img_UserFrag_Shop_BG);
         ImageView storage = rootView.findViewById(R.id.img_UserFrag_Storage_BG);
+        ImageView setting = rootView.findViewById(R.id.img_UserFrag_Setting_BG);
 
 
         storage.setOnClickListener(v -> {
@@ -76,6 +79,18 @@ public class UserFrag extends Fragment {
         anno.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), AnnoPage.class);
             intent.putExtra(ConstantVariable.USER, user);
+            startActivity(intent);
+        });
+
+        setting.setOnClickListener(v->{
+            Intent intent = new Intent(getActivity(), ChangePasswdPage.class);
+            intent.putExtra(ConstantVariable.USER,user);
+            startActivity(intent);
+        });
+
+        userName.setOnClickListener(v->{
+            Intent intent = new Intent(getActivity(), ChangeUsernamePage.class);
+            intent.putExtra(ConstantVariable.USER,user);
             startActivity(intent);
         });
     }

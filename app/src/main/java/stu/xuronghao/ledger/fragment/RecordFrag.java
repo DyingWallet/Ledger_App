@@ -186,7 +186,7 @@ public class RecordFrag extends Fragment {
         final FloatingActionButton addBtn = rootView.findViewById(R.id.add_cost);
         addBtn.setOnClickListener(v -> {
             //新增支出
-            Log.w("addBtn: ", "Ready to add cost!");
+            Log.w("addBtn: ", "Ready to add cost/income!");
             Intent intent = new Intent(getActivity(), PushDataPage.class);
             intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
             intent.putExtra(ConstantVariable.USER, user);
