@@ -1,7 +1,6 @@
 package stu.xuronghao.ledger.activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +18,7 @@ import stu.xuronghao.ledger.handler.DataPuller;
 import stu.xuronghao.ledger.handler.Validator;
 
 public class DetailPage extends AppCompatActivity {
-    private int index;
+    private int typeCode;
     private Cost cost;
     private Income income;
     private Context context;
@@ -42,9 +41,9 @@ public class DetailPage extends AppCompatActivity {
         TextView txvDate = findViewById(R.id.txv_Detail_DateTime);
         TextView txvType = findViewById(R.id.txv_Detail_CostType);
 
-        index = getIntent().getIntExtra(ConstantVariable.INDEX, 0);
+        typeCode = getIntent().getIntExtra(ConstantVariable.TYPE_CODE, 0);
 
-        if (ConstantVariable.COST_CODE == index) {
+        if (ConstantVariable.COST_CODE == typeCode) {
             cost = (Cost) getIntent().getSerializableExtra(ConstantVariable.COST_TYPE);
             assert cost != null;
             etxEvent.setText(cost.getCostEvent());
@@ -52,7 +51,7 @@ public class DetailPage extends AppCompatActivity {
             etxRemark.setText(cost.getCostRemark());
             txvDate.setText(cost.getCostDate());
             txvType.setText(cost.getCostType());
-        } else if (ConstantVariable.INCOME_CODE == index) {
+        } else if (ConstantVariable.INCOME_CODE == typeCode) {
             income = (Income) getIntent().getSerializableExtra(ConstantVariable.INCOME_TYPE);
             assert income != null;
             etxEvent.setText(income.getIncEvent());
@@ -71,7 +70,7 @@ public class DetailPage extends AppCompatActivity {
             builder.setIcon(R.drawable.icon_warn);
             builder.setMessage(ConstantVariable.TEXT_DELETE_HINT_MSG);
             builder.setPositiveButton(ConstantVariable.TEXT_CONFIRM, (dialog, which) -> {
-                if (delete(index)) {
+                if (delete(typeCode)) {
                     Toast toast = Toast.makeText(context, ConstantVariable.INFO_DELETE_SUCCESS, Toast.LENGTH_SHORT);
                     toast.show();
                     finish();
@@ -86,7 +85,7 @@ public class DetailPage extends AppCompatActivity {
         });
 
         btnSave.setOnClickListener(v -> {
-            if (update(index)) {
+            if (update(typeCode)) {
                 Toast toast = Toast.makeText(context, ConstantVariable.INFO_UPDATE_SUCCESS, Toast.LENGTH_SHORT);
                 toast.show();
                 finish();

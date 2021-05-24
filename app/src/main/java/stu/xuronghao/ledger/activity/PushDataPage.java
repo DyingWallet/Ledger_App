@@ -38,10 +38,10 @@ public class PushDataPage extends AppCompatActivity {
         //初始化导航
         initView();
 
-        int index = getIntent().getIntExtra(ConstantVariable.TYPE_CODE, 0);
-        Log.w("index is: ", "" + index);
+        int typeCode = getIntent().getIntExtra(ConstantVariable.TYPE_CODE, 0);
+        Log.w("index is: ", "" + typeCode);
 
-        toView(index);
+        toView(typeCode);
     }
 
     //初始化ViewPager

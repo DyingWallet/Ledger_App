@@ -182,6 +182,7 @@ public class RecordFrag extends Fragment {
             Intent intent = new Intent(getActivity(), ChatToRecordPage.class);
             intent.putExtra("user", user);
             startActivity(intent);
+            floatMenu.collapse();
         });
 
         final FloatingActionButton addBtn = rootView.findViewById(R.id.add_cost);
@@ -189,9 +190,10 @@ public class RecordFrag extends Fragment {
             //新增支出
             Log.w("addBtn: ", "Ready to add cost/income!");
             Intent intent = new Intent(getActivity(), PushDataPage.class);
-            intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
+            intent.putExtra(ConstantVariable.TYPE_CODE, typeCode);
             intent.putExtra(ConstantVariable.USER, user);
             startActivity(intent);
+            floatMenu.collapse();
         });
 
         final FloatingActionButton refreshBtn = rootView.findViewById(R.id.refresh_cost);
@@ -206,6 +208,7 @@ public class RecordFrag extends Fragment {
             }
             Toast toast = Toast.makeText(context, "收到服务器君发送的消费数据！", Toast.LENGTH_SHORT);
             toast.show();
+            floatMenu.collapse();
         });
     }
 

@@ -118,7 +118,9 @@ public class IncomeFrag extends Fragment {
 
                 listView.setOnItemClickListener((parent, view, position, id) -> {
                     Intent intent = new Intent(getActivity(), DetailPage.class);
-                    intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
+                    //设置类型
+                    intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.INCOME_CODE);
+                    //传递数据
                     intent.putExtra(ConstantVariable.INCOME_TYPE, incList.get(position));
                     startActivity(intent);
                 });

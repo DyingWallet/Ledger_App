@@ -180,7 +180,8 @@
                     android:layout_height="wrap_content"
                     app:fab_colorNormal="@color/themePink"
                     app:fab_colorPressed="#FFFFFF"
-                    app:fab_icon="@drawable/icon_smile"
+                    app:fab_icon="@drawable/icon_microphone_black"
+                    app:fab_colorDisabled="@color/pureBlack"
                     app:fab_title="记一笔" />
 
             <com.getbase.floatingactionbutton.FloatingActionButton

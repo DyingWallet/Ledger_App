@@ -118,8 +118,10 @@ public class CostFrag extends Fragment {
 
                 listView.setOnItemClickListener((parent, view, position, id) -> {
                     Intent intent = new Intent(getActivity(), DetailPage.class);
+                    //设置类型
                     intent.putExtra(ConstantVariable.TYPE_CODE, ConstantVariable.COST_CODE);
-                    intent.putExtra("cost", costList.get(position));
+                    //传递数据
+                    intent.putExtra(ConstantVariable.COST_TYPE, costList.get(position));
                     startActivity(intent);
                 });
             }else {
