@@ -31,19 +31,24 @@ public class DateHandler {
     public static String setDateRange(int code,int destinationMonth) {
         Calendar calendar = Calendar.getInstance(zone);
         calendar.set(Calendar.MONTH, destinationMonth);
+        String result;
         switch (code) {
             case ConstantVariable.START_CODE:
                 calendar.set(Calendar.DAY_OF_MONTH, 1);
-                return dateFormat.format(calendar.getTime()) + ConstantVariable.START_OF_DAY;
+                result = dateFormat.format(calendar.getTime()).split(ConstantVariable.TIME_REGEX)[0];
+                return result + ConstantVariable.START_OF_DAY;
             case ConstantVariable.END_CODE:
                 calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-                return dateFormat.format(calendar.getTime()) + ConstantVariable.END_OF_DAY;
+                result = dateFormat.format(calendar.getTime()).split(ConstantVariable.TIME_REGEX)[0];
+                return result + ConstantVariable.END_OF_DAY;
             default:
                 return "";
         }
     }
 
-
+    public static String getCurrentDateLimit(int startOrEnd){
+        return setDateRange(startOrEnd,getCurrentMonth());
+    }
     private DateHandler() {
     }
 }

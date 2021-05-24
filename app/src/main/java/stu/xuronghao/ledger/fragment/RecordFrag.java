@@ -41,6 +41,7 @@ import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.User;
 import stu.xuronghao.ledger.handler.ConstantVariable;
 import stu.xuronghao.ledger.handler.DataPuller;
+import stu.xuronghao.ledger.handler.DateHandler;
 import stu.xuronghao.ledger.handler.Validator;
 
 public class RecordFrag extends Fragment {
@@ -242,7 +243,10 @@ public class RecordFrag extends Fragment {
             double userBudget;
             DataPuller dataPuller = new DataPuller();
             User temp = dataPuller.getUserInfo(user);
-            costList = dataPuller.pullCostOf(user);
+            //costList = dataPuller.pullCostOf(user);
+            costList = dataPuller.pullCostOfBetween(user,
+                    DateHandler.getCurrentDateLimit(ConstantVariable.START_CODE),
+                    DateHandler.getCurrentDateLimit(ConstantVariable.END_CODE));
             if(temp == null || costList == null)
                 return null;
             user = temp;
