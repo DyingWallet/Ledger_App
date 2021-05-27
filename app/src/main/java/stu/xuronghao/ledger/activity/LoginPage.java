@@ -53,7 +53,7 @@ public class LoginPage extends AppCompatActivity {
         txvSignUp = findViewById(R.id.txv_Login_SignUp);
         txvForHelp = findViewById(R.id.txv_Login_ForHelp);
         txvSignUp.setOnClickListener(v -> gotoSignUp());
-        txvForHelp.setOnClickListener(v -> skipLogin());
+        txvForHelp.setOnClickListener(v -> testLogin());
 
         String[] permissions = {Manifest.permission.INTERNET,
                 Manifest.permission.ACCESS_NETWORK_STATE,
@@ -128,19 +128,20 @@ public class LoginPage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void skipLogin() {
+    private void testLogin() {
         User testUser = new User();
         testUser.setUserNo("dw@qq.com");
-        testUser.setUserName("dww");
         testUser.setUserPasswd("123456");
-        testUser.setUserCredits(0);
-        testUser.setUserStatus(1);
-        Intent intent = new Intent(LoginPage.this, HomePage.class);
-        intent.putExtra(ConstantVariable.USER, testUser);
-        Toast toast = Toast.makeText(context, "---调试账户---", Toast.LENGTH_SHORT);
-        toast.show();
-        startActivity(intent);
-        finish();
+
+        User temp = dataPuller.loginSender(testUser);
+        if (temp == null) {
+            Toast toast = Toast.makeText(context,
+                    ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
+        user = temp;
+        checkStatus();
     }
 
 }

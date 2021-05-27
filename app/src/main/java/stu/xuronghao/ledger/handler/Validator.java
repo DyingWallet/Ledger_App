@@ -45,7 +45,7 @@ public class Validator {
      */
     private static boolean checkNickName(String nickName, Context context) {
         if (!"".equals(nickName) && (nickName.length() < 3 || nickName.length() > 16)) {
-            Toast toast = Toast.makeText(context, ConstantVariable.HINT_WRONG_EMAIL_FORMAT, Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(context, ConstantVariable.HINT_WRONG_NICKNAME_LENGTH, Toast.LENGTH_LONG);
             toast.show();
             return false;
         }

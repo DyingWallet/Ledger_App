@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -20,6 +19,7 @@ import stu.xuronghao.ledger.activity.ChangeUsernamePage;
 import stu.xuronghao.ledger.activity.FeedbackPage;
 import stu.xuronghao.ledger.entity.User;
 import stu.xuronghao.ledger.handler.ConstantVariable;
+import stu.xuronghao.ledger.handler.DataPuller;
 
 public class UserFrag extends Fragment {
 
@@ -27,6 +27,7 @@ public class UserFrag extends Fragment {
     private User user;
     private View rootView;
     private Context context;
+    private TextView txvUserName;
 
     public UserFrag() {
         // Required empty public constructor
@@ -50,25 +51,24 @@ public class UserFrag extends Fragment {
         super.onActivityCreated(savedInstanceState);
         //获取用户信息
         user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
-        TextView userName = rootView.findViewById(R.id.txv_UserFrag_UserName);
-        userName.setText(user.getUserName());
 
         ImageView anno = rootView.findViewById(R.id.img_UserFrag_Anno_BG);
         ImageView feedback = rootView.findViewById(R.id.img_UserFrag_Feedback_BG);
-        ImageView shop = rootView.findViewById(R.id.img_UserFrag_Shop_BG);
-        ImageView storage = rootView.findViewById(R.id.img_UserFrag_Storage_BG);
+        //ImageView shop = rootView.findViewById(R.id.img_UserFrag_Shop_BG);
+        //ImageView storage = rootView.findViewById(R.id.img_UserFrag_Storage_BG);
         ImageView setting = rootView.findViewById(R.id.img_UserFrag_Setting_BG);
+        txvUserName = rootView.findViewById(R.id.txv_UserFrag_UserName);
 
 
-        storage.setOnClickListener(v -> {
-            Toast toast = Toast.makeText(context, ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
-            toast.show();
-        });
-
-        shop.setOnClickListener(v -> {
-            Toast toast = Toast.makeText(context, ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
-            toast.show();
-        });
+        //storage.setOnClickListener(v -> {
+        //    Toast toast = Toast.makeText(context, ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
+        //    toast.show();
+        //});
+        //
+        //shop.setOnClickListener(v -> {
+        //    Toast toast = Toast.makeText(context, ConstantVariable.HINT_IN_DEVELOPING, Toast.LENGTH_SHORT);
+        //    toast.show();
+        //});
 
         feedback.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), FeedbackPage.class);
@@ -88,10 +88,19 @@ public class UserFrag extends Fragment {
             startActivity(intent);
         });
 
-        userName.setOnClickListener(v->{
+        txvUserName.setOnClickListener(v->{
             Intent intent = new Intent(getActivity(), ChangeUsernamePage.class);
             intent.putExtra(ConstantVariable.USER,user);
             startActivity(intent);
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DataPuller dataPuller = new DataPuller();
+        user = dataPuller.getUserInfo(user);
+        getActivity().getIntent().putExtra(ConstantVariable.USER,user);
+        txvUserName.setText(user.getUserName());
     }
 }

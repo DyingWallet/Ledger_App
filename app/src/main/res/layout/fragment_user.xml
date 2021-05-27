@@ -82,61 +82,17 @@
                     app:layout_constraintStart_toStartOf="@+id/txv_UserFrag_Tit_Anno"
                     app:layout_constraintTop_toBottomOf="@+id/txv_UserFrag_Tit_Anno" />
 
-                <ImageView
-                    android:id="@+id/img_UserFrag_Shop_BG"
-                    android:layout_width="170dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/tile"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/img_UserFrag_Shop"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/icon_shop"
-                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Shop_BG"
-                    app:layout_constraintTop_toTopOf="@+id/img_UserFrag_Shop_BG" />
-
-                <TextView
-                    android:id="@+id/txv_UserFrag_Tit_Shop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/themeMarketStr"
-                    android:textColor="@color/themePink"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Shop"
-                    app:layout_constraintTop_toBottomOf="@+id/img_UserFrag_Shop" />
-
-                <TextView
-                    android:id="@+id/txv_UserFrag_Shop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/themeMarketDescStr"
-                    android:textColor="@color/themePink"
-                    android:textSize="12sp"
-                    android:textStyle="italic"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_UserFrag_Shop_BG"
-                    app:layout_constraintStart_toStartOf="@+id/txv_UserFrag_Tit_Shop"
-                    app:layout_constraintTop_toBottomOf="@+id/txv_UserFrag_Tit_Shop" />
 
                 <ImageView
                     android:id="@+id/img_UserFrag_Feedback_BG"
                     android:layout_width="170dp"
                     android:layout_height="120dp"
-                    android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginTop="24dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/tile"
-                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Anno_BG"
-                    app:layout_constraintTop_toBottomOf="@+id/img_UserFrag_Anno_BG" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
                 <ImageView
                     android:id="@+id/img_UserFrag_Feedback"
@@ -173,50 +129,6 @@
                     app:layout_constraintStart_toStartOf="@+id/txv_UserFrag_Tit_Feedback"
                     app:layout_constraintTop_toBottomOf="@+id/txv_UserFrag_Tit_Feedback" />
 
-                <ImageView
-                    android:id="@+id/img_UserFrag_Storage_BG"
-                    android:layout_width="170dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="16dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/tile"
-                    app:layout_constraintEnd_toEndOf="@+id/img_UserFrag_Shop_BG"
-                    app:layout_constraintTop_toBottomOf="@+id/img_UserFrag_Shop_BG" />
-
-                <ImageView
-                    android:id="@+id/img_UserFrag_Storage"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/icon_storage"
-                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Storage_BG"
-                    app:layout_constraintTop_toTopOf="@+id/img_UserFrag_Storage_BG" />
-
-                <TextView
-                    android:id="@+id/txv_UserFrag_Tit_Storage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/storageStr"
-                    android:textColor="@color/themePink"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Storage"
-                    app:layout_constraintTop_toBottomOf="@+id/img_UserFrag_Storage" />
-
-                <TextView
-                    android:id="@+id/txv_UserFrag_Storage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/storageDescStr"
-                    android:textColor="@color/themePink"
-                    android:textSize="12sp"
-                    android:textStyle="italic"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_UserFrag_Storage_BG"
-                    app:layout_constraintStart_toStartOf="@+id/txv_UserFrag_Tit_Storage"
-                    app:layout_constraintTop_toBottomOf="@+id/txv_UserFrag_Tit_Storage" />
 
                 <ImageView
                         android:id="@+id/img_UserFrag_Setting_BG"
@@ -225,8 +137,8 @@
                         android:layout_marginTop="16dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/tile"
-                        app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Feedback_BG"
-                        app:layout_constraintTop_toBottomOf="@+id/img_UserFrag_Feedback_BG" />
+                        app:layout_constraintStart_toStartOf="@+id/img_UserFrag_Anno_BG"
+                        app:layout_constraintTop_toBottomOf="@+id/img_UserFrag_Anno_BG" />
 
                 <ImageView
                         android:id="@+id/img_UserFrag_Setting"

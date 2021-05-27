@@ -1,6 +1,7 @@
 package stu.xuronghao.ledger.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +39,10 @@ public class ChangeUsernamePage extends AppCompatActivity {
                 DataPuller dataPuller = new DataPuller();
                 if (dataPuller.updateUserInfo(temp)) {
                     user = dataPuller.getUserInfo(user);
+                    Intent res = new Intent();
+                    res.putExtra(ConstantVariable.USER,user);
+                    setResult(1,res);
+                    finish();
                 }
             }
         });
