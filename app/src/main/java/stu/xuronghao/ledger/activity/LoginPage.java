@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.User;
 import stu.xuronghao.ledger.handler.ConstantVariable;
@@ -35,23 +37,13 @@ public class LoginPage extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button btnLogin = findViewById(R.id.btn_Login);
-        btnLogin.setOnClickListener(v -> {
-            if (getLoginInfo()) {
-                User temp = dataPuller.loginSender(user);
-                if (temp == null) {
-                    Toast toast = Toast.makeText(context,
-                            ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
-                    toast.show();
-                    return;
-                }
-                user = temp;
-                checkStatus();
-            }
-        });
+        btnLogin.setOnClickListener(v -> login());
+
         edtxUserNo = findViewById(R.id.etxv_Login_userNo);
         edtxUserPasswd = findViewById(R.id.etxv_Login_Passwd);
         txvSignUp = findViewById(R.id.txv_Login_SignUp);
         txvForHelp = findViewById(R.id.txv_Login_ForHelp);
+
         txvSignUp.setOnClickListener(v -> gotoSignUp());
         txvForHelp.setOnClickListener(v -> testLogin());
 
@@ -81,6 +73,20 @@ public class LoginPage extends AppCompatActivity {
             user = signUpUser;
             edtxUserNo.setText(user.getUserNo());
             edtxUserPasswd.setText(user.getUserPasswd());
+        }
+    }
+
+    private void login(){
+        if (getLoginInfo()) {
+            User temp = dataPuller.loginSender(user);
+            if (temp == null) {
+                Toast toast = Toast.makeText(context,
+                        ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
+                toast.show();
+                return;
+            }
+            user = temp;
+            checkStatus();
         }
     }
 
@@ -129,19 +135,9 @@ public class LoginPage extends AppCompatActivity {
     }
 
     private void testLogin() {
-        User testUser = new User();
-        testUser.setUserNo("dw@qq.com");
-        testUser.setUserPasswd("123456");
-
-        User temp = dataPuller.loginSender(testUser);
-        if (temp == null) {
-            Toast toast = Toast.makeText(context,
-                    ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
-            toast.show();
-            return;
-        }
-        user = temp;
-        checkStatus();
+        edtxUserNo.setText("dw@qq.com");
+        edtxUserPasswd.setText("123456");
+        login();
     }
 
 }
