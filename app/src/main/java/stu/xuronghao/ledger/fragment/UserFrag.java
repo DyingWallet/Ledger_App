@@ -18,8 +18,8 @@ import stu.xuronghao.ledger.activity.ChangePasswdPage;
 import stu.xuronghao.ledger.activity.ChangeUsernamePage;
 import stu.xuronghao.ledger.activity.FeedbackPage;
 import stu.xuronghao.ledger.entity.User;
-import stu.xuronghao.ledger.handler.ConstantVariable;
-import stu.xuronghao.ledger.handler.DataPuller;
+import stu.xuronghao.ledger.handler.consts.ConstantVariable;
+import stu.xuronghao.ledger.handler.network.DataPuller;
 
 public class UserFrag extends Fragment {
 

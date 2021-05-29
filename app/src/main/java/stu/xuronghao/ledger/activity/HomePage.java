@@ -3,7 +3,6 @@ package stu.xuronghao.ledger.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -14,7 +13,7 @@ import com.iflytek.cloud.Setting;
 
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.User;
-import stu.xuronghao.ledger.handler.ConstantVariable;
+import stu.xuronghao.ledger.handler.consts.ConstantVariable;
 
 public class HomePage extends AppCompatActivity {
     private User user;

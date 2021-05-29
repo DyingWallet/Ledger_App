@@ -33,8 +33,8 @@ import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.Income;
 import stu.xuronghao.ledger.entity.TrendData;
 import stu.xuronghao.ledger.entity.User;
-import stu.xuronghao.ledger.handler.ConstantVariable;
-import stu.xuronghao.ledger.handler.DataPuller;
+import stu.xuronghao.ledger.handler.consts.ConstantVariable;
+import stu.xuronghao.ledger.handler.network.DataPuller;
 import stu.xuronghao.ledger.handler.DateHandler;
 
 public class TrendFrag extends Fragment {

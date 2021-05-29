@@ -12,13 +12,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.wang.avi.AVLoadingIndicatorView;
-
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.User;
-import stu.xuronghao.ledger.handler.ConstantVariable;
-import stu.xuronghao.ledger.handler.DataPuller;
-import stu.xuronghao.ledger.handler.Validator;
+import stu.xuronghao.ledger.handler.consts.ConstantVariable;
+import stu.xuronghao.ledger.handler.network.DataPuller;
+import stu.xuronghao.ledger.handler.validator.Validator;
 
 
 public class LoginPage extends AppCompatActivity {

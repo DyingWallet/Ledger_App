@@ -44,11 +44,11 @@ import stu.xuronghao.ledger.entity.ChatInfo;
 import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.Income;
 import stu.xuronghao.ledger.entity.User;
-import stu.xuronghao.ledger.handler.ConstantVariable;
-import stu.xuronghao.ledger.handler.DataPuller;
+import stu.xuronghao.ledger.handler.consts.ConstantVariable;
+import stu.xuronghao.ledger.handler.network.DataPuller;
 import stu.xuronghao.ledger.handler.DateHandler;
-import stu.xuronghao.ledger.handler.StringChecker;
-import stu.xuronghao.ledger.handler.Validator;
+import stu.xuronghao.ledger.handler.validator.StringChecker;
+import stu.xuronghao.ledger.handler.validator.Validator;
 
 public class ChatToRecordPage extends AppCompatActivity {
     private ChatListAdapter adapter;
@@ -197,9 +197,9 @@ public class ChatToRecordPage extends AppCompatActivity {
                     //保证小数点后数据的正确
                     moneyStr = StringChecker.checkDoubleValue(moneyStr);
                     //获取收支
-                    type = StringChecker.costOrIncome(result);
+                    type = StringChecker.getCostOrIncomeCode(result);
                     //获取收支类型
-                    typeStr = StringChecker.costOrIncomeType(wordList, type);
+                    typeStr = StringChecker.getCostOrIncomeTypeStr(wordList, type);
                     if (!Validator.checkVoiceParseResult(moneyStr, typeStr, type)) {
                         //字符串解析失败，终止
                         Toast toast = Toast.makeText(context,

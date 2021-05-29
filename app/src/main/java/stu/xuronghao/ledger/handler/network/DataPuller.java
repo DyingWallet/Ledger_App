@@ -1,4 +1,4 @@
-package stu.xuronghao.ledger.handler;
+package stu.xuronghao.ledger.handler.network;
 
 import android.util.Log;
 
@@ -13,6 +13,7 @@ import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.Feedback;
 import stu.xuronghao.ledger.entity.Income;
 import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.consts.ConstantVariable;
 
 public class DataPuller {
     private GetHttpResponse response;

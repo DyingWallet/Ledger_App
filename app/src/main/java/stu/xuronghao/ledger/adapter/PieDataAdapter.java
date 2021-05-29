@@ -12,7 +12,7 @@ import java.util.List;
 
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.TotalFee;
-import stu.xuronghao.ledger.handler.ConstantVariable;
+import stu.xuronghao.ledger.handler.consts.ConstantVariable;
 
 public class PieDataAdapter extends BaseAdapter {
     private LayoutInflater inflater;

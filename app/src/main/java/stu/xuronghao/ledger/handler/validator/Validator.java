@@ -1,4 +1,4 @@
-package stu.xuronghao.ledger.handler;
+package stu.xuronghao.ledger.handler.validator;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import stu.xuronghao.ledger.entity.User;
+import stu.xuronghao.ledger.handler.consts.ConstantVariable;
 
 public class Validator {
     private Validator() {

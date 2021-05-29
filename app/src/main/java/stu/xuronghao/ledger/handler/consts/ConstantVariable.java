@@ -1,4 +1,4 @@
-package stu.xuronghao.ledger.handler;
+package stu.xuronghao.ledger.handler.consts;
 
 
 import android.util.Pair;
@@ -81,6 +81,7 @@ public class ConstantVariable {
     public static final int START_CODE = 0;
     public static final int END_CODE = 1;
     public static final int ERROR_CODE = -1;
+    public static final int OTHER_TYPE_INDEX = 4;
 
     //userState
     public static final int LOGGED_IN = 2;
@@ -88,10 +89,6 @@ public class ConstantVariable {
     public static final int FROZEN_USER = 0;
     public static final int NO_USER = -1;
     public static final int WRONG_PASSWD = -2;
-
-    //weightFactor
-    public static final int NORMAL_TYPE_WEIGHT_FACTOR = 5;
-    public static final int OTHER_TYPE_WEIGHT_FACTOR = 1;
 
     public static final String FB_TYPE_ADVICE = "建议";
     public static final String FB_TYPE_BUG = "漏洞";

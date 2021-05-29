@@ -13,9 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.entity.Cost;
 import stu.xuronghao.ledger.entity.Income;
-import stu.xuronghao.ledger.handler.ConstantVariable;
-import stu.xuronghao.ledger.handler.DataPuller;
-import stu.xuronghao.ledger.handler.Validator;
+import stu.xuronghao.ledger.handler.consts.ConstantVariable;
+import stu.xuronghao.ledger.handler.network.DataPuller;
+import stu.xuronghao.ledger.handler.validator.Validator;
 
 public class DetailPage extends AppCompatActivity {
     private int typeCode;

@@ -15,10 +15,9 @@ import java.util.List;
 
 import stu.xuronghao.ledger.R;
 import stu.xuronghao.ledger.adapter.SwitchAdapter;
-import stu.xuronghao.ledger.entity.User;
 import stu.xuronghao.ledger.fragment.PushCostFrag;
 import stu.xuronghao.ledger.fragment.PushIncomeFrag;
-import stu.xuronghao.ledger.handler.ConstantVariable;
+import stu.xuronghao.ledger.handler.consts.ConstantVariable;
 
 public class PushDataPage extends AppCompatActivity {
     //参数声明

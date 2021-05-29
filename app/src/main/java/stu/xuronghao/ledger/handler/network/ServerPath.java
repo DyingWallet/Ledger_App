@@ -1,4 +1,4 @@
-package stu.xuronghao.ledger.handler;
+package stu.xuronghao.ledger.handler.network;
 
 public class ServerPath {
     public static final String LOG_IN = "User/Login";
