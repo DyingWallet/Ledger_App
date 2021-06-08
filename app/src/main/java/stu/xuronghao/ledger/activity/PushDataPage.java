@@ -58,9 +58,9 @@ public class PushDataPage extends AppCompatActivity {
         navigationView.setOnNavigationItemSelectedListener(
                 item -> {
                     menuItem = item;
-                    if(R.id.costPusher == item.getItemId()){
+                    if (R.id.costPusher == item.getItemId()) {
                         viewPager.setCurrentItem(ConstantVariable.COST_CODE);
-                    }else if(R.id.incomePusher == item.getItemId()){
+                    } else if (R.id.incomePusher == item.getItemId()) {
                         viewPager.setCurrentItem(ConstantVariable.INCOME_CODE);
                     }
                     return false;

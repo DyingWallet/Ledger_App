@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/txv_chat_item_user"
@@ -14,7 +14,7 @@
         android:layout_toLeftOf="@+id/img_chat_item_user"
         android:layout_toStartOf="@+id/img_chat_item_user"
         android:background="@drawable/bubble_right"
-        android:text="这是测试内容"/>
+        android:text="这是测试内容" />
 
     <ImageView
         android:id="@+id/img_chat_item_user"

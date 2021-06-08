@@ -1,127 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".activity.ChatToRecordPage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.ChatToRecordPage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@drawable/polygon_bg"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/polygon_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:background="@color/themePink">
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/themePink">
 
             <ImageView
-                    android:id="@+id/img_chat_page_cancel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:layout_marginStart="16dp"
-                    app:srcCompat="@drawable/icon_left" />
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="治账酱"
-                    android:layout_marginEnd="48dp"
-                    android:gravity="center"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:background="@drawable/tile_vertical">
-
-            <ListView
-                    android:id="@+id/lv_chat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:divider="#00FFFFFF"
-                    android:dividerHeight="12dp"
-                    android:scrollbars="none"
-                    android:listSelector="#00FFFFFF"
-                    android:stackFromBottom="true"
-                    android:transcriptMode="alwaysScroll" />
-
-        </LinearLayout>
-
-        <LinearLayout
+                android:id="@+id/img_chat_page_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp">
+                android:layout_weight="0"
+                android:layout_marginStart="16dp"
+                app:srcCompat="@drawable/icon_left" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="治账酱"
+                android:layout_marginEnd="48dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:background="@drawable/tile_vertical">
+
+            <ListView
+                android:id="@+id/lv_chat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="#00FFFFFF"
+                android:dividerHeight="12dp"
+                android:scrollbars="none"
+                android:listSelector="#00FFFFFF"
+                android:stackFromBottom="true"
+                android:transcriptMode="alwaysScroll" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp">
 
             <Button
-                    android:id="@+id/btn_Income_Dialog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/corners"
-                    android:text="记收入"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="48dp" />
+                android:id="@+id/btn_Income_Dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/corners"
+                android:text="记收入"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="48dp" />
 
             <ImageView
-                    android:id="@+id/img_voice"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/circle"
-                    app:srcCompat="@drawable/icon_microphone" />
+                android:id="@+id/img_voice"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/circle"
+                app:srcCompat="@drawable/icon_microphone" />
 
             <Button
-                    android:id="@+id/btn_Cost_Dialog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/corners"
-                    android:text="记支出"
-                    android:layout_marginStart="48dp"
-                    android:layout_marginEnd="24dp" />
+                android:id="@+id/btn_Cost_Dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/corners"
+                android:text="记支出"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="24dp" />
         </LinearLayout>
 
     </LinearLayout>
 
     <com.wang.avi.AVLoadingIndicatorView
-            android:id="@+id/avi_chat"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            style="@style/AVLoadingIndicatorView"
-            android:visibility="visible"
-            app:indicatorName="LineScalePulseOutIndicator"
-            app:indicatorColor="@color/themePink"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="128dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+        android:id="@+id/avi_chat"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        style="@style/AVLoadingIndicatorView"
+        android:visibility="visible"
+        app:indicatorName="LineScalePulseOutIndicator"
+        app:indicatorColor="@color/themePink"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="128dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

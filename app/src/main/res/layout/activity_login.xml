@@ -41,15 +41,15 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-                android:id="@+id/txv_Login_Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:fontFamily="sans-serif-black"
-                android:text="请登录"
-                android:textColor="#000000"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+            android:id="@+id/txv_Login_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="sans-serif-black"
+            android:text="请登录"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txv_Login_UserNo"
@@ -129,17 +129,17 @@
 
     </LinearLayout>
 
-<!--    <com.wang.avi.AVLoadingIndicatorView-->
-<!--            android:id="@+id/avi_login"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            style="@style/AVLoadingIndicatorView"-->
-<!--            android:visibility="visible"-->
-<!--            app:indicatorName="BallScaleMultipleIndicator"-->
-<!--            app:indicatorColor="@color/themePink"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            />-->
+    <!--    <com.wang.avi.AVLoadingIndicatorView-->
+    <!--            android:id="@+id/avi_login"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            style="@style/AVLoadingIndicatorView"-->
+    <!--            android:visibility="visible"-->
+    <!--            app:indicatorName="BallScaleMultipleIndicator"-->
+    <!--            app:indicatorColor="@color/themePink"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

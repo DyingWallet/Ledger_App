@@ -51,7 +51,7 @@
                     android:textColor="@color/themePink"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    android:text="支出事件："/>
+                    android:text="支出事件：" />
 
                 <EditText
                     android:id="@+id/etx_CostEvent"

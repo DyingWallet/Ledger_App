@@ -1,108 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activity.ChangeUsernamePage">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ChangeUsernamePage">
 
 
-        <ImageView
-                android:id="@+id/img_change_username_BG0"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/background_girlback" />
+    <ImageView
+        android:id="@+id/img_change_username_BG0"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background_girlback" />
 
-        <ImageView
-                android:id="@+id/img_change_username_Head"
-                android:layout_width="175dp"
-                android:layout_height="200dp"
-                android:src="@drawable/background_2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/img_change_username_BG0" />
+    <ImageView
+        android:id="@+id/img_change_username_Head"
+        android:layout_width="175dp"
+        android:layout_height="200dp"
+        android:src="@drawable/background_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_change_username_BG0" />
+
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tile_vertical"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_change_username_Head"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/txv_change_username_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_gravity="center_horizontal"
+            android:text="修改昵称"
+            android:textColor="@color/themePink"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txv_change_username_Username"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:text="*新昵称：（3-16个字符）"
+            android:textColor="@color/themePink"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etx_change_username_Username"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/themePink" />
 
         <LinearLayout
-                android:layout_width="360dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_change_username_Cancel"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/tile_vertical"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_change_username_Head"
-                app:layout_constraintVertical_bias="0.0">
+                android:layout_marginStart="48dp"
+                android:background="@drawable/corners"
+                android:text="取消"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
 
             <TextView
-                    android:id="@+id/txv_change_username_Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="修改昵称"
-                    android:textColor="@color/themePink"
-                    android:textSize="32sp"
-                    android:textStyle="bold" />
+                android:id="@+id/txv_change_username_Nothing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
-            <TextView
-                    android:id="@+id/txv_change_username_Username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="8dp"
-                    android:text="*新昵称：（3-16个字符）"
-                    android:textColor="@color/themePink"
-                    android:textStyle="bold" />
-
-            <EditText
-                    android:id="@+id/etx_change_username_Username"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="8dp"
-                    android:ems="10"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/themePink" />
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal">
-
-                <Button
-                        android:id="@+id/btn_change_username_Cancel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="48dp"
-                        android:background="@drawable/corners"
-                        android:text="取消"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-
-                <TextView
-                        android:id="@+id/txv_change_username_Nothing"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                <Button
-                        android:id="@+id/btn_change_username"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="48dp"
-                        android:background="@drawable/corners"
-                        android:text="提交"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-            </LinearLayout>
-
+            <Button
+                android:id="@+id/btn_change_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="48dp"
+                android:background="@drawable/corners"
+                android:text="提交"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
         </LinearLayout>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

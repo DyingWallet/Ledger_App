@@ -14,7 +14,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(User user){
+    public User(User user) {
         this.userNo = user.getUserNo();
         this.userName = user.getUserName();
         this.userPasswd = user.getUserPasswd();

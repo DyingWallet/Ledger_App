@@ -13,7 +13,7 @@ public class ListSortUtil {
         else return -1;
     };
 
-    Comparator<Map.Entry<Integer,Integer>> weightTableSort = (item1,item2)->{
+    Comparator<Map.Entry<Integer, Integer>> weightTableSort = (item1, item2) -> {
         //从大到小排序
         return item2.getValue() - item1.getValue();
     };
@@ -22,7 +22,7 @@ public class ListSortUtil {
         totalFees.sort(feeComparatorByAmount);
     }
 
-    public void sortByWeight(List<Map.Entry<Integer,Integer>> weightTable){
+    public void sortByWeight(List<Map.Entry<Integer, Integer>> weightTable) {
         weightTable.sort(weightTableSort);
     }
 }

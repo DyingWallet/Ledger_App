@@ -59,9 +59,9 @@ public class ReportFrag extends Fragment {
         navigationView.setOnNavigationItemSelectedListener(
                 item -> {
                     menuItem = item;
-                    if(R.id.pieFrag == item.getItemId()){
+                    if (R.id.pieFrag == item.getItemId()) {
                         viewPager.setCurrentItem(0);
-                    }else if(R.id.lineFrag == item.getItemId()){
+                    } else if (R.id.lineFrag == item.getItemId()) {
                         viewPager.setCurrentItem(1);
                     }
                     return false;

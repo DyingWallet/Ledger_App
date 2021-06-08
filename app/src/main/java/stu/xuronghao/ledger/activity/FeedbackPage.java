@@ -47,11 +47,11 @@ public class FeedbackPage extends AppCompatActivity {
 
         //RadioGroup监听器
         group.setOnCheckedChangeListener((group1, checkedId) -> {
-            if(R.id.rbtn_advise == checkedId)
+            if (R.id.rbtn_advise == checkedId)
                 feedback.setFbType(ConstantVariable.FB_TYPE_ADVICE);
-            else if(R.id.rbtn_bug == checkedId)
+            else if (R.id.rbtn_bug == checkedId)
                 feedback.setFbType(ConstantVariable.FB_TYPE_BUG);
-            else if(R.id.rbtn_froze == checkedId)
+            else if (R.id.rbtn_froze == checkedId)
                 feedback.setFbType(ConstantVariable.FB_TYPE_FROZE);
         });
 

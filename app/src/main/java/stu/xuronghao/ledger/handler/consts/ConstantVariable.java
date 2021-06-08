@@ -49,7 +49,7 @@ public class ConstantVariable {
     public static final String TIME_REGEX = "\\s";
     public static final String DATE_REGEX = "-";
     public static final String AMOUNT_REGEX = "(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,2})?";
-    public static final String DOT_REGEX = ".";
+    public static final String DOT_REGEX = "[.]";
 
     //text
     public static final String TEXT_COST = "支出";
@@ -144,6 +144,7 @@ public class ConstantVariable {
     public static final String INDEX = "index";
 
     private static final Map<String, String[]> TYPE;
+
     static {
         TYPE = new HashMap<>();
         TYPE.put(COST_TYPE, new String[]{"餐饮", "交通", "服饰", "日用", "其他"});
@@ -151,6 +152,7 @@ public class ConstantVariable {
     }
 
     private static final Map<String, Integer> COST_INDEX_MAP;
+
     static {
         COST_INDEX_MAP = new HashMap<>();
         COST_INDEX_MAP.put("餐饮", 0);
@@ -161,6 +163,7 @@ public class ConstantVariable {
     }
 
     private static final Map<String, Integer> INCOME_INDEX_MAP;
+
     static {
         INCOME_INDEX_MAP = new HashMap<>();
         INCOME_INDEX_MAP.put("工资", 0);
@@ -170,63 +173,65 @@ public class ConstantVariable {
         INCOME_INDEX_MAP.put("其他", 4);
     }
 
-    private static final List<Pair<String,Integer>> COST_TYPE_LIST;
+    private static final List<Pair<String, Integer>> COST_TYPE_LIST;
+
     static {
         COST_TYPE_LIST = new LinkedList<>();
         int weight;
         //极高
         weight = WeightValue.ABSOLUTE;
-        COST_TYPE_LIST.add(new Pair<>("购入",weight));
-        COST_TYPE_LIST.add(new Pair<>("购买",weight));
-        COST_TYPE_LIST.add(new Pair<>("买入",weight));
-        COST_TYPE_LIST.add(new Pair<>("被骗",weight));
-        COST_TYPE_LIST.add(new Pair<>("税",weight));
-        COST_TYPE_LIST.add(new Pair<>("网购",weight));
+        COST_TYPE_LIST.add(new Pair<>("购入", weight));
+        COST_TYPE_LIST.add(new Pair<>("购买", weight));
+        COST_TYPE_LIST.add(new Pair<>("买入", weight));
+        COST_TYPE_LIST.add(new Pair<>("被骗", weight));
+        COST_TYPE_LIST.add(new Pair<>("税", weight));
+        COST_TYPE_LIST.add(new Pair<>("网购", weight));
 
         //高
         weight = WeightValue.HIGH;
-        COST_TYPE_LIST.add(new Pair<>("购",weight));
-        COST_TYPE_LIST.add(new Pair<>("买",weight));
-        COST_TYPE_LIST.add(new Pair<>("交",weight));
-        COST_TYPE_LIST.add(new Pair<>("缴",weight));
-        COST_TYPE_LIST.add(new Pair<>("看",weight));
-        COST_TYPE_LIST.add(new Pair<>("用了",weight));
-        COST_TYPE_LIST.add(new Pair<>("花了",weight));
-        COST_TYPE_LIST.add(new Pair<>("吃了",weight));
-        COST_TYPE_LIST.add(new Pair<>("喝了",weight));
-        COST_TYPE_LIST.add(new Pair<>("订购",weight));
-        COST_TYPE_LIST.add(new Pair<>("支出",weight));
-        COST_TYPE_LIST.add(new Pair<>("支付",weight));
-        COST_TYPE_LIST.add(new Pair<>("开支",weight));
-        COST_TYPE_LIST.add(new Pair<>("旅游",weight));
-        COST_TYPE_LIST.add(new Pair<>("扣费",weight));
-        COST_TYPE_LIST.add(new Pair<>("发红包",weight));
+        COST_TYPE_LIST.add(new Pair<>("购", weight));
+        COST_TYPE_LIST.add(new Pair<>("买", weight));
+        COST_TYPE_LIST.add(new Pair<>("交", weight));
+        COST_TYPE_LIST.add(new Pair<>("缴", weight));
+        COST_TYPE_LIST.add(new Pair<>("看", weight));
+        COST_TYPE_LIST.add(new Pair<>("用了", weight));
+        COST_TYPE_LIST.add(new Pair<>("花了", weight));
+        COST_TYPE_LIST.add(new Pair<>("吃了", weight));
+        COST_TYPE_LIST.add(new Pair<>("喝了", weight));
+        COST_TYPE_LIST.add(new Pair<>("订购", weight));
+        COST_TYPE_LIST.add(new Pair<>("支出", weight));
+        COST_TYPE_LIST.add(new Pair<>("支付", weight));
+        COST_TYPE_LIST.add(new Pair<>("开支", weight));
+        COST_TYPE_LIST.add(new Pair<>("旅游", weight));
+        COST_TYPE_LIST.add(new Pair<>("扣费", weight));
+        COST_TYPE_LIST.add(new Pair<>("发红包", weight));
 
         //中
         weight = WeightValue.MID;
-        COST_TYPE_LIST.add(new Pair<>("订了",weight));
-        COST_TYPE_LIST.add(new Pair<>("借出",weight));
-        COST_TYPE_LIST.add(new Pair<>("借给",weight));
-        COST_TYPE_LIST.add(new Pair<>("出借",weight));
-        COST_TYPE_LIST.add(new Pair<>("住院",weight));
-        COST_TYPE_LIST.add(new Pair<>("住宿",weight));
-        COST_TYPE_LIST.add(new Pair<>("住宾馆",weight));
-        COST_TYPE_LIST.add(new Pair<>("充值",weight));
-        COST_TYPE_LIST.add(new Pair<>("租",weight));
-        COST_TYPE_LIST.add(new Pair<>("乘",weight));
-        COST_TYPE_LIST.add(new Pair<>("坐",weight));
-        COST_TYPE_LIST.add(new Pair<>("转账",weight));
-        COST_TYPE_LIST.add(new Pair<>("打赏",weight));
+        COST_TYPE_LIST.add(new Pair<>("订了", weight));
+        COST_TYPE_LIST.add(new Pair<>("借出", weight));
+        COST_TYPE_LIST.add(new Pair<>("借给", weight));
+        COST_TYPE_LIST.add(new Pair<>("出借", weight));
+        COST_TYPE_LIST.add(new Pair<>("住院", weight));
+        COST_TYPE_LIST.add(new Pair<>("住宿", weight));
+        COST_TYPE_LIST.add(new Pair<>("住宾馆", weight));
+        COST_TYPE_LIST.add(new Pair<>("充值", weight));
+        COST_TYPE_LIST.add(new Pair<>("租", weight));
+        COST_TYPE_LIST.add(new Pair<>("乘", weight));
+        COST_TYPE_LIST.add(new Pair<>("坐", weight));
+        COST_TYPE_LIST.add(new Pair<>("转账", weight));
+        COST_TYPE_LIST.add(new Pair<>("打赏", weight));
 
         //低
         weight = WeightValue.LOW;
-        COST_TYPE_LIST.add(new Pair<>("租",weight));
-        COST_TYPE_LIST.add(new Pair<>("赔了",weight));
-        COST_TYPE_LIST.add(new Pair<>("充",weight));
-        COST_TYPE_LIST.add(new Pair<>("续",weight));
+        COST_TYPE_LIST.add(new Pair<>("租", weight));
+        COST_TYPE_LIST.add(new Pair<>("赔了", weight));
+        COST_TYPE_LIST.add(new Pair<>("充", weight));
+        COST_TYPE_LIST.add(new Pair<>("续", weight));
     }
 
-    private static final List<Pair<String,Integer>> INCOME_TYPE_LIST;
+    private static final List<Pair<String, Integer>> INCOME_TYPE_LIST;
+
     static {
         INCOME_TYPE_LIST = new LinkedList<>();
         int weight;
@@ -259,6 +264,7 @@ public class ConstantVariable {
     }
 
     private static final Map<String, String> COST_MAP_TO_TYPE;
+
     static {
         COST_MAP_TO_TYPE = new HashMap<>();
         //餐饮
@@ -313,6 +319,7 @@ public class ConstantVariable {
     }
 
     private static final Map<String, String> INCOME_MAP_TO_TYPE;
+
     static {
         INCOME_MAP_TO_TYPE = new HashMap<>();
         //工资
@@ -348,8 +355,8 @@ public class ConstantVariable {
         return TYPE.get(type)[i];
     }
 
-    public static String getTypeByTypeCode(int index, int typeCode){
-        switch (typeCode){
+    public static String getTypeByTypeCode(int index, int typeCode) {
+        switch (typeCode) {
             case COST_CODE:
                 return getTypeByTypeStr(index, COST_TYPE);
             case INCOME_CODE:

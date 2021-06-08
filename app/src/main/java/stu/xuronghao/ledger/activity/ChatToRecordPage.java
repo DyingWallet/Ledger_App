@@ -171,7 +171,7 @@ public class ChatToRecordPage extends AppCompatActivity {
         RecognizerDialog mDialog = new RecognizerDialog(context, null);
         mDialog.setParameter(SpeechConstant.LANGUAGE, ConstantVariable.LANGUAGE);
         mDialog.setParameter(SpeechConstant.ACCENT, ConstantVariable.MANDARIN);
-        mDialog.setParameter(SpeechConstant.ASR_PTT,"1");
+        mDialog.setParameter(SpeechConstant.ASR_PTT, "1");
 
         mDialog.setListener(new RecognizerDialogListener() {
             @Override
@@ -180,7 +180,7 @@ public class ChatToRecordPage extends AppCompatActivity {
                     //获取分词list
                     List<String> wordList = parseWordArray(recognizerResult.getResultString());
                     String result = parseVoice(wordList);
-                    String tmp;
+                    String tmp = "";
                     int type;
                     int typeIndex;
                     String typeStr;
@@ -188,7 +188,10 @@ public class ChatToRecordPage extends AppCompatActivity {
 
                     //获取金额
                     if (result.contains("块")) tmp = result.replace("块", ".");
+                    if (result.contains("元")) tmp = tmp.replace("元", ".");
+                    if (result.contains(",")) tmp = tmp.replace(",", "");
                     else tmp = result;
+
                     Pattern pattern = Pattern.compile(ConstantVariable.AMOUNT_REGEX);
                     Matcher matcher = pattern.matcher(tmp);
                     if (matcher.find()) {
@@ -208,7 +211,7 @@ public class ChatToRecordPage extends AppCompatActivity {
                         return;
                     }
                     //页面跳转
-                    typeIndex = ConstantVariable.getTypeIndex(typeStr,typeCode);
+                    typeIndex = ConstantVariable.getTypeIndex(typeStr, typeCode);
                     typeCode = type;
                     showVoicePusherDialog(moneyStr, result, typeIndex);
                 }
@@ -216,7 +219,7 @@ public class ChatToRecordPage extends AppCompatActivity {
 
             @Override
             public void onError(SpeechError speechError) {
-                Log.e(ConstantVariable.ERR_XUNFEI,speechError.getErrorCode() + speechError.getErrorDescription());
+                Log.e(ConstantVariable.ERR_XUNFEI, speechError.getErrorCode() + speechError.getErrorDescription());
             }
         });
         mDialog.show();
@@ -289,7 +292,7 @@ public class ChatToRecordPage extends AppCompatActivity {
         dialog.show();
     }
 
-    private List<String> parseWordArray(String resultString){
+    private List<String> parseWordArray(String resultString) {
         List<String> singleWordList = new ArrayList<>();
         JSONArray array = JSON.parseObject(resultString).getJSONArray(ConstantVariable.WORDS);
         for (int i = 0; i < array.size(); i++) {

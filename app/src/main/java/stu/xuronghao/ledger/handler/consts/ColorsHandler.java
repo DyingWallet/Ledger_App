@@ -16,9 +16,9 @@ public class ColorsHandler {
     public static final String LIGHT_EARTHY = "#FFEADC";
     public static final String DEEP_PINK = "#C8839C";
     public static final String INDIGO = "#B5C9D9";
-    private static final String[] colorStr = {ROSE_RED,LIGHT_BLUE, LIGHT_EARTHY,DEEP_PINK, INDIGO};
+    private static final String[] colorStr = {ROSE_RED, LIGHT_BLUE, LIGHT_EARTHY, DEEP_PINK, INDIGO};
 
-    private static final Map<String,String> colorMap;
+    private static final Map<String, String> colorMap;
 
     static {
         colorMap = new HashMap<>();
@@ -36,18 +36,20 @@ public class ColorsHandler {
     private ColorsHandler() {
     }
 
-    public static String[] getColorStr(int length){
+    public static String[] getColorStr(int length) {
 
-        return Arrays.copyOfRange(colorStr,0,length);
+        return Arrays.copyOfRange(colorStr, 0, length);
     }
 
-    public static int[] getColors(){
+    public static int[] getColors() {
         return colors;
     }
 
-    public static int getTypeColor(int index){
+    public static int getTypeColor(int index) {
         return colors[index];
     }
 
-    public static String getTypeColor(String type){return colorMap.get(type);}
+    public static String getTypeColor(String type) {
+        return colorMap.get(type);
+    }
 }

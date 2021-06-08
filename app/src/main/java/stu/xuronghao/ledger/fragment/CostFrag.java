@@ -60,7 +60,7 @@ public class CostFrag extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //进行组建初始化
-        if(user == null)
+        if (user == null)
             user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
     }
 
@@ -76,7 +76,7 @@ public class CostFrag extends Fragment {
         listPuller.execute();
     }
 
-    class AsyncCostPuller extends AsyncTask<Void,Void,List<HashMap<String, String>>> {
+    class AsyncCostPuller extends AsyncTask<Void, Void, List<HashMap<String, String>>> {
 
         @Override
         protected void onPreExecute() {
@@ -98,7 +98,7 @@ public class CostFrag extends Fragment {
                 String title = temp.getCostEvent() + ": " + temp.getCostType() + " " + temp.getCostAmount() + "元";
                 HashMap<String, String> map = new HashMap<>();
                 map.put(ConstantVariable.ITEM_TITLE, title);
-                map.put(ConstantVariable.ITEM_TYPE,temp.getCostType());
+                map.put(ConstantVariable.ITEM_TYPE, temp.getCostType());
                 map.put(ConstantVariable.ITEM_CONTENT, temp.getCostDate());
                 mapArrayList.add(map);
             }
@@ -109,7 +109,7 @@ public class CostFrag extends Fragment {
         protected void onPostExecute(List<HashMap<String, String>> mapArrayList) {
             super.onPostExecute(mapArrayList);
 
-            if(mapArrayList != null){
+            if (mapArrayList != null) {
                 //用HashMap将数据传入ListView适配器
                 BillDataAdapter adapter = new BillDataAdapter(activity, ConstantVariable.COST_CODE, mapArrayList);
 
@@ -124,7 +124,7 @@ public class CostFrag extends Fragment {
                     intent.putExtra(ConstantVariable.COST_TYPE, costList.get(position));
                     startActivity(intent);
                 });
-            }else {
+            } else {
                 Toast toast = Toast.makeText(context,
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                 toast.show();
@@ -141,7 +141,7 @@ public class CostFrag extends Fragment {
 
     }
 
-    public AsyncCostPuller costPullerFactory(){
+    public AsyncCostPuller costPullerFactory() {
         return new AsyncCostPuller();
     }
 }

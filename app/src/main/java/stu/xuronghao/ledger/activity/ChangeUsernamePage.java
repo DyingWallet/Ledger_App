@@ -40,8 +40,8 @@ public class ChangeUsernamePage extends AppCompatActivity {
                 if (dataPuller.updateUserInfo(temp)) {
                     user = dataPuller.getUserInfo(user);
                     Intent res = new Intent();
-                    res.putExtra(ConstantVariable.USER,user);
-                    setResult(1,res);
+                    res.putExtra(ConstantVariable.USER, user);
+                    setResult(1, res);
                     finish();
                 }
             }

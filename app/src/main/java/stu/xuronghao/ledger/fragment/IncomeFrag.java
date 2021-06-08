@@ -139,7 +139,7 @@ public class IncomeFrag extends Fragment {
         }
     }
 
-    public AsyncIncomePuller incomePullerFactory(){
+    public AsyncIncomePuller incomePullerFactory() {
         return new AsyncIncomePuller();
     }
 }

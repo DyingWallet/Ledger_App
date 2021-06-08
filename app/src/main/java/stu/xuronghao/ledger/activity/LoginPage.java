@@ -67,14 +67,14 @@ public class LoginPage extends AppCompatActivity {
         super.onResume();
         Intent signUoInfo = getIntent();
         User signUpUser;
-        if((signUpUser = (User) signUoInfo.getSerializableExtra(ConstantVariable.USER))!=null){
+        if ((signUpUser = (User) signUoInfo.getSerializableExtra(ConstantVariable.USER)) != null) {
             user = signUpUser;
             edtxUserNo.setText(user.getUserNo());
             edtxUserPasswd.setText(user.getUserPasswd());
         }
     }
 
-    private void login(){
+    private void login() {
         if (getLoginInfo()) {
             User temp = dataPuller.loginSender(user);
             if (temp == null) {
@@ -92,7 +92,7 @@ public class LoginPage extends AppCompatActivity {
         String userNoStr = edtxUserNo.getText().toString();
         String userPasswdStr = edtxUserPasswd.getText().toString();
 
-        if (Validator.checkLoginInput(userNoStr, userPasswdStr,context)) {
+        if (Validator.checkLoginInput(userNoStr, userPasswdStr, context)) {
             user.setUserNo(edtxUserNo.getText().toString());
             user.setUserPasswd(edtxUserPasswd.getText().toString());
             user.setUserStatus(ConstantVariable.ACTIVE);

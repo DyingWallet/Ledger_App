@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragment.PieFrag">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.PieFrag">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -74,9 +74,9 @@
                 android:layout_height="wrap_content">
 
                 <stu.xuronghao.ledger.AAChartCoreLib.AAChartCreator.AAChartView
-                        android:id="@+id/pie_chart"
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp" />
+                    android:id="@+id/pie_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
                         android:layout_width="30dp"
                         android:layout_height="20dp"
                         android:src="@drawable/icon_switch"
-                        android:contentDescription="@string/typeSwitch"/>
+                        android:contentDescription="@string/typeSwitch" />
 
                 </LinearLayout>
 
@@ -111,15 +111,15 @@
             android:layout_height="wrap_content" />
 
         <com.wang.avi.AVLoadingIndicatorView
-                android:id="@+id/avi_pie"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                style="@style/AVLoadingIndicatorView"
-                android:visibility="visible"
-                app:indicatorName="LineScalePulseOutIndicator"
-                app:indicatorColor="@color/themePink"
-                android:layout_marginTop="180dp"
-                android:layout_centerHorizontal="true"/>
+            android:id="@+id/avi_pie"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/AVLoadingIndicatorView"
+            android:visibility="visible"
+            app:indicatorName="LineScalePulseOutIndicator"
+            app:indicatorColor="@color/themePink"
+            android:layout_marginTop="180dp"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

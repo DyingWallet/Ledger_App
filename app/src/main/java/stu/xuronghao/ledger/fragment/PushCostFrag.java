@@ -110,7 +110,7 @@ public class PushCostFrag extends Fragment {
         String dateStr = DateHandler.getCurrentDatetime();
 
         //输入检查
-        if (Validator.checkBillInfoInput(event, money,getContext())) {
+        if (Validator.checkBillInfoInput(event, money, getContext())) {
             cost = new Cost(event, selected, Double.parseDouble(money),
                     dateStr, remark, user.getUserNo());
             return dataPuller.pushCost(cost);

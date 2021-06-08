@@ -104,7 +104,7 @@ public class TrendFrag extends Fragment {
         asyncTrendPuller.execute();
     }
 
-    private class AsyncTrendPuller extends AsyncTask<Void,Void, Map<String,List>> {
+    private class AsyncTrendPuller extends AsyncTask<Void, Void, Map<String, List>> {
 
         @Override
         protected void onPreExecute() {
@@ -115,7 +115,7 @@ public class TrendFrag extends Fragment {
         }
 
         @Override
-        protected Map<String,List> doInBackground(Void... voids) {
+        protected Map<String, List> doInBackground(Void... voids) {
             DataPuller dataPuller = new DataPuller();
             //拉取数据
             List<Cost> tempCost = dataPuller.pullCostOfBetween(user, startDate, endDate);
@@ -123,7 +123,7 @@ public class TrendFrag extends Fragment {
             //分别存储信息
             List<TrendData> listData = new ArrayList<>();
             List<String> months = new ArrayList<>();
-            Map<String,List> result = new HashMap<>();
+            Map<String, List> result = new HashMap<>();
 
             TrendData[] monthlyData = new TrendData[12];
 
@@ -181,16 +181,16 @@ public class TrendFrag extends Fragment {
                         listData.add(monthlyData[i]);
                 }
                 yearlyData.setSurplus(yearlyData.getIncome() - yearlyData.getCost());
-            }else {
+            } else {
                 return null;
             }
-            result.put(ConstantVariable.DATA_LIST,listData);
-            result.put(ConstantVariable.MONTH_DATA_LIST,months);
+            result.put(ConstantVariable.DATA_LIST, listData);
+            result.put(ConstantVariable.MONTH_DATA_LIST, months);
             return result;
         }
 
         @Override
-        protected void onPostExecute(Map<String,List> result) {
+        protected void onPostExecute(Map<String, List> result) {
             super.onPostExecute(result);
             if (result != null) {//UI绘制
                 List<TrendData> listData = result.get(ConstantVariable.DATA_LIST);
@@ -216,9 +216,9 @@ public class TrendFrag extends Fragment {
 
                 //设置年度信息
                 if (yearlyData.getSurplus() > 0) {
-                    txvTotalSurplus.setTextColor(ContextCompat.getColor(context,R.color.green));
+                    txvTotalSurplus.setTextColor(ContextCompat.getColor(context, R.color.green));
                 } else {
-                    txvTotalSurplus.setTextColor(ContextCompat.getColor(context,R.color.warnRed));
+                    txvTotalSurplus.setTextColor(ContextCompat.getColor(context, R.color.warnRed));
                 }
                 String yearTitle = destinationYear + "年";
                 String totalIncome = yearlyData.getIncome() + "元";
@@ -246,6 +246,7 @@ public class TrendFrag extends Fragment {
             super.onCancelled();
             indicatorView.hide();
         }
+
         //设置日期选择器
         private void setDateChanger() {
             //图像控件

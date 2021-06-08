@@ -13,6 +13,7 @@ public class IconHandler {
             R.drawable.icon_subsidy, R.drawable.icon_redpkt, R.drawable.icon_other_income};
 
     private static final Map<String, Integer> COST_ICON_MAP;
+
     static {
         COST_ICON_MAP = new HashMap<>();
         COST_ICON_MAP.put("餐饮", R.drawable.icon_dining);
@@ -23,6 +24,7 @@ public class IconHandler {
     }
 
     private static final Map<String, Integer> INCOME_ICON_MAP;
+
     static {
         INCOME_ICON_MAP = new HashMap<>();
         INCOME_ICON_MAP.put("工资", R.drawable.icon_salary);
@@ -43,7 +45,7 @@ public class IconHandler {
         }
     }
 
-    public static int getIconByArray(int typeCode,int index){
+    public static int getIconByArray(int typeCode, int index) {
         switch (typeCode) {
             case ConstantVariable.COST_CODE:
                 return costIcons[index];

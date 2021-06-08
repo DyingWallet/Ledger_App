@@ -7,91 +7,91 @@
     tools:context=".fragment.RecordFrag">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <LinearLayout
-                    android:id="@+id/dash_board_linear"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/themePink"
-                    android:orientation="vertical">
+                android:id="@+id/dash_board_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/themePink"
+                android:orientation="vertical">
 
                 <TextView
-                        android:text="@string/txtDashBoardTitle"
-                        android:fontFamily="sans-serif-black"
-                        android:textColor="@color/pureBlack"
-                        android:textSize="16sp"
-                        android:layout_marginTop="8dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content" />
+                    android:text="@string/txtDashBoardTitle"
+                    android:fontFamily="sans-serif-black"
+                    android:textColor="@color/pureBlack"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" />
 
                 <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginHorizontal="16dp">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginHorizontal="16dp">
+                        android:layout_marginEnd="60dp">
 
-                    <LinearLayout
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:text="@string/txtDashBoardBudget"
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-black"
+                            android:textColor="@color/pureBlack"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginEnd="60dp">
+                            android:layout_width="wrap_content" />
 
                         <TextView
-                                android:text="@string/txtDashBoardBudget"
-                                android:textSize="20sp"
-                                android:fontFamily="sans-serif-black"
-                                android:textColor="@color/pureBlack"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content" />
-
-                        <TextView
-                                android:id="@+id/dash_board_budget"
-                                android:text="@string/zeroValue"
-                                android:textSize="20sp"
-                                android:fontFamily="sans-serif-black"
-                                android:textColor="@color/pureBlack"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content" />
+                            android:id="@+id/dash_board_budget"
+                            android:text="@string/zeroValue"
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-black"
+                            android:textColor="@color/pureBlack"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content" />
 
 
                     </LinearLayout>
 
                     <LinearLayout
-                            android:layout_width="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:text="@string/txtDashBoardCost"
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-black"
+                            android:textColor="@color/pureBlack"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_width="wrap_content" />
 
                         <TextView
-                                android:text="@string/txtDashBoardCost"
-                                android:textSize="20sp"
-                                android:fontFamily="sans-serif-black"
-                                android:textColor="@color/pureBlack"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content" />
-
-                        <TextView
-                                android:id="@+id/dash_board_cost"
-                                android:text="@string/zeroValue"
-                                android:textSize="20sp"
-                                android:fontFamily="sans-serif-black"
-                                android:textColor="@color/pureBlack"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content" />
+                            android:id="@+id/dash_board_cost"
+                            android:text="@string/zeroValue"
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-black"
+                            android:textColor="@color/pureBlack"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content" />
 
 
                     </LinearLayout>
@@ -100,122 +100,123 @@
                 </LinearLayout>
 
                 <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:layout_gravity="center_horizontal"
-                        android:orientation="horizontal">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
 
-                        <TextView
-                                android:id="@+id/dash_board_surplus_tit"
-                                android:text="@string/txtDashBoardSurplus"
-                                android:textSize="24sp"
-                                android:fontFamily="sans-serif-black"
-                                android:textColor="@color/pureWhite"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:layout_gravity="center_vertical" />
-
-                        <TextView
-                                android:id="@+id/dash_board_surplus"
-                                android:text="@string/zeroValue"
-                                android:textSize="44sp"
-                                android:fontFamily="sans-serif-black"
-                                android:textColor="@color/pureWhite"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:layout_gravity="center_vertical" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:orientation="horizontal">
                     <TextView
-                            android:id="@+id/dash_board_hint"
-                            android:text="收支评价"
-                            android:textColor="@color/pureWhite"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"/>
+                        android:id="@+id/dash_board_surplus_tit"
+                        android:text="@string/txtDashBoardSurplus"
+                        android:textSize="24sp"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="@color/pureWhite"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_vertical" />
+
+                    <TextView
+                        android:id="@+id/dash_board_surplus"
+                        android:text="@string/zeroValue"
+                        android:textSize="44sp"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="@color/pureWhite"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_vertical" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/dash_board_hint"
+                        android:text="收支评价"
+                        android:textColor="@color/pureWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:id="@+id/Record_Type_Switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/themePink"
-                    app:itemIconTint="@color/icon_sel"
-                    app:itemTextColor="@color/text_sel"
-                    app:menu="@menu/record_top_switch_menu" />
+                android:id="@+id/Record_Type_Switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/themePink"
+                app:itemIconTint="@color/icon_sel"
+                app:itemTextColor="@color/text_sel"
+                app:menu="@menu/record_top_switch_menu" />
 
             <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/vp_Record_Top_Switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center" />
+                android:id="@+id/vp_Record_Top_Switch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
 
         </LinearLayout>
 
         <com.getbase.floatingactionbutton.FloatingActionsMenu
-                android:id="@+id/float_Menu"
+            android:id="@+id/float_Menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:fab_addButtonColorNormal="@color/themePink"
+            app:fab_addButtonColorPressed="#FFFFFF"
+            app:fab_addButtonPlusIconColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/to_chat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                app:fab_addButtonColorNormal="@color/themePink"
-                app:fab_addButtonColorPressed="#FFFFFF"
-                app:fab_addButtonPlusIconColor="#000000"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:fab_colorNormal="@color/themePink"
+                app:fab_colorPressed="#FFFFFF"
+                app:fab_icon="@drawable/icon_microphone_black"
+                app:fab_colorDisabled="@color/pureBlack"
+                app:fab_title="记一笔" />
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/to_chat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:fab_colorNormal="@color/themePink"
-                    app:fab_colorPressed="#FFFFFF"
-                    app:fab_icon="@drawable/icon_microphone_black"
-                    app:fab_colorDisabled="@color/pureBlack"
-                    app:fab_title="记一笔" />
+                android:id="@+id/add_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_colorNormal="@color/themePink"
+                app:fab_colorPressed="#FFFFFF"
+                app:fab_icon="@drawable/icon_record"
+                app:fab_title="记一笔" />
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/add_cost"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:fab_colorNormal="@color/themePink"
-                    app:fab_colorPressed="#FFFFFF"
-                    app:fab_icon="@drawable/icon_record"
-                    app:fab_title="记一笔" />
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/refresh_cost"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:fab_colorNormal="@color/themePink"
-                    app:fab_colorPressed="#FFFFFF"
-                    app:fab_icon="@drawable/icon_refresh"
-                    app:fab_title="刷新" />
+                android:id="@+id/refresh_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_colorNormal="@color/themePink"
+                app:fab_colorPressed="#FFFFFF"
+                app:fab_icon="@drawable/icon_refresh"
+                app:fab_title="刷新" />
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
         <com.wang.avi.AVLoadingIndicatorView
-                android:id="@+id/avi_record"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                style="@style/AVLoadingIndicatorView"
-                android:visibility="visible"
-                app:indicatorName="BallClipRotatePulseIndicator"
-                app:indicatorColor="@color/pureWhite"
-                android:layout_marginTop="36dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+            android:id="@+id/avi_record"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/AVLoadingIndicatorView"
+            android:visibility="visible"
+            app:indicatorName="BallClipRotatePulseIndicator"
+            app:indicatorColor="@color/pureWhite"
+            android:layout_marginTop="36dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,105 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="32dp"
-        android:paddingTop="24dp"
-        android:paddingStart="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingEnd="16dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="32dp"
+    android:paddingTop="24dp"
+    android:paddingStart="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingEnd="16dp">
 
     <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_weight="0"
-            app:srcCompat="@drawable/background_2" />
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="0"
+        app:srcCompat="@drawable/background_2" />
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:showDividers="middle">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:showDividers="middle">
 
         <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
 
             <TextView
-                    android:id="@+id/txv_Dash_Board_Budget_Hint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:textColor="@color/themePink"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:text="设置你的当月预算"
-                    android:layout_gravity="center_vertical"/>
+                android:id="@+id/txv_Dash_Board_Budget_Hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:textColor="@color/themePink"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="设置你的当月预算"
+                android:layout_gravity="center_vertical" />
         </LinearLayout>
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:divider="@drawable/common_horizontal_division_line">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:divider="@drawable/common_horizontal_division_line">
 
             <EditText
-                    android:id="@+id/etx_Dash_Board_Budget_Amount"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:gravity="center_horizontal"
-                    android:textAlignment="center"
-                    android:textColor="@color/themePink"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:inputType="numberDecimal"/>
+                android:id="@+id/etx_Dash_Board_Budget_Amount"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@color/themePink"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:inputType="numberDecimal" />
 
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_Dash_Board_Budget_Cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal">
+            android:background="@drawable/corners"
+            android:text="算了"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp" />
 
         <Button
-                android:id="@+id/btn_Dash_Board_Budget_Cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/corners"
-                android:text="算了"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginRight="32dp"
-                android:layout_marginLeft="32dp"/>
-
-        <Button
-                android:id="@+id/btn_Dash_Board_Budget_Push"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/corners"
-                android:text="确定"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginRight="32dp"
-                android:layout_marginLeft="32dp"/>
+            android:id="@+id/btn_Dash_Board_Budget_Push"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners"
+            android:text="确定"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp" />
     </LinearLayout>
 
 </LinearLayout>

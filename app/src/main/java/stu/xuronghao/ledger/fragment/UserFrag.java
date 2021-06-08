@@ -82,15 +82,15 @@ public class UserFrag extends Fragment {
             startActivity(intent);
         });
 
-        setting.setOnClickListener(v->{
+        setting.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ChangePasswdPage.class);
-            intent.putExtra(ConstantVariable.USER,user);
+            intent.putExtra(ConstantVariable.USER, user);
             startActivity(intent);
         });
 
-        txvUserName.setOnClickListener(v->{
+        txvUserName.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ChangeUsernamePage.class);
-            intent.putExtra(ConstantVariable.USER,user);
+            intent.putExtra(ConstantVariable.USER, user);
             startActivity(intent);
         });
     }
@@ -100,7 +100,7 @@ public class UserFrag extends Fragment {
         super.onResume();
         DataPuller dataPuller = new DataPuller();
         user = dataPuller.getUserInfo(user);
-        getActivity().getIntent().putExtra(ConstantVariable.USER,user);
+        getActivity().getIntent().putExtra(ConstantVariable.USER, user);
         txvUserName.setText(user.getUserName());
     }
 }

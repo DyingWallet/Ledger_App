@@ -47,26 +47,26 @@ public class DataPuller {
     }
 
     //更新用户数据
-    public boolean updateUserInfo(User user){
+    public boolean updateUserInfo(User user) {
         response = new GetHttpResponse();
-        String userJson = JSON.toJSONString(user,SerializerFeature.WriteClassName);
+        String userJson = JSON.toJSONString(user, SerializerFeature.WriteClassName);
         response.setService(ServerPath.UPDATE_USER_INFO);
         response.setJsonStr(userJson);
         userJson = response.poster();
-        if("".equals(userJson))
+        if ("".equals(userJson))
             return false;
         return (boolean) JSON.parse(userJson);
     }
 
     //获取用户数据
-    public User getUserInfo(User user){
+    public User getUserInfo(User user) {
         User temp;
         response = new GetHttpResponse();
-        String userJson = JSON.toJSONString(user,SerializerFeature.WriteClassName);
+        String userJson = JSON.toJSONString(user, SerializerFeature.WriteClassName);
         response.setService(ServerPath.GET_USER_INFO);
         response.setJsonStr(userJson);
         userJson = response.poster();
-        if("".equals(userJson))
+        if ("".equals(userJson))
             return null;
         temp = JSON.parseObject(userJson, User.class);
         return temp;

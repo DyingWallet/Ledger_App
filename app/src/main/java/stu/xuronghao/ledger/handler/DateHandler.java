@@ -11,6 +11,7 @@ import stu.xuronghao.ledger.handler.consts.ConstantVariable;
 public class DateHandler {
     private static final TimeZone zone = TimeZone.getTimeZone(ConstantVariable.TIME_ZONE);
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat(ConstantVariable.DATETIME_FORMAT, Locale.CHINA);
+
     //获取当前时间
     public static String getCurrentDatetime() {
         dateFormat.setTimeZone(zone);
@@ -18,19 +19,19 @@ public class DateHandler {
     }
 
     //获取当前月份
-    public static int getCurrentMonth(){
+    public static int getCurrentMonth() {
         Calendar calendar = Calendar.getInstance(zone);
         return calendar.get(Calendar.MONTH);
     }
 
     //获取当前年份
-    public static int getCurrentYear(){
+    public static int getCurrentYear() {
         Calendar calendar = Calendar.getInstance(zone);
         return calendar.get(Calendar.YEAR);
     }
 
     //设置开始/结束日期
-    public static String setDateRange(int code,int destinationMonth) {
+    public static String setDateRange(int code, int destinationMonth) {
         Calendar calendar = Calendar.getInstance(zone);
         calendar.set(Calendar.MONTH, destinationMonth);
         String result;
@@ -48,9 +49,10 @@ public class DateHandler {
         }
     }
 
-    public static String getCurrentDateLimit(int startOrEnd){
-        return setDateRange(startOrEnd,getCurrentMonth());
+    public static String getCurrentDateLimit(int startOrEnd) {
+        return setDateRange(startOrEnd, getCurrentMonth());
     }
+
     private DateHandler() {
     }
 }

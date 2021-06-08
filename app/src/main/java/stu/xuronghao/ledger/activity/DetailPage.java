@@ -113,7 +113,7 @@ public class DetailPage extends AppCompatActivity {
         String event = etxEvent.getText().toString();
         String money = etxMoney.getText().toString();
         String remark = etxRemark.getText().toString();
-        if (Validator.checkBillInfoInput(event, money,context)) {
+        if (Validator.checkBillInfoInput(event, money, context)) {
             if (ConstantVariable.COST_CODE == index) {
                 cost.setCostEvent(event);
                 cost.setCostAmount(Double.parseDouble(money));

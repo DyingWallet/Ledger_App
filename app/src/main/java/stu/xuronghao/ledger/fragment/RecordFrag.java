@@ -62,7 +62,7 @@ public class RecordFrag extends Fragment {
     private AVLoadingIndicatorView indicatorView;
     private AsyncDashBoardBuilder dashBoardBuilder;
     private AsyncDashBoardPusher dashBoardPusher;
-    private AsyncTask<Void,Void,List<HashMap<String, String>>> listPuller;
+    private AsyncTask<Void, Void, List<HashMap<String, String>>> listPuller;
 
     //List对象
     List<Cost> costList;
@@ -92,8 +92,8 @@ public class RecordFrag extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(user == null)
-            user = (User)getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
+        if (user == null)
+            user = (User) getActivity().getIntent().getSerializableExtra(ConstantVariable.USER);
         floatMenu = rootView.findViewById(R.id.float_Menu);
         indicatorView = rootView.findViewById(R.id.avi_record);
         txvMonthlyBudget = rootView.findViewById(R.id.dash_board_budget);
@@ -128,10 +128,10 @@ public class RecordFrag extends Fragment {
                 item -> {
                     menuItem = item;
                     //0-花销，1-收入
-                    if(R.id.costFrag == item.getItemId()){
+                    if (R.id.costFrag == item.getItemId()) {
                         viewPager.setCurrentItem(ConstantVariable.COST_CODE);
                         typeCode = ConstantVariable.COST_CODE;
-                    }else{
+                    } else {
                         viewPager.setCurrentItem(ConstantVariable.INCOME_CODE);
                         typeCode = ConstantVariable.INCOME_CODE;
                     }
@@ -156,9 +156,9 @@ public class RecordFrag extends Fragment {
                     navigationView.getMenu().getItem(0).setChecked(false);
                 }
                 menuItem = navigationView.getMenu().getItem(position);
-                if(R.id.costFrag == menuItem.getItemId()){
+                if (R.id.costFrag == menuItem.getItemId()) {
                     typeCode = ConstantVariable.COST_CODE;
-                }else{
+                } else {
                     typeCode = ConstantVariable.INCOME_CODE;
                 }
                 floatMenu.collapse();
@@ -199,10 +199,10 @@ public class RecordFrag extends Fragment {
         final FloatingActionButton refreshBtn = rootView.findViewById(R.id.refresh_cost);
         refreshBtn.setOnClickListener(v -> {
             //更新事件
-            if(typeCode == ConstantVariable.COST_CODE) {
+            if (typeCode == ConstantVariable.COST_CODE) {
                 listPuller = costFrag.costPullerFactory();
                 listPuller.execute();
-            }else if(typeCode == ConstantVariable.INCOME_CODE){
+            } else if (typeCode == ConstantVariable.INCOME_CODE) {
                 listPuller = incomeFrag.incomePullerFactory();
                 listPuller.execute();
             }
@@ -212,27 +212,27 @@ public class RecordFrag extends Fragment {
         });
     }
 
-    private void showPusherDialog(){
-        View view = LayoutInflater.from(context).inflate(R.layout.dash_board_setting_dialog,null,false);
+    private void showPusherDialog() {
+        View view = LayoutInflater.from(context).inflate(R.layout.dash_board_setting_dialog, null, false);
         final AlertDialog dialog = new AlertDialog.Builder(context).setView(view).create();
 
         Button add = view.findViewById(R.id.btn_Dash_Board_Budget_Push);
         Button cancel = view.findViewById(R.id.btn_Dash_Board_Budget_Cancel);
 
-        add.setOnClickListener(v->{
+        add.setOnClickListener(v -> {
             EditText etxBudget = view.findViewById(R.id.etx_Dash_Board_Budget_Amount);
             budget = etxBudget.getText().toString();
-            if(Validator.checkDashBoardBudget(budget)){
+            if (Validator.checkDashBoardBudget(budget)) {
                 dialog.dismiss();
                 dashBoardPusher = new AsyncDashBoardPusher();
                 dashBoardPusher.execute();
             }
         });
-        cancel.setOnClickListener(v->dialog.dismiss());
+        cancel.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
     }
 
-    private class AsyncDashBoardBuilder extends AsyncTask<Void,Void, Map<String,Double>>{
+    private class AsyncDashBoardBuilder extends AsyncTask<Void, Void, Map<String, Double>> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -240,8 +240,8 @@ public class RecordFrag extends Fragment {
         }
 
         @Override
-        protected Map<String,Double> doInBackground(Void... voids) {
-            Map<String,Double> result = new HashMap<>();
+        protected Map<String, Double> doInBackground(Void... voids) {
+            Map<String, Double> result = new HashMap<>();
             double costAmount = 0;
             double userBudget;
             DataPuller dataPuller = new DataPuller();
@@ -250,7 +250,7 @@ public class RecordFrag extends Fragment {
             costList = dataPuller.pullCostOfBetween(user,
                     DateHandler.getCurrentDateLimit(ConstantVariable.START_CODE),
                     DateHandler.getCurrentDateLimit(ConstantVariable.END_CODE));
-            if(temp == null || costList == null)
+            if (temp == null || costList == null)
                 return null;
             user = temp;
             userBudget = user.getUserBudget();
@@ -258,43 +258,43 @@ public class RecordFrag extends Fragment {
                 costAmount += c.getCostAmount();
             }
 
-            result.put(ConstantVariable.DASHBOARD_BUDGET,userBudget);
-            result.put(ConstantVariable.DASHBOARD_COST,costAmount);
-            result.put(ConstantVariable.DASHBOARD_SURPLUS,userBudget - costAmount);
+            result.put(ConstantVariable.DASHBOARD_BUDGET, userBudget);
+            result.put(ConstantVariable.DASHBOARD_COST, costAmount);
+            result.put(ConstantVariable.DASHBOARD_SURPLUS, userBudget - costAmount);
             return result;
         }
 
         @Override
         protected void onPostExecute(Map<String, Double> results) {
             super.onPostExecute(results);
-            if(results!=null) {
+            if (results != null) {
                 double userBudget = results.get(ConstantVariable.DASHBOARD_BUDGET);
                 double userCost = results.get(ConstantVariable.DASHBOARD_COST);
                 TextView txvDashBoardSurplusTit = rootView.findViewById(R.id.dash_board_surplus_tit);
-                if(userBudget >= userCost){
+                if (userBudget >= userCost) {
                     //未超支
                     txvDashBoardSurplusTit.setText(ConstantVariable.HINT_REST_TO_COST);
-                    linearLayoutDashBoard.setBackgroundColor(ContextCompat.getColor(context,R.color.themePink));
-                    if(userBudget/userCost>=2){
+                    linearLayoutDashBoard.setBackgroundColor(ContextCompat.getColor(context, R.color.themePink));
+                    if (userBudget / userCost >= 2) {
                         txvDashBoardHint.setText(ConstantVariable.HINT_POSITIVE_BUDGET_HIGH);
-                        txvMonthlySurplus.setTextColor(ContextCompat.getColor(context,R.color.green));
-                    }else {
+                        txvMonthlySurplus.setTextColor(ContextCompat.getColor(context, R.color.green));
+                    } else {
                         txvDashBoardHint.setText(ConstantVariable.HINT_POSITIVE_BUDGET_LOW);
-                        txvMonthlySurplus.setTextColor(ContextCompat.getColor(context,R.color.pureWhite));
+                        txvMonthlySurplus.setTextColor(ContextCompat.getColor(context, R.color.pureWhite));
                     }
-                }else {
+                } else {
                     //超支
                     txvDashBoardSurplusTit.setText(ConstantVariable.WARNING_OVER_COST);
-                    txvMonthlySurplus.setTextColor(ContextCompat.getColor(context,R.color.pureWhite));
+                    txvMonthlySurplus.setTextColor(ContextCompat.getColor(context, R.color.pureWhite));
                     double overCost = userCost - userBudget;
-                    if(userBudget / overCost > 1.5){
+                    if (userBudget / overCost > 1.5) {
                         //低超支
                         txvDashBoardHint.setText(ConstantVariable.HINT_NEGATIVE_BUDGET_LOW);
-                        linearLayoutDashBoard.setBackgroundColor(ContextCompat.getColor(context,R.color.orange));
-                    }else {
+                        linearLayoutDashBoard.setBackgroundColor(ContextCompat.getColor(context, R.color.orange));
+                    } else {
                         //高超支
                         txvDashBoardHint.setText(ConstantVariable.HINT_NEGATIVE_BUDGET_HIGH);
-                        linearLayoutDashBoard.setBackgroundColor(ContextCompat.getColor(context,R.color.warnRed));
+                        linearLayoutDashBoard.setBackgroundColor(ContextCompat.getColor(context, R.color.warnRed));
                     }
                 }
 
@@ -310,7 +310,7 @@ public class RecordFrag extends Fragment {
         }
     }
 
-    private class AsyncDashBoardPusher extends AsyncTask<Void,Void,Boolean>{
+    private class AsyncDashBoardPusher extends AsyncTask<Void, Void, Boolean> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -330,10 +330,10 @@ public class RecordFrag extends Fragment {
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
             boolean res = aBoolean;
-            if(res) {
+            if (res) {
                 dashBoardBuilder = new AsyncDashBoardBuilder();
                 dashBoardBuilder.execute();
-            }else {
+            } else {
                 Toast toast = Toast.makeText(context,
                         ConstantVariable.ERR_CONNECT_FAILED, Toast.LENGTH_LONG);
                 toast.show();

@@ -16,7 +16,7 @@
         android:text="公告标题"
         android:textColor="@color/themePink"
         android:textSize="36sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:textColor="@color/themePink"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:gravity="end"/>
+            android:gravity="end" />
 
         <TextView
             android:id="@+id/txv_Anno_Detail_Admin"
@@ -66,7 +66,7 @@
             android:textColor="@color/themePink"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:gravity="end"/>
+            android:gravity="end" />
 
         <TextView
             android:id="@+id/txv_Anno_Detail_Datetime"
@@ -95,7 +95,7 @@
         android:textColor="@color/themePink"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <Button
         android:id="@+id/btn_Anno_Detail_Dismiss"
@@ -106,5 +106,5 @@
         android:textStyle="bold"
         android:textColor="#FFFFFF"
         android:background="@drawable/corners"
-        android:text="确定"/>
+        android:text="确定" />
 </LinearLayout>
