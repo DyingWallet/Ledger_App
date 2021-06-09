@@ -7,7 +7,7 @@ public class WeightValue {
     public static final Integer LOW = 1;
 
     //typeWeightFactor
-    public static final int NORMAL_TYPE_WEIGHT_FACTOR = 5;
+    public static final int NORMAL_TYPE_WEIGHT_FACTOR = 10;
     public static final int OTHER_TYPE_WEIGHT_FACTOR = 1;
 
     private WeightValue() {

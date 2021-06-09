@@ -145,6 +145,7 @@ public class ConstantVariable {
 
     private static final Map<String, String[]> TYPE;
 
+    //注意，如果要对类型数组进行增减操作，需要同步对图标数组，颜色数组进行对应操作
     static {
         TYPE = new HashMap<>();
         TYPE.put(COST_TYPE, new String[]{"餐饮", "交通", "服饰", "日用", "其他"});
@@ -155,22 +156,28 @@ public class ConstantVariable {
 
     static {
         COST_INDEX_MAP = new HashMap<>();
-        COST_INDEX_MAP.put("餐饮", 0);
-        COST_INDEX_MAP.put("交通", 1);
-        COST_INDEX_MAP.put("服饰", 2);
-        COST_INDEX_MAP.put("日用", 3);
-        COST_INDEX_MAP.put("其他", 4);
+        //COST_INDEX_MAP.put("餐饮", 0);
+        //COST_INDEX_MAP.put("交通", 1);
+        //COST_INDEX_MAP.put("服饰", 2);
+        //COST_INDEX_MAP.put("日用", 3);
+        //COST_INDEX_MAP.put("其他", 4);
+        for (int i = 0; i < getTypeArray(COST_TYPE).length; i++) {
+            COST_INDEX_MAP.put(getTypeByTypeCode(i, COST_CODE), i);
+        }
     }
 
     private static final Map<String, Integer> INCOME_INDEX_MAP;
 
     static {
         INCOME_INDEX_MAP = new HashMap<>();
-        INCOME_INDEX_MAP.put("工资", 0);
-        INCOME_INDEX_MAP.put("奖金", 1);
-        INCOME_INDEX_MAP.put("补贴", 2);
-        INCOME_INDEX_MAP.put("红包", 3);
-        INCOME_INDEX_MAP.put("其他", 4);
+        //INCOME_INDEX_MAP.put("工资", 0);
+        //INCOME_INDEX_MAP.put("奖金", 1);
+        //INCOME_INDEX_MAP.put("补贴", 2);
+        //INCOME_INDEX_MAP.put("红包", 3);
+        //INCOME_INDEX_MAP.put("其他", 4);
+        for (int i = 0; i < getTypeArray(INCOME_TYPE).length; i++) {
+            INCOME_INDEX_MAP.put(getTypeByTypeCode(i, INCOME_CODE), i);
+        }
     }
 
     private static final List<Pair<String, Integer>> COST_TYPE_LIST;
@@ -268,6 +275,8 @@ public class ConstantVariable {
     static {
         COST_MAP_TO_TYPE = new HashMap<>();
         //餐饮
+        COST_MAP_TO_TYPE.put("吃", "餐饮");
+        COST_MAP_TO_TYPE.put("喝", "餐饮");
         COST_MAP_TO_TYPE.put("饭", "餐饮");
         COST_MAP_TO_TYPE.put("餐", "餐饮");
         COST_MAP_TO_TYPE.put("饮", "餐饮");

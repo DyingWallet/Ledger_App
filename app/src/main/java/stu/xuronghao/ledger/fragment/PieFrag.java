@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -134,7 +135,7 @@ public class PieFrag extends Fragment {
             List<Object[]> data = new ArrayList<>();
             Map<String, List> result = new HashMap<>();
             double tmp = 0;
-            double[] arr = {0, 0, 0, 0, 0};
+            double[] arr = new double[ConstantVariable.getTypeArray(ConstantVariable.COST_TYPE).length];
             String modeType = ConstantVariable.COST_CODE == typeCode ? ConstantVariable.COST_TYPE : ConstantVariable.INCOME_TYPE;
 
             if (ConstantVariable.COST_CODE == typeCode) {
@@ -165,7 +166,9 @@ public class PieFrag extends Fragment {
 
             for (int i = 0; i < arr.length; i++) {
                 if (arr[i] != 0) {
-                    data.add(new Object[]{ConstantVariable.getTypeByTypeStr(i, modeType), arr[i]});
+                    data.add(new Object[]{
+                            ConstantVariable.getTypeByTypeStr(i, modeType), arr[i]
+                    });
                     feeList.add(new TotalFee(IconHandler.getIconByArray(typeCode, i),
                             arr[i], ConstantVariable.getTypeByTypeStr(i, modeType)));
                     tmp += arr[i];

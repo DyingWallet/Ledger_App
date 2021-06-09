@@ -69,6 +69,6 @@ public class StringChecker {
                 sb.append(ConstantVariable.ZERO_STR);
             }
         }
-        return sb.toString();
+        return sb.toString() + ".00";
     }
 }

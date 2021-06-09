@@ -92,7 +92,7 @@ public class CostFrag extends Fragment {
                 return null;
             }
             //用HashMap来传递内容
-            List<HashMap<String, String>> mapArrayList = new ArrayList<>();
+            List<HashMap<String, String>> mapList = new ArrayList<>();
             for (int i = 0; i < costList.size(); i++) {
                 Cost temp = costList.get(i);
                 String title = temp.getCostEvent() + ": " + temp.getCostType() + " " + temp.getCostAmount() + "元";
@@ -100,18 +100,18 @@ public class CostFrag extends Fragment {
                 map.put(ConstantVariable.ITEM_TITLE, title);
                 map.put(ConstantVariable.ITEM_TYPE, temp.getCostType());
                 map.put(ConstantVariable.ITEM_CONTENT, temp.getCostDate());
-                mapArrayList.add(map);
+                mapList.add(map);
             }
-            return mapArrayList;
+            return mapList;
         }
 
         @Override
-        protected void onPostExecute(List<HashMap<String, String>> mapArrayList) {
-            super.onPostExecute(mapArrayList);
+        protected void onPostExecute(List<HashMap<String, String>> mapList) {
+            super.onPostExecute(mapList);
 
-            if (mapArrayList != null) {
+            if (mapList != null) {
                 //用HashMap将数据传入ListView适配器
-                BillDataAdapter adapter = new BillDataAdapter(activity, ConstantVariable.COST_CODE, mapArrayList);
+                BillDataAdapter adapter = new BillDataAdapter(activity, ConstantVariable.COST_CODE, mapList);
 
                 //应用适配器并更新ListView
                 listView.setAdapter(adapter);

@@ -10,12 +10,13 @@ public class ColorsHandler {
     private static final int[] colors = {R.color.themePink, R.color.wightBlue,
             R.color.lightEarth, R.color.deepPink, R.color.indigo};
 
-    public static final String PICA_PINK = "#EC97B6";
+    public static final String THEME_PINK = "#EC97B6";
     public static final String ROSE_RED = "#FA6594";
     public static final String LIGHT_BLUE = "#DEEFFF";
     public static final String LIGHT_EARTHY = "#FFEADC";
     public static final String DEEP_PINK = "#C8839C";
     public static final String INDIGO = "#B5C9D9";
+    //注意，如果要对类型数组进行增减操作，需要同步对图标数组，颜色数组进行对应操作
     private static final String[] colorStr = {ROSE_RED, LIGHT_BLUE, LIGHT_EARTHY, DEEP_PINK, INDIGO};
 
     private static final Map<String, String> colorMap;
